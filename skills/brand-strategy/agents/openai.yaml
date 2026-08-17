@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brand Strategy"
+  short_description: "Brand Strategy"
+  default_prompt: "Use Brand Strategy to diagnose this marketing decision before recommending actions."

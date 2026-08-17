@@ -1,0 +1,21 @@
+{
+  "name": "marketing-council",
+  "interface": {
+    "displayName": "Marketing Council"
+  },
+  "plugins": [
+    {
+      "name": "marketing-council",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/imMamdouhaboammar/marketing-council-pack.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Business & Operations"
+    }
+  ]
+}

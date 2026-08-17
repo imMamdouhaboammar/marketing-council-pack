@@ -1,0 +1,7 @@
+interface:
+  display_name: "Conversion Strategy"
+  short_description: "Find the highest-value CRO constraint"
+  brand_color: "#173F35"
+  default_prompt: "Diagnose this conversion problem, rank the likely constraints, and define the smallest useful experiments."
+policy:
+  allow_implicit_invocation: true

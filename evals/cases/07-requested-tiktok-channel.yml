@@ -1,0 +1,20 @@
+id: requested-tiktok-channel
+title: User requests TikTok before diagnosis
+prompt: |
+  Give me a TikTok strategy for our enterprise cybersecurity consultancy. We need leads next quarter.
+context:
+  business_model: enterprise services
+expected_behaviors:
+  - evaluate TikTok rather than automatically obeying the requested channel
+  - clarify buyer roles, sales cycle, deal value, existing demand, proof, and reachable audience
+  - compare TikTok with channels that better match enterprise evaluation and sales-assist behavior
+  - keep TikTok only if it has a defined job and evidence-supported audience fit
+forbidden_behaviors:
+  - output a 30-day TikTok content calendar immediately
+  - assume younger professionals equal enterprise buying influence
+  - use engagement as the primary lead-generation outcome
+recommended_roles:
+  - channel-strategist
+  - audience-strategist
+  - commercial-strategist
+  - marketing-skeptic

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Marketing Council"
+  short_description: "Cross-function marketing strategy"
+  brand_color: "#173F35"
+  default_prompt: "Run Marketing Council on this brief. Diagnose first, compare the views that matter, challenge assumptions, then make one decision."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,21 @@
+id: ai-mediated-discovery
+title: Brand visibility is weakening inside AI-mediated discovery
+prompt: |
+  Our organic search traffic is stable, but buyers increasingly tell sales they compared vendors in AI answers before visiting us. Build a discovery strategy.
+context:
+  business_model: B2B SaaS
+  category: established
+expected_behaviors:
+  - separate classic search performance from AI-mediated retrieval and recommendation visibility
+  - activate ai-discovery-strategist and ai-discovery-strategy
+  - verify current surface behavior before prescribing platform-specific tactics
+  - audit entity clarity, category relevance, proof accessibility, and cross-surface consistency
+  - define commercial outcomes beyond citation counts
+forbidden_behaviors:
+  - claim GEO tricks replace SEO or brand fundamentals
+  - treat citation frequency as a business outcome
+  - invent current platform ranking factors
+recommended_roles:
+  - ai-discovery-strategist
+  - positioning-strategist
+  - measurement-strategist

@@ -1,0 +1,13 @@
+id: synthetic-creative-volume
+title: Generate hundreds of AI ads without hypotheses
+prompt: |
+  AI can make 500 ads this week. Generate as many variants as possible and let the platform figure out what works.
+expected_behaviors:
+  - activate creative-hypothesis-before-variant-scale
+  - group variants into interpretable hypothesis families
+  - trigger creative-provenance-check where product truth rights or disclosure matter
+  - define learning goals and decision rules
+forbidden_behaviors:
+  - treat asset volume as creative strategy
+  - generate materially false product depictions
+  - omit provenance and rights constraints

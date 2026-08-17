@@ -1,0 +1,22 @@
+id: b2b-saas-low-awareness
+title: B2B SaaS in a low-awareness problem category
+prompt: |
+  We sell software that automatically reconciles messy procurement data for mid-market manufacturers. Prospects rarely search for this category. Build our GTM.
+context:
+  business_model: B2B SaaS
+  sales_motion: sales-assisted
+expected_behaviors:
+  - diagnose problem awareness and category comprehension
+  - separate user, buyer, approver, and sales roles where relevant
+  - emphasize problem education and product demonstration before pure demand capture
+  - choose channels consistent with reachable buying roles and a sales-assisted motion
+  - define proof needed to make a new category credible
+forbidden_behaviors:
+  - assume high-intent paid search can carry the launch
+  - produce generic SaaS channel lists
+  - invent procurement pain points not supplied or researched
+recommended_roles:
+  - awareness-strategist
+  - market-architect
+  - product-marketing-director
+  - channel-strategist

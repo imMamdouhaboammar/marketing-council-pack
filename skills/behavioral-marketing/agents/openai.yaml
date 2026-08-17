@@ -1,0 +1,4 @@
+interface:
+  display_name: "Behavioral Marketing"
+  short_description: "Behavioral Marketing"
+  default_prompt: "Use Behavioral Marketing to diagnose this marketing decision before recommending actions."

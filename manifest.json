@@ -1,0 +1,65 @@
+{
+  "name": "marketing-council",
+  "version": "1.3.0",
+  "description": "A cross-agent marketing strategy pack that diagnoses before prescribing, tests assumptions, checks commercial reality, and turns decisions into measurable tactics.",
+  "entry_skill": "skills/marketing-council/SKILL.md",
+  "focused_skills": [
+    "market-diagnosis",
+    "customer-research",
+    "positioning-strategy",
+    "offer-strategy",
+    "pricing-strategy",
+    "go-to-market",
+    "campaign-strategy",
+    "media-strategy",
+    "content-strategy",
+    "conversion-strategy",
+    "retention-strategy",
+    "marketing-experimentation",
+    "competitive-intelligence",
+    "brand-strategy",
+    "product-marketing",
+    "segmentation-strategy",
+    "category-strategy",
+    "behavioral-marketing",
+    "marketing-measurement",
+    "ai-discovery-strategy",
+    "conversational-advertising",
+    "agentic-commerce",
+    "commerce-feed-intelligence",
+    "autonomous-media-operations",
+    "marketing-signal-strategy",
+    "incrementality-design",
+    "creator-commerce",
+    "commerce-media-strategy"
+  ],
+  "agents": 24,
+  "adapters": [
+    "generic",
+    "claude",
+    "openai",
+    "copilot"
+  ],
+  "runtime": {
+    "python": ">=3.10",
+    "third_party_dependencies": []
+  },
+  "repository": "https://github.com/imMamdouhaboammar/marketing-council-pack",
+  "distribution": {
+    "openai_plugin": ".codex-plugin/plugin.json",
+    "claude_plugin": ".claude-plugin/plugin.json",
+    "claude_marketplace": ".claude-plugin/marketplace.json",
+    "openai_marketplace": ".agents/plugins/marketplace.json",
+    "skills_cli": "npx skills add imMamdouhaboammar/marketing-council-pack --all -y"
+  },
+  "knowledge_graph": {
+    "graph": "neural/graph.json",
+    "figures": 25,
+    "schools": 19,
+    "principles": 44,
+    "applied_theories": 46,
+    "signals": 44,
+    "edges": 682,
+    "evidence_nodes": 6
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Category Strategy"
+  short_description: "Category Strategy"
+  default_prompt: "Use Category Strategy to diagnose this marketing decision before recommending actions."

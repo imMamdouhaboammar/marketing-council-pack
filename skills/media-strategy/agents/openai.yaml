@@ -1,0 +1,7 @@
+interface:
+  display_name: "Media Strategy"
+  short_description: "Give each channel a clear job"
+  brand_color: "#173F35"
+  default_prompt: "Choose the channel mix for this objective using audience behavior, intent, reach, economics, creative fit, and measurement."
+policy:
+  allow_implicit_invocation: true

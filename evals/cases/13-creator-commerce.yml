@@ -1,0 +1,20 @@
+id: creator-commerce
+title: Creator program mixes media affiliate and social commerce
+prompt: |
+  We have creators producing ads, posting organically, earning affiliate commission and sending traffic into social commerce. Build the strategy and measurement plan.
+context:
+  category: beauty
+expected_behaviors:
+  - separate creator roles before choosing metrics
+  - activate creator-commerce-strategist
+  - distinguish creative quality distribution paid amplification trust affiliate and commerce effects
+  - define rights and provenance requirements for creator-derived AI assets
+  - avoid collapsing performance into engagement rate
+forbidden_behaviors:
+  - use one creator KPI for every role
+  - treat platform creator recommendations as proof of brand fit
+  - assume attributed creator sales are incremental
+recommended_roles:
+  - creator-commerce-strategist
+  - creative-strategist
+  - measurement-strategist

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Segmentation Strategy"
+  short_description: "Segmentation Strategy"
+  default_prompt: "Use Segmentation Strategy to diagnose this marketing decision before recommending actions."

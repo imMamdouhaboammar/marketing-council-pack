@@ -1,0 +1,7 @@
+interface:
+  display_name: "Content Strategy"
+  short_description: "Plan content around decisions"
+  brand_color: "#173F35"
+  default_prompt: "Build a content strategy around the customer decisions that must change, not a generic posting calendar."
+policy:
+  allow_implicit_invocation: true

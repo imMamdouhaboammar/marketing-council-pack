@@ -1,0 +1,4 @@
+interface:
+  display_name: "Marketing Measurement"
+  short_description: "Marketing Measurement"
+  default_prompt: "Use Marketing Measurement to diagnose this marketing decision before recommending actions."

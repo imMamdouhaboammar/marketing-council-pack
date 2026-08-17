@@ -1,0 +1,12 @@
+{
+  "name": "Marketing Council",
+  "subtitle": "Marketing strategy council",
+  "description": "Diagnose the marketing problem before choosing tactics. Marketing Council connects established marketing schools, principles, and applied theories to specialist agents, evidence gates, commercial checks, and measurable actions.",
+  "category": "Business & Operations",
+  "version": "1.3.0",
+  "starter_prompts": [
+    "Diagnose this marketing problem before recommending tactics.",
+    "Run a council debate on this strategy and tell me what decision the evidence supports.",
+    "Red-team this marketing plan, then rebuild the parts that would fail commercially."
+  ]
+}

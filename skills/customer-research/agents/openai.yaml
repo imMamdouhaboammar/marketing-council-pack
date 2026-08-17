@@ -1,0 +1,7 @@
+interface:
+  display_name: "Customer Research"
+  short_description: "Turn customer evidence into insight"
+  brand_color: "#173F35"
+  default_prompt: "Analyze this customer evidence for triggers, jobs, objections, anxieties, alternatives, and exact language."
+policy:
+  allow_implicit_invocation: true

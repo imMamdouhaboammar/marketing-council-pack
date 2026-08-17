@@ -1,0 +1,7 @@
+interface:
+  display_name: "Retention Strategy"
+  short_description: "Diagnose weak repeat behavior"
+  brand_color: "#173F35"
+  default_prompt: "Diagnose why customers fail to reach or repeat value, then prioritize retention interventions and measurements."
+policy:
+  allow_implicit_invocation: true

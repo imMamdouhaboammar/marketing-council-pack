@@ -1,0 +1,7 @@
+interface:
+  display_name: "Offer Strategy"
+  short_description: "Make the value exchange concrete"
+  brand_color: "#173F35"
+  default_prompt: "Audit this offer for value, proof, risk, objections, response mechanism, and measurable next action."
+policy:
+  allow_implicit_invocation: true

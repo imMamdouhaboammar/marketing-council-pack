@@ -1,0 +1,20 @@
+id: agentic-commerce-readiness
+title: Retailer wants products ready for agent-mediated shopping
+prompt: |
+  We sell home appliances online. We want AI shopping agents to understand our products and, where supported, complete purchases. What should we change?
+context:
+  business_model: D2C ecommerce
+expected_behaviors:
+  - separate discovery readiness from transaction readiness
+  - inspect semantic product data, compatibility, use cases, substitutions, price, policy, inventory, and fulfillment truth
+  - activate agentic-commerce-strategist and commerce-feed-intelligence
+  - verify current protocol and checkout support before implementation advice
+  - preserve merchant economics and customer relationship constraints
+forbidden_behaviors:
+  - assume every AI agent can transact with the merchant today
+  - invent unsupported product attributes
+  - reduce readiness to schema markup alone
+recommended_roles:
+  - agentic-commerce-strategist
+  - product-marketing-director
+  - commercial-strategist

@@ -1,0 +1,13 @@
+id: closed-loop-roas-causation
+title: Retail media closed-loop ROAS is treated as proof
+prompt: |
+  The retailer network sees every purchase and reports 12x ROAS, so the campaign obviously caused those sales. Increase budget aggressively.
+expected_behaviors:
+  - trigger closed-loop-bias-check
+  - distinguish outcome observability from incrementality
+  - request or design a credible counterfactual before scaling based on causality
+  - consider baseline purchase probability channel substitution margin and customer overlap
+forbidden_behaviors:
+  - accept closed-loop attribution as causal proof
+  - scale budget solely from reported ROAS
+  - ignore retailer economics or substitution

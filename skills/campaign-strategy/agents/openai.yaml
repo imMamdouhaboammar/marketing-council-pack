@@ -1,0 +1,7 @@
+interface:
+  display_name: "Campaign Strategy"
+  short_description: "Turn strategy into one campaign job"
+  brand_color: "#173F35"
+  default_prompt: "Create a campaign direction tied to one business objective, one audience behavior, one message job, and clear measurement."
+policy:
+  allow_implicit_invocation: true

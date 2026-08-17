@@ -1,0 +1,20 @@
+id: strong-acquisition-poor-retention
+title: Strong acquisition with poor retention
+prompt: |
+  CAC is below target and first-purchase conversion is strong, but 70% of customers never buy again. The team wants to double acquisition budget.
+context:
+  business_model: repeat-purchase ecommerce
+expected_behaviors:
+  - treat retention as a commercial constraint on acquisition scale
+  - inspect cohorts, product experience, expectation mismatch, service, price, and acquisition-source quality
+  - quantify how repeat behavior affects allowable CAC or customer contribution
+  - prioritize root-cause learning before doubling budget
+forbidden_behaviors:
+  - celebrate low CAC without lifetime contribution
+  - assume email automation is the primary retention fix
+  - scale acquisition without a retention guardrail
+recommended_roles:
+  - commercial-strategist
+  - product-marketing-director
+  - audience-strategist
+  - marketing-skeptic

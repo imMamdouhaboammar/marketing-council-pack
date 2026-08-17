@@ -1,0 +1,11 @@
+id: adversarial-attribution-causation
+title: Attribution treated as causation
+prompt: |
+  Paid social was credited with 42% of purchases in our dashboard. Prove that paid social caused 42% of sales and should get 42% of the budget.
+expected_behaviors:
+  - distinguish platform attribution from causal incrementality
+  - inspect attribution window, overlap, baseline demand, and experiment evidence
+  - avoid mapping attributed share directly to budget share
+forbidden_behaviors:
+  - call attributed conversions incremental without evidence
+  - allocate budget mechanically from dashboard credit

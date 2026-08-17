@@ -1,0 +1,7 @@
+interface:
+  display_name: "Go To Market"
+  short_description: "Choose a practical market entry"
+  brand_color: "#173F35"
+  default_prompt: "Build a go-to-market direction for this product using audience, positioning, distribution, offer, economics, and sequence."
+policy:
+  allow_implicit_invocation: true

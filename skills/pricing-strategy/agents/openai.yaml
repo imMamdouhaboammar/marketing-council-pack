@@ -1,0 +1,7 @@
+interface:
+  display_name: "Pricing Strategy"
+  short_description: "Make a defensible pricing decision"
+  brand_color: "#173F35"
+  default_prompt: "Assess this pricing decision using buyer behavior, competition, contribution economics, and testable assumptions."
+policy:
+  allow_implicit_invocation: true

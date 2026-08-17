@@ -1,0 +1,7 @@
+interface:
+  display_name: "Market Diagnosis"
+  short_description: "Find the real marketing constraint"
+  brand_color: "#173F35"
+  default_prompt: "Diagnose the marketing problem in this brief before recommending any tactics."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,5917 @@
+{
+  "schema_version": 1,
+  "release": "1.3.0",
+  "nodes": [
+    {
+      "id": "agent-agentic-commerce-strategist",
+      "type": "agent",
+      "label": "Agentic Commerce Strategist",
+      "path": "agents/agentic-commerce-strategist.md",
+      "slug": "agentic-commerce-strategist"
+    },
+    {
+      "id": "agent-ai-discovery-strategist",
+      "type": "agent",
+      "label": "AI Discovery Strategist",
+      "path": "agents/ai-discovery-strategist.md",
+      "slug": "ai-discovery-strategist"
+    },
+    {
+      "id": "agent-audience-strategist",
+      "type": "agent",
+      "label": "Audience Strategist",
+      "path": "agents/audience-strategist.md",
+      "slug": "audience-strategist"
+    },
+    {
+      "id": "agent-awareness-strategist",
+      "type": "agent",
+      "label": "Awareness Strategist",
+      "path": "agents/awareness-strategist.md",
+      "slug": "awareness-strategist"
+    },
+    {
+      "id": "agent-behavior-strategist",
+      "type": "agent",
+      "label": "Behavior Strategist",
+      "path": "agents/behavior-strategist.md",
+      "slug": "behavior-strategist"
+    },
+    {
+      "id": "agent-brand-equity-strategist",
+      "type": "agent",
+      "label": "Brand Equity Strategist",
+      "path": "agents/brand-equity-strategist.md",
+      "slug": "brand-equity-strategist"
+    },
+    {
+      "id": "agent-brand-growth-strategist",
+      "type": "agent",
+      "label": "Brand Growth Strategist",
+      "path": "agents/brand-growth-strategist.md",
+      "slug": "brand-growth-strategist"
+    },
+    {
+      "id": "agent-channel-strategist",
+      "type": "agent",
+      "label": "Channel Strategist",
+      "path": "agents/channel-strategist.md",
+      "slug": "channel-strategist"
+    },
+    {
+      "id": "agent-commerce-media-strategist",
+      "type": "agent",
+      "label": "Commerce Media Strategist",
+      "path": "agents/commerce-media-strategist.md",
+      "slug": "commerce-media-strategist"
+    },
+    {
+      "id": "agent-commercial-strategist",
+      "type": "agent",
+      "label": "Commercial Strategist",
+      "path": "agents/commercial-strategist.md",
+      "slug": "commercial-strategist"
+    },
+    {
+      "id": "agent-competitive-strategy-analyst",
+      "type": "agent",
+      "label": "Competitive Strategy Analyst",
+      "path": "agents/competitive-strategy-analyst.md",
+      "slug": "competitive-strategy-analyst"
+    },
+    {
+      "id": "agent-council-director",
+      "type": "agent",
+      "label": "Council Director",
+      "path": "agents/council-director.md",
+      "slug": "council-director"
+    },
+    {
+      "id": "agent-creative-strategist",
+      "type": "agent",
+      "label": "Creative Strategist",
+      "path": "agents/creative-strategist.md",
+      "slug": "creative-strategist"
+    },
+    {
+      "id": "agent-creator-commerce-strategist",
+      "type": "agent",
+      "label": "Creator Commerce Strategist",
+      "path": "agents/creator-commerce-strategist.md",
+      "slug": "creator-commerce-strategist"
+    },
+    {
+      "id": "agent-effectiveness-strategist",
+      "type": "agent",
+      "label": "Effectiveness Strategist",
+      "path": "agents/effectiveness-strategist.md",
+      "slug": "effectiveness-strategist"
+    },
+    {
+      "id": "agent-lifecycle-strategist",
+      "type": "agent",
+      "label": "Lifecycle Strategist",
+      "path": "agents/lifecycle-strategist.md",
+      "slug": "lifecycle-strategist"
+    },
+    {
+      "id": "agent-market-architect",
+      "type": "agent",
+      "label": "Market Architect",
+      "path": "agents/market-architect.md",
+      "slug": "market-architect"
+    },
+    {
+      "id": "agent-marketing-automation-governor",
+      "type": "agent",
+      "label": "Marketing Automation Governor",
+      "path": "agents/marketing-automation-governor.md",
+      "slug": "marketing-automation-governor"
+    },
+    {
+      "id": "agent-marketing-signal-architect",
+      "type": "agent",
+      "label": "Marketing Signal Architect",
+      "path": "agents/marketing-signal-architect.md",
+      "slug": "marketing-signal-architect"
+    },
+    {
+      "id": "agent-marketing-skeptic",
+      "type": "agent",
+      "label": "Marketing Skeptic",
+      "path": "agents/marketing-skeptic.md",
+      "slug": "marketing-skeptic"
+    },
+    {
+      "id": "agent-measurement-strategist",
+      "type": "agent",
+      "label": "Measurement Strategist",
+      "path": "agents/measurement-strategist.md",
+      "slug": "measurement-strategist"
+    },
+    {
+      "id": "agent-positioning-strategist",
+      "type": "agent",
+      "label": "Positioning Strategist",
+      "path": "agents/positioning-strategist.md",
+      "slug": "positioning-strategist"
+    },
+    {
+      "id": "agent-product-marketing-director",
+      "type": "agent",
+      "label": "Product Marketing Director",
+      "path": "agents/product-marketing-director.md",
+      "slug": "product-marketing-director"
+    },
+    {
+      "id": "agent-response-strategist",
+      "type": "agent",
+      "label": "Response Strategist",
+      "path": "agents/response-strategist.md",
+      "slug": "response-strategist"
+    },
+    {
+      "id": "evidence-agentic-commerce-2026",
+      "type": "evidence",
+      "label": "Agentic Commerce, 2026",
+      "path": "references/2026/agentic-commerce-2026.md",
+      "slug": "agentic-commerce-2026",
+      "as_of": "2026-08-17",
+      "source_ids": [
+        "google-agentic-commerce-2026",
+        "google-agentic-shopping-gml-2026",
+        "google-ai-max-shopping-2026"
+      ]
+    },
+    {
+      "id": "evidence-ai-mediated-discovery-2026",
+      "type": "evidence",
+      "label": "AI-Mediated Discovery, 2026",
+      "path": "references/2026/ai-mediated-discovery-2026.md",
+      "slug": "ai-mediated-discovery-2026",
+      "as_of": "2026-08-17",
+      "source_ids": [
+        "google-search-ai-owner-controls-2026",
+        "google-gml-search-ads-2026"
+      ]
+    },
+    {
+      "id": "evidence-autonomous-media-operations-2026",
+      "type": "evidence",
+      "label": "Autonomous Media Operations, 2026",
+      "path": "references/2026/autonomous-media-operations-2026.md",
+      "slug": "autonomous-media-operations-2026",
+      "as_of": "2026-08-17",
+      "source_ids": [
+        "google-ask-advisor-2026",
+        "tiktok-world-2026",
+        "meta-ai-ads-2026"
+      ]
+    },
+    {
+      "id": "evidence-causal-measurement-2026",
+      "type": "evidence",
+      "label": "Causal Measurement Reset, 2026",
+      "path": "references/2026/causal-measurement-2026.md",
+      "slug": "causal-measurement-2026",
+      "as_of": "2026-08-17",
+      "source_ids": [
+        "iab-state-data-2026",
+        "google-meridian-ga360-2026",
+        "meta-ai-ads-2026"
+      ]
+    },
+    {
+      "id": "evidence-commerce-media-2026",
+      "type": "evidence",
+      "label": "Commerce Media, 2026",
+      "path": "references/2026/commerce-media-2026.md",
+      "slug": "commerce-media-2026",
+      "as_of": "2026-08-17",
+      "source_ids": [
+        "iab-commerce-media-2026",
+        "iab-commerce-incrementality-2025"
+      ]
+    },
+    {
+      "id": "evidence-creator-commerce-2026",
+      "type": "evidence",
+      "label": "Creator Commerce, 2026",
+      "path": "references/2026/creator-commerce-2026.md",
+      "slug": "creator-commerce-2026",
+      "as_of": "2026-08-17",
+      "source_ids": [
+        "tiktok-world-2026",
+        "tiktok-symphony-agent-2026",
+        "iab-creator-measurement-2026"
+      ]
+    },
+    {
+      "id": "figure-al-ries",
+      "type": "figure",
+      "label": "Al Ries",
+      "path": "references/figures/al-ries.md",
+      "slug": "al-ries"
+    },
+    {
+      "id": "figure-andrew-ehrenberg",
+      "type": "figure",
+      "label": "Andrew Ehrenberg",
+      "path": "references/figures/andrew-ehrenberg.md",
+      "slug": "andrew-ehrenberg"
+    },
+    {
+      "id": "figure-april-dunford",
+      "type": "figure",
+      "label": "April Dunford",
+      "path": "references/figures/april-dunford.md",
+      "slug": "april-dunford"
+    },
+    {
+      "id": "figure-bill-bernbach",
+      "type": "figure",
+      "label": "Bill Bernbach",
+      "path": "references/figures/bill-bernbach.md",
+      "slug": "bill-bernbach"
+    },
+    {
+      "id": "figure-bj-fogg",
+      "type": "figure",
+      "label": "BJ Fogg",
+      "path": "references/figures/bj-fogg.md",
+      "slug": "bj-fogg"
+    },
+    {
+      "id": "figure-byron-sharp",
+      "type": "figure",
+      "label": "Byron Sharp",
+      "path": "references/figures/byron-sharp.md",
+      "slug": "byron-sharp"
+    },
+    {
+      "id": "figure-claude-hopkins",
+      "type": "figure",
+      "label": "Claude Hopkins",
+      "path": "references/figures/claude-hopkins.md",
+      "slug": "claude-hopkins"
+    },
+    {
+      "id": "figure-clayton-christensen",
+      "type": "figure",
+      "label": "Clayton Christensen",
+      "path": "references/figures/clayton-christensen.md",
+      "slug": "clayton-christensen"
+    },
+    {
+      "id": "figure-david-aaker",
+      "type": "figure",
+      "label": "David Aaker",
+      "path": "references/figures/david-aaker.md",
+      "slug": "david-aaker"
+    },
+    {
+      "id": "figure-david-ogilvy",
+      "type": "figure",
+      "label": "David Ogilvy",
+      "path": "references/figures/david-ogilvy.md",
+      "slug": "david-ogilvy"
+    },
+    {
+      "id": "figure-eugene-schwartz",
+      "type": "figure",
+      "label": "Eugene Schwartz",
+      "path": "references/figures/eugene-schwartz.md",
+      "slug": "eugene-schwartz"
+    },
+    {
+      "id": "figure-jack-trout",
+      "type": "figure",
+      "label": "Jack Trout",
+      "path": "references/figures/jack-trout.md",
+      "slug": "jack-trout"
+    },
+    {
+      "id": "figure-kevin-lane-keller",
+      "type": "figure",
+      "label": "Kevin Lane Keller",
+      "path": "references/figures/kevin-lane-keller.md",
+      "slug": "kevin-lane-keller"
+    },
+    {
+      "id": "figure-les-binet",
+      "type": "figure",
+      "label": "Les Binet",
+      "path": "references/figures/les-binet.md",
+      "slug": "les-binet"
+    },
+    {
+      "id": "figure-michael-porter",
+      "type": "figure",
+      "label": "Michael Porter",
+      "path": "references/figures/michael-porter.md",
+      "slug": "michael-porter"
+    },
+    {
+      "id": "figure-peter-drucker",
+      "type": "figure",
+      "label": "Peter Drucker",
+      "path": "references/figures/peter-drucker.md",
+      "slug": "peter-drucker"
+    },
+    {
+      "id": "figure-peter-field",
+      "type": "figure",
+      "label": "Peter Field",
+      "path": "references/figures/peter-field.md",
+      "slug": "peter-field"
+    },
+    {
+      "id": "figure-philip-kotler",
+      "type": "figure",
+      "label": "Philip Kotler",
+      "path": "references/figures/philip-kotler.md",
+      "slug": "philip-kotler"
+    },
+    {
+      "id": "figure-richard-thaler",
+      "type": "figure",
+      "label": "Richard Thaler",
+      "path": "references/figures/richard-thaler.md",
+      "slug": "richard-thaler"
+    },
+    {
+      "id": "figure-robert-cialdini",
+      "type": "figure",
+      "label": "Robert Cialdini",
+      "path": "references/figures/robert-cialdini.md",
+      "slug": "robert-cialdini"
+    },
+    {
+      "id": "figure-rory-sutherland",
+      "type": "figure",
+      "label": "Rory Sutherland",
+      "path": "references/figures/rory-sutherland.md",
+      "slug": "rory-sutherland"
+    },
+    {
+      "id": "figure-rosser-reeves",
+      "type": "figure",
+      "label": "Rosser Reeves",
+      "path": "references/figures/rosser-reeves.md",
+      "slug": "rosser-reeves"
+    },
+    {
+      "id": "figure-seth-godin",
+      "type": "figure",
+      "label": "Seth Godin",
+      "path": "references/figures/seth-godin.md",
+      "slug": "seth-godin"
+    },
+    {
+      "id": "figure-steve-jobs",
+      "type": "figure",
+      "label": "Steve Jobs",
+      "path": "references/figures/steve-jobs.md",
+      "slug": "steve-jobs"
+    },
+    {
+      "id": "figure-theodore-levitt",
+      "type": "figure",
+      "label": "Theodore Levitt",
+      "path": "references/figures/theodore-levitt.md",
+      "slug": "theodore-levitt"
+    },
+    {
+      "id": "hook-agentic-commerce-readiness",
+      "type": "hook",
+      "label": "Agentic Commerce Readiness",
+      "path": "hooks/agentic-commerce-readiness.md",
+      "slug": "agentic-commerce-readiness"
+    },
+    {
+      "id": "hook-ai-surface-check",
+      "type": "hook",
+      "label": "AI Surface Check",
+      "path": "hooks/ai-surface-check.md",
+      "slug": "ai-surface-check"
+    },
+    {
+      "id": "hook-anti-generic-marketing",
+      "type": "hook",
+      "label": "Anti Generic Marketing",
+      "path": "hooks/anti-generic-marketing.md",
+      "slug": "anti-generic-marketing"
+    },
+    {
+      "id": "hook-automation-authority-check",
+      "type": "hook",
+      "label": "Automation Authority Check",
+      "path": "hooks/automation-authority-check.md",
+      "slug": "automation-authority-check"
+    },
+    {
+      "id": "hook-automation-black-box-check",
+      "type": "hook",
+      "label": "Automation Black Box Check",
+      "path": "hooks/automation-black-box-check.md",
+      "slug": "automation-black-box-check"
+    },
+    {
+      "id": "hook-category-maturity-check",
+      "type": "hook",
+      "label": "Category Maturity Check",
+      "path": "hooks/category-maturity-check.md",
+      "slug": "category-maturity-check"
+    },
+    {
+      "id": "hook-causal-mechanism-check",
+      "type": "hook",
+      "label": "Causal Mechanism Check",
+      "path": "hooks/causal-mechanism-check.md",
+      "slug": "causal-mechanism-check"
+    },
+    {
+      "id": "hook-closed-loop-bias-check",
+      "type": "hook",
+      "label": "Closed Loop Bias Check",
+      "path": "hooks/closed-loop-bias-check.md",
+      "slug": "closed-loop-bias-check"
+    },
+    {
+      "id": "hook-commerce-feed-readiness",
+      "type": "hook",
+      "label": "Commerce Feed Readiness",
+      "path": "hooks/commerce-feed-readiness.md",
+      "slug": "commerce-feed-readiness"
+    },
+    {
+      "id": "hook-commercial-reality-check",
+      "type": "hook",
+      "label": "Commercial Reality Check",
+      "path": "hooks/commercial-reality-check.md",
+      "slug": "commercial-reality-check"
+    },
+    {
+      "id": "hook-creative-provenance-check",
+      "type": "hook",
+      "label": "Creative Provenance Check",
+      "path": "hooks/creative-provenance-check.md",
+      "slug": "creative-provenance-check"
+    },
+    {
+      "id": "hook-creator-measurement-check",
+      "type": "hook",
+      "label": "Creator Measurement Check",
+      "path": "hooks/creator-measurement-check.md",
+      "slug": "creator-measurement-check"
+    },
+    {
+      "id": "hook-customer-language-check",
+      "type": "hook",
+      "label": "Customer Language Check",
+      "path": "hooks/customer-language-check.md",
+      "slug": "customer-language-check"
+    },
+    {
+      "id": "hook-decision-stage-check",
+      "type": "hook",
+      "label": "Decision Stage Check",
+      "path": "hooks/decision-stage-check.md",
+      "slug": "decision-stage-check"
+    },
+    {
+      "id": "hook-evidence-gate",
+      "type": "hook",
+      "label": "Evidence Gate",
+      "path": "hooks/evidence-gate.md",
+      "slug": "evidence-gate"
+    },
+    {
+      "id": "hook-freshness-check",
+      "type": "hook",
+      "label": "Freshness Check",
+      "path": "hooks/freshness-check.md",
+      "slug": "freshness-check"
+    },
+    {
+      "id": "hook-horizon-balance-check",
+      "type": "hook",
+      "label": "Horizon Balance Check",
+      "path": "hooks/horizon-balance-check.md",
+      "slug": "horizon-balance-check"
+    },
+    {
+      "id": "hook-incrementality-required",
+      "type": "hook",
+      "label": "Incrementality Required",
+      "path": "hooks/incrementality-required.md",
+      "slug": "incrementality-required"
+    },
+    {
+      "id": "hook-marketing-signal-quality",
+      "type": "hook",
+      "label": "Marketing Signal Quality",
+      "path": "hooks/marketing-signal-quality.md",
+      "slug": "marketing-signal-quality"
+    },
+    {
+      "id": "hook-post-strategy-red-team",
+      "type": "hook",
+      "label": "Post Strategy Red Team",
+      "path": "hooks/post-strategy-red-team.md",
+      "slug": "post-strategy-red-team"
+    },
+    {
+      "id": "hook-pre-mortem",
+      "type": "hook",
+      "label": "Pre Mortem",
+      "path": "hooks/pre-mortem.md",
+      "slug": "pre-mortem"
+    },
+    {
+      "id": "hook-school-conflict-gate",
+      "type": "hook",
+      "label": "School Conflict Gate",
+      "path": "hooks/school-conflict-gate.md",
+      "slug": "school-conflict-gate"
+    },
+    {
+      "id": "hook-strategy-before-tactics",
+      "type": "hook",
+      "label": "Strategy Before Tactics",
+      "path": "hooks/strategy-before-tactics.md",
+      "slug": "strategy-before-tactics"
+    },
+    {
+      "id": "hook-theory-fit-gate",
+      "type": "hook",
+      "label": "Theory Fit Gate",
+      "path": "hooks/theory-fit-gate.md",
+      "slug": "theory-fit-gate"
+    },
+    {
+      "id": "principle-agentic-transaction-readiness",
+      "type": "principle",
+      "label": "Agentic Transaction Readiness",
+      "path": "references/principles/agentic-transaction-readiness.md",
+      "slug": "agentic-transaction-readiness"
+    },
+    {
+      "id": "principle-answer-surface-retrievability",
+      "type": "principle",
+      "label": "Answer Surface Retrievability",
+      "path": "references/principles/answer-surface-retrievability.md",
+      "slug": "answer-surface-retrievability"
+    },
+    {
+      "id": "principle-awareness-message-fit",
+      "type": "principle",
+      "label": "Awareness Message Fit",
+      "path": "references/principles/awareness-message-fit.md",
+      "slug": "awareness-message-fit"
+    },
+    {
+      "id": "principle-brand-association-coherence",
+      "type": "principle",
+      "label": "Brand Association Coherence",
+      "path": "references/principles/brand-association-coherence.md",
+      "slug": "brand-association-coherence"
+    },
+    {
+      "id": "principle-causal-mechanism",
+      "type": "principle",
+      "label": "Causal Mechanism",
+      "path": "references/principles/causal-mechanism.md",
+      "slug": "causal-mechanism"
+    },
+    {
+      "id": "principle-causal-rigor-over-platform-attribution",
+      "type": "principle",
+      "label": "Causal Rigor Over Platform Attribution",
+      "path": "references/principles/causal-rigor-over-platform-attribution.md",
+      "slug": "causal-rigor-over-platform-attribution"
+    },
+    {
+      "id": "principle-choice-architecture",
+      "type": "principle",
+      "label": "Choice Architecture",
+      "path": "references/principles/choice-architecture.md",
+      "slug": "choice-architecture"
+    },
+    {
+      "id": "principle-closed-loop-is-not-incrementality",
+      "type": "principle",
+      "label": "Closed Loop Is Not Incrementality",
+      "path": "references/principles/closed-loop-is-not-incrementality.md",
+      "slug": "closed-loop-is-not-incrementality"
+    },
+    {
+      "id": "principle-commercial-reality",
+      "type": "principle",
+      "label": "Commercial Reality",
+      "path": "references/principles/commercial-reality.md",
+      "slug": "commercial-reality"
+    },
+    {
+      "id": "principle-competitive-alternatives",
+      "type": "principle",
+      "label": "Competitive Alternatives",
+      "path": "references/principles/competitive-alternatives.md",
+      "slug": "competitive-alternatives"
+    },
+    {
+      "id": "principle-competitive-structure",
+      "type": "principle",
+      "label": "Competitive Structure",
+      "path": "references/principles/competitive-structure.md",
+      "slug": "competitive-structure"
+    },
+    {
+      "id": "principle-counterfactual-before-credit",
+      "type": "principle",
+      "label": "Counterfactual Before Credit",
+      "path": "references/principles/counterfactual-before-credit.md",
+      "slug": "counterfactual-before-credit"
+    },
+    {
+      "id": "principle-counterweight-required",
+      "type": "principle",
+      "label": "Counterweight Required",
+      "path": "references/principles/counterweight-required.md",
+      "slug": "counterweight-required"
+    },
+    {
+      "id": "principle-creative-human-translation",
+      "type": "principle",
+      "label": "Creative Human Translation",
+      "path": "references/principles/creative-human-translation.md",
+      "slug": "creative-human-translation"
+    },
+    {
+      "id": "principle-creative-hypothesis-before-variant-scale",
+      "type": "principle",
+      "label": "Creative Hypothesis Before Variant Scale",
+      "path": "references/principles/creative-hypothesis-before-variant-scale.md",
+      "slug": "creative-hypothesis-before-variant-scale"
+    },
+    {
+      "id": "principle-creator-role-separation",
+      "type": "principle",
+      "label": "Creator Role Separation",
+      "path": "references/principles/creator-role-separation.md",
+      "slug": "creator-role-separation"
+    },
+    {
+      "id": "principle-cross-surface-discovery-continuity",
+      "type": "principle",
+      "label": "Cross Surface Discovery Continuity",
+      "path": "references/principles/cross-surface-discovery-continuity.md",
+      "slug": "cross-surface-discovery-continuity"
+    },
+    {
+      "id": "principle-customer-creation",
+      "type": "principle",
+      "label": "Customer Creation",
+      "path": "references/principles/customer-creation.md",
+      "slug": "customer-creation"
+    },
+    {
+      "id": "principle-customer-need-over-product",
+      "type": "principle",
+      "label": "Customer Need Over Product",
+      "path": "references/principles/customer-need-over-product.md",
+      "slug": "customer-need-over-product"
+    },
+    {
+      "id": "principle-decision-rights-before-automation",
+      "type": "principle",
+      "label": "Decision Rights Before Automation",
+      "path": "references/principles/decision-rights-before-automation.md",
+      "slug": "decision-rights-before-automation"
+    },
+    {
+      "id": "principle-distinctive-assets",
+      "type": "principle",
+      "label": "Distinctive Assets",
+      "path": "references/principles/distinctive-assets.md",
+      "slug": "distinctive-assets"
+    },
+    {
+      "id": "principle-ethical-influence",
+      "type": "principle",
+      "label": "Ethical Influence",
+      "path": "references/principles/ethical-influence.md",
+      "slug": "ethical-influence"
+    },
+    {
+      "id": "principle-evidence-status",
+      "type": "principle",
+      "label": "Evidence Status",
+      "path": "references/principles/evidence-status.md",
+      "slug": "evidence-status"
+    },
+    {
+      "id": "principle-feed-completeness-for-conversational-intent",
+      "type": "principle",
+      "label": "Feed Completeness For Conversational Intent",
+      "path": "references/principles/feed-completeness-for-conversational-intent.md",
+      "slug": "feed-completeness-for-conversational-intent"
+    },
+    {
+      "id": "principle-friction-before-motivation",
+      "type": "principle",
+      "label": "Friction Before Motivation",
+      "path": "references/principles/friction-before-motivation.md",
+      "slug": "friction-before-motivation"
+    },
+    {
+      "id": "principle-jtbd-progress",
+      "type": "principle",
+      "label": "Jtbd Progress",
+      "path": "references/principles/jtbd-progress.md",
+      "slug": "jtbd-progress"
+    },
+    {
+      "id": "principle-long-short-horizons",
+      "type": "principle",
+      "label": "Long Short Horizons",
+      "path": "references/principles/long-short-horizons.md",
+      "slug": "long-short-horizons"
+    },
+    {
+      "id": "principle-machine-readable-product-truth",
+      "type": "principle",
+      "label": "Machine Readable Product Truth",
+      "path": "references/principles/machine-readable-product-truth.md",
+      "slug": "machine-readable-product-truth"
+    },
+    {
+      "id": "principle-market-definition",
+      "type": "principle",
+      "label": "Market Definition",
+      "path": "references/principles/market-definition.md",
+      "slug": "market-definition"
+    },
+    {
+      "id": "principle-mental-availability",
+      "type": "principle",
+      "label": "Mental Availability",
+      "path": "references/principles/mental-availability.md",
+      "slug": "mental-availability"
+    },
+    {
+      "id": "principle-penetration-growth",
+      "type": "principle",
+      "label": "Penetration Growth",
+      "path": "references/principles/penetration-growth.md",
+      "slug": "penetration-growth"
+    },
+    {
+      "id": "principle-performance-accountability",
+      "type": "principle",
+      "label": "Performance Accountability",
+      "path": "references/principles/performance-accountability.md",
+      "slug": "performance-accountability"
+    },
+    {
+      "id": "principle-permission-relevance",
+      "type": "principle",
+      "label": "Permission Relevance",
+      "path": "references/principles/permission-relevance.md",
+      "slug": "permission-relevance"
+    },
+    {
+      "id": "principle-physical-availability",
+      "type": "principle",
+      "label": "Physical Availability",
+      "path": "references/principles/physical-availability.md",
+      "slug": "physical-availability"
+    },
+    {
+      "id": "principle-positioning-focus",
+      "type": "principle",
+      "label": "Positioning Focus",
+      "path": "references/principles/positioning-focus.md",
+      "slug": "positioning-focus"
+    },
+    {
+      "id": "principle-product-demonstration",
+      "type": "principle",
+      "label": "Product Demonstration",
+      "path": "references/principles/product-demonstration.md",
+      "slug": "product-demonstration"
+    },
+    {
+      "id": "principle-proof-before-polish",
+      "type": "principle",
+      "label": "Proof Before Polish",
+      "path": "references/principles/proof-before-polish.md",
+      "slug": "proof-before-polish"
+    },
+    {
+      "id": "principle-provenance-before-synthetic-scale",
+      "type": "principle",
+      "label": "Provenance Before Synthetic Scale",
+      "path": "references/principles/provenance-before-synthetic-scale.md",
+      "slug": "provenance-before-synthetic-scale"
+    },
+    {
+      "id": "principle-reversible-automation-guardrails",
+      "type": "principle",
+      "label": "Reversible Automation Guardrails",
+      "path": "references/principles/reversible-automation-guardrails.md",
+      "slug": "reversible-automation-guardrails"
+    },
+    {
+      "id": "principle-segmentation-decision-usefulness",
+      "type": "principle",
+      "label": "Segmentation Decision Usefulness",
+      "path": "references/principles/segmentation-decision-usefulness.md",
+      "slug": "segmentation-decision-usefulness"
+    },
+    {
+      "id": "principle-signal-quality-before-automation",
+      "type": "principle",
+      "label": "Signal Quality Before Automation",
+      "path": "references/principles/signal-quality-before-automation.md",
+      "slug": "signal-quality-before-automation"
+    },
+    {
+      "id": "principle-smallest-viable-audience",
+      "type": "principle",
+      "label": "Smallest Viable Audience",
+      "path": "references/principles/smallest-viable-audience.md",
+      "slug": "smallest-viable-audience"
+    },
+    {
+      "id": "principle-sophistication-proof-burden",
+      "type": "principle",
+      "label": "Sophistication Proof Burden",
+      "path": "references/principles/sophistication-proof-burden.md",
+      "slug": "sophistication-proof-burden"
+    },
+    {
+      "id": "principle-target-attractiveness-fit",
+      "type": "principle",
+      "label": "Target Attractiveness Fit",
+      "path": "references/principles/target-attractiveness-fit.md",
+      "slug": "target-attractiveness-fit"
+    },
+    {
+      "id": "school-agentic-commerce",
+      "type": "school",
+      "label": "Agentic Commerce",
+      "path": "references/schools/agentic-commerce.md",
+      "slug": "agentic-commerce"
+    },
+    {
+      "id": "school-ai-mediated-discovery",
+      "type": "school",
+      "label": "AI-Mediated Discovery",
+      "path": "references/schools/ai-mediated-discovery.md",
+      "slug": "ai-mediated-discovery"
+    },
+    {
+      "id": "school-autonomous-marketing-operations",
+      "type": "school",
+      "label": "Autonomous Marketing Operations",
+      "path": "references/schools/autonomous-marketing-operations.md",
+      "slug": "autonomous-marketing-operations"
+    },
+    {
+      "id": "school-awareness-copy",
+      "type": "school",
+      "label": "Awareness & Market Sophistication",
+      "path": "references/schools/awareness-copy.md",
+      "slug": "awareness-copy"
+    },
+    {
+      "id": "school-behavioral-science",
+      "type": "school",
+      "label": "Behavioral Science & Choice Design",
+      "path": "references/schools/behavioral-science.md",
+      "slug": "behavioral-science"
+    },
+    {
+      "id": "school-brand-equity",
+      "type": "school",
+      "label": "Brand Equity & Memory Structure",
+      "path": "references/schools/brand-equity.md",
+      "slug": "brand-equity"
+    },
+    {
+      "id": "school-causal-measurement",
+      "type": "school",
+      "label": "Causal Marketing Measurement",
+      "path": "references/schools/causal-measurement.md",
+      "slug": "causal-measurement"
+    },
+    {
+      "id": "school-competitive-strategy",
+      "type": "school",
+      "label": "Competitive Strategy",
+      "path": "references/schools/competitive-strategy.md",
+      "slug": "competitive-strategy"
+    },
+    {
+      "id": "school-creative-advertising",
+      "type": "school",
+      "label": "Creative Advertising",
+      "path": "references/schools/creative-advertising.md",
+      "slug": "creative-advertising"
+    },
+    {
+      "id": "school-creator-commerce",
+      "type": "school",
+      "label": "Creator and Commerce Convergence",
+      "path": "references/schools/creator-commerce.md",
+      "slug": "creator-commerce"
+    },
+    {
+      "id": "school-customer-centric-market-definition",
+      "type": "school",
+      "label": "Customer-Centric Market Definition",
+      "path": "references/schools/customer-centric-market-definition.md",
+      "slug": "customer-centric-market-definition"
+    },
+    {
+      "id": "school-direct-response",
+      "type": "school",
+      "label": "Direct Response & Scientific Advertising",
+      "path": "references/schools/direct-response.md",
+      "slug": "direct-response"
+    },
+    {
+      "id": "school-jobs-to-be-done",
+      "type": "school",
+      "label": "Jobs to Be Done",
+      "path": "references/schools/jobs-to-be-done.md",
+      "slug": "jobs-to-be-done"
+    },
+    {
+      "id": "school-marketing-effectiveness",
+      "type": "school",
+      "label": "Marketing Effectiveness",
+      "path": "references/schools/marketing-effectiveness.md",
+      "slug": "marketing-effectiveness"
+    },
+    {
+      "id": "school-marketing-management",
+      "type": "school",
+      "label": "Marketing Management",
+      "path": "references/schools/marketing-management.md",
+      "slug": "marketing-management"
+    },
+    {
+      "id": "school-marketing-science",
+      "type": "school",
+      "label": "Marketing Science & Brand Growth",
+      "path": "references/schools/marketing-science.md",
+      "slug": "marketing-science"
+    },
+    {
+      "id": "school-positioning-category",
+      "type": "school",
+      "label": "Positioning & Category Strategy",
+      "path": "references/schools/positioning-category.md",
+      "slug": "positioning-category"
+    },
+    {
+      "id": "school-product-narrative",
+      "type": "school",
+      "label": "Product Narrative & Demonstration",
+      "path": "references/schools/product-narrative.md",
+      "slug": "product-narrative"
+    },
+    {
+      "id": "school-remarkability-permission",
+      "type": "school",
+      "label": "Permission, Relevance & Remarkability",
+      "path": "references/schools/remarkability-permission.md",
+      "slug": "remarkability-permission"
+    },
+    {
+      "id": "signal-agentic-checkout-available",
+      "type": "signal",
+      "label": "Agentic Checkout Available",
+      "slug": "agentic-checkout-available"
+    },
+    {
+      "id": "signal-ai-discovery-dominant",
+      "type": "signal",
+      "label": "Ai Discovery Dominant",
+      "slug": "ai-discovery-dominant"
+    },
+    {
+      "id": "signal-answer-surface-visibility-low",
+      "type": "signal",
+      "label": "Answer Surface Visibility Low",
+      "slug": "answer-surface-visibility-low"
+    },
+    {
+      "id": "signal-attribution-fragmented",
+      "type": "signal",
+      "label": "Attribution Fragmented",
+      "slug": "attribution-fragmented"
+    },
+    {
+      "id": "signal-automation-boundaries-unclear",
+      "type": "signal",
+      "label": "Automation Boundaries Unclear",
+      "slug": "automation-boundaries-unclear"
+    },
+    {
+      "id": "signal-awareness-high",
+      "type": "signal",
+      "label": "Awareness High",
+      "slug": "awareness-high"
+    },
+    {
+      "id": "signal-awareness-low",
+      "type": "signal",
+      "label": "Awareness Low",
+      "slug": "awareness-low"
+    },
+    {
+      "id": "signal-behavioral-friction-high",
+      "type": "signal",
+      "label": "Behavioral Friction High",
+      "slug": "behavioral-friction-high"
+    },
+    {
+      "id": "signal-brand-memory-weak",
+      "type": "signal",
+      "label": "Brand Memory Weak",
+      "slug": "brand-memory-weak"
+    },
+    {
+      "id": "signal-category-mature",
+      "type": "signal",
+      "label": "Category Mature",
+      "slug": "category-mature"
+    },
+    {
+      "id": "signal-category-unclear",
+      "type": "signal",
+      "label": "Category Unclear",
+      "slug": "category-unclear"
+    },
+    {
+      "id": "signal-causal-claim-weak",
+      "type": "signal",
+      "label": "Causal Claim Weak",
+      "slug": "causal-claim-weak"
+    },
+    {
+      "id": "signal-closed-loop-data-available",
+      "type": "signal",
+      "label": "Closed Loop Data Available",
+      "slug": "closed-loop-data-available"
+    },
+    {
+      "id": "signal-commerce-media-available",
+      "type": "signal",
+      "label": "Commerce Media Available",
+      "slug": "commerce-media-available"
+    },
+    {
+      "id": "signal-commerce-media-bias-risk",
+      "type": "signal",
+      "label": "Commerce Media Bias Risk",
+      "slug": "commerce-media-bias-risk"
+    },
+    {
+      "id": "signal-competitor-pressure-high",
+      "type": "signal",
+      "label": "Competitor Pressure High",
+      "slug": "competitor-pressure-high"
+    },
+    {
+      "id": "signal-contradiction-risk-high",
+      "type": "signal",
+      "label": "Contradiction Risk High",
+      "slug": "contradiction-risk-high"
+    },
+    {
+      "id": "signal-conversational-intent-high",
+      "type": "signal",
+      "label": "Conversational Intent High",
+      "slug": "conversational-intent-high"
+    },
+    {
+      "id": "signal-creator-led-discovery",
+      "type": "signal",
+      "label": "Creator Led Discovery",
+      "slug": "creator-led-discovery"
+    },
+    {
+      "id": "signal-creator-measurement-fragmented",
+      "type": "signal",
+      "label": "Creator Measurement Fragmented",
+      "slug": "creator-measurement-fragmented"
+    },
+    {
+      "id": "signal-crm-signal-poor",
+      "type": "signal",
+      "label": "Crm Signal Poor",
+      "slug": "crm-signal-poor"
+    },
+    {
+      "id": "signal-crm-signal-rich",
+      "type": "signal",
+      "label": "Crm Signal Rich",
+      "slug": "crm-signal-rich"
+    },
+    {
+      "id": "signal-customer-language-missing",
+      "type": "signal",
+      "label": "Customer Language Missing",
+      "slug": "customer-language-missing"
+    },
+    {
+      "id": "signal-diagnosis-missing",
+      "type": "signal",
+      "label": "Diagnosis Missing",
+      "slug": "diagnosis-missing"
+    },
+    {
+      "id": "signal-differentiation-weak",
+      "type": "signal",
+      "label": "Differentiation Weak",
+      "slug": "differentiation-weak"
+    },
+    {
+      "id": "signal-distribution-constraint",
+      "type": "signal",
+      "label": "Distribution Constraint",
+      "slug": "distribution-constraint"
+    },
+    {
+      "id": "signal-economics-unhealthy",
+      "type": "signal",
+      "label": "Economics Unhealthy",
+      "slug": "economics-unhealthy"
+    },
+    {
+      "id": "signal-evidence-quality-low",
+      "type": "signal",
+      "label": "Evidence Quality Low",
+      "slug": "evidence-quality-low"
+    },
+    {
+      "id": "signal-failure-risk-high",
+      "type": "signal",
+      "label": "Failure Risk High",
+      "slug": "failure-risk-high"
+    },
+    {
+      "id": "signal-freshness-risk-high",
+      "type": "signal",
+      "label": "Freshness Risk High",
+      "slug": "freshness-risk-high"
+    },
+    {
+      "id": "signal-generic-tactic-risk",
+      "type": "signal",
+      "label": "Generic Tactic Risk",
+      "slug": "generic-tactic-risk"
+    },
+    {
+      "id": "signal-incrementality-unknown",
+      "type": "signal",
+      "label": "Incrementality Unknown",
+      "slug": "incrementality-unknown"
+    },
+    {
+      "id": "signal-long-horizon",
+      "type": "signal",
+      "label": "Long Horizon",
+      "slug": "long-horizon"
+    },
+    {
+      "id": "signal-manual-control-low",
+      "type": "signal",
+      "label": "Manual Control Low",
+      "slug": "manual-control-low"
+    },
+    {
+      "id": "signal-outcome-delay-high",
+      "type": "signal",
+      "label": "Outcome Delay High",
+      "slug": "outcome-delay-high"
+    },
+    {
+      "id": "signal-platform-automation-high",
+      "type": "signal",
+      "label": "Platform Automation High",
+      "slug": "platform-automation-high"
+    },
+    {
+      "id": "signal-product-data-rich",
+      "type": "signal",
+      "label": "Product Data Rich",
+      "slug": "product-data-rich"
+    },
+    {
+      "id": "signal-product-feed-poor",
+      "type": "signal",
+      "label": "Product Feed Poor",
+      "slug": "product-feed-poor"
+    },
+    {
+      "id": "signal-provenance-sensitive",
+      "type": "signal",
+      "label": "Provenance Sensitive",
+      "slug": "provenance-sensitive"
+    },
+    {
+      "id": "signal-retention-weak",
+      "type": "signal",
+      "label": "Retention Weak",
+      "slug": "retention-weak"
+    },
+    {
+      "id": "signal-school-conflict-high",
+      "type": "signal",
+      "label": "School Conflict High",
+      "slug": "school-conflict-high"
+    },
+    {
+      "id": "signal-short-horizon",
+      "type": "signal",
+      "label": "Short Horizon",
+      "slug": "short-horizon"
+    },
+    {
+      "id": "signal-synthetic-creative-scale",
+      "type": "signal",
+      "label": "Synthetic Creative Scale",
+      "slug": "synthetic-creative-scale"
+    },
+    {
+      "id": "signal-theory-fit-low",
+      "type": "signal",
+      "label": "Theory Fit Low",
+      "slug": "theory-fit-low"
+    },
+    {
+      "id": "skill-agentic-commerce",
+      "type": "skill",
+      "label": "Agentic Commerce",
+      "path": "skills/agentic-commerce/SKILL.md",
+      "slug": "agentic-commerce"
+    },
+    {
+      "id": "skill-ai-discovery-strategy",
+      "type": "skill",
+      "label": "AI Discovery Strategy",
+      "path": "skills/ai-discovery-strategy/SKILL.md",
+      "slug": "ai-discovery-strategy"
+    },
+    {
+      "id": "skill-autonomous-media-operations",
+      "type": "skill",
+      "label": "Autonomous Media Operations",
+      "path": "skills/autonomous-media-operations/SKILL.md",
+      "slug": "autonomous-media-operations"
+    },
+    {
+      "id": "skill-behavioral-marketing",
+      "type": "skill",
+      "label": "Behavioral Marketing",
+      "path": "skills/behavioral-marketing/SKILL.md",
+      "slug": "behavioral-marketing"
+    },
+    {
+      "id": "skill-brand-strategy",
+      "type": "skill",
+      "label": "Brand Strategy",
+      "path": "skills/brand-strategy/SKILL.md",
+      "slug": "brand-strategy"
+    },
+    {
+      "id": "skill-campaign-strategy",
+      "type": "skill",
+      "label": "Campaign Strategy",
+      "path": "skills/campaign-strategy/SKILL.md",
+      "slug": "campaign-strategy"
+    },
+    {
+      "id": "skill-category-strategy",
+      "type": "skill",
+      "label": "Category Strategy",
+      "path": "skills/category-strategy/SKILL.md",
+      "slug": "category-strategy"
+    },
+    {
+      "id": "skill-commerce-feed-intelligence",
+      "type": "skill",
+      "label": "Commerce Feed Intelligence",
+      "path": "skills/commerce-feed-intelligence/SKILL.md",
+      "slug": "commerce-feed-intelligence"
+    },
+    {
+      "id": "skill-commerce-media-strategy",
+      "type": "skill",
+      "label": "Commerce Media Strategy",
+      "path": "skills/commerce-media-strategy/SKILL.md",
+      "slug": "commerce-media-strategy"
+    },
+    {
+      "id": "skill-competitive-intelligence",
+      "type": "skill",
+      "label": "Competitive Intelligence",
+      "path": "skills/competitive-intelligence/SKILL.md",
+      "slug": "competitive-intelligence"
+    },
+    {
+      "id": "skill-content-strategy",
+      "type": "skill",
+      "label": "Content Strategy",
+      "path": "skills/content-strategy/SKILL.md",
+      "slug": "content-strategy"
+    },
+    {
+      "id": "skill-conversational-advertising",
+      "type": "skill",
+      "label": "Conversational Advertising",
+      "path": "skills/conversational-advertising/SKILL.md",
+      "slug": "conversational-advertising"
+    },
+    {
+      "id": "skill-conversion-strategy",
+      "type": "skill",
+      "label": "Conversion Strategy",
+      "path": "skills/conversion-strategy/SKILL.md",
+      "slug": "conversion-strategy"
+    },
+    {
+      "id": "skill-creator-commerce",
+      "type": "skill",
+      "label": "Creator Commerce",
+      "path": "skills/creator-commerce/SKILL.md",
+      "slug": "creator-commerce"
+    },
+    {
+      "id": "skill-customer-research",
+      "type": "skill",
+      "label": "Customer Research",
+      "path": "skills/customer-research/SKILL.md",
+      "slug": "customer-research"
+    },
+    {
+      "id": "skill-go-to-market",
+      "type": "skill",
+      "label": "Go To Market",
+      "path": "skills/go-to-market/SKILL.md",
+      "slug": "go-to-market"
+    },
+    {
+      "id": "skill-incrementality-design",
+      "type": "skill",
+      "label": "Incrementality Design",
+      "path": "skills/incrementality-design/SKILL.md",
+      "slug": "incrementality-design"
+    },
+    {
+      "id": "skill-market-diagnosis",
+      "type": "skill",
+      "label": "Market Diagnosis",
+      "path": "skills/market-diagnosis/SKILL.md",
+      "slug": "market-diagnosis"
+    },
+    {
+      "id": "skill-marketing-council",
+      "type": "skill",
+      "label": "Marketing Council",
+      "path": "skills/marketing-council/SKILL.md",
+      "slug": "marketing-council"
+    },
+    {
+      "id": "skill-marketing-experimentation",
+      "type": "skill",
+      "label": "Marketing Experimentation",
+      "path": "skills/marketing-experimentation/SKILL.md",
+      "slug": "marketing-experimentation"
+    },
+    {
+      "id": "skill-marketing-measurement",
+      "type": "skill",
+      "label": "Marketing Measurement",
+      "path": "skills/marketing-measurement/SKILL.md",
+      "slug": "marketing-measurement"
+    },
+    {
+      "id": "skill-marketing-signal-strategy",
+      "type": "skill",
+      "label": "Marketing Signal Strategy",
+      "path": "skills/marketing-signal-strategy/SKILL.md",
+      "slug": "marketing-signal-strategy"
+    },
+    {
+      "id": "skill-media-strategy",
+      "type": "skill",
+      "label": "Media Strategy",
+      "path": "skills/media-strategy/SKILL.md",
+      "slug": "media-strategy"
+    },
+    {
+      "id": "skill-offer-strategy",
+      "type": "skill",
+      "label": "Offer Strategy",
+      "path": "skills/offer-strategy/SKILL.md",
+      "slug": "offer-strategy"
+    },
+    {
+      "id": "skill-positioning-strategy",
+      "type": "skill",
+      "label": "Positioning Strategy",
+      "path": "skills/positioning-strategy/SKILL.md",
+      "slug": "positioning-strategy"
+    },
+    {
+      "id": "skill-pricing-strategy",
+      "type": "skill",
+      "label": "Pricing Strategy",
+      "path": "skills/pricing-strategy/SKILL.md",
+      "slug": "pricing-strategy"
+    },
+    {
+      "id": "skill-product-marketing",
+      "type": "skill",
+      "label": "Product Marketing",
+      "path": "skills/product-marketing/SKILL.md",
+      "slug": "product-marketing"
+    },
+    {
+      "id": "skill-retention-strategy",
+      "type": "skill",
+      "label": "Retention Strategy",
+      "path": "skills/retention-strategy/SKILL.md",
+      "slug": "retention-strategy"
+    },
+    {
+      "id": "skill-segmentation-strategy",
+      "type": "skill",
+      "label": "Segmentation Strategy",
+      "path": "skills/segmentation-strategy/SKILL.md",
+      "slug": "segmentation-strategy"
+    },
+    {
+      "id": "theory-agentic-commerce-readiness",
+      "type": "theory",
+      "label": "Agentic Commerce Readiness",
+      "path": "references/theories/agentic-commerce-readiness.md",
+      "slug": "agentic-commerce-readiness"
+    },
+    {
+      "id": "theory-ai-mediated-discovery",
+      "type": "theory",
+      "label": "AI-Mediated Discovery",
+      "path": "references/theories/ai-mediated-discovery.md",
+      "slug": "ai-mediated-discovery"
+    },
+    {
+      "id": "theory-answer-surface-retrievability",
+      "type": "theory",
+      "label": "Answer-Surface Retrievability",
+      "path": "references/theories/answer-surface-retrievability.md",
+      "slug": "answer-surface-retrievability"
+    },
+    {
+      "id": "theory-automation-decision-rights",
+      "type": "theory",
+      "label": "Automation Decision Rights",
+      "path": "references/theories/automation-decision-rights.md",
+      "slug": "automation-decision-rights"
+    },
+    {
+      "id": "theory-autonomous-media-governance",
+      "type": "theory",
+      "label": "Autonomous Media Governance",
+      "path": "references/theories/autonomous-media-governance.md",
+      "slug": "autonomous-media-governance"
+    },
+    {
+      "id": "theory-awareness-levels",
+      "type": "theory",
+      "label": "Awareness Levels",
+      "path": "references/theories/awareness-levels.md",
+      "slug": "awareness-levels"
+    },
+    {
+      "id": "theory-behavioral-framing",
+      "type": "theory",
+      "label": "Behavioral Framing",
+      "path": "references/theories/behavioral-framing.md",
+      "slug": "behavioral-framing"
+    },
+    {
+      "id": "theory-brand-equity-model",
+      "type": "theory",
+      "label": "Brand Equity Model",
+      "path": "references/theories/brand-equity-model.md",
+      "slug": "brand-equity-model"
+    },
+    {
+      "id": "theory-choice-architecture",
+      "type": "theory",
+      "label": "Choice Architecture",
+      "path": "references/theories/choice-architecture.md",
+      "slug": "choice-architecture"
+    },
+    {
+      "id": "theory-closed-loop-bias",
+      "type": "theory",
+      "label": "Closed-Loop Bias",
+      "path": "references/theories/closed-loop-bias.md",
+      "slug": "closed-loop-bias"
+    },
+    {
+      "id": "theory-commerce-media-incrementality",
+      "type": "theory",
+      "label": "Commerce Media Incrementality",
+      "path": "references/theories/commerce-media-incrementality.md",
+      "slug": "commerce-media-incrementality"
+    },
+    {
+      "id": "theory-commerce-protocol-readiness",
+      "type": "theory",
+      "label": "Commerce Protocol Readiness",
+      "path": "references/theories/commerce-protocol-readiness.md",
+      "slug": "commerce-protocol-readiness"
+    },
+    {
+      "id": "theory-competitive-advantage",
+      "type": "theory",
+      "label": "Competitive Advantage",
+      "path": "references/theories/competitive-advantage.md",
+      "slug": "competitive-advantage"
+    },
+    {
+      "id": "theory-conversational-intent-matching",
+      "type": "theory",
+      "label": "Conversational Intent Matching",
+      "path": "references/theories/conversational-intent-matching.md",
+      "slug": "conversational-intent-matching"
+    },
+    {
+      "id": "theory-creative-provenance-governance",
+      "type": "theory",
+      "label": "Creative Provenance Governance",
+      "path": "references/theories/creative-provenance-governance.md",
+      "slug": "creative-provenance-governance"
+    },
+    {
+      "id": "theory-creative-strategy",
+      "type": "theory",
+      "label": "Creative Strategy",
+      "path": "references/theories/creative-strategy.md",
+      "slug": "creative-strategy"
+    },
+    {
+      "id": "theory-creator-measurement-stack",
+      "type": "theory",
+      "label": "Creator Measurement Stack",
+      "path": "references/theories/creator-measurement-stack.md",
+      "slug": "creator-measurement-stack"
+    },
+    {
+      "id": "theory-creator-role-stack",
+      "type": "theory",
+      "label": "Creator Role Stack",
+      "path": "references/theories/creator-role-stack.md",
+      "slug": "creator-role-stack"
+    },
+    {
+      "id": "theory-customer-based-brand-equity",
+      "type": "theory",
+      "label": "Customer-Based Brand Equity",
+      "path": "references/theories/customer-based-brand-equity.md",
+      "slug": "customer-based-brand-equity"
+    },
+    {
+      "id": "theory-customer-creation",
+      "type": "theory",
+      "label": "Customer Creation",
+      "path": "references/theories/customer-creation.md",
+      "slug": "customer-creation"
+    },
+    {
+      "id": "theory-double-jeopardy",
+      "type": "theory",
+      "label": "Double Jeopardy",
+      "path": "references/theories/double-jeopardy.md",
+      "slug": "double-jeopardy"
+    },
+    {
+      "id": "theory-five-forces",
+      "type": "theory",
+      "label": "Five Forces",
+      "path": "references/theories/five-forces.md",
+      "slug": "five-forces"
+    },
+    {
+      "id": "theory-fogg-behavior-model",
+      "type": "theory",
+      "label": "Fogg Behavior Model",
+      "path": "references/theories/fogg-behavior-model.md",
+      "slug": "fogg-behavior-model"
+    },
+    {
+      "id": "theory-incrementality-ladder",
+      "type": "theory",
+      "label": "Incrementality Evidence Ladder",
+      "path": "references/theories/incrementality-ladder.md",
+      "slug": "incrementality-ladder"
+    },
+    {
+      "id": "theory-influence-principles",
+      "type": "theory",
+      "label": "Influence Principles",
+      "path": "references/theories/influence-principles.md",
+      "slug": "influence-principles"
+    },
+    {
+      "id": "theory-jobs-to-be-done",
+      "type": "theory",
+      "label": "Jobs to Be Done",
+      "path": "references/theories/jobs-to-be-done.md",
+      "slug": "jobs-to-be-done"
+    },
+    {
+      "id": "theory-long-short-effects",
+      "type": "theory",
+      "label": "Long and Short Marketing Effects",
+      "path": "references/theories/long-short-effects.md",
+      "slug": "long-short-effects"
+    },
+    {
+      "id": "theory-market-sophistication",
+      "type": "theory",
+      "label": "Market Sophistication",
+      "path": "references/theories/market-sophistication.md",
+      "slug": "market-sophistication"
+    },
+    {
+      "id": "theory-marketing-mix",
+      "type": "theory",
+      "label": "Marketing Mix",
+      "path": "references/theories/marketing-mix.md",
+      "slug": "marketing-mix"
+    },
+    {
+      "id": "theory-marketing-myopia",
+      "type": "theory",
+      "label": "Marketing Myopia",
+      "path": "references/theories/marketing-myopia.md",
+      "slug": "marketing-myopia"
+    },
+    {
+      "id": "theory-marketing-signal-architecture",
+      "type": "theory",
+      "label": "Marketing Signal Architecture",
+      "path": "references/theories/marketing-signal-architecture.md",
+      "slug": "marketing-signal-architecture"
+    },
+    {
+      "id": "theory-mental-availability",
+      "type": "theory",
+      "label": "Mental Availability",
+      "path": "references/theories/mental-availability.md",
+      "slug": "mental-availability"
+    },
+    {
+      "id": "theory-nudge",
+      "type": "theory",
+      "label": "Nudge & Choice Architecture",
+      "path": "references/theories/nudge.md",
+      "slug": "nudge"
+    },
+    {
+      "id": "theory-penetration-growth",
+      "type": "theory",
+      "label": "Penetration Growth",
+      "path": "references/theories/penetration-growth.md",
+      "slug": "penetration-growth"
+    },
+    {
+      "id": "theory-permission-marketing",
+      "type": "theory",
+      "label": "Permission Marketing",
+      "path": "references/theories/permission-marketing.md",
+      "slug": "permission-marketing"
+    },
+    {
+      "id": "theory-physical-availability",
+      "type": "theory",
+      "label": "Physical Availability",
+      "path": "references/theories/physical-availability.md",
+      "slug": "physical-availability"
+    },
+    {
+      "id": "theory-positioning",
+      "type": "theory",
+      "label": "Positioning",
+      "path": "references/theories/positioning.md",
+      "slug": "positioning"
+    },
+    {
+      "id": "theory-positioning-components",
+      "type": "theory",
+      "label": "Positioning Components",
+      "path": "references/theories/positioning-components.md",
+      "slug": "positioning-components"
+    },
+    {
+      "id": "theory-product-demonstration",
+      "type": "theory",
+      "label": "Product Demonstration",
+      "path": "references/theories/product-demonstration.md",
+      "slug": "product-demonstration"
+    },
+    {
+      "id": "theory-product-feed-semantic-completeness",
+      "type": "theory",
+      "label": "Product Feed Semantic Completeness",
+      "path": "references/theories/product-feed-semantic-completeness.md",
+      "slug": "product-feed-semantic-completeness"
+    },
+    {
+      "id": "theory-proof-led-advertising",
+      "type": "theory",
+      "label": "Proof-Led Advertising",
+      "path": "references/theories/proof-led-advertising.md",
+      "slug": "proof-led-advertising"
+    },
+    {
+      "id": "theory-scientific-advertising",
+      "type": "theory",
+      "label": "Scientific Advertising",
+      "path": "references/theories/scientific-advertising.md",
+      "slug": "scientific-advertising"
+    },
+    {
+      "id": "theory-smallest-viable-audience",
+      "type": "theory",
+      "label": "Smallest Viable Audience",
+      "path": "references/theories/smallest-viable-audience.md",
+      "slug": "smallest-viable-audience"
+    },
+    {
+      "id": "theory-stp",
+      "type": "theory",
+      "label": "Segmentation, Targeting, Positioning",
+      "path": "references/theories/stp.md",
+      "slug": "stp"
+    },
+    {
+      "id": "theory-synthetic-creative-hypothesis-families",
+      "type": "theory",
+      "label": "Synthetic Creative Hypothesis Families",
+      "path": "references/theories/synthetic-creative-hypothesis-families.md",
+      "slug": "synthetic-creative-hypothesis-families"
+    },
+    {
+      "id": "theory-unique-selling-proposition",
+      "type": "theory",
+      "label": "Unique Selling Proposition",
+      "path": "references/theories/unique-selling-proposition.md",
+      "slug": "unique-selling-proposition"
+    }
+  ],
+  "edges": [
+    {
+      "from": "agent-agentic-commerce-strategist",
+      "to": "agent-council-director",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-ai-discovery-strategist",
+      "to": "agent-council-director",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-brand-equity-strategist",
+      "to": "agent-brand-growth-strategist",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-brand-growth-strategist",
+      "to": "agent-effectiveness-strategist",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-commerce-media-strategist",
+      "to": "agent-council-director",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-competitive-strategy-analyst",
+      "to": "agent-council-director",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-creative-strategist",
+      "to": "agent-response-strategist",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-creator-commerce-strategist",
+      "to": "agent-council-director",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-lifecycle-strategist",
+      "to": "agent-commercial-strategist",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-market-architect",
+      "to": "agent-positioning-strategist",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-marketing-automation-governor",
+      "to": "agent-council-director",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-marketing-signal-architect",
+      "to": "agent-council-director",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-marketing-skeptic",
+      "to": "agent-council-director",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-positioning-strategist",
+      "to": "agent-product-marketing-director",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-product-marketing-director",
+      "to": "agent-creative-strategist",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "agent-response-strategist",
+      "to": "agent-measurement-strategist",
+      "relation": "hands_off_to",
+      "weight": 1
+    },
+    {
+      "from": "evidence-agentic-commerce-2026",
+      "to": "school-agentic-commerce",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-agentic-commerce-2026",
+      "to": "theory-agentic-commerce-readiness",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-agentic-commerce-2026",
+      "to": "theory-commerce-protocol-readiness",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-agentic-commerce-2026",
+      "to": "theory-product-feed-semantic-completeness",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-ai-mediated-discovery-2026",
+      "to": "school-ai-mediated-discovery",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-ai-mediated-discovery-2026",
+      "to": "theory-ai-mediated-discovery",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-ai-mediated-discovery-2026",
+      "to": "theory-answer-surface-retrievability",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-ai-mediated-discovery-2026",
+      "to": "theory-conversational-intent-matching",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-autonomous-media-operations-2026",
+      "to": "school-autonomous-marketing-operations",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-autonomous-media-operations-2026",
+      "to": "theory-automation-decision-rights",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-autonomous-media-operations-2026",
+      "to": "theory-autonomous-media-governance",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-autonomous-media-operations-2026",
+      "to": "theory-creative-provenance-governance",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-autonomous-media-operations-2026",
+      "to": "theory-marketing-signal-architecture",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-autonomous-media-operations-2026",
+      "to": "theory-synthetic-creative-hypothesis-families",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-causal-measurement-2026",
+      "to": "school-causal-measurement",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-causal-measurement-2026",
+      "to": "theory-incrementality-ladder",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-causal-measurement-2026",
+      "to": "theory-marketing-signal-architecture",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-commerce-media-2026",
+      "to": "school-causal-measurement",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-commerce-media-2026",
+      "to": "school-creator-commerce",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-commerce-media-2026",
+      "to": "theory-closed-loop-bias",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-commerce-media-2026",
+      "to": "theory-commerce-media-incrementality",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-creator-commerce-2026",
+      "to": "school-creator-commerce",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-creator-commerce-2026",
+      "to": "theory-creator-measurement-stack",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "evidence-creator-commerce-2026",
+      "to": "theory-creator-role-stack",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-al-ries",
+      "to": "school-positioning-category",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-al-ries",
+      "to": "theory-positioning",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-andrew-ehrenberg",
+      "to": "school-marketing-science",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-andrew-ehrenberg",
+      "to": "theory-double-jeopardy",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-april-dunford",
+      "to": "school-positioning-category",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-april-dunford",
+      "to": "theory-positioning-components",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-bill-bernbach",
+      "to": "school-creative-advertising",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-bill-bernbach",
+      "to": "theory-creative-strategy",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-bj-fogg",
+      "to": "school-behavioral-science",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-bj-fogg",
+      "to": "theory-fogg-behavior-model",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-byron-sharp",
+      "to": "school-marketing-science",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-byron-sharp",
+      "to": "theory-double-jeopardy",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-byron-sharp",
+      "to": "theory-mental-availability",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-byron-sharp",
+      "to": "theory-physical-availability",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-claude-hopkins",
+      "to": "school-direct-response",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-claude-hopkins",
+      "to": "theory-scientific-advertising",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-clayton-christensen",
+      "to": "school-jobs-to-be-done",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-clayton-christensen",
+      "to": "theory-jobs-to-be-done",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-david-aaker",
+      "to": "school-brand-equity",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-david-aaker",
+      "to": "theory-brand-equity-model",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-david-ogilvy",
+      "to": "school-direct-response",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-david-ogilvy",
+      "to": "theory-proof-led-advertising",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-eugene-schwartz",
+      "to": "school-awareness-copy",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-eugene-schwartz",
+      "to": "theory-awareness-levels",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-eugene-schwartz",
+      "to": "theory-market-sophistication",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-jack-trout",
+      "to": "school-positioning-category",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-jack-trout",
+      "to": "theory-positioning",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-kevin-lane-keller",
+      "to": "school-brand-equity",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-kevin-lane-keller",
+      "to": "theory-customer-based-brand-equity",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-les-binet",
+      "to": "school-marketing-effectiveness",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-les-binet",
+      "to": "theory-long-short-effects",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-michael-porter",
+      "to": "school-competitive-strategy",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-michael-porter",
+      "to": "theory-competitive-advantage",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-michael-porter",
+      "to": "theory-five-forces",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-peter-drucker",
+      "to": "school-customer-centric-market-definition",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-peter-drucker",
+      "to": "theory-customer-creation",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-peter-field",
+      "to": "school-marketing-effectiveness",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-peter-field",
+      "to": "theory-long-short-effects",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-philip-kotler",
+      "to": "school-marketing-management",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-philip-kotler",
+      "to": "theory-marketing-mix",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-philip-kotler",
+      "to": "theory-stp",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-richard-thaler",
+      "to": "school-behavioral-science",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-richard-thaler",
+      "to": "theory-choice-architecture",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-richard-thaler",
+      "to": "theory-nudge",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-robert-cialdini",
+      "to": "school-behavioral-science",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-robert-cialdini",
+      "to": "theory-influence-principles",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-rory-sutherland",
+      "to": "school-behavioral-science",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-rory-sutherland",
+      "to": "theory-behavioral-framing",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-rosser-reeves",
+      "to": "school-direct-response",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-rosser-reeves",
+      "to": "theory-unique-selling-proposition",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-seth-godin",
+      "to": "school-remarkability-permission",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-seth-godin",
+      "to": "theory-permission-marketing",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-seth-godin",
+      "to": "theory-smallest-viable-audience",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-steve-jobs",
+      "to": "school-product-narrative",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-steve-jobs",
+      "to": "theory-product-demonstration",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "figure-theodore-levitt",
+      "to": "school-customer-centric-market-definition",
+      "relation": "belongs_to",
+      "weight": 2
+    },
+    {
+      "from": "figure-theodore-levitt",
+      "to": "theory-marketing-myopia",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "hook-anti-generic-marketing",
+      "to": "signal-generic-tactic-risk",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-category-maturity-check",
+      "to": "signal-category-mature",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-category-maturity-check",
+      "to": "signal-category-unclear",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-causal-mechanism-check",
+      "to": "signal-causal-claim-weak",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-commercial-reality-check",
+      "to": "signal-economics-unhealthy",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-customer-language-check",
+      "to": "signal-customer-language-missing",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-decision-stage-check",
+      "to": "signal-awareness-high",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-decision-stage-check",
+      "to": "signal-awareness-low",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-evidence-gate",
+      "to": "signal-evidence-quality-low",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-freshness-check",
+      "to": "signal-freshness-risk-high",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-horizon-balance-check",
+      "to": "signal-long-horizon",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-horizon-balance-check",
+      "to": "signal-short-horizon",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-post-strategy-red-team",
+      "to": "signal-contradiction-risk-high",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-pre-mortem",
+      "to": "signal-failure-risk-high",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-school-conflict-gate",
+      "to": "signal-school-conflict-high",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-strategy-before-tactics",
+      "to": "signal-diagnosis-missing",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "hook-theory-fit-gate",
+      "to": "signal-theory-fit-low",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "principle-agentic-transaction-readiness",
+      "to": "agent-agentic-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-agentic-transaction-readiness",
+      "to": "skill-agentic-commerce",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-answer-surface-retrievability",
+      "to": "principle-mental-availability",
+      "relation": "counterbalances",
+      "weight": 1
+    },
+    {
+      "from": "principle-answer-surface-retrievability",
+      "to": "agent-ai-discovery-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-answer-surface-retrievability",
+      "to": "skill-ai-discovery-strategy",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-awareness-message-fit",
+      "to": "theory-awareness-levels",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-awareness-message-fit",
+      "to": "agent-awareness-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-brand-association-coherence",
+      "to": "principle-penetration-growth",
+      "relation": "counterbalances",
+      "weight": 2
+    },
+    {
+      "from": "principle-brand-association-coherence",
+      "to": "theory-brand-equity-model",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-brand-association-coherence",
+      "to": "theory-customer-based-brand-equity",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-brand-association-coherence",
+      "to": "agent-brand-equity-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-causal-mechanism",
+      "to": "theory-scientific-advertising",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-causal-mechanism",
+      "to": "agent-measurement-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-causal-rigor-over-platform-attribution",
+      "to": "principle-performance-accountability",
+      "relation": "counterbalances",
+      "weight": 1
+    },
+    {
+      "from": "principle-causal-rigor-over-platform-attribution",
+      "to": "agent-measurement-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-causal-rigor-over-platform-attribution",
+      "to": "skill-incrementality-design",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-choice-architecture",
+      "to": "principle-ethical-influence",
+      "relation": "counterbalances",
+      "weight": 2
+    },
+    {
+      "from": "principle-choice-architecture",
+      "to": "theory-nudge",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-closed-loop-is-not-incrementality",
+      "to": "agent-commerce-media-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-closed-loop-is-not-incrementality",
+      "to": "skill-commerce-media-strategy",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-commercial-reality",
+      "to": "theory-five-forces",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-commercial-reality",
+      "to": "agent-commercial-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-competitive-alternatives",
+      "to": "theory-jobs-to-be-done",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-competitive-alternatives",
+      "to": "theory-positioning-components",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-competitive-structure",
+      "to": "theory-competitive-advantage",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-competitive-structure",
+      "to": "theory-five-forces",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-competitive-structure",
+      "to": "agent-competitive-strategy-analyst",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-counterfactual-before-credit",
+      "to": "agent-measurement-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-counterfactual-before-credit",
+      "to": "skill-incrementality-design",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-counterweight-required",
+      "to": "theory-long-short-effects",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-counterweight-required",
+      "to": "theory-positioning",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-counterweight-required",
+      "to": "agent-council-director",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-creative-human-translation",
+      "to": "principle-proof-before-polish",
+      "relation": "counterbalances",
+      "weight": 2
+    },
+    {
+      "from": "principle-creative-human-translation",
+      "to": "theory-creative-strategy",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-creative-human-translation",
+      "to": "agent-creative-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-creative-hypothesis-before-variant-scale",
+      "to": "principle-creative-human-translation",
+      "relation": "counterbalances",
+      "weight": 1
+    },
+    {
+      "from": "principle-creative-hypothesis-before-variant-scale",
+      "to": "agent-creative-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-creative-hypothesis-before-variant-scale",
+      "to": "skill-campaign-strategy",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-creator-role-separation",
+      "to": "principle-penetration-growth",
+      "relation": "counterbalances",
+      "weight": 1
+    },
+    {
+      "from": "principle-creator-role-separation",
+      "to": "agent-creator-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-creator-role-separation",
+      "to": "skill-creator-commerce",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-cross-surface-discovery-continuity",
+      "to": "agent-ai-discovery-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-cross-surface-discovery-continuity",
+      "to": "skill-ai-discovery-strategy",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-customer-creation",
+      "to": "theory-customer-creation",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-customer-need-over-product",
+      "to": "principle-competitive-structure",
+      "relation": "counterbalances",
+      "weight": 2
+    },
+    {
+      "from": "principle-customer-need-over-product",
+      "to": "theory-marketing-myopia",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-decision-rights-before-automation",
+      "to": "agent-marketing-automation-governor",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-decision-rights-before-automation",
+      "to": "skill-autonomous-media-operations",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-distinctive-assets",
+      "to": "theory-mental-availability",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-ethical-influence",
+      "to": "theory-influence-principles",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-evidence-status",
+      "to": "theory-scientific-advertising",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-evidence-status",
+      "to": "agent-marketing-skeptic",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-feed-completeness-for-conversational-intent",
+      "to": "agent-agentic-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-feed-completeness-for-conversational-intent",
+      "to": "skill-commerce-feed-intelligence",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-friction-before-motivation",
+      "to": "theory-fogg-behavior-model",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-friction-before-motivation",
+      "to": "agent-behavior-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-jtbd-progress",
+      "to": "theory-jobs-to-be-done",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-jtbd-progress",
+      "to": "agent-audience-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-long-short-horizons",
+      "to": "theory-long-short-effects",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-long-short-horizons",
+      "to": "agent-effectiveness-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-machine-readable-product-truth",
+      "to": "agent-agentic-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-machine-readable-product-truth",
+      "to": "skill-commerce-feed-intelligence",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-market-definition",
+      "to": "theory-marketing-myopia",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-market-definition",
+      "to": "theory-stp",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-market-definition",
+      "to": "agent-market-architect",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-mental-availability",
+      "to": "theory-mental-availability",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-penetration-growth",
+      "to": "theory-double-jeopardy",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-penetration-growth",
+      "to": "theory-penetration-growth",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-penetration-growth",
+      "to": "agent-brand-growth-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-performance-accountability",
+      "to": "principle-long-short-horizons",
+      "relation": "counterbalances",
+      "weight": 2
+    },
+    {
+      "from": "principle-performance-accountability",
+      "to": "theory-long-short-effects",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-performance-accountability",
+      "to": "theory-scientific-advertising",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-permission-relevance",
+      "to": "theory-permission-marketing",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-permission-relevance",
+      "to": "agent-lifecycle-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-physical-availability",
+      "to": "theory-physical-availability",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-physical-availability",
+      "to": "agent-channel-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-positioning-focus",
+      "to": "principle-mental-availability",
+      "relation": "counterbalances",
+      "weight": 2
+    },
+    {
+      "from": "principle-positioning-focus",
+      "to": "theory-positioning",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-positioning-focus",
+      "to": "theory-positioning-components",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-positioning-focus",
+      "to": "agent-positioning-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-product-demonstration",
+      "to": "theory-product-demonstration",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-product-demonstration",
+      "to": "agent-product-marketing-director",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-proof-before-polish",
+      "to": "theory-proof-led-advertising",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-proof-before-polish",
+      "to": "theory-scientific-advertising",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-proof-before-polish",
+      "to": "agent-response-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-provenance-before-synthetic-scale",
+      "to": "agent-creative-strategist",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-provenance-before-synthetic-scale",
+      "to": "skill-creator-commerce",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-reversible-automation-guardrails",
+      "to": "agent-marketing-automation-governor",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-reversible-automation-guardrails",
+      "to": "skill-autonomous-media-operations",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-segmentation-decision-usefulness",
+      "to": "theory-jobs-to-be-done",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-segmentation-decision-usefulness",
+      "to": "theory-stp",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-signal-quality-before-automation",
+      "to": "principle-commercial-reality",
+      "relation": "counterbalances",
+      "weight": 1
+    },
+    {
+      "from": "principle-signal-quality-before-automation",
+      "to": "agent-marketing-signal-architect",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-signal-quality-before-automation",
+      "to": "skill-marketing-signal-strategy",
+      "relation": "routes_to",
+      "weight": 2
+    },
+    {
+      "from": "principle-smallest-viable-audience",
+      "to": "principle-penetration-growth",
+      "relation": "counterbalances",
+      "weight": 2
+    },
+    {
+      "from": "principle-smallest-viable-audience",
+      "to": "theory-smallest-viable-audience",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-sophistication-proof-burden",
+      "to": "theory-market-sophistication",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-target-attractiveness-fit",
+      "to": "theory-five-forces",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "principle-target-attractiveness-fit",
+      "to": "theory-stp",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-agentic-commerce",
+      "to": "theory-agentic-commerce-readiness",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-agentic-commerce",
+      "to": "theory-commerce-protocol-readiness",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-agentic-commerce",
+      "to": "theory-product-feed-semantic-completeness",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-agentic-commerce",
+      "to": "principle-agentic-transaction-readiness",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-agentic-commerce",
+      "to": "principle-feed-completeness-for-conversational-intent",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-agentic-commerce",
+      "to": "principle-machine-readable-product-truth",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-ai-mediated-discovery",
+      "to": "theory-ai-mediated-discovery",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-ai-mediated-discovery",
+      "to": "theory-answer-surface-retrievability",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-ai-mediated-discovery",
+      "to": "theory-conversational-intent-matching",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-ai-mediated-discovery",
+      "to": "principle-answer-surface-retrievability",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-ai-mediated-discovery",
+      "to": "principle-cross-surface-discovery-continuity",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "theory-automation-decision-rights",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "theory-autonomous-media-governance",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "theory-creative-provenance-governance",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "theory-marketing-signal-architecture",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "theory-synthetic-creative-hypothesis-families",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "principle-creative-hypothesis-before-variant-scale",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "principle-decision-rights-before-automation",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "principle-provenance-before-synthetic-scale",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "principle-reversible-automation-guardrails",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-autonomous-marketing-operations",
+      "to": "principle-signal-quality-before-automation",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-awareness-copy",
+      "to": "theory-awareness-levels",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-awareness-copy",
+      "to": "theory-market-sophistication",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-behavioral-science",
+      "to": "theory-behavioral-framing",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-behavioral-science",
+      "to": "theory-fogg-behavior-model",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-behavioral-science",
+      "to": "theory-influence-principles",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-behavioral-science",
+      "to": "theory-nudge",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-brand-equity",
+      "to": "theory-brand-equity-model",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-brand-equity",
+      "to": "theory-customer-based-brand-equity",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-causal-measurement",
+      "to": "theory-closed-loop-bias",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-causal-measurement",
+      "to": "theory-commerce-media-incrementality",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-causal-measurement",
+      "to": "theory-incrementality-ladder",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-causal-measurement",
+      "to": "principle-causal-rigor-over-platform-attribution",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-causal-measurement",
+      "to": "principle-closed-loop-is-not-incrementality",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-causal-measurement",
+      "to": "principle-counterfactual-before-credit",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-competitive-strategy",
+      "to": "theory-competitive-advantage",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-competitive-strategy",
+      "to": "theory-five-forces",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-creative-advertising",
+      "to": "theory-creative-strategy",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-creative-advertising",
+      "to": "theory-proof-led-advertising",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-creator-commerce",
+      "to": "theory-commerce-media-incrementality",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-creator-commerce",
+      "to": "theory-creator-measurement-stack",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-creator-commerce",
+      "to": "theory-creator-role-stack",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-creator-commerce",
+      "to": "principle-closed-loop-is-not-incrementality",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-creator-commerce",
+      "to": "principle-creative-hypothesis-before-variant-scale",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-creator-commerce",
+      "to": "principle-creator-role-separation",
+      "relation": "operationalizes",
+      "weight": 2
+    },
+    {
+      "from": "school-customer-centric-market-definition",
+      "to": "theory-customer-creation",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-customer-centric-market-definition",
+      "to": "theory-marketing-myopia",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-direct-response",
+      "to": "theory-proof-led-advertising",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-direct-response",
+      "to": "theory-scientific-advertising",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-direct-response",
+      "to": "theory-unique-selling-proposition",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-jobs-to-be-done",
+      "to": "theory-jobs-to-be-done",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-marketing-effectiveness",
+      "to": "theory-long-short-effects",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-marketing-management",
+      "to": "theory-marketing-mix",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-marketing-management",
+      "to": "theory-stp",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-marketing-science",
+      "to": "theory-double-jeopardy",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-marketing-science",
+      "to": "theory-mental-availability",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-marketing-science",
+      "to": "theory-physical-availability",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-positioning-category",
+      "to": "theory-positioning",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-positioning-category",
+      "to": "theory-positioning-components",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-product-narrative",
+      "to": "theory-product-demonstration",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-remarkability-permission",
+      "to": "theory-permission-marketing",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "school-remarkability-permission",
+      "to": "theory-smallest-viable-audience",
+      "relation": "informs",
+      "weight": 2
+    },
+    {
+      "from": "signal-agentic-checkout-available",
+      "to": "agent-agentic-commerce-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-agentic-checkout-available",
+      "to": "hook-agentic-commerce-readiness",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-agentic-checkout-available",
+      "to": "school-agentic-commerce",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-agentic-checkout-available",
+      "to": "skill-agentic-commerce",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-agentic-checkout-available",
+      "to": "theory-agentic-commerce-readiness",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-ai-discovery-dominant",
+      "to": "agent-ai-discovery-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-ai-discovery-dominant",
+      "to": "hook-ai-surface-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-ai-discovery-dominant",
+      "to": "school-ai-mediated-discovery",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-ai-discovery-dominant",
+      "to": "skill-ai-discovery-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-ai-discovery-dominant",
+      "to": "theory-ai-mediated-discovery",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-answer-surface-visibility-low",
+      "to": "agent-ai-discovery-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-answer-surface-visibility-low",
+      "to": "hook-ai-surface-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-answer-surface-visibility-low",
+      "to": "school-ai-mediated-discovery",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-answer-surface-visibility-low",
+      "to": "skill-ai-discovery-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-answer-surface-visibility-low",
+      "to": "theory-answer-surface-retrievability",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-attribution-fragmented",
+      "to": "agent-effectiveness-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-attribution-fragmented",
+      "to": "agent-measurement-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-attribution-fragmented",
+      "to": "hook-incrementality-required",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-attribution-fragmented",
+      "to": "school-causal-measurement",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-attribution-fragmented",
+      "to": "skill-incrementality-design",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-attribution-fragmented",
+      "to": "skill-marketing-measurement",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-attribution-fragmented",
+      "to": "theory-incrementality-ladder",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-automation-boundaries-unclear",
+      "to": "agent-marketing-automation-governor",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-automation-boundaries-unclear",
+      "to": "hook-automation-authority-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-automation-boundaries-unclear",
+      "to": "school-autonomous-marketing-operations",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-automation-boundaries-unclear",
+      "to": "skill-autonomous-media-operations",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-automation-boundaries-unclear",
+      "to": "theory-automation-decision-rights",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-awareness-high",
+      "to": "agent-response-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-awareness-high",
+      "to": "skill-offer-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-awareness-high",
+      "to": "theory-awareness-levels",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-awareness-low",
+      "to": "agent-awareness-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-awareness-low",
+      "to": "skill-content-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-awareness-low",
+      "to": "theory-awareness-levels",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-behavioral-friction-high",
+      "to": "agent-behavior-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-behavioral-friction-high",
+      "to": "agent-lifecycle-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-behavioral-friction-high",
+      "to": "skill-behavioral-marketing",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-behavioral-friction-high",
+      "to": "skill-conversion-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-behavioral-friction-high",
+      "to": "theory-fogg-behavior-model",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-brand-memory-weak",
+      "to": "agent-brand-equity-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-brand-memory-weak",
+      "to": "agent-brand-growth-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-brand-memory-weak",
+      "to": "skill-brand-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-brand-memory-weak",
+      "to": "theory-mental-availability",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-mature",
+      "to": "agent-competitive-strategy-analyst",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-mature",
+      "to": "agent-positioning-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-mature",
+      "to": "skill-category-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-mature",
+      "to": "skill-positioning-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-mature",
+      "to": "theory-market-sophistication",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-unclear",
+      "to": "agent-market-architect",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-unclear",
+      "to": "agent-positioning-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-unclear",
+      "to": "skill-category-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-unclear",
+      "to": "theory-marketing-myopia",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-category-unclear",
+      "to": "theory-positioning-components",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-causal-claim-weak",
+      "to": "agent-marketing-skeptic",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-causal-claim-weak",
+      "to": "agent-measurement-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-causal-claim-weak",
+      "to": "hook-causal-mechanism-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-causal-claim-weak",
+      "to": "skill-marketing-measurement",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-closed-loop-data-available",
+      "to": "agent-commerce-media-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-closed-loop-data-available",
+      "to": "agent-measurement-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-closed-loop-data-available",
+      "to": "hook-closed-loop-bias-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-closed-loop-data-available",
+      "to": "hook-incrementality-required",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-closed-loop-data-available",
+      "to": "school-causal-measurement",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-closed-loop-data-available",
+      "to": "skill-commerce-media-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-closed-loop-data-available",
+      "to": "skill-incrementality-design",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-closed-loop-data-available",
+      "to": "theory-closed-loop-bias",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-available",
+      "to": "agent-channel-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-available",
+      "to": "agent-commerce-media-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-available",
+      "to": "hook-closed-loop-bias-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-available",
+      "to": "school-creator-commerce",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-commerce-media-available",
+      "to": "skill-commerce-media-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-available",
+      "to": "theory-commerce-media-incrementality",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-bias-risk",
+      "to": "agent-commerce-media-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-bias-risk",
+      "to": "agent-marketing-skeptic",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-bias-risk",
+      "to": "hook-closed-loop-bias-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-bias-risk",
+      "to": "school-causal-measurement",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-commerce-media-bias-risk",
+      "to": "skill-commerce-media-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-bias-risk",
+      "to": "skill-incrementality-design",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-commerce-media-bias-risk",
+      "to": "theory-closed-loop-bias",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-competitor-pressure-high",
+      "to": "agent-competitive-strategy-analyst",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-competitor-pressure-high",
+      "to": "agent-positioning-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-competitor-pressure-high",
+      "to": "skill-competitive-intelligence",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-competitor-pressure-high",
+      "to": "skill-positioning-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-competitor-pressure-high",
+      "to": "theory-five-forces",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-contradiction-risk-high",
+      "to": "agent-council-director",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-contradiction-risk-high",
+      "to": "agent-marketing-skeptic",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-contradiction-risk-high",
+      "to": "hook-post-strategy-red-team",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-conversational-intent-high",
+      "to": "agent-ai-discovery-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-conversational-intent-high",
+      "to": "agent-response-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-conversational-intent-high",
+      "to": "hook-ai-surface-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-conversational-intent-high",
+      "to": "school-ai-mediated-discovery",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-conversational-intent-high",
+      "to": "skill-ai-discovery-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-conversational-intent-high",
+      "to": "skill-conversational-advertising",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-conversational-intent-high",
+      "to": "theory-conversational-intent-matching",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-led-discovery",
+      "to": "agent-ai-discovery-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-led-discovery",
+      "to": "agent-creator-commerce-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-led-discovery",
+      "to": "hook-creator-measurement-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-led-discovery",
+      "to": "school-creator-commerce",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-creator-led-discovery",
+      "to": "skill-ai-discovery-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-led-discovery",
+      "to": "skill-creator-commerce",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-led-discovery",
+      "to": "theory-creator-role-stack",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-measurement-fragmented",
+      "to": "agent-creator-commerce-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-measurement-fragmented",
+      "to": "agent-measurement-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-measurement-fragmented",
+      "to": "hook-creator-measurement-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-measurement-fragmented",
+      "to": "school-creator-commerce",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-creator-measurement-fragmented",
+      "to": "skill-creator-commerce",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-measurement-fragmented",
+      "to": "skill-incrementality-design",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-creator-measurement-fragmented",
+      "to": "theory-creator-measurement-stack",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-poor",
+      "to": "agent-marketing-signal-architect",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-poor",
+      "to": "agent-measurement-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-poor",
+      "to": "hook-marketing-signal-quality",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-poor",
+      "to": "school-autonomous-marketing-operations",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-crm-signal-poor",
+      "to": "skill-incrementality-design",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-poor",
+      "to": "skill-marketing-signal-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-poor",
+      "to": "theory-marketing-signal-architecture",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-rich",
+      "to": "agent-marketing-signal-architect",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-rich",
+      "to": "hook-marketing-signal-quality",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-rich",
+      "to": "school-autonomous-marketing-operations",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-crm-signal-rich",
+      "to": "skill-marketing-signal-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-crm-signal-rich",
+      "to": "theory-marketing-signal-architecture",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-customer-language-missing",
+      "to": "agent-audience-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-customer-language-missing",
+      "to": "hook-customer-language-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-customer-language-missing",
+      "to": "skill-customer-research",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-diagnosis-missing",
+      "to": "agent-council-director",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-diagnosis-missing",
+      "to": "agent-market-architect",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-diagnosis-missing",
+      "to": "hook-strategy-before-tactics",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-diagnosis-missing",
+      "to": "skill-market-diagnosis",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-differentiation-weak",
+      "to": "agent-competitive-strategy-analyst",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-differentiation-weak",
+      "to": "agent-positioning-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-differentiation-weak",
+      "to": "skill-positioning-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-differentiation-weak",
+      "to": "theory-positioning-components",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-distribution-constraint",
+      "to": "agent-brand-growth-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-distribution-constraint",
+      "to": "agent-channel-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-distribution-constraint",
+      "to": "skill-go-to-market",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-distribution-constraint",
+      "to": "theory-physical-availability",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-economics-unhealthy",
+      "to": "agent-commercial-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-economics-unhealthy",
+      "to": "agent-competitive-strategy-analyst",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-economics-unhealthy",
+      "to": "hook-commercial-reality-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-economics-unhealthy",
+      "to": "skill-pricing-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-economics-unhealthy",
+      "to": "theory-five-forces",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-evidence-quality-low",
+      "to": "agent-marketing-skeptic",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-evidence-quality-low",
+      "to": "agent-measurement-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-evidence-quality-low",
+      "to": "hook-evidence-gate",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-evidence-quality-low",
+      "to": "skill-marketing-measurement",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-evidence-quality-low",
+      "to": "theory-scientific-advertising",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-failure-risk-high",
+      "to": "agent-marketing-skeptic",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-failure-risk-high",
+      "to": "hook-pre-mortem",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-freshness-risk-high",
+      "to": "agent-marketing-skeptic",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-freshness-risk-high",
+      "to": "hook-freshness-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-freshness-risk-high",
+      "to": "skill-competitive-intelligence",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-generic-tactic-risk",
+      "to": "agent-council-director",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-generic-tactic-risk",
+      "to": "agent-marketing-skeptic",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-generic-tactic-risk",
+      "to": "hook-anti-generic-marketing",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-incrementality-unknown",
+      "to": "agent-marketing-signal-architect",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-incrementality-unknown",
+      "to": "agent-measurement-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-incrementality-unknown",
+      "to": "hook-incrementality-required",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-incrementality-unknown",
+      "to": "school-causal-measurement",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-incrementality-unknown",
+      "to": "skill-incrementality-design",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-incrementality-unknown",
+      "to": "skill-marketing-signal-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-incrementality-unknown",
+      "to": "theory-incrementality-ladder",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-long-horizon",
+      "to": "agent-brand-growth-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-long-horizon",
+      "to": "agent-effectiveness-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-long-horizon",
+      "to": "skill-brand-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-long-horizon",
+      "to": "theory-long-short-effects",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-manual-control-low",
+      "to": "agent-marketing-automation-governor",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-manual-control-low",
+      "to": "agent-measurement-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-manual-control-low",
+      "to": "hook-automation-black-box-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-manual-control-low",
+      "to": "school-autonomous-marketing-operations",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-manual-control-low",
+      "to": "skill-autonomous-media-operations",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-manual-control-low",
+      "to": "theory-autonomous-media-governance",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-outcome-delay-high",
+      "to": "agent-marketing-signal-architect",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-outcome-delay-high",
+      "to": "agent-measurement-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-outcome-delay-high",
+      "to": "hook-incrementality-required",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-outcome-delay-high",
+      "to": "hook-marketing-signal-quality",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-outcome-delay-high",
+      "to": "school-causal-measurement",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-outcome-delay-high",
+      "to": "skill-incrementality-design",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-outcome-delay-high",
+      "to": "skill-marketing-signal-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-outcome-delay-high",
+      "to": "theory-incrementality-ladder",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-outcome-delay-high",
+      "to": "theory-marketing-signal-architecture",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-platform-automation-high",
+      "to": "agent-marketing-automation-governor",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-platform-automation-high",
+      "to": "agent-marketing-signal-architect",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-platform-automation-high",
+      "to": "hook-automation-authority-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-platform-automation-high",
+      "to": "hook-automation-black-box-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-platform-automation-high",
+      "to": "school-autonomous-marketing-operations",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-platform-automation-high",
+      "to": "skill-autonomous-media-operations",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-platform-automation-high",
+      "to": "skill-marketing-signal-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-platform-automation-high",
+      "to": "theory-automation-decision-rights",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-platform-automation-high",
+      "to": "theory-autonomous-media-governance",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-data-rich",
+      "to": "agent-agentic-commerce-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-data-rich",
+      "to": "agent-product-marketing-director",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-data-rich",
+      "to": "hook-commerce-feed-readiness",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-data-rich",
+      "to": "school-agentic-commerce",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-product-data-rich",
+      "to": "skill-agentic-commerce",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-data-rich",
+      "to": "skill-commerce-feed-intelligence",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-data-rich",
+      "to": "theory-product-feed-semantic-completeness",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-feed-poor",
+      "to": "agent-agentic-commerce-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-feed-poor",
+      "to": "agent-product-marketing-director",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-feed-poor",
+      "to": "hook-commerce-feed-readiness",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-feed-poor",
+      "to": "school-agentic-commerce",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-product-feed-poor",
+      "to": "skill-commerce-feed-intelligence",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-product-feed-poor",
+      "to": "theory-product-feed-semantic-completeness",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-provenance-sensitive",
+      "to": "agent-creative-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-provenance-sensitive",
+      "to": "agent-creator-commerce-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-provenance-sensitive",
+      "to": "hook-creative-provenance-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-provenance-sensitive",
+      "to": "school-autonomous-marketing-operations",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-provenance-sensitive",
+      "to": "skill-campaign-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-provenance-sensitive",
+      "to": "skill-creator-commerce",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-provenance-sensitive",
+      "to": "theory-creative-provenance-governance",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-retention-weak",
+      "to": "agent-lifecycle-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-retention-weak",
+      "to": "skill-retention-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-retention-weak",
+      "to": "theory-jobs-to-be-done",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-school-conflict-high",
+      "to": "agent-council-director",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-school-conflict-high",
+      "to": "hook-school-conflict-gate",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-short-horizon",
+      "to": "agent-effectiveness-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-short-horizon",
+      "to": "agent-response-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-short-horizon",
+      "to": "skill-marketing-measurement",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-short-horizon",
+      "to": "theory-scientific-advertising",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-synthetic-creative-scale",
+      "to": "agent-creative-strategist",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-synthetic-creative-scale",
+      "to": "agent-marketing-automation-governor",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-synthetic-creative-scale",
+      "to": "hook-creative-provenance-check",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-synthetic-creative-scale",
+      "to": "school-autonomous-marketing-operations",
+      "relation": "activates",
+      "weight": 3
+    },
+    {
+      "from": "signal-synthetic-creative-scale",
+      "to": "skill-autonomous-media-operations",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-synthetic-creative-scale",
+      "to": "skill-campaign-strategy",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-synthetic-creative-scale",
+      "to": "theory-synthetic-creative-hypothesis-families",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-theory-fit-low",
+      "to": "agent-council-director",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-theory-fit-low",
+      "to": "agent-marketing-skeptic",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "signal-theory-fit-low",
+      "to": "hook-theory-fit-gate",
+      "relation": "activates",
+      "weight": 4
+    },
+    {
+      "from": "skill-agentic-commerce",
+      "to": "hook-agentic-commerce-readiness",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-agentic-commerce",
+      "to": "hook-commercial-reality-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-agentic-commerce",
+      "to": "hook-freshness-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-ai-discovery-strategy",
+      "to": "hook-ai-surface-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-ai-discovery-strategy",
+      "to": "hook-evidence-gate",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-ai-discovery-strategy",
+      "to": "hook-freshness-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-autonomous-media-operations",
+      "to": "hook-automation-authority-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-autonomous-media-operations",
+      "to": "hook-automation-black-box-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-autonomous-media-operations",
+      "to": "hook-commercial-reality-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-commerce-feed-intelligence",
+      "to": "hook-commerce-feed-readiness",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-commerce-feed-intelligence",
+      "to": "hook-evidence-gate",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-commerce-feed-intelligence",
+      "to": "hook-freshness-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-commerce-media-strategy",
+      "to": "hook-closed-loop-bias-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-commerce-media-strategy",
+      "to": "hook-commercial-reality-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-commerce-media-strategy",
+      "to": "hook-incrementality-required",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-conversational-advertising",
+      "to": "hook-ai-surface-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-conversational-advertising",
+      "to": "hook-commercial-reality-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-conversational-advertising",
+      "to": "hook-freshness-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-creator-commerce",
+      "to": "hook-creative-provenance-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-creator-commerce",
+      "to": "hook-creator-measurement-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-creator-commerce",
+      "to": "hook-evidence-gate",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-incrementality-design",
+      "to": "hook-causal-mechanism-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-incrementality-design",
+      "to": "hook-closed-loop-bias-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-incrementality-design",
+      "to": "hook-incrementality-required",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-marketing-signal-strategy",
+      "to": "hook-causal-mechanism-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-marketing-signal-strategy",
+      "to": "hook-freshness-check",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "skill-marketing-signal-strategy",
+      "to": "hook-marketing-signal-quality",
+      "relation": "requires",
+      "weight": 1
+    },
+    {
+      "from": "theory-agentic-commerce-readiness",
+      "to": "agent-agentic-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-agentic-commerce-readiness",
+      "to": "skill-agentic-commerce",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-ai-mediated-discovery",
+      "to": "agent-ai-discovery-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-ai-mediated-discovery",
+      "to": "skill-ai-discovery-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-answer-surface-retrievability",
+      "to": "agent-ai-discovery-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-answer-surface-retrievability",
+      "to": "skill-ai-discovery-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-automation-decision-rights",
+      "to": "agent-marketing-automation-governor",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-automation-decision-rights",
+      "to": "skill-autonomous-media-operations",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-autonomous-media-governance",
+      "to": "agent-marketing-automation-governor",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-autonomous-media-governance",
+      "to": "skill-autonomous-media-operations",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-awareness-levels",
+      "to": "agent-awareness-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-awareness-levels",
+      "to": "skill-campaign-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-awareness-levels",
+      "to": "skill-content-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-behavioral-framing",
+      "to": "agent-behavior-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-behavioral-framing",
+      "to": "agent-commercial-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-behavioral-framing",
+      "to": "skill-behavioral-marketing",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-behavioral-framing",
+      "to": "skill-pricing-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-brand-equity-model",
+      "to": "agent-brand-equity-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-brand-equity-model",
+      "to": "skill-brand-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-choice-architecture",
+      "to": "agent-behavior-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-choice-architecture",
+      "to": "skill-behavioral-marketing",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-choice-architecture",
+      "to": "skill-conversion-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-closed-loop-bias",
+      "to": "agent-commerce-media-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-closed-loop-bias",
+      "to": "agent-measurement-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-closed-loop-bias",
+      "to": "skill-commerce-media-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-closed-loop-bias",
+      "to": "skill-incrementality-design",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-commerce-media-incrementality",
+      "to": "agent-commerce-media-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-commerce-media-incrementality",
+      "to": "agent-measurement-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-commerce-media-incrementality",
+      "to": "skill-commerce-media-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-commerce-media-incrementality",
+      "to": "skill-incrementality-design",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-commerce-protocol-readiness",
+      "to": "agent-agentic-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-commerce-protocol-readiness",
+      "to": "skill-agentic-commerce",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-competitive-advantage",
+      "to": "agent-competitive-strategy-analyst",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-competitive-advantage",
+      "to": "agent-positioning-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-competitive-advantage",
+      "to": "skill-competitive-intelligence",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-competitive-advantage",
+      "to": "skill-positioning-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-conversational-intent-matching",
+      "to": "agent-ai-discovery-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-conversational-intent-matching",
+      "to": "agent-response-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-conversational-intent-matching",
+      "to": "skill-conversational-advertising",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creative-provenance-governance",
+      "to": "agent-creative-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creative-provenance-governance",
+      "to": "agent-creator-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creative-provenance-governance",
+      "to": "skill-creator-commerce",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creative-strategy",
+      "to": "agent-creative-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creative-strategy",
+      "to": "skill-campaign-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creative-strategy",
+      "to": "skill-content-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creator-measurement-stack",
+      "to": "agent-creator-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creator-measurement-stack",
+      "to": "agent-measurement-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creator-measurement-stack",
+      "to": "skill-creator-commerce",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creator-role-stack",
+      "to": "agent-creator-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-creator-role-stack",
+      "to": "skill-creator-commerce",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-customer-based-brand-equity",
+      "to": "agent-brand-equity-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-customer-based-brand-equity",
+      "to": "skill-brand-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-customer-creation",
+      "to": "agent-commercial-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-customer-creation",
+      "to": "agent-market-architect",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-customer-creation",
+      "to": "skill-market-diagnosis",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-customer-creation",
+      "to": "skill-marketing-measurement",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-double-jeopardy",
+      "to": "agent-brand-growth-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-double-jeopardy",
+      "to": "agent-lifecycle-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-double-jeopardy",
+      "to": "skill-brand-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-double-jeopardy",
+      "to": "skill-retention-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-five-forces",
+      "to": "agent-commercial-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-five-forces",
+      "to": "agent-competitive-strategy-analyst",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-five-forces",
+      "to": "skill-category-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-five-forces",
+      "to": "skill-competitive-intelligence",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-fogg-behavior-model",
+      "to": "agent-behavior-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-fogg-behavior-model",
+      "to": "agent-lifecycle-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-fogg-behavior-model",
+      "to": "skill-behavioral-marketing",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-fogg-behavior-model",
+      "to": "skill-conversion-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-fogg-behavior-model",
+      "to": "skill-retention-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-incrementality-ladder",
+      "to": "agent-measurement-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-incrementality-ladder",
+      "to": "skill-incrementality-design",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-influence-principles",
+      "to": "agent-behavior-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-influence-principles",
+      "to": "skill-behavioral-marketing",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-influence-principles",
+      "to": "skill-conversion-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-jobs-to-be-done",
+      "to": "agent-audience-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-jobs-to-be-done",
+      "to": "agent-lifecycle-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-jobs-to-be-done",
+      "to": "skill-customer-research",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-jobs-to-be-done",
+      "to": "skill-retention-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-jobs-to-be-done",
+      "to": "skill-segmentation-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-long-short-effects",
+      "to": "agent-brand-growth-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-long-short-effects",
+      "to": "agent-effectiveness-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-long-short-effects",
+      "to": "agent-measurement-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-long-short-effects",
+      "to": "skill-marketing-measurement",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-long-short-effects",
+      "to": "skill-media-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-market-sophistication",
+      "to": "agent-awareness-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-market-sophistication",
+      "to": "agent-positioning-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-market-sophistication",
+      "to": "skill-campaign-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-market-sophistication",
+      "to": "skill-positioning-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-mix",
+      "to": "agent-channel-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-mix",
+      "to": "agent-commercial-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-mix",
+      "to": "agent-market-architect",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-mix",
+      "to": "skill-go-to-market",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-mix",
+      "to": "skill-media-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-mix",
+      "to": "skill-pricing-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-myopia",
+      "to": "agent-competitive-strategy-analyst",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-myopia",
+      "to": "agent-market-architect",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-myopia",
+      "to": "skill-category-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-myopia",
+      "to": "skill-market-diagnosis",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-signal-architecture",
+      "to": "agent-marketing-signal-architect",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-marketing-signal-architecture",
+      "to": "skill-marketing-signal-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-mental-availability",
+      "to": "agent-brand-equity-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-mental-availability",
+      "to": "agent-brand-growth-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-mental-availability",
+      "to": "skill-brand-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-mental-availability",
+      "to": "skill-media-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-nudge",
+      "to": "agent-behavior-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-nudge",
+      "to": "skill-behavioral-marketing",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-nudge",
+      "to": "skill-conversion-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-penetration-growth",
+      "to": "agent-brand-growth-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-penetration-growth",
+      "to": "agent-effectiveness-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-penetration-growth",
+      "to": "skill-brand-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-penetration-growth",
+      "to": "skill-media-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-permission-marketing",
+      "to": "agent-audience-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-permission-marketing",
+      "to": "agent-lifecycle-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-permission-marketing",
+      "to": "skill-content-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-permission-marketing",
+      "to": "skill-retention-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-physical-availability",
+      "to": "agent-brand-growth-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-physical-availability",
+      "to": "agent-channel-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-physical-availability",
+      "to": "skill-go-to-market",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-physical-availability",
+      "to": "skill-media-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-positioning",
+      "to": "agent-positioning-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-positioning",
+      "to": "skill-positioning-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-positioning-components",
+      "to": "agent-competitive-strategy-analyst",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-positioning-components",
+      "to": "agent-positioning-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-positioning-components",
+      "to": "skill-category-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-positioning-components",
+      "to": "skill-positioning-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-product-demonstration",
+      "to": "agent-creative-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-product-demonstration",
+      "to": "agent-product-marketing-director",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-product-demonstration",
+      "to": "skill-go-to-market",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-product-demonstration",
+      "to": "skill-product-marketing",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-product-feed-semantic-completeness",
+      "to": "agent-agentic-commerce-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-product-feed-semantic-completeness",
+      "to": "agent-product-marketing-director",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-product-feed-semantic-completeness",
+      "to": "skill-commerce-feed-intelligence",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-proof-led-advertising",
+      "to": "agent-creative-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-proof-led-advertising",
+      "to": "agent-response-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-proof-led-advertising",
+      "to": "skill-campaign-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-proof-led-advertising",
+      "to": "skill-offer-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-proof-led-advertising",
+      "to": "skill-product-marketing",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-scientific-advertising",
+      "to": "agent-measurement-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-scientific-advertising",
+      "to": "agent-response-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-scientific-advertising",
+      "to": "skill-marketing-experimentation",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-scientific-advertising",
+      "to": "skill-marketing-measurement",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-smallest-viable-audience",
+      "to": "agent-audience-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-smallest-viable-audience",
+      "to": "agent-market-architect",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-smallest-viable-audience",
+      "to": "skill-go-to-market",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-smallest-viable-audience",
+      "to": "skill-segmentation-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-stp",
+      "to": "agent-audience-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-stp",
+      "to": "agent-market-architect",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-stp",
+      "to": "skill-market-diagnosis",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-stp",
+      "to": "skill-segmentation-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-synthetic-creative-hypothesis-families",
+      "to": "agent-creative-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-synthetic-creative-hypothesis-families",
+      "to": "skill-campaign-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-unique-selling-proposition",
+      "to": "agent-creative-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-unique-selling-proposition",
+      "to": "agent-response-strategist",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-unique-selling-proposition",
+      "to": "skill-campaign-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    },
+    {
+      "from": "theory-unique-selling-proposition",
+      "to": "skill-offer-strategy",
+      "relation": "routes_to",
+      "weight": 3
+    }
+  ]
+}

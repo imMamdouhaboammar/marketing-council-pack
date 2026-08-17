@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Commerce"
+  short_description: "Agentic Commerce"
+  brand_color: "#173F35"
+  default_prompt: "Use Agentic Commerce on this marketing decision. Diagnose current evidence, apply the relevant theory, challenge platform bias, then recommend one measurable action."
+policy:
+  allow_implicit_invocation: true

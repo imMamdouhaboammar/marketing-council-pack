@@ -1,0 +1,7 @@
+interface:
+  display_name: "Marketing Experimentation"
+  short_description: "Turn uncertainty into tests"
+  brand_color: "#173F35"
+  default_prompt: "Turn this marketing belief into a testable hypothesis with sample assumptions, success rules, and a decision after the result."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,62 @@
+{
+  "name": "marketing-council",
+  "version": "1.3.0",
+  "description": "Marketing strategy skills with an executable knowledge graph connecting marketing schools, principles, applied theories, specialist agents, evidence gates, and measurable tactics.",
+  "author": {
+    "name": "Mamdouh Aboammar",
+    "url": "https://github.com/imMamdouhaboammar"
+  },
+  "homepage": "https://github.com/imMamdouhaboammar/marketing-council-pack",
+  "repository": "https://github.com/imMamdouhaboammar/marketing-council-pack",
+  "license": "MIT",
+  "keywords": [
+    "marketing",
+    "strategy",
+    "positioning",
+    "go-to-market",
+    "pricing",
+    "campaigns",
+    "cro",
+    "retention"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Marketing Council",
+    "shortDescription": "Marketing strategy council",
+    "longDescription": "Marketing Council makes ChatGPT and Codex diagnose before prescribing. Its neural marketing graph connects established schools and principles with dated 2026 evidence for AI-mediated discovery, agentic commerce, autonomous media, creator commerce, commerce media, signal design, and causal measurement, then routes the decision through specialist roles and challenge gates.",
+    "developerName": "Mamdouh Aboammar",
+    "category": "Business & Operations",
+    "capabilities": [
+      "Market diagnosis",
+      "Customer research",
+      "Segmentation and targeting",
+      "Positioning and category strategy",
+      "Brand strategy",
+      "Product marketing",
+      "Offer and pricing strategy",
+      "Go-to-market planning",
+      "Campaign and creative strategy",
+      "Media and channel strategy",
+      "Behavioral marketing and CRO",
+      "Retention and lifecycle",
+      "Competitive intelligence",
+      "Marketing measurement",
+      "Marketing experimentation",
+      "Multi-school strategy debate",
+      "AI-mediated discovery strategy",
+      "Agentic commerce and commerce feeds",
+      "Autonomous media governance",
+      "Incrementality and causal measurement"
+    ],
+    "websiteURL": "https://github.com/imMamdouhaboammar/marketing-council-pack",
+    "defaultPrompt": [
+      "Diagnose this marketing problem before recommending tactics.",
+      "Run a council debate on this strategy and tell me what decision the evidence supports.",
+      "Red-team this marketing plan, then rebuild the parts that would fail commercially."
+    ],
+    "brandColor": "#173F35",
+    "brandColorDark": "#F4F0E7",
+    "composerIcon": "./assets/composer-icon.svg",
+    "logo": "./assets/logo.svg"
+  }
+}

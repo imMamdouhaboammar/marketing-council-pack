@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Marketing"
+  short_description: "Product Marketing"
+  default_prompt: "Use Product Marketing to diagnose this marketing decision before recommending actions."

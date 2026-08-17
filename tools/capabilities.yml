@@ -1,0 +1,53 @@
+capabilities:
+  web.search:
+    purpose: Find current public market, competitor, platform, policy, pricing, benchmark, and category information.
+    access: read
+    freshness_sensitive: true
+  web.fetch:
+    purpose: Verify a specific public source and extract evidence.
+    access: read
+    freshness_sensitive: true
+  browser.inspect:
+    purpose: Inspect public or authorized websites, funnels, product pages, and competitor experiences.
+    access: read
+    freshness_sensitive: true
+  files.search:
+    purpose: Find relevant briefs, research, reports, exports, transcripts, and prior strategy in authorized files.
+    access: read
+    freshness_sensitive: false
+  files.read:
+    purpose: Read the supporting context required for a marketing decision.
+    access: read
+    freshness_sensitive: false
+  analytics.query:
+    purpose: Retrieve funnel, cohort, behavior, source, conversion, and retention evidence.
+    access: read
+    freshness_sensitive: true
+  ads.query:
+    purpose: Retrieve spend, reach, frequency, audience, placement, creative, conversion, and cost evidence.
+    access: read
+    freshness_sensitive: true
+  crm.query:
+    purpose: Retrieve pipeline, lead quality, velocity, win-loss, objections, and sales-stage evidence.
+    access: read
+    freshness_sensitive: true
+  search-console.query:
+    purpose: Retrieve search demand, query, landing-page, and organic performance evidence.
+    access: read
+    freshness_sensitive: true
+  reviews.collect:
+    purpose: Collect authorized or public customer language, complaints, praise, alternatives, and recurring themes.
+    access: read
+    freshness_sensitive: true
+  spreadsheet.calculate:
+    purpose: Analyze tabular marketing data and scenario models.
+    access: compute
+    freshness_sensitive: false
+  experiment.calculate:
+    purpose: Estimate sample requirements, summarize uplift, and enforce experiment decision rules.
+    access: compute
+    freshness_sensitive: false
+  pricing.compare:
+    purpose: Compare current prices, packages, discounts, and value metrics across alternatives.
+    access: read
+    freshness_sensitive: true

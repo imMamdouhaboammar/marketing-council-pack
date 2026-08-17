@@ -1,0 +1,7 @@
+interface:
+  display_name: "Positioning Strategy"
+  short_description: "Choose a credible market position"
+  brand_color: "#173F35"
+  default_prompt: "Build or audit the positioning for this offer using the category, alternatives, proof, and buyer context."
+policy:
+  allow_implicit_invocation: true

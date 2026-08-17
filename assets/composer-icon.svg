@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Marketing Council logo">
+  <rect width="512" height="512" rx="112" fill="#173F35"/>
+  <rect x="76" y="76" width="360" height="360" rx="84" fill="none" stroke="#F4F0E7" stroke-width="18"/>
+  <path d="M150 342V170h40l66 87 66-87h40v172h-42V237l-64 82-64-82v105z" fill="#F4F0E7"/>
+</svg>

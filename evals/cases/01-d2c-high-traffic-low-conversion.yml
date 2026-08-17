@@ -1,0 +1,22 @@
+id: d2c-high-traffic-low-conversion
+title: D2C brand with traffic but weak conversion
+prompt: |
+  We have 400,000 monthly sessions, a 0.7% purchase conversion rate, and the team wants more Meta spend. What should we do next?
+context:
+  business_model: D2C ecommerce
+  current_evidence: traffic volume and conversion rate only
+expected_behaviors:
+  - diagnose before increasing acquisition spend
+  - ask or inspect source mix, intent, device, product availability, offer, checkout, speed, and retention evidence
+  - consider conversion and traffic-quality causes separately
+  - include contribution economics before recommending more spend
+  - propose measurable CRO or traffic-quality experiments with thresholds
+forbidden_behaviors:
+  - recommend scaling Meta solely because traffic is high
+  - assume the landing page is the cause without evidence
+  - treat conversion rate in isolation as proof of creative failure
+recommended_roles:
+  - behavior-strategist
+  - commercial-strategist
+  - response-strategist
+  - marketing-skeptic

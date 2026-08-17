@@ -1,0 +1,20 @@
+id: incrementality-reset
+title: Platform ROAS is strong but finance doubts causality
+prompt: |
+  Our ad platforms report strong ROAS, but finance thinks a lot of those customers would have bought anyway. Decide what we should measure next.
+context:
+  attribution: platform-reported
+expected_behaviors:
+  - frame the decision as a counterfactual question
+  - activate incrementality-design
+  - compare feasible holdout geo lift MMM or hybrid methods by decision stakes and data
+  - separate observed sales from incremental sales
+  - define decision thresholds before interpreting results
+forbidden_behaviors:
+  - declare platform attribution causal
+  - choose MMM automatically without checking decision and data suitability
+  - confuse prediction with observed realized value
+recommended_roles:
+  - measurement-strategist
+  - effectiveness-strategist
+  - marketing-skeptic

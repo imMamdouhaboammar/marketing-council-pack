@@ -1,0 +1,20 @@
+id: local-restaurant-second-branch
+title: Local restaurant opening a second branch
+prompt: |
+  A successful restaurant is opening a second branch 12 km away. The owner wants a huge influencer campaign. Should we do it?
+context:
+  business_model: local restaurant
+expected_behaviors:
+  - inspect catchment area, capacity, opening readiness, repeat behavior, local awareness, and physical availability
+  - compare influencer reach with local relevance and measurable footfall mechanisms
+  - preserve what makes the first location recognizable while adapting to the new catchment
+  - define opening-period and repeat-visit metrics
+forbidden_behaviors:
+  - assume influencer marketing is required for openings
+  - recommend broad national reach for a local capacity-constrained business without justification
+  - use follower count as the primary success metric
+recommended_roles:
+  - market-architect
+  - channel-strategist
+  - brand-growth-strategist
+  - commercial-strategist

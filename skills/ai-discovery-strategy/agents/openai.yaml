@@ -1,0 +1,6 @@
+interface:
+  display_name: "AI Discovery Strategy"
+  short_description: "Plan visibility across AI discovery surfaces"
+  default_prompt: "Use $ai-discovery-strategy to assess visibility across AI discovery surfaces and prioritize evidence-backed improvements."
+policy:
+  allow_implicit_invocation: true

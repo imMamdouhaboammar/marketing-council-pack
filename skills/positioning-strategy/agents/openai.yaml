@@ -1,0 +1,6 @@
+interface:
+  display_name: "Positioning Strategy"
+  short_description: "Choose a credible and distinct market position"
+  default_prompt: "Use $positioning-strategy to choose a credible market position from category context, alternatives, buyer needs, and proof."
+policy:
+  allow_implicit_invocation: true

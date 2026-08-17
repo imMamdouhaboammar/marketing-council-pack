@@ -1,0 +1,6 @@
+interface:
+  display_name: "Campaign Strategy"
+  short_description: "Turn strategy into a measurable campaign"
+  default_prompt: "Use $campaign-strategy to turn one business objective into a focused campaign job, message, audience action, and measurement plan."
+policy:
+  allow_implicit_invocation: true

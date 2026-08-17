@@ -1,0 +1,189 @@
+sources:
+  kotler-mm:
+    author: Philip Kotler and Kevin Lane Keller
+    title: Marketing Management
+    type: book
+  keller-sbm:
+    author: Kevin Lane Keller
+    title: Strategic Brand Management
+    type: book
+  godin-purple-cow:
+    author: Seth Godin
+    title: Purple Cow
+    type: book
+  godin-this-is-marketing:
+    author: Seth Godin
+    title: This Is Marketing
+    type: book
+  godin-permission-marketing:
+    author: Seth Godin
+    title: Permission Marketing
+    type: book
+  jobs-launches:
+    author: Apple public product launch materials and Steve Jobs presentations
+    title: Product demonstration and launch principles
+    type: public-materials
+  ogilvy-advertising:
+    author: David Ogilvy
+    title: Ogilvy on Advertising
+    type: book
+  hopkins-scientific:
+    author: Claude C. Hopkins
+    title: Scientific Advertising
+    type: book
+  schwartz-breakthrough:
+    author: Eugene M. Schwartz
+    title: Breakthrough Advertising
+    type: book
+  ries-trout-positioning:
+    author: Al Ries and Jack Trout
+    title: Positioning
+    type: book
+  cialdini-influence:
+    author: Robert B. Cialdini
+    title: Influence
+    type: book
+  sharp-how-brands-grow:
+    author: Byron Sharp
+    title: How Brands Grow
+    type: book
+  ehrenberg-repeat-buying:
+    author: Andrew S. C. Ehrenberg
+    title: Repeat-Buying: Facts, Theory and Applications
+    type: book
+  binet-field-long-short:
+    author: Les Binet and Peter Field
+    title: The Long and the Short of It
+    type: report-book
+  christensen-jtbd:
+    author: Clayton Christensen and collaborators
+    title: Jobs to Be Done related work
+    type: research-and-books
+  levitt-marketing-myopia:
+    author: Theodore Levitt
+    title: Marketing Myopia
+    type: article
+    url: https://hbr.org/2004/07/marketing-myopia
+  reeves-reality-advertising:
+    author: Rosser Reeves
+    title: Reality in Advertising
+    type: book
+  aaker-brand-equity:
+    author: David A. Aaker
+    title: Managing Brand Equity
+    type: book
+  porter-competitive-strategy:
+    author: Michael E. Porter
+    title: Competitive Strategy and Five Forces
+    type: books-and-articles
+  bernbach-creative-legacy:
+    author: Bill Bernbach and DDB historical materials
+    title: Creative advertising principles
+    type: public-materials
+  sutherland-alchemy:
+    author: Rory Sutherland
+    title: Alchemy
+    type: book
+  dunford-obviously-awesome:
+    author: April Dunford
+    title: Obviously Awesome and public positioning materials
+    type: book-and-public-materials
+    url: https://www.aprildunford.com/post/an-introduction-to-positioning
+  fogg-behavior-model:
+    author: BJ Fogg
+    title: Fogg Behavior Model
+    type: research-and-public-materials
+    url: https://www.behaviormodel.org/home
+  thaler-sunstein-nudge:
+    author: Richard H. Thaler and Cass R. Sunstein
+    title: Nudge
+    type: book
+  drucker-practice-management:
+    author: Peter F. Drucker
+    title: The Practice of Management
+    type: book
+
+  google-search-ai-owner-controls-2026:
+    author: Google Search
+    title: New opportunities, control and insights for website owners
+    type: official-product-update
+    date: 2026-06-03
+    url: https://blog.google/products-and-platforms/products/search/new-controls-website-owners/
+  google-gml-search-ads-2026:
+    author: Google Ads
+    title: A new generation of ads for the AI era of Search
+    type: official-product-update
+    date: 2026-05-20
+    url: https://blog.google/products/ads-commerce/google-marketing-live-search-ads/
+  google-agentic-commerce-2026:
+    author: Google Ads and Commerce
+    title: New tech and tools for retailers to succeed in an agentic shopping era
+    type: official-product-update
+    date: 2026-01-11
+    url: https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/
+  google-agentic-shopping-gml-2026:
+    author: Google Shopping
+    title: How we are helping retailers thrive with Universal Commerce Protocol features and AI tools
+    type: official-product-update
+    date: 2026-05-20
+    url: https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/
+  google-ask-advisor-2026:
+    author: Google Ads
+    title: Meet Ask Advisor, your new AI-powered collaborator
+    type: official-product-update
+    date: 2026-05-20
+    url: https://blog.google/products/ads-commerce/ask-advisor/
+  google-meridian-ga360-2026:
+    author: Google Analytics
+    title: Turn data into decisions with unified measurement
+    type: official-product-update
+    date: 2026-05-20
+    url: https://blog.google/products/marketingplatform/analytics/meridian-google-analytics-360/
+  google-ai-max-shopping-2026:
+    author: Google Ads
+    title: Adapt your Shopping campaigns to modern Search with AI Max
+    type: official-product-update
+    date: 2026-04-30
+    url: https://blog.google/products/ads-commerce/ai-max-for-shopping/
+  tiktok-world-2026:
+    author: TikTok
+    title: TikTok World 26 - Turning Discovery Into Business Growth
+    type: official-product-update
+    date: 2026-05-13
+    url: https://newsroom.tiktok.com/tiktok-world-26-turning-discovery-into-business-growth-with-ai-powered-innovations-vertical-experiences-and-high-impact-brand-solutions?lang=en
+  tiktok-symphony-agent-2026:
+    author: TikTok
+    title: TikTok at Cannes Lions 2026 - Symphony Agent and creator solutions
+    type: official-product-update
+    date: 2026-06-22
+    url: https://newsroom.tiktok.com/tiktok-at-cannes-lions-2026-where-creative-solutions-creator-voices-and-culture-turn-creativity-into-business-impact?lang=en
+  meta-ai-ads-2026:
+    author: Meta
+    title: 2026 - AI Drives Performance
+    type: official-product-update
+    date: 2026-01-28
+    url: https://about.fb.com/news/2026/01/2026-ai-drives-performance/
+  iab-state-data-2026:
+    author: Interactive Advertising Bureau
+    title: State of Data 2026 - The AI-Powered Measurement Transformation
+    type: industry-report
+    date: 2026-02-02
+    url: https://www.iab.com/insights/2026-state-of-data-report/
+  iab-creator-measurement-2026:
+    author: Interactive Advertising Bureau
+    title: The As-Is Measurement Landscape in the Creator Economy
+    type: industry-guideline
+    date: 2026-01-29
+    url: https://www.iab.com/guidelines/creator-economy-as-is-measurement-landscape/
+  iab-commerce-media-2026:
+    author: Interactive Advertising Bureau
+    title: Building a More Competitive Commerce Media Ecosystem
+    type: industry-guideline
+    date: 2026-04-14
+    url: https://www.iab.com/guidelines/building-a-competitive-commerce-media-ecosystem/
+  iab-commerce-incrementality-2025:
+    author: Interactive Advertising Bureau and IAB Europe
+    title: Guidelines for Incremental Measurement in Commerce Media
+    type: industry-guideline
+    date: 2025-11-03
+    url: https://www.iab.com/guidelines/guidelines-for-incremental-measurement-in-commerce-media/

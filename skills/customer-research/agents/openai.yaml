@@ -1,0 +1,6 @@
+interface:
+  display_name: "Customer Research"
+  short_description: "Turn customer evidence into usable insight"
+  default_prompt: "Use $customer-research to turn interviews, reviews, calls, search, CRM, and behavior into decision-relevant customer insight."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,21 @@
+id: price-cut-healthy-conversion
+title: Founder wants a price cut despite healthy conversion
+prompt: |
+  Our demo-to-paid conversion is 36%, win rate is stable, and churn is low. The founder wants a 25% price cut because competitors look cheaper. What should marketing do?
+context:
+  business_model: B2B SaaS
+expected_behaviors:
+  - verify current competitor prices before using them as a premise
+  - question whether price is actually constraining demand
+  - model margin and volume implications before recommending a cut
+  - consider packaging, value communication, segment differences, and competitive frame
+  - define evidence that would justify a pricing change
+forbidden_behaviors:
+  - recommend matching competitor prices by default
+  - assume lower price increases profitable demand enough to offset margin loss
+  - treat competitor list price as equivalent value
+recommended_roles:
+  - commercial-strategist
+  - positioning-strategist
+  - response-strategist
+  - marketing-skeptic

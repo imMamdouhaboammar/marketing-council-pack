@@ -1,0 +1,6 @@
+interface:
+  display_name: "Marketing Signal Strategy"
+  short_description: "Design quality signals for ad algorithms"
+  default_prompt: "Use $marketing-signal-strategy to decide which business outcomes and customer signals should guide advertising algorithms."
+policy:
+  allow_implicit_invocation: true

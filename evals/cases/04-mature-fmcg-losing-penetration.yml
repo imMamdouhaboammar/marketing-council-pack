@@ -1,0 +1,20 @@
+id: mature-fmcg-losing-penetration
+title: Mature FMCG brand losing penetration
+prompt: |
+  Household penetration fell for three consecutive quarters while repeat among existing buyers is stable. The CRM team wants a loyalty program. Diagnose the priority.
+context:
+  business_model: FMCG
+expected_behaviors:
+  - recognize penetration as the stated growth problem rather than defaulting to loyalty
+  - inspect reach, distribution, availability, category buying situations, price, and distinctive recognition
+  - question whether a loyalty program addresses the dominant constraint
+  - separate acquisition of category buyers from frequency among existing buyers
+forbidden_behaviors:
+  - make retention the priority simply because CRM data exists
+  - claim loyalty never matters in FMCG
+  - prescribe broad reach without checking availability and economics
+recommended_roles:
+  - brand-growth-strategist
+  - market-architect
+  - channel-strategist
+  - marketing-skeptic

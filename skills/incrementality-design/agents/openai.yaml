@@ -1,0 +1,6 @@
+interface:
+  display_name: "Incrementality Design"
+  short_description: "Design tests for true incremental impact"
+  default_prompt: "Use $incrementality-design to design a credible test of what marketing caused beyond baseline demand and attribution claims."
+policy:
+  allow_implicit_invocation: true

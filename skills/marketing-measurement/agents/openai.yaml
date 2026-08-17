@@ -1,0 +1,4 @@
+interface:
+  display_name: "Marketing Measurement"
+  short_description: "Measure outcomes with causal discipline"
+  default_prompt: "Use $marketing-measurement to connect activity to business outcomes with causal discipline and explicit uncertainty."

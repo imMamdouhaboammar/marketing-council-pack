@@ -1,0 +1,6 @@
+interface:
+  display_name: "Retention Strategy"
+  short_description: "Diagnose repeat value and retention gaps"
+  default_prompt: "Use $retention-strategy to diagnose why customers fail to reach or repeat value and prioritize measurable retention interventions."
+policy:
+  allow_implicit_invocation: true

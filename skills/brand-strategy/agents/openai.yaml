@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brand Strategy"
+  short_description: "Shape brand memory, meaning, and growth"
+  default_prompt: "Use $brand-strategy to define the memory, meaning, distinctiveness, and growth choices this brand should make."

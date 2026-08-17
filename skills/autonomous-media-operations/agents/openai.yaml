@@ -1,0 +1,6 @@
+interface:
+  display_name: "Autonomous Media Operations"
+  short_description: "Govern AI-led media buying and budgets"
+  default_prompt: "Use $autonomous-media-operations to define AI media-buying authority, budget guardrails, signals, and review thresholds."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Creator Commerce"
+  short_description: "Plan creator-led discovery and commerce"
+  default_prompt: "Use $creator-commerce to decide how creators should contribute to discovery, trust, distribution, sales, and measurement."
+policy:
+  allow_implicit_invocation: true

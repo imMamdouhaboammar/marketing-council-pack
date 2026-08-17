@@ -1,0 +1,6 @@
+interface:
+  display_name: "Content Strategy"
+  short_description: "Plan content around customer decisions"
+  default_prompt: "Use $content-strategy to plan content around the customer decisions, questions, and behaviors that must change."
+policy:
+  allow_implicit_invocation: true

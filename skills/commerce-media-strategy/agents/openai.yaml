@@ -1,0 +1,6 @@
+interface:
+  display_name: "Commerce Media Strategy"
+  short_description: "Plan retail and commerce media investment"
+  default_prompt: "Use $commerce-media-strategy to choose the role, economics, incrementality, and measurement of retail or commerce media."
+policy:
+  allow_implicit_invocation: true

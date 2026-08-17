@@ -1,0 +1,6 @@
+interface:
+  display_name: "Marketing Experimentation"
+  short_description: "Turn marketing uncertainty into experiments"
+  default_prompt: "Use $marketing-experimentation to turn a marketing belief into a testable hypothesis, success rule, and decision after the result."
+policy:
+  allow_implicit_invocation: true

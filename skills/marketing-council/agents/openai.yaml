@@ -1,0 +1,6 @@
+interface:
+  display_name: "Marketing Council"
+  short_description: "Debate and decide cross-channel marketing strategy"
+  default_prompt: "Use $marketing-council to diagnose the brief, route the right specialists, preserve useful disagreement, and make one defensible marketing decision."
+policy:
+  allow_implicit_invocation: true

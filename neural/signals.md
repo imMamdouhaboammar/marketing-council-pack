@@ -1,0 +1,48 @@
+# Neural Signals
+
+Hooks emit normalized signals into the graph. Signals are observations, not conclusions. Multiple signals may coexist and should be ranked by evidential strength.
+
+- `evidence-quality-low`
+- `economics-unhealthy`
+- `category-mature`
+- `category-unclear`
+- `awareness-low`
+- `awareness-high`
+- `differentiation-weak`
+- `behavioral-friction-high`
+- `brand-memory-weak`
+- `distribution-constraint`
+- `retention-weak`
+- `short-horizon`
+- `long-horizon`
+- `competitor-pressure-high`
+- `diagnosis-missing`
+- `freshness-risk-high`
+- `generic-tactic-risk`
+- `failure-risk-high`
+- `contradiction-risk-high`
+- `customer-language-missing`
+- `theory-fit-low`
+- `school-conflict-high`
+- `causal-claim-weak`
+- `ai-discovery-dominant`
+- `conversational-intent-high`
+- `answer-surface-visibility-low`
+- `agentic-checkout-available`
+- `product-feed-poor`
+- `product-data-rich`
+- `platform-automation-high`
+- `manual-control-low`
+- `automation-boundaries-unclear`
+- `crm-signal-rich`
+- `crm-signal-poor`
+- `outcome-delay-high`
+- `attribution-fragmented`
+- `incrementality-unknown`
+- `creator-led-discovery`
+- `creator-measurement-fragmented`
+- `commerce-media-available`
+- `closed-loop-data-available`
+- `commerce-media-bias-risk`
+- `synthetic-creative-scale`
+- `provenance-sensitive`

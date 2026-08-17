@@ -1,0 +1,6 @@
+interface:
+  display_name: "Go To Market"
+  short_description: "Plan market entry, distribution, and sequence"
+  default_prompt: "Use $go-to-market to choose the audience, positioning, distribution, offer, economics, and launch sequence for market entry."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Competitive Intelligence"
+  short_description: "Research current alternatives and competitors"
+  default_prompt: "Use $competitive-intelligence to research current alternatives, separate fact from inference, and identify decision-relevant competitive evidence."
+policy:
+  allow_implicit_invocation: true

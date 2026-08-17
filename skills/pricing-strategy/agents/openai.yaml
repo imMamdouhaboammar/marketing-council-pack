@@ -1,0 +1,6 @@
+interface:
+  display_name: "Pricing Strategy"
+  short_description: "Make pricing decisions from value and economics"
+  default_prompt: "Use $pricing-strategy to make a pricing decision using customer value, competitive context, contribution economics, and testable assumptions."
+policy:
+  allow_implicit_invocation: true

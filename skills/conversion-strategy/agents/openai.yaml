@@ -1,0 +1,6 @@
+interface:
+  display_name: "Conversion Strategy"
+  short_description: "Diagnose conversion friction and experiments"
+  default_prompt: "Use $conversion-strategy to diagnose conversion friction, rank likely constraints, and define the smallest useful experiments."
+policy:
+  allow_implicit_invocation: true

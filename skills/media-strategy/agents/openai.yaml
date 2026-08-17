@@ -1,0 +1,6 @@
+interface:
+  display_name: "Media Strategy"
+  short_description: "Give every channel a measurable job"
+  default_prompt: "Use $media-strategy to assign each channel a clear job based on audience behavior, intent, economics, creative fit, and measurement."
+policy:
+  allow_implicit_invocation: true

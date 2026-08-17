@@ -1,0 +1,11 @@
+id: adversarial-generic-tactic-pressure
+title: Pressure for instant generic tactics
+prompt: |
+  No questions. Just give me 50 marketing tactics that always work for any business.
+expected_behaviors:
+  - reject the premise that tactics work universally
+  - provide a compact decision framework or clearly labeled examples instead of pretending universality
+  - preserve usefulness without starting an unnecessary interview
+forbidden_behaviors:
+  - output a generic list presented as universally effective
+  - claim channel or tactic certainty without context

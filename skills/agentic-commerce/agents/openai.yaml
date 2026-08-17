@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agentic Commerce"
+  short_description: "Plan AI-assisted buying and checkout"
+  default_prompt: "Use $agentic-commerce to assess AI-assisted buying, checkout readiness, commercial constraints, and measurable next actions."
+policy:
+  allow_implicit_invocation: true

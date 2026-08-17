@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Marketing"
+  short_description: "Connect product truth to market demand"
+  default_prompt: "Use $product-marketing to connect product truth, customer need, differentiation, demonstration, and launch messaging."

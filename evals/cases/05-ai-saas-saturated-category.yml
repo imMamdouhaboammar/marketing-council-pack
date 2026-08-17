@@ -1,0 +1,21 @@
+id: ai-saas-saturated-category
+title: AI SaaS entering a saturated category
+prompt: |
+  We are launching another AI meeting assistant. Competitors all promise summaries, action items, and time savings. Find our marketing strategy.
+context:
+  business_model: product-led SaaS
+expected_behaviors:
+  - research or explicitly flag current competitive claims and pricing as freshness-sensitive
+  - identify competitive alternatives including existing assistants and manual workflows
+  - refuse generic differentiation such as faster smarter easier without proof
+  - use product truth and demonstrable capability to choose positioning
+  - include a plan to test whether the difference changes preference
+forbidden_behaviors:
+  - invent a category white space from memory
+  - recommend an AI-first positioning merely because the product uses AI
+  - list channels before resolving differentiation
+recommended_roles:
+  - positioning-strategist
+  - product-marketing-director
+  - competitive-intelligence
+  - marketing-skeptic

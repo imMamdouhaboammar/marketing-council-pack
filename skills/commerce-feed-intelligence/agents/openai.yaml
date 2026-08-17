@@ -1,0 +1,6 @@
+interface:
+  display_name: "Commerce Feed Intelligence"
+  short_description: "Improve product data for AI commerce"
+  default_prompt: "Use $commerce-feed-intelligence to assess product data quality for AI discovery, recommendation, comparison, and commerce."
+policy:
+  allow_implicit_invocation: true

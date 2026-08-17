@@ -1,0 +1,6 @@
+interface:
+  display_name: "Conversational Advertising"
+  short_description: "Design ads for conversational interfaces"
+  default_prompt: "Use $conversational-advertising to design advertising for conversational discovery while preserving proof, relevance, and measurement."
+policy:
+  allow_implicit_invocation: true

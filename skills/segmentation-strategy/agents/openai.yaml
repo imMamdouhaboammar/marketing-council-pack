@@ -1,0 +1,4 @@
+interface:
+  display_name: "Segmentation Strategy"
+  short_description: "Build segments that change marketing decisions"
+  default_prompt: "Use $segmentation-strategy to build segments only where differences materially change targeting, messaging, channel, or economics."

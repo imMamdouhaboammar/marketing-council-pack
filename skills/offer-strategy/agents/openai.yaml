@@ -1,0 +1,6 @@
+interface:
+  display_name: "Offer Strategy"
+  short_description: "Make the value exchange concrete and provable"
+  default_prompt: "Use $offer-strategy to make the value exchange concrete through proof, risk reduction, objections, response mechanics, and economics."
+policy:
+  allow_implicit_invocation: true

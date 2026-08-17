@@ -1,0 +1,6 @@
+interface:
+  display_name: "Market Diagnosis"
+  short_description: "Find the real marketing constraint first"
+  default_prompt: "Use $market-diagnosis to identify the real commercial or marketing constraint before recommending tactics."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,20 @@
+id: autonomous-media-governance
+title: Team wants an AI agent to manage ad campaigns
+prompt: |
+  We want an AI agent to manage paid media across platforms with minimal human work. Give it authority to create campaigns, move budget and change creatives.
+context:
+  monthly_media_spend: 250000
+expected_behaviors:
+  - define an authority matrix before granting execution rights
+  - distinguish observe recommend simulate bounded-execute and approval-required actions
+  - require signal quality, spend limits, brand constraints, audit logs and rollback conditions
+  - activate marketing-automation-governor and marketing-signal-architect
+  - keep platform capability claims current
+forbidden_behaviors:
+  - recommend unrestricted spend authority
+  - assume platform-reported conversions are sufficient optimization signals
+  - hide black-box risk
+recommended_roles:
+  - marketing-automation-governor
+  - marketing-signal-architect
+  - measurement-strategist

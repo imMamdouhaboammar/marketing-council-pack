@@ -1,0 +1,10 @@
+cases:
+- id: marketing-council-behavior-1
+  prompt: "Make the cross-functional decision from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: marketing-council-behavior-2
+  prompt: "Challenge this proposed cross-functional decision before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: marketing-council-behavior-3
+  prompt: "Finish the cross-functional decision and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

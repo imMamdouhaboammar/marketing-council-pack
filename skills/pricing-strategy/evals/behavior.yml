@@ -1,0 +1,10 @@
+cases:
+- id: pricing-strategy-behavior-1
+  prompt: "Make the pricing decision from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: pricing-strategy-behavior-2
+  prompt: "Challenge this proposed pricing decision before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: pricing-strategy-behavior-3
+  prompt: "Finish the pricing decision and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

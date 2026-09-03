@@ -1,0 +1,37 @@
+cases:
+- id: marketing-council-activation-1
+  kind: positive
+  prompt: "Help me make the cross-functional decision using the evidence we have"
+  should_activate: true
+- id: marketing-council-activation-2
+  kind: positive
+  prompt: "Review our cross-functional decision and tell me what decision to make next"
+  should_activate: true
+- id: marketing-council-activation-3
+  kind: positive
+  prompt: "Build a rigorous cross-functional decision for this marketing problem"
+  should_activate: true
+- id: marketing-council-activation-4
+  kind: implicit
+  prompt: "We have conflicting signals and need a decision about cross-functional decision"
+  should_activate: true
+- id: marketing-council-activation-5
+  kind: implicit
+  prompt: "I have data but I am not sure what it means for cross-functional decision"
+  should_activate: true
+- id: marketing-council-activation-6
+  kind: implicit
+  prompt: "Challenge my assumptions before we finalize cross-functional decision"
+  should_activate: true
+- id: marketing-council-activation-7
+  kind: negative
+  prompt: "A single focused skill clearly owns the next decision"
+  should_activate: false
+- id: marketing-council-activation-8
+  kind: negative
+  prompt: "The user only wants formatting or rewriting of an already-approved strategy"
+  should_activate: false
+- id: marketing-council-activation-9
+  kind: collision
+  prompt: "One focused marketing function clearly owns the next decision and no cross-functional diagnosis is required"
+  should_activate: true

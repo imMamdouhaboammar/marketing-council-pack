@@ -1,0 +1,10 @@
+cases:
+- id: behavioral-marketing-behavior-1
+  prompt: "Make the behavioral intervention from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: behavioral-marketing-behavior-2
+  prompt: "Challenge this proposed behavioral intervention before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: behavioral-marketing-behavior-3
+  prompt: "Finish the behavioral intervention and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

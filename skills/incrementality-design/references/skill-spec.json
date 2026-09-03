@@ -1,0 +1,141 @@
+{
+  "name": "incrementality-design",
+  "purpose": "Design counterfactual measurement that estimates causal marketing lift",
+  "baseline_failures": [
+    "calling attribution causal",
+    "holdouts with contamination",
+    "post-hoc metric switching"
+  ],
+  "activation": {
+    "positive": [
+      "Help me make the incrementality design using the evidence we have",
+      "Review our incrementality design and tell me what decision to make next",
+      "Build a rigorous incrementality design for this marketing problem"
+    ],
+    "implicit": [
+      "We have conflicting signals and need a decision about incrementality design",
+      "I have data but I am not sure what it means for incrementality design",
+      "Challenge my assumptions before we finalize incrementality design"
+    ],
+    "negative": [
+      "Write polished copy only; the strategy and decision are already approved",
+      "Summarize the supplied material without making a marketing decision"
+    ],
+    "collisions": [
+      "The brief spans several marketing functions and no single function clearly owns the next decision"
+    ]
+  },
+  "outputs": [
+    "incrementality protocol",
+    "power/feasibility assumptions",
+    "decision rule"
+  ],
+  "invariants": [
+    "Do not finalize incrementality design without separating evidence from inference.",
+    "Do not invent customer, market, platform, product, policy, or performance facts.",
+    "State material uncertainty and reversal evidence instead of hiding it behind confident prose."
+  ],
+  "non_goals": [
+    "Generic brainstorming without a decision boundary",
+    "Pure copy polishing or formatting after the strategy is already approved",
+    "Cross-functional orchestration when another focused skill clearly owns the work"
+  ],
+  "workflow": [
+    {
+      "id": "frame",
+      "action": "Frame the incrementality design and the decision owner for incrementality-design.",
+      "why": "Prevents solving an adjacent problem or drifting into tactics.",
+      "freedom": "low",
+      "evidence_required": "User objective, constraints, and the decision that must change.",
+      "completion": "The incrementality design is stated as one explicit decision question."
+    },
+    {
+      "id": "evidence",
+      "action": "Collect and classify the minimum evidence needed for incrementality design: treatment feasibility, baseline outcome data, geographic/audience constraints.",
+      "why": "Separates known facts from inference and unsupported assumptions.",
+      "freedom": "medium",
+      "evidence_required": "Primary supplied evidence first; current external sources only when freshness matters.",
+      "completion": "Evidence is tagged as fact, inference, assumption, or unknown and material gaps are visible."
+    },
+    {
+      "id": "diagnose",
+      "action": "Test competing explanations for the incrementality design instead of accepting the first plausible story.",
+      "why": "Reduces confirmation bias and premature prescription.",
+      "freedom": "high",
+      "evidence_required": "At least one credible alternative explanation or counterweight.",
+      "completion": "A primary explanation is selected and at least one alternative is rejected with reasons."
+    },
+    {
+      "id": "decide",
+      "action": "Produce the incrementality design with explicit trade-offs, risks, and what would reverse it.",
+      "why": "Turns analysis into an accountable marketing decision.",
+      "freedom": "medium",
+      "evidence_required": "Decision criteria tied to the evidence ledger.",
+      "completion": "The recommended decision, rejected alternative, risks, and reversal evidence are explicit."
+    },
+    {
+      "id": "measure",
+      "action": "Define how the incrementality design will be observed, challenged, and handed off.",
+      "why": "Prevents recommendation theater and orphaned strategy.",
+      "freedom": "medium",
+      "evidence_required": "Observable outcome, leading signal, and next owner.",
+      "completion": "Measurement, confidence, next handoff, and stop/escalation condition are stated."
+    }
+  ],
+  "capabilities": {
+    "required": [
+      "reason over supplied context",
+      "read packaged references"
+    ],
+    "optional": [
+      "current web research when freshness is material",
+      "deterministic calculation or parsing when available"
+    ],
+    "not_allowed": [
+      "fabricate tool execution",
+      "fabricate evidence",
+      "perform irreversible external actions without authorization"
+    ]
+  },
+  "evidence_policy": {
+    "priority": [
+      "user-provided primary evidence",
+      "authoritative first-party sources",
+      "reputable independent evidence"
+    ],
+    "freshness": "Verify current platform, policy, pricing, market, and product claims when they materially affect the decision.",
+    "status_labels": [
+      "fact",
+      "inference",
+      "assumption",
+      "unknown"
+    ]
+  },
+  "failure_behavior": "If evidence is insufficient for a defensible incrementality design, return the missing evidence, safest provisional interpretation, and the next smallest research action instead of guessing.",
+  "completion_conditions": [
+    "The incrementality design is explicit and answers the user’s decision question.",
+    "Evidence and inference are distinguishable.",
+    "At least one credible alternative or counterweight was considered.",
+    "Outputs, measurement, confidence, and reversal evidence are present.",
+    "Any required handoff is named and bounded."
+  ],
+  "handoffs": {
+    "fallback": "marketing-council",
+    "dynamic_router": "../../scripts/dynamic_router.py",
+    "skill_router": "../../scripts/skill_router.py",
+    "neural_router": "../../scripts/neural_router.py",
+    "rule": "Use the dynamic router only when the request explicitly establishes multiple dependent decision boundaries; use Council when ownership is ambiguous."
+  },
+  "host_targets": [
+    "ChatGPT",
+    "Codex",
+    "Claude Code",
+    "generic Agent Skills hosts"
+  ],
+  "eval_files": [
+    "evals/activation.yml",
+    "evals/behavior.yml",
+    "evals/pressure.yml",
+    "evals/regression.yml"
+  ]
+}

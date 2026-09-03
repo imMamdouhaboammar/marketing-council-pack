@@ -1,0 +1,37 @@
+cases:
+- id: media-strategy-activation-1
+  kind: positive
+  prompt: "Help me make the media allocation using the evidence we have"
+  should_activate: true
+- id: media-strategy-activation-2
+  kind: positive
+  prompt: "Review our media allocation and tell me what decision to make next"
+  should_activate: true
+- id: media-strategy-activation-3
+  kind: positive
+  prompt: "Build a rigorous media allocation for this marketing problem"
+  should_activate: true
+- id: media-strategy-activation-4
+  kind: implicit
+  prompt: "We have conflicting signals and need a decision about media allocation"
+  should_activate: true
+- id: media-strategy-activation-5
+  kind: implicit
+  prompt: "I have data but I am not sure what it means for media allocation"
+  should_activate: true
+- id: media-strategy-activation-6
+  kind: implicit
+  prompt: "Challenge my assumptions before we finalize media allocation"
+  should_activate: true
+- id: media-strategy-activation-7
+  kind: negative
+  prompt: "Write polished copy only; the strategy and decision are already approved"
+  should_activate: false
+- id: media-strategy-activation-8
+  kind: negative
+  prompt: "Summarize the supplied material without making a marketing decision"
+  should_activate: false
+- id: media-strategy-activation-9
+  kind: collision
+  prompt: "The brief spans several marketing functions and no single function clearly owns the next decision"
+  should_activate: false

@@ -1,0 +1,4 @@
+cases:
+- id: product-marketing-regression-1
+  prompt: "The brief touches several functions and we cannot tell which owns the next decision"
+  expected: "Do not invent a dependency order; use the Council fallback unless one focused owner becomes clear"

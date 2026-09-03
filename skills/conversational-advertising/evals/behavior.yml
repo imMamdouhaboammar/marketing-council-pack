@@ -1,0 +1,10 @@
+cases:
+- id: conversational-advertising-behavior-1
+  prompt: "Make the conversation flow from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: conversational-advertising-behavior-2
+  prompt: "Challenge this proposed conversation flow before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: conversational-advertising-behavior-3
+  prompt: "Finish the conversation flow and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

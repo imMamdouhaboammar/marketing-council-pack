@@ -1,37 +1,37 @@
 ---
 name: segmentation-strategy
-description: Use when the user needs segmentation, target selection, ICP design, audience prioritization, or a decision about whether market differences are meaningful enough to change marketing.
+description: Use when the user needs to create commercially useful segments and targeting priorities that change decisions; route here only when this decision boundary is the clear owner.
 ---
 
 # Segmentation Strategy
 
-**Goal:** Create decision-useful segments and choose a reachable, valuable target without confusing demographics with motivation.
+## Job
 
-## Process
+Create commercially useful segments and targeting priorities that change decisions
 
-1. Name the decision and the evidence available.
-2. Activate only theories that explain the observed constraint.
-3. Compare at least one credible counterweight when the choice is strategic.
-4. Produce one primary recommendation with mechanism, trade-off, and measurement.
-5. State what evidence would reverse the recommendation.
+Own this request only when **segment choice** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/market-architect.md`
-- `../../agents/audience-strategist.md`
-- `../../agents/commercial-strategist.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
 
-## Neural connections
+## Evidence discipline
 
-- Applied theories: `stp`, `jobs-to-be-done`, `smallest-viable-audience`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Challenge with `../../hooks/theory-fit-gate.md` and `../../hooks/causal-mechanism-check.md` when theory choice or causality is load-bearing.
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
 
-## Required output
+## Routing
 
-Return the decision, supporting evidence, assumptions, selected theory or mechanism, rejected alternative, measurement, confidence, and reversal evidence.
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
-## Guardrails
+## Completion gate
 
-- Never fabricate customer insight, market facts, proof, scarcity, urgency, testimonials, or benchmarks.
-- A framework suggests a lens; it does not prove what is true in the user's market.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
+
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

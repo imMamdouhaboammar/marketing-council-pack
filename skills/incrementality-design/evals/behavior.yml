@@ -1,0 +1,10 @@
+cases:
+- id: incrementality-design-behavior-1
+  prompt: "Make the incrementality design from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: incrementality-design-behavior-2
+  prompt: "Challenge this proposed incrementality design before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: incrementality-design-behavior-3
+  prompt: "Finish the incrementality design and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

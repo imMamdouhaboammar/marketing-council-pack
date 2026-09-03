@@ -1,41 +1,37 @@
 ---
 name: conversion-strategy
-description: Use when traffic or leads exist but conversion is weak, when the user needs CRO, funnel diagnosis, landing-page strategy, checkout improvements, lead-form changes, or experiment priorities.
+description: Use when the user needs to diagnose and reduce friction across high-value conversion paths; route here only when this decision boundary is the clear owner.
 ---
 
 # Conversion Strategy
 
-**Goal:** Find and test the highest-value conversion constraint without mistaking persuasion for a fix to product or traffic quality.
+## Job
 
-## Process
+Diagnose and reduce friction across high-value conversion paths
 
-1. Define the conversion event and qualified denominator.
-2. Segment by source, device, intent, new/returning, and other meaningful behavior when data permits.
-3. Identify friction, uncertainty, mismatch, weak proof, poor offer, technical defects, or low-quality traffic.
-4. Prioritize evidence from analytics, sessions, research, and support rather than visual preference.
-5. Define one hypothesis per experiment and the expected mechanism.
-6. Set business and guardrail metrics before running the test.
+Own this request only when **conversion intervention** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/behavior-strategist.md`
-- `../../agents/response-strategist.md`
-- `../../agents/commercial-strategist.md`
-- `../../agents/marketing-skeptic.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
 
-## Neural connections
+## Evidence discipline
 
-- Principles: `friction-before-motivation`, `choice-architecture`, `proof-before-polish`
-- Applied theories: `fogg-behavior-model`, `nudge`, `influence-principles`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Use `../../hooks/theory-fit-gate.md` when more than one theory could plausibly explain the problem.
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
 
-## Required output
+## Routing
 
-Return the decision, supporting evidence, assumptions, recommendation, rejected alternative, measurement, and evidence that would reverse the recommendation.
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
-## Guardrails
+## Completion gate
 
-- Never fabricate customer insight, research, proof, scarcity, urgency, or benchmarks.
-- Research time-sensitive facts when current tools are available.
-- If the requested tactic is not supported by the diagnosis, say so and propose the better decision.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
+
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

@@ -1,38 +1,37 @@
 ---
 name: commerce-feed-intelligence
-description: Use when product feeds, merchant catalogs, structured attributes, compatibility, use cases, substitutions, inventory, price, or policy data affect discovery or shopping performance.
+description: Use when the user needs to make commerce feeds accurate, complete, semantically useful, and decision-ready; route here only when this decision boundary is the clear owner.
 ---
 
 # Commerce Feed Intelligence
 
-**Goal:** Turn the product feed into a truthful semantic decision asset for conversational and agent-mediated discovery.
+## Job
 
-## Process
+Make commerce feeds accurate, complete, semantically useful, and decision-ready
 
-1. Name the commercial decision and classify current facts as evidence, inference, assumption, or unknown.
-2. Run the relevant 2026 freshness card before relying on platform behavior.
-3. Activate only the theories that explain the observed constraint.
-4. Compare a timeless marketing counterweight when the recommendation could become platform-biased.
-5. Produce one primary decision with authority boundary, mechanism, measurement, and reversal evidence.
+Own this request only when **feed quality decision** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/agentic-commerce-strategist.md`
-- `../../agents/product-marketing-director.md`
-- `../../agents/marketing-signal-architect.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
 
-## Neural connections
+## Evidence discipline
 
-- Applied theories: `product-feed-semantic-completeness`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Hooks: `../../hooks/commerce-feed-readiness.md`, `../../hooks/evidence-gate.md`, `../../hooks/freshness-check.md`
-- Current-state evidence lives under `../../references/2026/`; verify it when platform behavior is load-bearing.
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
 
-## Required output
+## Routing
 
-Return the decision, current evidence, enduring principle, selected theory, rejected alternative, authority boundary if automation is involved, measurement, confidence, and reversal evidence.
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
-## Guardrails
+## Completion gate
 
-- Do not treat a platform recommendation, attribution report, AI-generated answer, or closed-loop sale as causal proof by itself.
-- Do not fabricate current platform availability, customer insight, product facts, performance claims, or policy requirements.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
+
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

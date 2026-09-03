@@ -1,40 +1,37 @@
 ---
 name: competitive-intelligence
-description: Use when marketing strategy depends on current competitors, category claims, prices, offers, channels, reviews, positioning, product changes, share of voice, or alternative solutions.
+description: Use when the user needs to map real competitive alternatives, substitutes, rival moves, and defensibility without collapsing into positioning or generic research; route here only when this decision boundary is the clear owner.
 ---
 
 # Competitive Intelligence
 
-**Goal:** Build a current evidence-based view of competitive alternatives without copying competitor activity.
+## Job
 
-## Process
+Map real competitive alternatives, substitutes, rival moves, and defensibility without collapsing into positioning or generic research
 
-1. Define the buyer alternatives, not only named direct competitors.
-2. Use current sources for prices, offers, product claims, availability, and channel behavior.
-3. Separate competitor facts from inferred strategy.
-4. Compare category frame, proposition, proof, price, experience, distribution, and customer complaints.
-5. Identify white space only when it matters to buyer choice and the company can credibly occupy it.
-6. Use intelligence to improve a decision, not to produce a feature matrix for its own sake.
+Own this request only when **competitive intelligence assessment** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/positioning-strategist.md`
-- `../../agents/market-architect.md`
-- `../../agents/marketing-skeptic.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
 
-## Neural connections
+## Evidence discipline
 
-- Principles: `competitive-structure`, `competitive-alternatives`, `evidence-status`
-- Applied theories: `five-forces`, `positioning-components`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Use `../../hooks/theory-fit-gate.md` when more than one theory could plausibly explain the problem.
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
 
-## Required output
+## Routing
 
-Return the decision, supporting evidence, assumptions, recommendation, rejected alternative, measurement, and evidence that would reverse the recommendation.
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
-## Guardrails
+## Completion gate
 
-- Never fabricate customer insight, research, proof, scarcity, urgency, or benchmarks.
-- Research time-sensitive facts when current tools are available.
-- If the requested tactic is not supported by the diagnosis, say so and propose the better decision.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
+
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

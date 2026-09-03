@@ -1,40 +1,37 @@
 ---
 name: positioning-strategy
-description: Use when the user needs category framing, differentiation, competitive alternatives, positioning, a value proposition, reasons to believe, or a clearer answer to why buyers should choose this offer.
+description: Use when the user needs to choose a differentiated competitive frame and reason to choose based on real alternatives; route here only when this decision boundary is the clear owner.
 ---
 
 # Positioning Strategy
 
-**Goal:** Choose a credible category frame and memorable reason to prefer the offer.
+## Job
 
-## Process
+Choose a differentiated competitive frame and reason to choose based on real alternatives
 
-1. Name the customer alternative set, including doing nothing.
-2. State the category frame that helps the buyer understand the offer.
-3. List points of parity required for credibility.
-4. Identify candidate differences that affect preference, not merely description.
-5. Attach proof or evidence to each claimed difference.
-6. Choose one positioning direction and state what it deliberately deprioritizes.
+Own this request only when **positioning choice** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/positioning-strategist.md`
-- `../../agents/product-marketing-director.md`
-- `../../agents/audience-strategist.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
 
-## Neural connections
+## Evidence discipline
 
-- Principles: `positioning-focus`, `competitive-alternatives`, `proof-before-polish`
-- Applied theories: `positioning`, `positioning-components`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Use `../../hooks/theory-fit-gate.md` when more than one theory could plausibly explain the problem.
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
 
-## Required output
+## Routing
 
-Return the decision, supporting evidence, assumptions, recommendation, rejected alternative, measurement, and evidence that would reverse the recommendation.
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
-## Guardrails
+## Completion gate
 
-- Never fabricate customer insight, research, proof, scarcity, urgency, or benchmarks.
-- Research time-sensitive facts when current tools are available.
-- If the requested tactic is not supported by the diagnosis, say so and propose the better decision.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
+
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

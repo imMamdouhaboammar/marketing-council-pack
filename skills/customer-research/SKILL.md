@@ -1,39 +1,37 @@
 ---
 name: customer-research
-description: Use when marketing decisions require real customer motivations, buying triggers, objections, language, jobs, anxieties, decision roles, or evidence from interviews, reviews, calls, CRM, search, comments, or support data.
+description: Use when the user needs to design research that reveals customer progress, switching triggers, language, and decision criteria; route here only when this decision boundary is the clear owner.
 ---
 
 # Customer Research
 
-**Goal:** Turn customer evidence into decision-ready patterns without inventing psychology.
+## Job
 
-## Process
+Design research that reveals customer progress, switching triggers, language, and decision criteria
 
-1. Define the research question before collecting quotes.
-2. Prefer behavior and buying situations over demographic stereotypes.
-3. Separate user, buyer, approver, blocker, and beneficiary where relevant.
-4. Cluster repeated triggers, desired progress, objections, alternatives, anxieties, and exact language.
-5. Mark frequency and source quality; do not treat a vivid quote as prevalence.
-6. Convert findings into implications for positioning, offer, messaging, product, or channel choice.
+Own this request only when **customer evidence** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/audience-strategist.md`
-- `../../agents/marketing-skeptic.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
 
-## Neural connections
+## Evidence discipline
 
-- Principles: `jtbd-progress`, `segmentation-decision-usefulness`, `evidence-status`
-- Applied theories: `jobs-to-be-done`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Use `../../hooks/theory-fit-gate.md` when more than one theory could plausibly explain the problem.
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
 
-## Required output
+## Routing
 
-Return the decision, supporting evidence, assumptions, recommendation, rejected alternative, measurement, and evidence that would reverse the recommendation.
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
-## Guardrails
+## Completion gate
 
-- Never fabricate customer insight, research, proof, scarcity, urgency, or benchmarks.
-- Research time-sensitive facts when current tools are available.
-- If the requested tactic is not supported by the diagnosis, say so and propose the better decision.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
+
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

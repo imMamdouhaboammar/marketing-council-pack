@@ -1,41 +1,37 @@
 ---
 name: retention-strategy
-description: Use when the user needs churn reduction, repeat purchase, lifecycle marketing, onboarding, activation, loyalty, win-back, customer communication, or a diagnosis of weak retention.
+description: Use when the user needs to diagnose churn and repeat behavior, then design lifecycle interventions; route here only when this decision boundary is the clear owner.
 ---
 
 # Retention Strategy
 
-**Goal:** Identify why customers fail to reach or repeat value and choose interventions that improve durable behavior.
+## Job
 
-## Process
+Diagnose churn and repeat behavior, then design lifecycle interventions
 
-1. Define the retained behavior and cohort window.
-2. Separate acquisition quality from onboarding, product value, service, price, habit, and competitive causes.
-3. Locate the point where expected value and experienced value diverge.
-4. Prioritize product/service fixes before messaging when the experience itself is the cause.
-5. Design lifecycle interventions around real moments and risks.
-6. Judge impact on retention, contribution, and customer experience together.
+Own this request only when **retention intervention** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/commercial-strategist.md`
-- `../../agents/audience-strategist.md`
-- `../../agents/behavior-strategist.md`
-- `../../agents/product-marketing-director.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
 
-## Neural connections
+## Evidence discipline
 
-- Principles: `jtbd-progress`, `permission-relevance`, `friction-before-motivation`
-- Applied theories: `jobs-to-be-done`, `fogg-behavior-model`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Use `../../hooks/theory-fit-gate.md` when more than one theory could plausibly explain the problem.
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
 
-## Required output
+## Routing
 
-Return the decision, supporting evidence, assumptions, recommendation, rejected alternative, measurement, and evidence that would reverse the recommendation.
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
-## Guardrails
+## Completion gate
 
-- Never fabricate customer insight, research, proof, scarcity, urgency, or benchmarks.
-- Research time-sensitive facts when current tools are available.
-- If the requested tactic is not supported by the diagnosis, say so and propose the better decision.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
+
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

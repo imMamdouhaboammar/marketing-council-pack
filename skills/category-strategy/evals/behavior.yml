@@ -1,0 +1,10 @@
+cases:
+- id: category-strategy-behavior-1
+  prompt: "Make the category frame from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: category-strategy-behavior-2
+  prompt: "Challenge this proposed category frame before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: category-strategy-behavior-3
+  prompt: "Finish the category frame and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

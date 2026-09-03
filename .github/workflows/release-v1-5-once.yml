@@ -34,6 +34,7 @@ jobs:
           old = '1.4.0'
           new = '1.5.0'
           release_date = '2026-09-04'
+          release_workflow = '.github/workflows/release-v1-5-once.yml'
 
           replace_paths = [
               'README.md',
@@ -121,7 +122,8 @@ jobs:
 
           stale = []
           for path in root.rglob('*'):
-              if not path.is_file() or '.git' in path.parts or path.name == 'CHANGELOG.md':
+              relative = str(path.relative_to(root))
+              if not path.is_file() or '.git' in path.parts or path.name == 'CHANGELOG.md' or relative == release_workflow:
                   continue
               if path.suffix.lower() not in {'.md', '.json', '.py', '.yml', '.yaml', '.toml'}:
                   continue
@@ -130,9 +132,9 @@ jobs:
               except UnicodeDecodeError:
                   continue
               if old in text:
-                  stale.append(str(path.relative_to(root)))
+                  stale.append(relative)
           if stale:
-              raise SystemExit(f'stale {old} references outside CHANGELOG.md: {stale}')
+              raise SystemExit(f'stale {old} references outside CHANGELOG.md and the one-shot release transformer: {stale}')
 
           print(json.dumps({'version': new, 'release_date': release_date, 'updated_surfaces': replace_paths}, indent=2))
           PY

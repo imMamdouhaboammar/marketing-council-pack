@@ -41,10 +41,21 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def reject_symlink(path: Path, source_root: Path) -> None:
+    if path.is_symlink():
+        try:
+            rel = path.relative_to(source_root)
+        except ValueError:
+            rel = path
+        raise ValueError(f"symlink source not allowed: {rel}")
+
+
 def copy_clean(src: Path, dst: Path) -> None:
     if not src.exists():
         return
+    reject_symlink(src, src)
     for path in sorted(src.rglob("*")):
+        reject_symlink(path, src)
         if path.is_dir():
             continue
         rel = path.relative_to(src)
@@ -87,7 +98,9 @@ def rewrite_nested_module_paths(text: str) -> str:
 def copy_focused_module(src: Path, dst: Path) -> None:
     """Copy one focused skill into the council bundle with valid nested paths."""
     dst.mkdir(parents=True, exist_ok=True)
+    reject_symlink(src, src)
     for path in sorted(src.rglob("*")):
+        reject_symlink(path, src)
         if path.is_dir():
             continue
         rel = path.relative_to(src)
@@ -108,8 +121,12 @@ def deterministic_zip(source: Path, archive: Path, prefix: str) -> Path:
     archive.parent.mkdir(parents=True, exist_ok=True)
     if archive.exists():
         archive.unlink()
+    reject_symlink(source, source)
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
-        for path in sorted(p for p in source.rglob("*") if p.is_file()):
+        for path in sorted(source.rglob("*")):
+            reject_symlink(path, source)
+            if not path.is_file():
+                continue
             rel = path.relative_to(source).as_posix()
             info = zipfile.ZipInfo(f"{prefix}/{rel}", FIXED_ZIP_TIME)
             info.compress_type = zipfile.ZIP_DEFLATED
@@ -120,18 +137,21 @@ def deterministic_zip(source: Path, archive: Path, prefix: str) -> Path:
 
 
 def build_skill_bundle(skill_dir: Path, output_dir: Path, ver: str) -> Path:
+    reject_symlink(skill_dir, skill_dir)
     slug = skill_dir.name
     with tempfile.TemporaryDirectory() as td:
         bundle = Path(td) / slug
         bundle.mkdir(parents=True)
 
         source_skill = skill_dir / "SKILL.md"
+        reject_symlink(source_skill, skill_dir)
         text = rewrite_skill_paths(source_skill.read_text(encoding="utf-8"))
         if "../../" in text:
             raise ValueError(f"unresolved external path remains in {source_skill}")
         (bundle / "SKILL.md").write_text(text, encoding="utf-8")
 
         for child in sorted(skill_dir.iterdir()):
+            reject_symlink(child, skill_dir)
             if child.name == "SKILL.md":
                 continue
             target = bundle / child.name

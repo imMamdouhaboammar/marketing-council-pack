@@ -14,5 +14,5 @@ Decision boundary: **cross-functional decision**
 4. Choose the option that best satisfies the explicit decision criteria
 5. State trade-offs, risks, confidence, and evidence that would reverse the decision
 
-## Escalate
-Escalate to Marketing Council when multiple functions remain plausible owners and the request does not establish a safe dependency order
+## Escalate or delegate
+Delegate to one focused Skill when ownership becomes clear; build a bounded dynamic DAG only when the request establishes real cross-functional dependencies

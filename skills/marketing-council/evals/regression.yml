@@ -1,4 +1,4 @@
 cases:
 - id: marketing-council-regression-1
   prompt: "The brief touches several functions and we cannot tell which owns the next decision"
-  expected: "Do not invent a dependency order; use the Council fallback unless one focused owner becomes clear"
+  expected: "Keep Council ownership while the owner is ambiguous; delegate once one focused owner becomes clear and do not invent a DAG"

@@ -8,21 +8,21 @@
   ],
   "activation": {
     "positive": [
-      "Help me make the cross-functional decision using the evidence we have",
-      "Review our cross-functional decision and tell me what decision to make next",
-      "Build a rigorous cross-functional decision for this marketing problem"
+      "Diagnose this cross-functional marketing problem before choosing which specialists should own it",
+      "Several marketing functions may be causing the result; decide what matters first and coordinate the minimum specialists",
+      "Build an integrated marketing decision where positioning, pricing, media, and retention constraints may interact"
     ],
     "implicit": [
-      "We have conflicting signals and need a decision about cross-functional decision",
-      "I have data but I am not sure what it means for cross-functional decision",
-      "Challenge my assumptions before we finalize cross-functional decision"
+      "Growth is weak and we do not know whether the issue is market, offer, pricing, media, conversion, or retention",
+      "The evidence points in different marketing directions and no single function clearly owns the next decision",
+      "Challenge the competing functional hypotheses and tell me which specialist work should happen first"
     ],
     "negative": [
       "A single focused skill clearly owns the next decision",
       "The user only wants formatting or rewriting of an already-approved strategy"
     ],
     "collisions": [
-      "One focused marketing function clearly owns the next decision and no cross-functional diagnosis is required"
+      "Several focused marketing functions are plausible owners and the brief does not establish a safe dependency order"
     ]
   },
   "outputs": [

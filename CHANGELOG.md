@@ -8,6 +8,9 @@
 - Fixed root routing metadata so `dynamic_router` points to `scripts/dynamic_router.py` instead of the single-Skill router.
 - Hardened Council standalone packaging so all 28 embedded focused modules resolve agent, hook, routing, neural, and tool dependencies through bundle-local shared resources.
 - Added renderer-drift, execution-binding, behavioral-eval, evidence-ledger, release-integrity, and standalone-package regression gates.
+- Hardened Dynamic DAG routing to preserve explicit request order, require declared handoff edges, reject unsupported parallel shapes, and fail closed instead of silently reordering, dropping, or truncating requested Skills.
+- Hardened self-contained, host, and standalone OpenAI package builders to reject symlink sources before copying or archiving them.
+- Added an evidence-bound `submission/submission-pack.json` with exactly five positive and three negative executed review cases plus a deterministic validator; the draft remains `PARTIAL_MISSING_INPUT` until required portal identity, policy/support URLs, and availability inputs are supplied.
 - Public OpenAI availability still requires a v1.5.0 submission or resubmission and fresh-chat verification after publication.
 
 ## 1.4.0 - 2026-09-03

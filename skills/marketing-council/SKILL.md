@@ -9,7 +9,7 @@ description: Use when the user needs to diagnose ambiguous or cross-functional m
 
 Diagnose ambiguous or cross-functional marketing problems and coordinate the minimum set of specialist skills
 
-Own the request when the marketing problem is ambiguous or genuinely cross-functional. If one focused Skill clearly owns the next decision, delegate to that Skill instead of retaining Council ownership. If the request explicitly establishes dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
+Own the request when the marketing problem is ambiguous or genuinely cross-functional. If a single dominant function clearly owns the next decision, delegate to that focused Skill instead of retaining Council ownership. Otherwise Council is the safe fallback. If the request explicitly establishes dependent work across functions, use the dynamic router in `../../scripts/dynamic_router.py` to build a bounded DAG.
 
 ## Operating contract
 
@@ -25,9 +25,10 @@ Classify material claims as fact, inference, assumption, or unknown. Prefer supp
 
 ## Routing
 
-- Single focused owner: delegate to the selected focused Skill.
-- Ambiguous or cross-functional ownership: Council remains the diagnostic owner.
-- Explicit dependency chain: use `../../scripts/dynamic_router.py` and keep the graph bounded to the minimum required Skills.
+- Canonical Skill Router registry: `../../routing/skill-routes.json`.
+- Single dominant function: delegate to the selected focused Skill.
+- Ambiguous or cross-functional ownership: Council remains the fallback diagnostic owner.
+- Explicit dependency chain: use the dynamic router at `../../scripts/dynamic_router.py` and keep the graph bounded to the minimum required Skills.
 - After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
 ## Completion gate

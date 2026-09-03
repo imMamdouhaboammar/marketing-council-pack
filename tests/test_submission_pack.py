@@ -75,6 +75,11 @@ class SubmissionPackTests(unittest.TestCase):
         self.assertEqual(payload["negative_cases"], 3)
         self.assertEqual(payload["pack_status"], "PARTIAL_MISSING_INPUT")
 
+    def test_plugin_ci_has_named_submission_draft_gate(self):
+        workflow = (ROOT / ".github" / "workflows" / "plugin-ci.yml").read_text(encoding="utf-8")
+        self.assertIn("Validate submission draft", workflow)
+        self.assertIn("python scripts/validate_submission_pack.py submission/submission-pack.json --json", workflow)
+
     def test_release_notes_include_late_router_and_symlink_hardening(self):
         pack = self.load()
         notes = pack["release_notes"]

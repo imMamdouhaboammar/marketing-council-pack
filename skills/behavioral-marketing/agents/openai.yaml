@@ -2,3 +2,5 @@ interface:
   display_name: "Behavioral Marketing"
   short_description: "Apply behavioral science to buyer decisions"
   default_prompt: "Use $behavioral-marketing to diagnose the buyer behavior at stake and apply only the behavioral mechanisms supported by evidence."
+policy:
+  allow_implicit_invocation: true

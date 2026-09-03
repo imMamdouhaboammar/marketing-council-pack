@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "fallback_skill": "marketing-council",
+  "contracts": {
+    "agentic-commerce": {
+      "purpose": "Prepare products, policies, offers, and authority boundaries for agent-mediated buying",
+      "decision": "agentic commerce readiness",
+      "evidence": ["machine-readable product truth", "transaction policy", "agent/merchant capability"],
+      "outputs": ["readiness assessment", "agent transaction rules", "exception and handoff plan"],
+      "baseline_failures": ["assuming agents can transact everywhere", "hiding material constraints", "giving agents undefined authority"]
+    },
+    "ai-discovery-strategy": {
+      "purpose": "Improve retrievability and truthful representation across AI answer surfaces",
+      "decision": "AI discovery intervention",
+      "evidence": ["answer-surface observations", "source/citation evidence", "content/entity truth"],
+      "outputs": ["AI discovery diagnosis", "retrievability plan", "citation/monitoring protocol"],
+      "baseline_failures": ["keyword SEO renamed as GEO", "fabricated AI visibility claims", "spammy answer-surface manipulation"]
+    },
+    "autonomous-media-operations": {
+      "purpose": "Define decision rights, guardrails, monitoring, and rollback for automated media operations",
+      "decision": "automation authority",
+      "evidence": ["automation capability", "risk limits", "performance telemetry"],
+      "outputs": ["authority matrix", "guardrail policy", "rollback/escalation plan"],
+      "baseline_failures": ["unbounded autonomous spend", "black-box optimization without signals", "no rollback path"]
+    },
+    "behavioral-marketing": {
+      "purpose": "Use behavioral evidence to reduce friction and shape ethical choice architecture",
+      "decision": "behavioral intervention",
+      "evidence": ["behavioral observation", "friction evidence", "choice context"],
+      "outputs": ["behavior diagnosis", "ethical intervention design", "measurement safeguards"],
+      "baseline_failures": ["manipulative dark patterns", "psychology labels without evidence", "motivation fixes for ability problems"]
+    },
+    "brand-strategy": {
+      "purpose": "Define durable brand associations, distinctive assets, architecture, and memory priorities",
+      "decision": "brand strategy",
+      "evidence": ["brand tracking", "category memory structures", "customer associations"],
+      "outputs": ["brand platform", "association priorities", "distinctive asset rules"],
+      "baseline_failures": ["brand as tone words", "rebranding without evidence", "short-term performance overriding memory"]
+    },
+    "campaign-strategy": {
+      "purpose": "Turn a diagnosed objective into an integrated campaign strategy with one clear job",
+      "decision": "campaign decision",
+      "evidence": ["business objective", "audience insight", "brand/product proof"],
+      "outputs": ["campaign strategy", "creative brief", "channel role requirements"],
+      "baseline_failures": ["starting from a slogan", "multiple competing campaign jobs", "inventing proof points"]
+    },
+    "category-strategy": {
+      "purpose": "Decide category frame, maturity response, entry points, and demand creation posture",
+      "decision": "category frame",
+      "evidence": ["category demand", "customer language", "competitive conventions"],
+      "outputs": ["category strategy", "entry-point map", "reframing criteria"],
+      "baseline_failures": ["inventing a category for novelty", "confusing category with tagline", "ignoring buyer language"]
+    },
+    "commerce-feed-intelligence": {
+      "purpose": "Make commerce feeds accurate, complete, semantically useful, and decision-ready",
+      "decision": "feed quality decision",
+      "evidence": ["feed fields", "merchant diagnostics", "catalog truth"],
+      "outputs": ["feed audit", "field remediation backlog", "quality monitoring"],
+      "baseline_failures": ["optimizing titles while data is false", "missing policy/availability truth", "duplicate inconsistent identifiers"]
+    },
+    "commerce-media-strategy": {
+      "purpose": "Plan retail and commerce media with shopper roles, economics, and closed-loop measurement safeguards",
+      "decision": "commerce media plan",
+      "evidence": ["retailer inventory", "shopper behavior", "margin and incrementality evidence"],
+      "outputs": ["commerce media strategy", "retailer role map", "measurement guardrails"],
+      "baseline_failures": ["accepting closed-loop ROAS as incremental", "retailer-by-retailer duplication", "ignoring margin"]
+    },
+    "content-strategy": {
+      "purpose": "Define content jobs, formats, cadence, and distribution tied to audience decisions",
+      "decision": "content portfolio",
+      "evidence": ["audience information needs", "content performance evidence", "distribution constraints"],
+      "outputs": ["content strategy", "editorial job map", "measurement and reuse rules"],
+      "baseline_failures": ["content pillars without decision jobs", "calendar-first planning", "optimizing vanity engagement"]
+    },
+    "conversational-advertising": {
+      "purpose": "Design ads that use conversation to qualify intent and progress decisions without inventing user context",
+      "decision": "conversation flow",
+      "evidence": ["conversation intent evidence", "offer truth", "handoff constraints"],
+      "outputs": ["conversation architecture", "turn-level guardrails", "measurement plan"],
+      "baseline_failures": ["pretending to know user intent", "endless chat without commercial job", "hidden persuasion"]
+    },
+    "conversion-strategy": {
+      "purpose": "Diagnose and reduce friction across high-value conversion paths",
+      "decision": "conversion intervention",
+      "evidence": ["funnel analytics", "session/user research", "form and checkout evidence"],
+      "outputs": ["friction diagnosis", "prioritized interventions", "conversion measurement plan"],
+      "baseline_failures": ["changing copy before locating friction", "dark patterns", "treating all drop-off as bad"]
+    },
+    "creator-commerce": {
+      "purpose": "Design creator roles across discovery, media, affiliate, and commerce with clear economics and measurement",
+      "decision": "creator commerce program",
+      "evidence": ["creator/audience fit", "commercial terms", "incrementality and content evidence"],
+      "outputs": ["creator role architecture", "commercial/measurement model", "selection and governance rules"],
+      "baseline_failures": ["ranking creators by followers only", "mixing paid media and affiliate credit", "unclear disclosure/usage rights"]
+    },
+    "customer-research": {
+      "purpose": "Design research that reveals customer progress, switching triggers, language, and decision criteria",
+      "decision": "customer evidence",
+      "evidence": ["interview transcripts", "behavioral/customer data", "existing research"],
+      "outputs": ["research brief", "interview guide and sample logic", "synthesized decision evidence"],
+      "baseline_failures": ["leading interview questions", "inventing customer language", "confusing stated preference with observed behavior"]
+    },
+    "go-to-market": {
+      "purpose": "Sequence market entry, audience, channels, enablement, and launch dependencies",
+      "decision": "go-to-market sequence",
+      "evidence": ["market readiness", "buyer journey evidence", "channel capability"],
+      "outputs": ["GTM sequence", "owner/dependency map", "launch gates"],
+      "baseline_failures": ["launching every channel at once", "confusing campaign with GTM", "skipping operational readiness"]
+    },
+    "incrementality-design": {
+      "purpose": "Design counterfactual measurement that estimates causal marketing lift",
+      "decision": "incrementality design",
+      "evidence": ["treatment feasibility", "baseline outcome data", "geographic/audience constraints"],
+      "outputs": ["incrementality protocol", "power/feasibility assumptions", "decision rule"],
+      "baseline_failures": ["calling attribution causal", "holdouts with contamination", "post-hoc metric switching"]
+    },
+    "market-diagnosis": {
+      "purpose": "Diagnose the commercial growth constraint before prescribing tactics",
+      "decision": "market constraint",
+      "evidence": ["market demand evidence", "category and competitor context", "commercial performance"],
+      "outputs": ["diagnosis with ranked constraints", "evidence/assumption ledger", "next diagnostic decision"],
+      "baseline_failures": ["jumping to channels before diagnosis", "treating symptoms as root causes", "claiming causality from correlation"]
+    },
+    "marketing-council": {
+      "purpose": "Diagnose ambiguous or cross-functional marketing problems and coordinate the minimum set of specialist skills",
+      "decision": "cross-functional decision",
+      "evidence": ["problem statement", "available evidence", "competing functional hypotheses"],
+      "outputs": ["Council diagnosis", "bounded specialist route/DAG", "integrated decision with dissent"],
+      "baseline_failures": ["routing everything to every skill", "inventing dependency order", "hiding unresolved disagreement"]
+    },
+    "marketing-experimentation": {
+      "purpose": "Design decision-relevant marketing experiments with falsifiable hypotheses",
+      "decision": "experiment design",
+      "evidence": ["decision hypothesis", "baseline metrics", "assignment constraints"],
+      "outputs": ["experiment protocol", "success/failure criteria", "analysis plan"],
+      "baseline_failures": ["testing without a decision", "changing multiple causal variables blindly", "stopping on noisy early wins"]
+    },
+    "marketing-measurement": {
+      "purpose": "Build a measurement architecture linking business outcomes, leading indicators, and attribution limits",
+      "decision": "measurement architecture",
+      "evidence": ["business outcomes", "data availability", "measurement biases"],
+      "outputs": ["measurement tree", "KPI definitions", "interpretation guardrails"],
+      "baseline_failures": ["dashboard as strategy", "platform attribution as truth", "optimizing proxy metrics blindly"]
+    },
+    "marketing-signal-strategy": {
+      "purpose": "Design high-quality optimization signals that reflect customer and business value",
+      "decision": "signal architecture",
+      "evidence": ["conversion events", "value outcomes", "CRM/offline data"],
+      "outputs": ["signal map", "quality rules", "activation and monitoring plan"],
+      "baseline_failures": ["maximizing event volume", "feeding low-quality proxies", "ignoring lagged value"]
+    },
+    "media-strategy": {
+      "purpose": "Assign channel jobs, reach/frequency logic, budget principles, and measurement boundaries",
+      "decision": "media allocation",
+      "evidence": ["audience/media behavior", "budget constraints", "incrementality evidence"],
+      "outputs": ["media strategy", "channel job map", "allocation and measurement rules"],
+      "baseline_failures": ["allocating by platform habit", "equating attribution with incrementality", "channels without defined jobs"]
+    },
+    "offer-strategy": {
+      "purpose": "Design an offer whose value, proof, risk, and terms fit the buying decision",
+      "decision": "offer architecture",
+      "evidence": ["customer objections", "product economics", "proof assets"],
+      "outputs": ["offer architecture", "proof and risk-reversal plan", "objection map"],
+      "baseline_failures": ["using discount as the only lever", "promising unsupported outcomes", "hiding material terms"]
+    },
+    "positioning-strategy": {
+      "purpose": "Choose a differentiated competitive frame and reason to choose based on real alternatives",
+      "decision": "positioning choice",
+      "evidence": ["competitive alternatives", "customer decision criteria", "product truth"],
+      "outputs": ["positioning statement", "competitive frame and proof", "trade-off rationale"],
+      "baseline_failures": ["positioning from internal adjectives", "ignoring alternatives", "claiming differentiation without proof"]
+    },
+    "pricing-strategy": {
+      "purpose": "Set pricing architecture, tiers, and discount guardrails from willingness to pay and economics",
+      "decision": "pricing decision",
+      "evidence": ["willingness-to-pay evidence", "unit economics", "competitive pricing context"],
+      "outputs": ["pricing architecture", "tier logic", "discount guardrails"],
+      "baseline_failures": ["copying competitor prices", "optimizing revenue without customer value", "unbounded discounting"]
+    },
+    "product-marketing": {
+      "purpose": "Translate product truth into audience-specific narrative, proof, launch messaging, and enablement",
+      "decision": "product narrative",
+      "evidence": ["product truth", "customer jobs", "sales/support evidence"],
+      "outputs": ["message architecture", "launch narrative", "proof/demo plan"],
+      "baseline_failures": ["feature dumping", "claiming benefits without proof", "one message for every audience"]
+    },
+    "retention-strategy": {
+      "purpose": "Diagnose churn and repeat behavior, then design lifecycle interventions",
+      "decision": "retention intervention",
+      "evidence": ["cohort retention", "churn reasons", "customer value/use data"],
+      "outputs": ["retention diagnosis", "lifecycle intervention plan", "cohort measurement"],
+      "baseline_failures": ["discounting every churner", "blaming messaging for product gaps", "averaging away cohort differences"]
+    },
+    "segmentation-strategy": {
+      "purpose": "Create commercially useful segments and targeting priorities that change decisions",
+      "decision": "segment choice",
+      "evidence": ["customer heterogeneity", "economics", "reachability"],
+      "outputs": ["segment model", "target priority", "segment-specific implications"],
+      "baseline_failures": ["personas without decision value", "demographic-only segments", "segments impossible to reach"]
+    }
+  }
+}

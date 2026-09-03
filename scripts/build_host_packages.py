@@ -19,14 +19,27 @@ ROOT_RUNTIME_FILES = ("manifest.json", "LICENSE", "README.md", "SECURITY.md")
 SOURCE_EXCLUDES = {".git", "dist", "__pycache__", ".pytest_cache", ".DS_Store"}
 
 
+def reject_symlink(path: Path, source_root: Path) -> None:
+    if path.is_symlink():
+        try:
+            rel = path.relative_to(source_root)
+        except ValueError:
+            rel = path
+        raise ValueError(f"symlink source not allowed: {rel}")
+
+
 def version() -> str:
-    return json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["version"]
+    path = ROOT / "manifest.json"
+    reject_symlink(path, ROOT)
+    return json.loads(path.read_text(encoding="utf-8"))["version"]
 
 
 def copy_tree_clean(src: Path, dst: Path) -> None:
     if not src.exists():
         return
+    reject_symlink(src, src)
     for path in sorted(src.rglob("*")):
+        reject_symlink(path, src)
         if path.is_dir():
             continue
         if any(part in SOURCE_EXCLUDES for part in path.parts):
@@ -42,6 +55,7 @@ def copy_tree_clean(src: Path, dst: Path) -> None:
 def copy_runtime(dst: Path, *, plugin_manifest: str) -> None:
     dst.mkdir(parents=True, exist_ok=True)
     manifest_src = ROOT / plugin_manifest
+    reject_symlink(manifest_src, ROOT)
     manifest_dst = dst / plugin_manifest
     manifest_dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(manifest_src, manifest_dst)
@@ -50,6 +64,7 @@ def copy_runtime(dst: Path, *, plugin_manifest: str) -> None:
     for name in ROOT_RUNTIME_FILES:
         src = ROOT / name
         if src.exists():
+            reject_symlink(src, ROOT)
             shutil.copy2(src, dst / name)
 
 
@@ -57,8 +72,12 @@ def deterministic_zip(source: Path, archive: Path, *, prefix: str = "") -> Path:
     archive.parent.mkdir(parents=True, exist_ok=True)
     if archive.exists():
         archive.unlink()
+    reject_symlink(source, source)
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
-        for path in sorted(p for p in source.rglob("*") if p.is_file()):
+        for path in sorted(source.rglob("*")):
+            reject_symlink(path, source)
+            if not path.is_file():
+                continue
             rel = path.relative_to(source).as_posix()
             arcname = f"{prefix.rstrip('/')}/{rel}" if prefix else rel
             info = zipfile.ZipInfo(arcname, FIXED_ZIP_TIME)
@@ -82,13 +101,19 @@ def build_claude(output_root: Path, ver: str) -> Path:
         plugin = market / "plugins" / "marketing-council"
         copy_runtime(plugin, plugin_manifest=".claude-plugin/plugin.json")
 
-        marketplace = json.loads((ROOT / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
+        marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
+        reject_symlink(marketplace_path, ROOT)
+        marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
         marketplace["plugins"][0]["source"] = "./plugins/marketing-council"
         market_meta = market / ".claude-plugin" / "marketplace.json"
         market_meta.parent.mkdir(parents=True, exist_ok=True)
         market_meta.write_text(json.dumps(marketplace, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        shutil.copy2(ROOT / "README.md", market / "README.md")
-        shutil.copy2(ROOT / "LICENSE", market / "LICENSE")
+        for source, target in (
+            (ROOT / "README.md", market / "README.md"),
+            (ROOT / "LICENSE", market / "LICENSE"),
+        ):
+            reject_symlink(source, ROOT)
+            shutil.copy2(source, target)
         return deterministic_zip(market, output_root / f"marketing-council-claude-marketplace-v{ver}.zip")
 
 
@@ -104,6 +129,7 @@ def build_source(output_root: Path, ver: str) -> Path:
         source = Path(td) / "marketing-council-pack"
         source.mkdir(parents=True)
         for path in sorted(ROOT.rglob("*")):
+            reject_symlink(path, ROOT)
             if path.is_dir():
                 continue
             rel = path.relative_to(ROOT)

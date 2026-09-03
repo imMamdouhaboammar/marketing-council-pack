@@ -36,6 +36,9 @@ Before every OpenAI plugin submission:
 8. The `marketing-council` standalone ZIP must include all 28 focused modules with bundle-local shared-resource paths.
 9. A rebuild must remove stale generated plugin and skill archives before writing the new submission pack.
 10. A public update must use a different manifest `version` from the currently published plugin version.
+11. Dynamic DAG execution must preserve explicit request order and every adjacent dependency must be backed by a declared handoff; unsupported order, parallel shape, or over-limit graphs must fail closed to `marketing-council`.
+12. Self-contained, host, and standalone Skill builders must reject symlink sources before copying or archiving them.
+13. `submission/submission-pack.json` must validate with exactly five positive and three negative evidence-bound review cases and must not claim portal submission, review, approval, or publication.
 
 ## Preflight
 
@@ -46,6 +49,7 @@ python -m unittest discover -s tests -v
 python scripts/validate_distribution.py . --json
 python scripts/build_host_packages.py --output-root dist/release
 python scripts/build_openai_submission_pack.py --output-root dist/openai-submission --json
+python scripts/validate_submission_pack.py submission/submission-pack.json --json
 ```
 
 Validate the exact OpenAI plugin archive for the version declared in `.codex-plugin/plugin.json`, using a fresh extraction directory on every run:
@@ -91,8 +95,10 @@ Do not submit when any command fails.
 5. Upload the fresh plugin package and the corresponding standalone skill bundles required by the submission flow.
 6. Confirm the submission preview lists all 29 skills with the expected display names and descriptions. A partial preview is a release blocker.
 7. Confirm starter prompts and listing metadata match `submission/listing.json`.
-8. Submit the new plugin version for review/publication.
-9. After publication, install or refresh the plugin in a new ChatGPT conversation and test explicit plus implicit invocation.
+8. Resolve every item in `submission/submission-pack.json -> missing_required_inputs`; the repository draft is intentionally `PARTIAL_MISSING_INPUT` until those external portal inputs are supplied.
+9. Submit the new plugin version for review. Do not mark the repository draft as submitted, approved, or published merely because the local package validates.
+10. After approval, publish the version explicitly.
+11. After publication, install or refresh the plugin in a new ChatGPT conversation and test explicit plus implicit invocation.
 
 ## Post-publication smoke tests
 
@@ -175,4 +181,4 @@ Use these release states precisely:
 
 `source-valid`, `package-valid`, `submission-ready`, `submitted`, `approved`, `published`
 
-A green repository CI run can establish the first two and support `submission-ready`. It does not prove that the public ChatGPT directory has been updated.
+A green repository CI run can establish `source-valid` and `package-valid`. It supports `submission-ready` only after the evidence-bound submission draft has no unresolved required portal inputs. It does not prove submission, approval, publication, or that the public ChatGPT directory has been updated.

@@ -85,6 +85,38 @@ class OpenAISubmissionPackTests(unittest.TestCase):
             self.assertEqual(len(list((output / "skills").glob("*.zip"))), 29)
 
 
+    def test_standalone_skill_specs_resolve_bundle_local_execution_paths(self):
+        with tempfile.TemporaryDirectory() as td:
+            output = Path(td) / "submission"
+            self.run_builder(output)
+
+            pricing_archive = output / "skills" / "pricing-strategy-v1.5.0.zip"
+            with zipfile.ZipFile(pricing_archive) as zf:
+                spec = json.loads(zf.read("pricing-strategy/references/skill-spec.json"))
+            self.assertEqual(
+                spec["execution"]["binding_source"],
+                "../shared/routing/skill-execution-bindings.json",
+            )
+            self.assertEqual(spec["handoffs"]["dynamic_router"], "../shared/scripts/dynamic_router.py")
+            self.assertEqual(spec["handoffs"]["skill_router"], "../shared/scripts/skill_router.py")
+            self.assertEqual(spec["handoffs"]["neural_router"], "../shared/scripts/neural_router.py")
+
+            council_archive = output / "skills" / "marketing-council-v1.5.0.zip"
+            with zipfile.ZipFile(council_archive) as zf:
+                nested = json.loads(
+                    zf.read("marketing-council/skills/pricing-strategy/references/skill-spec.json")
+                )
+            self.assertEqual(
+                nested["execution"]["binding_source"],
+                "../../../shared/routing/skill-execution-bindings.json",
+            )
+            self.assertEqual(
+                nested["handoffs"]["dynamic_router"],
+                "../../../shared/scripts/dynamic_router.py",
+            )
+            self.assertEqual(nested["handoffs"]["skill_router"], "../../../shared/scripts/skill_router.py")
+            self.assertEqual(nested["handoffs"]["neural_router"], "../../../shared/scripts/neural_router.py")
+
     def test_builder_rejects_root_level_symlink_source(self):
         module = self.module()
         with tempfile.TemporaryDirectory() as td:

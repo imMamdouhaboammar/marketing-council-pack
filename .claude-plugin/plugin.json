@@ -1,8 +1,8 @@
 {
   "name": "marketing-council",
   "displayName": "Marketing Council",
-  "version": "1.3.0",
-  "description": "Marketing strategy council with 29 focused skills, 24 specialist subagents, and a neural graph that connects timeless marketing schools with dated 2026 AI-mediated discovery, agentic commerce, automation, creator, commerce-media, and causal-measurement evidence.",
+  "version": "1.4.0",
+  "description": "Marketing strategy council with 29 focused skills, deterministic skill routing, 24 specialist subagents, and a connected marketing evidence graph.",
   "author": {
     "name": "Mamdouh Aboammar",
     "url": "https://github.com/imMamdouhaboammar"

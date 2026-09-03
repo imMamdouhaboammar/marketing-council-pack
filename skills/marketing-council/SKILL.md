@@ -1,45 +1,115 @@
 ---
 name: marketing-council
-description: Use when a marketing request spans multiple functions, has unclear diagnosis, involves strategic trade-offs, asks for a complete marketing strategy or campaign direction, or needs competing marketing perspectives reconciled into one evidence-backed commercial decision.
+description: Use when a marketing request is cross-functional, strategically ambiguous, has competing plausible diagnoses, needs multiple marketing disciplines reconciled, or requires the plugin to route the brief to the right focused Marketing Council skill before deciding what to do.
 ---
 
 # Marketing Council
 
+Marketing Council is both the cross-functional strategy council and the canonical fallback router for this plugin.
+
 ## Core principle
 
-Do not imitate famous marketers. Apply useful decision principles associated with established marketing schools, only when the evidence and market conditions justify them.
+Diagnose before prescribing. Do not imitate famous marketers and do not choose a framework because its vocabulary matches the prompt. Apply decision principles only when evidence, economics, customer behavior, constraints, and time horizon justify them.
 
-A good answer is not the one that sounds most strategic. It is the one that makes the right commercial choice, exposes uncertainty, defines trade-offs, and can be tested.
+A useful answer makes a defensible commercial choice, exposes uncertainty, defines trade-offs, and says what evidence would change the decision.
 
 ## Use this skill when
 
-- the user asks for marketing strategy, GTM, launch, campaign, growth, brand, positioning, offer, pricing, media, CRO, or retention work that crosses functions
-- the user jumps directly to a tactic before the problem is understood
-- different marketing schools could reasonably recommend different actions
-- the decision depends on current market, competitor, platform, policy, pricing, or benchmark information
-- economics or measurement could invalidate an otherwise attractive idea
+- the request spans multiple marketing functions such as positioning, pricing, campaign, media, retention, and measurement
+- the user asks for a complete marketing strategy, launch, GTM, campaign direction, growth plan, or audit where one function cannot safely own the answer
+- the diagnosis is unclear or the requested tactic may be masking a different constraint
+- different marketing schools or specialists could reasonably recommend different actions
+- the plugin must decide which focused skill should own the next decision
+- current market, competitor, platform, policy, pricing, or benchmark evidence could materially change the recommendation
 
-For narrow tasks, load the matching focused skill under `../` instead of running the full council.
+## Do not use this skill when
+
+A single dominant function clearly owns the next decision and the matching focused skill can complete the work without cross-functional arbitration. In that case, route directly to that focused skill.
+
+Do not keep Marketing Council active merely because the task is important. Importance is not the same as cross-functional complexity.
+
+## Dynamic router
+
+The plugin has two routing layers and they must not be conflated:
+
+1. **Skill router**: choose the focused capability that owns the user request using `../../routing/skill-routes.json` and, when executable scripts are available, `../../scripts/skill_router.py`.
+2. **Neural router**: after the owning skill is known, select relevant schools, theories, principles, and specialist agents using `../../neural/graph.json` and `../../scripts/neural_router.py`.
+
+### Skill-routing protocol
+
+1. Read the request as a decision to be made, not as a bag of keywords.
+2. If the user explicitly invokes a focused skill and the scope fits it, honor that route.
+3. When scripts are available, run:
+
+   `python ../../scripts/skill_router.py --text "<user request>" --json`
+
+4. When scripts are unavailable, inspect `../../routing/skill-routes.json` and compare the request against route intents, examples, and negative examples.
+5. If there is one **single dominant function**, load that focused sibling skill and let it own the task.
+6. If the request is **cross-functional**, ambiguous, or several routes remain similarly plausible, use the `marketing-council` fallback and dispatch only the focused skills that can materially change the decision.
+7. Treat router output as a routing proposal, not evidence that a diagnosis is true. Evidence can override the initial route.
+8. Re-route if research, files, economics, or user constraints disprove the initial diagnosis.
+
+### Routing invariants
+
+- Every focused skill in `skills/` must have exactly one canonical route in `../../routing/skill-routes.json`.
+- Unknown marketing requests fall back to `marketing-council`; they never silently route to the most generic popular skill.
+- Narrow requests should not pay the token and reasoning cost of the full council.
+- Cross-functional requests should not be forced into one narrow skill for convenience.
+- A route is not complete until the selected skill's own activation and guardrails fit the request.
+
+## Focused skill catalog
+
+The canonical route registry contains all focused skills. Common ownership boundaries are:
+
+- diagnosis and market structure: `market-diagnosis`
+- customer evidence and buying language: `customer-research`
+- segmentation and targeting: `segmentation-strategy`
+- positioning and competitive frame: `positioning-strategy`
+- category definition and maturity: `category-strategy`
+- brand memory, associations, and architecture: `brand-strategy`
+- product story, demonstration, and launch message: `product-marketing`
+- proposition, proof, and offer architecture: `offer-strategy`
+- price architecture and willingness to pay: `pricing-strategy`
+- launch sequence and route to market: `go-to-market`
+- campaign job, proposition, and creative direction: `campaign-strategy`
+- channel roles, reach, and paid distribution: `media-strategy`
+- editorial and content decisions: `content-strategy`
+- behavioral friction and choice design: `behavioral-marketing`
+- funnel and conversion friction: `conversion-strategy`
+- lifecycle, churn, repeat purchase, and reactivation: `retention-strategy`
+- competitor and substitute analysis: `competitive-intelligence`
+- KPI and measurement architecture: `marketing-measurement`
+- test design and learning plans: `marketing-experimentation`
+- AI search and answer-surface discovery: `ai-discovery-strategy`
+- conversational ad experiences: `conversational-advertising`
+- agent-mediated shopping: `agentic-commerce`
+- product and merchant feed truth: `commerce-feed-intelligence`
+- autonomous media authority and operations: `autonomous-media-operations`
+- CRM, value, offline, and optimization signals: `marketing-signal-strategy`
+- counterfactual and incremental lift design: `incrementality-design`
+- creator discovery, media, affiliate, and commerce: `creator-commerce`
+- retail, marketplace, and closed-loop media: `commerce-media-strategy`
 
 ## Operating sequence
 
 1. **UNDERSTAND**: identify business model, offer, market, objective, time horizon, constraints, available evidence, and requested decision.
-2. **DIAGNOSE**: state the commercial or behavioral problem before choosing tactics.
-3. **RESEARCH**: when claims may have changed, use current sources or connected data. Never silently treat memory as current evidence.
-4. **SIGNAL**: run relevant hooks and convert observations into normalized signals from `../../neural/signals.md`.
-5. **ROUTE**: when the task spans multiple plausible schools, use `../../scripts/neural_router.py` with the supported signals and inspect `../../neural/graph.json`.
-6. **DISPATCH**: select only the council roles and focused skills that can materially change the decision.
-7. **DEBATE**: preserve meaningful disagreements and explicit `counterbalances` connections instead of forcing consensus.
-8. **CHALLENGE**: run the marketing skeptic, evidence gate, economics check, and pre-mortem.
-9. **DECIDE**: choose one primary strategic direction and explain the deciding factors.
-10. **PLAN**: convert the direction into prioritized tactics with owners, thresholds, dependencies, and sequencing where relevant.
-11. **EXECUTE**: if the host can act, use only tools the user has authorized and respect confirmation requirements.
-12. **MEASURE**: define leading indicators, business outcomes, success thresholds, failure thresholds, and decision dates.
-13. **LEARN**: record what changed the decision and what new evidence would reverse it.
+2. **ROUTE**: choose one focused skill when ownership is clear; otherwise keep the council as fallback.
+3. **DIAGNOSE**: state the commercial or behavioral problem before choosing tactics.
+4. **RESEARCH**: verify claims that may have changed. Never silently treat memory as current evidence.
+5. **SIGNAL**: convert evidence-supported observations into normalized signals from `../../neural/signals.md` when the graph is useful.
+6. **NEURAL ROUTE**: rank relevant schools, theories, agents, and counterweights using the neural router when multiple explanations are credible.
+7. **DISPATCH**: select only roles and focused skills that can materially change the decision.
+8. **DEBATE**: preserve meaningful disagreement instead of forcing consensus.
+9. **CHALLENGE**: run evidence, commercial reality, causal mechanism, freshness, and pre-mortem gates as relevant.
+10. **DECIDE**: choose one primary strategic direction and state the deciding factors.
+11. **PLAN**: convert the direction into prioritized actions with owners, dependencies, and thresholds where relevant.
+12. **EXECUTE**: use host tools only when authorized and available.
+13. **MEASURE**: define leading indicators, business outcomes, success thresholds, failure thresholds, and decision dates.
+14. **LEARN**: record what changed the decision and what new evidence would reverse it.
 
 ## Claim labels
 
-Tag load-bearing statements with one of these statuses when uncertainty matters:
+Use these labels when uncertainty is load-bearing:
 
 - `FACT`: directly observed or reliably established
 - `EVIDENCE`: data or source supporting a claim
@@ -50,9 +120,9 @@ Tag load-bearing statements with one of these statuses when uncertainty matters:
 
 Never present an assumption as customer insight.
 
-## Council routing
+## Council role routing
 
-Read the relevant role files in `../../agents/`.
+Read only relevant role files under `../../agents/`.
 
 - market/category/segmentation/demand -> `../../agents/market-architect.md`
 - positioning/category frame/memory -> `../../agents/positioning-strategist.md`
@@ -79,17 +149,31 @@ Read the relevant role files in `../../agents/`.
 - retail media/marketplaces/closed-loop commerce media -> `../../agents/commerce-media-strategist.md`
 - synthesis/conflict resolution -> `../../agents/council-director.md`
 
-Run 2 to 5 roles for most strategic tasks. Use more only when the decision truly spans more functions.
+Run 2 to 5 roles for most cross-functional tasks. Use more only when additional roles can change the decision.
 
 ## Execution mode
 
-If the host supports subagents, dispatch selected roles independently from the same evidence brief, then compare their recommendations during debate. Do not let one role's conclusion become another role's premise before independent analysis.
+If the host supports subagents, dispatch selected roles independently from the same evidence brief, then compare recommendations during debate. Do not let one role's conclusion become another role's premise before independent analysis.
 
-If subagents are unavailable, run the selected role passes serially while keeping each role's diagnosis, assumptions, and recommendation separate until synthesis.
+If subagents are unavailable, run selected role passes serially while keeping each role's diagnosis, assumptions, and recommendation separate until synthesis.
+
+## Neural routing protocol
+
+Use the graph only after skill ownership is established or when the diagnosis activates competing credible schools.
+
+1. Collect only evidence-supported signals from `../../neural/signals.md`.
+2. Run `python ../../scripts/neural_router.py --signals <comma-separated-signals> --json` when scripts are available; otherwise inspect `../../neural/graph.json`.
+3. Load only the highest-relevance agent, skill, theory, and principle nodes.
+4. Read figure cards under `../../references/figures/` only for source context and boundaries.
+5. Preserve active `counterbalances` edges in the debate.
+6. Run `../../hooks/theory-fit-gate.md` before making a framework load-bearing.
+7. Run `../../hooks/causal-mechanism-check.md` before treating a tactic as likely to cause a business outcome.
+
+The neural router ranks lenses. It does not decide which lens is true.
 
 ## Principle library
 
-Read only the principle cards relevant to the current decision. The cards are decision aids, not authorities. Always read each card's counterweight before turning a principle into a recommendation.
+Read only the cards relevant to the current decision and always consider their counterweights:
 
 - market structure, segmentation, targeting -> `../../references/canon/kotler.md`
 - initial audience, relevance, remarkability -> `../../references/canon/godin.md`
@@ -103,23 +187,9 @@ Read only the principle cards relevant to the current decision. The cards are de
 - short and longer marketing horizons -> `../../references/canon/binet-field.md`
 - buying situations, progress, anxieties, alternatives -> `../../references/canon/jtbd.md`
 
-## Neural routing protocol
-
-Use the graph when the diagnosis activates more than one credible school or when the current tactic request may be masking a different constraint.
-
-1. Collect only evidence-supported signals from `../../neural/signals.md`.
-2. Run `python ../../scripts/neural_router.py --signals <comma-separated-signals> --json` when scripts are available; otherwise inspect `../../neural/graph.json`.
-3. Load the top relevant agent, skill, theory, and principle nodes.
-4. Read figure cards under `../../references/figures/` only for source context and boundaries.
-5. Preserve active `counterbalances` edges in the debate.
-6. Run `../../hooks/theory-fit-gate.md` before making a framework load-bearing.
-7. Run `../../hooks/causal-mechanism-check.md` before treating a tactic as likely to cause the business outcome.
-
-The router ranks lenses. It does not decide which lens is true. Evidence and commercial constraints still decide.
-
 ## 2026 current-evidence layer
 
-When the decision depends on AI-mediated discovery, agentic commerce, autonomous media, creator commerce, commerce media, or current measurement capabilities, load the matching dated card under `../../references/2026/` before making the platform behavior load-bearing.
+When the decision depends on AI-mediated discovery, agentic commerce, autonomous media, creator commerce, commerce media, or current measurement capabilities, load the matching dated card under `../../references/2026/` and verify current availability before making platform behavior load-bearing.
 
 - AI search and answer surfaces -> `../../references/2026/ai-mediated-discovery-2026.md`
 - agent-mediated shopping and checkout -> `../../references/2026/agentic-commerce-2026.md`
@@ -128,31 +198,19 @@ When the decision depends on AI-mediated discovery, agentic commerce, autonomous
 - creator discovery, media, and commerce -> `../../references/2026/creator-commerce-2026.md`
 - retailer, marketplace, and closed-loop media -> `../../references/2026/commerce-media-2026.md`
 
-Dated evidence is not a timeless marketing law. Re-check availability, eligibility, reporting, policy, and platform behavior before operational recommendations.
+Dated evidence is not a timeless marketing law.
 
 ## Tool capability contracts
 
-Read `../../tools/capabilities.yml` when binding the skill to host tools. Use host tools by capability, not by hard-coded product name:
-
-- `web.search` or equivalent: current market, competitor, platform, policy, pricing, and benchmark research
-- `web.fetch` / browser: source verification and competitor inspection
-- `files.search` / `files.read`: briefs, research, prior strategy, CRM exports, reports
-- `analytics.query`: behavioral and funnel evidence
-- `ads.query`: spend, reach, conversion, audience, creative, placement evidence
-- `crm.query`: pipeline, lead quality, sales velocity, loss reasons
-- `search-console.query`: search demand and query performance
-- `spreadsheet.calculate`: tabular analysis
-- deterministic scripts in `../../scripts/`: arithmetic, ranking, linting, validation
-
-If a capability is unavailable, say what evidence is missing and proceed with clearly labeled assumptions only when useful.
+Read `../../tools/capabilities.yml` when binding the skill to host tools. Bind by capability rather than product name. If a capability is unavailable, state what evidence is missing and proceed with clearly labeled assumptions only when useful.
 
 ## Freshness rule
 
-Treat current market size, competitor behavior, platform features, ad policies, media costs, prices, regulations, availability, trends, benchmarks, and office-holder/company-role facts as potentially stale. Research them before making them load-bearing.
+Treat current market size, competitor behavior, platform features, ad policies, media costs, prices, regulations, availability, trends, benchmarks, and company-role facts as potentially stale. Research them before making them load-bearing.
 
 ## Conflict resolution
 
-When council roles disagree, write:
+When roles disagree, record:
 
 - issue
 - position A and rationale
@@ -162,11 +220,11 @@ When council roles disagree, write:
 - confidence from 0 to 1
 - evidence that would reverse the decision
 
-Resolve conflicts with evidence, economics, reachability, product truth, customer behavior, constraints, and time horizon. Do not resolve by seniority or name recognition.
+Resolve conflicts with evidence, economics, reachability, product truth, customer behavior, constraints, and time horizon. Never resolve by seniority or name recognition.
 
 ## Strategy contract
 
-For a full strategy, produce only sections that add decision value:
+For a full strategy, include only sections that add decision value:
 
 1. Situation
 2. Decision to make
@@ -189,48 +247,13 @@ Strategy requires exclusion. If there is no meaningful "what we will not do," re
 
 ## Tactic contract
 
-Every recommended tactic must define:
-
-- objective
-- audience
-- insight or evidence
-- mechanism
-- message
-- channel
-- desired customer action
-- expected effect
-- cost/effort estimate or unknown
-- primary risk
-- measurement
-- success threshold
-- failure threshold
-- next action if successful
-- next action if unsuccessful
+Every recommended tactic must define objective, audience, evidence, mechanism, message, channel, desired action, expected effect, effort or unknown, primary risk, measurement, success threshold, failure threshold, and the next action for either result.
 
 Reject tactics that cannot explain their mechanism or measurement.
 
 ## Mandatory challenge gates
 
-Before finalizing a significant strategy, apply:
-
-- `../../hooks/strategy-before-tactics.md`
-- `../../hooks/evidence-gate.md`
-- `../../hooks/freshness-check.md`
-- `../../hooks/commercial-reality-check.md`
-- `../../hooks/anti-generic-marketing.md`
-- `../../hooks/pre-mortem.md`
-- `../../hooks/post-strategy-red-team.md`
-
-Apply these conditionally when their signals are active:
-
-- AI-mediated discovery -> `../../hooks/ai-surface-check.md`
-- agentic shopping -> `../../hooks/agentic-commerce-readiness.md` and `../../hooks/commerce-feed-readiness.md`
-- autonomous execution -> `../../hooks/automation-authority-check.md` and `../../hooks/automation-black-box-check.md`
-- weak optimization signals -> `../../hooks/marketing-signal-quality.md`
-- causal spend decisions -> `../../hooks/incrementality-required.md`
-- synthetic or creator-derived assets -> `../../hooks/creative-provenance-check.md`
-- creator programs -> `../../hooks/creator-measurement-check.md`
-- closed-loop commerce media -> `../../hooks/closed-loop-bias-check.md`
+Before finalizing a significant strategy, apply the relevant gates under `../../hooks/`, including strategy-before-tactics, evidence, freshness, commercial reality, anti-generic marketing, pre-mortem, and post-strategy red-team. Apply specialized gates for AI surfaces, agentic commerce, autonomous execution, signal quality, incrementality, creator programs, creative provenance, and closed-loop commerce media only when their signals are active.
 
 ## Quality failures
 
@@ -239,18 +262,14 @@ Stop and revise if the answer:
 - could be sent unchanged to five unrelated businesses
 - recommends a channel because it is popular rather than suitable
 - uses demographics as a substitute for buying behavior
-- treats reach, engagement, or traffic as business outcomes without a causal link
+- treats reach, engagement, traffic, or attributed sales as business outcomes without a causal link
 - invents customer psychology or market facts
 - ignores margin, capacity, retention, or payback when they matter
 - produces a long tactic list without a primary strategic choice
 - hides uncertainty
 - fabricates proof, urgency, scarcity, testimonials, benchmarks, or research
 
-## Focused skills
-
-Load a focused sibling skill when the task centers on one function:
-
-`market-diagnosis`, `customer-research`, `segmentation-strategy`, `positioning-strategy`, `category-strategy`, `brand-strategy`, `product-marketing`, `offer-strategy`, `pricing-strategy`, `go-to-market`, `campaign-strategy`, `media-strategy`, `content-strategy`, `behavioral-marketing`, `conversion-strategy`, `retention-strategy`, `competitive-intelligence`, `marketing-measurement`, `marketing-experimentation`, `ai-discovery-strategy`, `conversational-advertising`, `agentic-commerce`, `commerce-feed-intelligence`, `autonomous-media-operations`, `marketing-signal-strategy`, `incrementality-design`, `creator-commerce`, and `commerce-media-strategy`.
+## Workflows
 
 Use `../../workflows/full-strategy.md` for an end-to-end engagement and `../../workflows/council-debate.md` when conflicting recommendations are central.
 
@@ -258,5 +277,5 @@ Use `../../workflows/full-strategy.md` for an end-to-end engagement and `../../w
 
 - Principles: `counterweight-required`, `evidence-status`, `commercial-reality`
 - Applied theories: `marketing-management`, `marketing-effectiveness`, `behavioral-science`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Use `../../hooks/theory-fit-gate.md` when more than one theory could plausibly explain the problem.
+- Skill router: `../../routing/skill-routes.json` and `../../scripts/skill_router.py`
+- Neural router: `../../neural/graph.json` and `../../scripts/neural_router.py`

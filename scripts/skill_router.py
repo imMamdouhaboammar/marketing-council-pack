@@ -67,6 +67,30 @@ def explicit_domain_markers(text: str) -> list[str]:
     )
 
 
+def council_result(fallback: str, secondaries: list[str], confidence: float, reason: str) -> dict:
+    return {
+        "mode": "council",
+        "primary_skill": fallback,
+        "selected_skill": fallback,
+        "fallback": True,
+        "secondary_skills": secondaries,
+        "confidence": round(confidence, 3),
+        "reason": reason,
+    }
+
+
+def focused_result(skill: str, secondaries: list[str], confidence: float) -> dict:
+    return {
+        "mode": "focused",
+        "primary_skill": skill,
+        "selected_skill": skill,
+        "fallback": False,
+        "secondary_skills": secondaries,
+        "confidence": round(confidence, 3),
+        "reason": "One focused skill clearly owns the next marketing decision.",
+    }
+
+
 def route(text: str) -> dict:
     registry = load_registry()
     normalized = normalize(text)
@@ -86,13 +110,12 @@ def route(text: str) -> dict:
     domain_markers = explicit_domain_markers(normalized)
 
     if not scored:
-        return {
-            "mode": "council",
-            "primary_skill": fallback,
-            "secondary_skills": [],
-            "confidence": 0.0,
-            "reason": "No focused route had enough explicit evidence.",
-        }
+        return council_result(
+            fallback,
+            [],
+            0.0,
+            "No focused route had enough explicit evidence.",
+        )
 
     strong = [item for item in scored if item["score"] >= 8]
     top = scored[0]
@@ -107,23 +130,20 @@ def route(text: str) -> dict:
 
     if not focused:
         confidence = min(0.79, top["score"] / max(1, top["score"] + sum(i["score"] for i in scored[1:3])))
-        return {
-            "mode": "council",
-            "primary_skill": fallback,
-            "secondary_skills": secondaries,
-            "confidence": round(confidence, 3),
-            "reason": "Multiple plausible functions are active or no route clearly dominates.",
-        }
+        return council_result(
+            fallback,
+            secondaries,
+            confidence,
+            "Multiple plausible functions are active or no route clearly dominates.",
+        )
 
     denominator = top["score"] + (second["score"] if second else 0)
     confidence = top["score"] / denominator if denominator else 1.0
-    return {
-        "mode": "focused",
-        "primary_skill": top["skill"],
-        "secondary_skills": [item["skill"] for item in scored[1:3] if item["score"] >= 4],
-        "confidence": round(confidence, 3),
-        "reason": "One focused skill clearly owns the next marketing decision.",
-    }
+    return focused_result(
+        top["skill"],
+        [item["skill"] for item in scored[1:3] if item["score"] >= 4],
+        confidence,
+    )
 
 
 def main() -> None:

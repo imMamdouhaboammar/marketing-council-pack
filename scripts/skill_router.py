@@ -15,6 +15,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "routing" / "skill-routes.json"
+CROSS_FUNCTIONAL_MARKERS = {
+    "positioning",
+    "pricing",
+    "campaign",
+    "media",
+    "retention",
+    "measurement",
+    "brand",
+    "content",
+    "conversion",
+    "segmentation",
+    "category",
+    "offer",
+}
 
 
 def normalize(value: str) -> str:
@@ -45,6 +59,14 @@ def load_registry() -> dict:
     return json.loads(REGISTRY.read_text(encoding="utf-8"))
 
 
+def explicit_domain_markers(text: str) -> list[str]:
+    return sorted(
+        marker
+        for marker in CROSS_FUNCTIONAL_MARKERS
+        if re.search(rf"\b{re.escape(marker)}\b", text)
+    )
+
+
 def route(text: str) -> dict:
     registry = load_registry()
     normalized = normalize(text)
@@ -61,6 +83,7 @@ def route(text: str) -> dict:
 
     scored.sort(key=lambda item: (item["score"], item["priority"], item["skill"]), reverse=True)
     fallback = registry["fallback_skill"]
+    domain_markers = explicit_domain_markers(normalized)
 
     if not scored:
         return {
@@ -75,7 +98,7 @@ def route(text: str) -> dict:
     top = scored[0]
     second = scored[1] if len(scored) > 1 else None
 
-    cross_functional = len(strong) >= 3
+    cross_functional = len(strong) >= 3 or len(domain_markers) >= 3
     ambiguous = bool(second and second["score"] >= 8 and top["score"] - second["score"] <= 3)
     focused = top["score"] >= 8 and not cross_functional and not ambiguous
 

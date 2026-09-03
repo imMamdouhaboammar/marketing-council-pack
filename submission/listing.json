@@ -1,7 +1,7 @@
 {
   "name": "Marketing Council",
   "subtitle": "Marketing strategy council",
-  "description": "Route the brief to the right marketing skill before choosing tactics. Marketing Council packages 29 focused skills with cross-functional fallback, specialist agents, evidence gates, commercial checks, and measurable decision workflows.",
+  "description": "Route the brief before choosing tactics. Marketing Council packages 29 total skills: 28 focused skills plus the Council fallback, with specialist agents, evidence gates, commercial checks, and measurable decision workflows.",
   "category": "Business & Operations",
   "version": "1.4.0",
   "starter_prompts": [

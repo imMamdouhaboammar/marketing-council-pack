@@ -31,6 +31,42 @@ Classify material claims as fact, inference, assumption, or unknown. Prefer supp
 - Explicit dependency chain: use the dynamic router at `../../scripts/dynamic_router.py` and keep the graph bounded to the minimum required Skills.
 - After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
+## Execution connections
+
+- Primary specialist: `../../agents/council-director.md`
+- Skeptical counterweight: `../../agents/marketing-skeptic.md`
+- Domain challenge gate: `../../hooks/post-strategy-red-team.md`
+- Evidence gate: `../../hooks/evidence-gate.md`
+- Keep these as decision inputs, not automatic authority. The Skill owns the final evidence-bound synthesis.
+
+
+## Council execution resources
+
+- Synthesis and conflict resolution: `../../agents/council-director.md`
+- Adversarial falsification: `../../agents/marketing-skeptic.md`
+- Measurement and causality: `../../agents/measurement-strategist.md`
+- Host capability contract: `../../tools/capabilities.yml`
+- Focused Skill modules are under `skills/` in the standalone Council bundle; delegate only after ownership is established.
+
+### Principle canon
+
+- Market structure and segmentation: `../../references/canon/kotler.md`
+- Relevance and smallest viable audience: `../../references/canon/godin.md`
+- Product focus and demonstration: `../../references/canon/jobs-product-principles.md`
+- Proposition and proof: `../../references/canon/ogilvy.md`
+- Awareness and sophistication: `../../references/canon/schwartz.md`
+- Reach, availability, and distinctive assets: `../../references/canon/sharp.md`
+- Short and long effectiveness horizons: `../../references/canon/binet-field.md`
+
+## Neural connections
+
+- Owning Skill: `marketing-council`
+- Decision boundary: `cross-functional decision`
+- Neural graph: `../../neural/graph.json`
+- Neural router: `../../scripts/neural_router.py`
+- Theory and specialist selection happens only after Skill ownership; neural nodes never replace Skill routing.
+- Use the local `references/skill-spec.json` evidence policy and invariants to reject neural recommendations that are unsupported by the request evidence.
+
 ## Completion gate
 
 Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.

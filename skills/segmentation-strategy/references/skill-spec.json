@@ -30,6 +30,13 @@
     "target priority",
     "segment-specific implications"
   ],
+  "execution": {
+    "primary_agent": "market-architect",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "decision-stage-check",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize segment choice without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

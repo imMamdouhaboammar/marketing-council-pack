@@ -30,6 +30,13 @@
     "quality rules",
     "activation and monitoring plan"
   ],
+  "execution": {
+    "primary_agent": "marketing-signal-architect",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "marketing-signal-quality",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize signal architecture without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

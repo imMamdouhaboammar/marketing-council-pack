@@ -30,6 +30,13 @@
     "association priorities",
     "distinctive asset rules"
   ],
+  "execution": {
+    "primary_agent": "brand-equity-strategist",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "horizon-balance-check",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize brand strategy without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

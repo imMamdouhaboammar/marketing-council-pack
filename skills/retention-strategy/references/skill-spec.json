@@ -30,6 +30,13 @@
     "lifecycle intervention plan",
     "cohort measurement"
   ],
+  "execution": {
+    "primary_agent": "lifecycle-strategist",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "commercial-reality-check",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize retention intervention without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

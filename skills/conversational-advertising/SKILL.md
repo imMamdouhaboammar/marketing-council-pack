@@ -30,6 +30,24 @@ Classify material claims as fact, inference, assumption, or unknown. Prefer supp
 - Explicit dependency chain: use `../../scripts/dynamic_router.py`.
 - After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
 
+## Execution connections
+
+- Primary specialist: `../../agents/response-strategist.md`
+- Skeptical counterweight: `../../agents/marketing-skeptic.md`
+- Domain challenge gate: `../../hooks/ai-surface-check.md`
+- Evidence gate: `../../hooks/evidence-gate.md`
+- Keep these as decision inputs, not automatic authority. The Skill owns the final evidence-bound synthesis.
+
+
+## Neural connections
+
+- Owning Skill: `conversational-advertising`
+- Decision boundary: `conversation flow`
+- Neural graph: `../../neural/graph.json`
+- Neural router: `../../scripts/neural_router.py`
+- Theory and specialist selection happens only after Skill ownership; neural nodes never replace Skill routing.
+- Use the local `references/skill-spec.json` evidence policy and invariants to reject neural recommendations that are unsupported by the request evidence.
+
 ## Completion gate
 
 Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.

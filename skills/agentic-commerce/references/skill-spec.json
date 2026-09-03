@@ -30,6 +30,13 @@
     "agent transaction rules",
     "exception and handoff plan"
   ],
+  "execution": {
+    "primary_agent": "agentic-commerce-strategist",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "agentic-commerce-readiness",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize agentic commerce readiness without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

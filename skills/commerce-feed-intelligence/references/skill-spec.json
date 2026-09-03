@@ -30,6 +30,13 @@
     "field remediation backlog",
     "quality monitoring"
   ],
+  "execution": {
+    "primary_agent": "agentic-commerce-strategist",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "commerce-feed-readiness",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize feed quality decision without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

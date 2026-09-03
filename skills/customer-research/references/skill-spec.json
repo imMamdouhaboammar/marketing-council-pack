@@ -30,6 +30,13 @@
     "interview guide and sample logic",
     "synthesized decision evidence"
   ],
+  "execution": {
+    "primary_agent": "audience-strategist",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "customer-language-check",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize customer evidence without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

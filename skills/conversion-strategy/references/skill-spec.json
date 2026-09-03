@@ -30,6 +30,13 @@
     "prioritized interventions",
     "conversion measurement plan"
   ],
+  "execution": {
+    "primary_agent": "response-strategist",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "causal-mechanism-check",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize conversion intervention without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

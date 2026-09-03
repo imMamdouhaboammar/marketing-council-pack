@@ -30,6 +30,13 @@
     "bounded specialist route/DAG",
     "integrated decision with dissent"
   ],
+  "execution": {
+    "primary_agent": "council-director",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "post-strategy-red-team",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "council-owned"
+  },
   "invariants": [
     "Do not finalize cross-functional decision without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

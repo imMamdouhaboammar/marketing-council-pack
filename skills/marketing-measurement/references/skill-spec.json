@@ -30,6 +30,13 @@
     "KPI definitions",
     "interpretation guardrails"
   ],
+  "execution": {
+    "primary_agent": "measurement-strategist",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "closed-loop-bias-check",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize measurement architecture without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

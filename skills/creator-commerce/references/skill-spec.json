@@ -30,6 +30,13 @@
     "commercial/measurement model",
     "selection and governance rules"
   ],
+  "execution": {
+    "primary_agent": "creator-commerce-strategist",
+    "counterweight_agent": "marketing-skeptic",
+    "primary_hook": "creator-measurement-check",
+    "evidence_hook": "evidence-gate",
+    "binding_source": "../../routing/skill-execution-bindings.json"
+  },
   "invariants": [
     "Do not finalize creator commerce program without separating evidence from inference.",
     "Do not invent customer, market, platform, product, policy, or performance facts.",

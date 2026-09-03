@@ -88,7 +88,7 @@ class OpenAISubmissionPackTests(unittest.TestCase):
     def test_standalone_skill_specs_resolve_bundle_local_execution_paths(self):
         with tempfile.TemporaryDirectory() as td:
             output = Path(td) / "submission"
-            self.run_builder(output)
+            self.build(output)
 
             pricing_archive = output / "skills" / "pricing-strategy-v1.5.0.zip"
             with zipfile.ZipFile(pricing_archive) as zf:

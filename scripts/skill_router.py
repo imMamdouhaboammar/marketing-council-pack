@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Deterministically route a marketing request to one focused skill or the council.
 
-The router is intentionally conservative. It only selects a focused skill when
-one function clearly owns the request. Ambiguous and cross-functional briefs
-fall back to Marketing Council, which can dispatch multiple focused skills.
+The router is intentionally conservative. It selects a focused skill only when
+one function clearly owns the request. Explicit registry negative examples
+exclude a route, while ambiguous and cross-functional briefs fall back to
+Marketing Council.
 """
 from __future__ import annotations
 
@@ -45,7 +46,8 @@ def phrase_score(text: str, phrase: str) -> int:
         return 0
     if phrase in text:
         words = phrase.split()
-        return 6 + min(len(words), 4)
+        # A single exact intent must be strong enough to own a narrow request.
+        return 7 + min(len(words), 4)
     tokens = [token for token in phrase.split() if len(token) >= 3]
     if not tokens:
         return 0
@@ -65,6 +67,17 @@ def explicit_domain_markers(text: str) -> list[str]:
         for marker in CROSS_FUNCTIONAL_MARKERS
         if re.search(rf"\b{re.escape(marker)}\b", text)
     )
+
+
+def route_is_excluded(text: str, item: dict) -> bool:
+    """Treat a matched negative example as a hard boundary for that route."""
+    for example in item.get("negative_examples", []):
+        normalized_example = normalize(example)
+        if normalized_example and normalized_example in text:
+            return True
+        if phrase_score(text, example) >= 8:
+            return True
+    return False
 
 
 def council_result(fallback: str, secondaries: list[str], confidence: float, reason: str) -> dict:
@@ -97,6 +110,8 @@ def route(text: str) -> dict:
     scored: list[dict] = []
 
     for item in registry["routes"]:
+        if route_is_excluded(normalized, item):
+            continue
         score = sum(phrase_score(normalized, phrase) for phrase in item["intents"])
         if score:
             scored.append({
@@ -121,7 +136,8 @@ def route(text: str) -> dict:
     top = scored[0]
     second = scored[1] if len(scored) > 1 else None
 
-    cross_functional = len(strong) >= 3 or len(domain_markers) >= 3
+    # Two independently strong functions are already cross-functional.
+    cross_functional = len(strong) >= 2 or len(domain_markers) >= 3
     ambiguous = bool(second and second["score"] >= 8 and top["score"] - second["score"] <= 3)
     focused = top["score"] >= 8 and not cross_functional and not ambiguous
 

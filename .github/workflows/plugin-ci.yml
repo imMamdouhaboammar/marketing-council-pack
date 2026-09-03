@@ -29,8 +29,17 @@ jobs:
       - name: Discovery main router contract
         run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_main_skill_declares_dynamic_router_and_safe_fallback -v
 
-      - name: Discovery OpenAI skill metadata
-        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_all_skills_have_explicit_openai_discovery_metadata -v
+      - name: Discovery metadata files
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_all_skills_have_openai_metadata_files -v
+
+      - name: Discovery implicit invocation policy
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_all_skills_allow_implicit_invocation -v
+
+      - name: Discovery explicit default prompts
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_all_skills_have_explicit_default_prompts -v
+
+      - name: Discovery renderable labels
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_all_skills_have_renderable_interface_labels -v
 
       - name: Discovery discriminative skill descriptions
         run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_skill_descriptions_are_discriminative_enough_for_implicit_routing -v

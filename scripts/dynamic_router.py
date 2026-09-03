@@ -41,6 +41,17 @@ EXTRA_HINTS = {
     "commerce-media-strategy": ["commerce media", "retail media", "marketplace media", "closed-loop media"]
 }
 
+AMBIGUITY_MARKERS = (
+    "cannot tell",
+    "can't tell",
+    "do not know whether",
+    "don't know whether",
+    "not sure whether",
+    "unclear whether",
+    "which problem is primary",
+    "which issue is primary",
+)
+
 
 def _normalise(text: str) -> str:
     return " " + re.sub(r"[^a-z0-9]+", " ", text.casefold()).strip() + " "
@@ -103,6 +114,10 @@ def route_dynamic(text: str) -> dict:
     has_then = " then " in normalized
     has_parallel = " in parallel " in normalized or " parallel " in normalized
     explicit_sequence = has_then or bool(re.search(r"\bfirst\b.+\bthen\b", normalized))
+    explicit_uncertainty = any(marker in normalized for marker in AMBIGUITY_MARKERS)
+
+    if explicit_uncertainty and len(ranked) >= 2 and not explicit_sequence and not has_parallel:
+        return _result("council", fallback, [fallback], [], [], "The request explicitly states that ownership is uncertain across multiple plausible problems.", 0.4, True)
 
     if len(strong) == 1 and not explicit_sequence and not has_parallel:
         skill = strong[0]
@@ -130,7 +145,6 @@ def route_dynamic(text: str) -> dict:
         skill = ordered[0] if ordered else ranked[0]
         return _result("focused", skill, [skill], [], [], "Sequence language was present, but only one focused decision boundary was supported.", 0.69, False)
 
-    # Use explicit stage order only when the request itself asks for a sequence.
     edges = [[ordered[index], ordered[index + 1]] for index in range(len(ordered) - 1)]
     return _result("dag", ordered[-1], ordered, edges, parallel_groups, "The request explicitly asks for dependent marketing decisions, so a bounded execution DAG is justified.", 0.82, False)
 

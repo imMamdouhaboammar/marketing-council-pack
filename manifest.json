@@ -1,7 +1,7 @@
 {
   "name": "marketing-council",
   "version": "1.4.0",
-  "description": "A cross-agent marketing strategy pack with 29 focused skills, deterministic skill routing, specialist agents, evidence gates, and measurable decision workflows.",
+  "description": "A cross-agent marketing strategy pack with 29 total skills: 28 focused skills plus the Marketing Council router and fallback, with specialist agents, evidence gates, and measurable decision workflows.",
   "entry_skill": "skills/marketing-council/SKILL.md",
   "focused_skills": [
     "market-diagnosis",

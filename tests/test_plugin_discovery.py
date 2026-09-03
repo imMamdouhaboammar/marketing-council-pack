@@ -11,8 +11,13 @@ def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def read_openai_yaml(path: Path) -> str:
-    return path.read_text(encoding="utf-8")
+def skill_definitions():
+    return sorted((ROOT / "skills").glob("*/SKILL.md"))
+
+
+def openai_metadata(definition: Path) -> tuple[str, Path]:
+    metadata = definition.parent / "agents" / "openai.yaml"
+    return metadata.read_text(encoding="utf-8") if metadata.exists() else "", metadata
 
 
 class PluginDiscoveryTests(unittest.TestCase):
@@ -21,7 +26,6 @@ class PluginDiscoveryTests(unittest.TestCase):
         openai_manifest = read_json(ROOT / ".codex-plugin" / "plugin.json")
         claude_manifest = read_json(ROOT / ".claude-plugin" / "plugin.json")
         claude_marketplace = read_json(ROOT / ".claude-plugin" / "marketplace.json")
-
         self.assertEqual(root_manifest["version"], EXPECTED_VERSION)
         self.assertEqual(openai_manifest["version"], EXPECTED_VERSION)
         self.assertEqual(claude_manifest["version"], EXPECTED_VERSION)
@@ -34,17 +38,11 @@ class PluginDiscoveryTests(unittest.TestCase):
         router = read_json(router_path)
         self.assertEqual(router["version"], 1)
         self.assertEqual(router["fallback_skill"], "marketing-council")
-
-        skill_names = {
-            path.parent.name
-            for path in (ROOT / "skills").glob("*/SKILL.md")
-        }
+        skill_names = {path.parent.name for path in skill_definitions()}
         focused = skill_names - {"marketing-council"}
         routed = {route["skill"] for route in router["routes"]}
-
         self.assertEqual(routed, focused)
         self.assertEqual(len(router["routes"]), len(focused))
-
         for route in router["routes"]:
             self.assertTrue(route.get("intents"), route)
             self.assertIsInstance(route.get("priority"), int, route)
@@ -59,24 +57,40 @@ class PluginDiscoveryTests(unittest.TestCase):
         self.assertIn("single dominant function", text.lower())
         self.assertIn("cross-functional", text.lower())
 
-    def test_all_skills_have_explicit_openai_discovery_metadata(self):
-        skills = sorted((ROOT / "skills").glob("*/SKILL.md"))
+    def test_all_skills_have_openai_metadata_files(self):
+        skills = skill_definitions()
         self.assertEqual(len(skills), 29)
-
         for definition in skills:
-            slug = definition.parent.name
-            metadata = definition.parent / "agents" / "openai.yaml"
+            _, metadata = openai_metadata(definition)
             self.assertTrue(metadata.exists(), metadata)
-            text = read_openai_yaml(metadata)
+
+    def test_all_skills_allow_implicit_invocation(self):
+        for definition in skill_definitions():
+            text, metadata = openai_metadata(definition)
             self.assertIn("allow_implicit_invocation: true", text, metadata)
+
+    def test_all_skills_have_explicit_default_prompts(self):
+        for definition in skill_definitions():
+            slug = definition.parent.name
+            text, metadata = openai_metadata(definition)
             self.assertIn(f"${slug}", text, metadata)
-            self.assertRegex(text, r"(?m)^\s*display_name:\s*\"[^\"]+\"\s*$")
-            self.assertRegex(text, r"(?m)^\s*short_description:\s*\"[^\"]{25,64}\"\s*$")
-            self.assertRegex(text, r"(?m)^\s*default_prompt:\s*\"[^\"]+\"\s*$")
+            self.assertRegex(text, r"(?m)^\s*default_prompt:\s*\"[^\"\n]+\"\s*$", metadata)
+
+    def test_all_skills_have_renderable_interface_labels(self):
+        for definition in skill_definitions():
+            text, metadata = openai_metadata(definition)
+            self.assertRegex(text, r"(?m)^\s*display_name:\s*\"[^\"\n]+\"\s*$", metadata)
+            self.assertRegex(text, r"(?m)^\s*short_description:\s*\"[^\"\n]{25,64}\"\s*$", metadata)
+
+    def test_all_skills_have_explicit_openai_discovery_metadata(self):
+        self.test_all_skills_have_openai_metadata_files()
+        self.test_all_skills_allow_implicit_invocation()
+        self.test_all_skills_have_explicit_default_prompts()
+        self.test_all_skills_have_renderable_interface_labels()
 
     def test_skill_descriptions_are_discriminative_enough_for_implicit_routing(self):
         descriptions = {}
-        for definition in sorted((ROOT / "skills").glob("*/SKILL.md")):
+        for definition in skill_definitions():
             text = definition.read_text(encoding="utf-8")
             match = re.search(r"(?m)^description:\s*(.+)$", text)
             self.assertIsNotNone(match, definition)
@@ -84,7 +98,6 @@ class PluginDiscoveryTests(unittest.TestCase):
             self.assertTrue(description.startswith("Use when"), definition)
             self.assertGreaterEqual(len(description), 80, definition)
             descriptions[definition.parent.name] = description.casefold()
-
         self.assertEqual(len(set(descriptions.values())), 29)
 
     def test_release_notes_include_resubmission_requirement_for_snapshot_skills(self):

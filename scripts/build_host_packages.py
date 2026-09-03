@@ -13,8 +13,8 @@ from pathlib import Path
 from build_dist import build_dist
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXED_ZIP_TIME = (2026, 8, 17, 0, 0, 0)
-RUNTIME_DIRS = ("skills", "agents", "hooks", "references", "neural", "scripts", "tools", "workflows", "assets")
+FIXED_ZIP_TIME = (2026, 9, 3, 0, 0, 0)
+RUNTIME_DIRS = ("skills", "agents", "hooks", "references", "neural", "routing", "scripts", "tools", "workflows", "assets")
 ROOT_RUNTIME_FILES = ("manifest.json", "LICENSE", "README.md", "SECURITY.md")
 SOURCE_EXCLUDES = {".git", "dist", "__pycache__", ".pytest_cache", ".DS_Store"}
 

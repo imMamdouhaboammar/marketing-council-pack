@@ -87,6 +87,27 @@ class DynamicRouterTests(unittest.TestCase):
         self.assertIn(["customer-research", "positioning-strategy"], result["edges"])
         self.assertIn(["competitive-intelligence", "positioning-strategy"], result["edges"])
 
+    def test_parallel_fan_in_preserves_valid_sequential_tail(self):
+        result = self._route(
+            "Research customer switching triggers and competitor alternatives in parallel, then decide our positioning, set pricing tiers, then build the go-to-market launch sequence"
+        )
+        self.assertEqual(result["mode"], "dag")
+        self.assertEqual(
+            result["nodes"],
+            [
+                "customer-research",
+                "competitive-intelligence",
+                "positioning-strategy",
+                "pricing-strategy",
+                "go-to-market",
+            ],
+        )
+        self.assertEqual(result["primary_skill"], "go-to-market")
+        self.assertIn(["customer-research", "positioning-strategy"], result["edges"])
+        self.assertIn(["competitive-intelligence", "positioning-strategy"], result["edges"])
+        self.assertIn(["positioning-strategy", "pricing-strategy"], result["edges"])
+        self.assertIn(["pricing-strategy", "go-to-market"], result["edges"])
+
     def test_unordered_collision_does_not_invent_a_dag(self):
         result = self._route("Conversion and retention are both down but instrumentation is incomplete and we cannot tell which problem is primary")
         self.assertEqual(result["mode"], "council")

@@ -1,0 +1,10 @@
+cases:
+- id: commerce-feed-intelligence-behavior-1
+  prompt: "Make the feed quality decision from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: commerce-feed-intelligence-behavior-2
+  prompt: "Challenge this proposed feed quality decision before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: commerce-feed-intelligence-behavior-3
+  prompt: "Finish the feed quality decision and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

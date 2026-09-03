@@ -1,0 +1,10 @@
+cases:
+- id: marketing-measurement-behavior-1
+  prompt: "Make the measurement architecture from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: marketing-measurement-behavior-2
+  prompt: "Challenge this proposed measurement architecture before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: marketing-measurement-behavior-3
+  prompt: "Finish the measurement architecture and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

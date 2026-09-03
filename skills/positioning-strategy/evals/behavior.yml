@@ -1,0 +1,10 @@
+cases:
+- id: positioning-strategy-behavior-1
+  prompt: "Make the positioning choice from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: positioning-strategy-behavior-2
+  prompt: "Challenge this proposed positioning choice before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: positioning-strategy-behavior-3
+  prompt: "Finish the positioning choice and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

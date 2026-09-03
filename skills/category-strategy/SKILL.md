@@ -1,37 +1,55 @@
 ---
 name: category-strategy
-description: Use when the user needs category definition, category creation, category entry logic, market framing, competitive context, or a decision about which market the offer should compete in.
+description: Use when the user needs to decide category frame, maturity response, entry points, and demand creation posture; route here only when this decision boundary is the clear owner.
 ---
 
 # Category Strategy
 
-**Goal:** Choose a category frame that helps buyers understand the offer and gives the company a credible competitive field.
+## Job
 
-## Process
+Decide category frame, maturity response, entry points, and demand creation posture
 
-1. Name the decision and the evidence available.
-2. Activate only theories that explain the observed constraint.
-3. Compare at least one credible counterweight when the choice is strategic.
-4. Produce one primary recommendation with mechanism, trade-off, and measurement.
-5. State what evidence would reverse the recommendation.
+Own this request only when **category frame** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/market-architect.md`
-- `../../agents/positioning-strategist.md`
-- `../../agents/competitive-strategy-analyst.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
+
+## Evidence discipline
+
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
+
+## Routing
+
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
+
+## Execution connections
+
+- Primary specialist: `../../agents/market-architect.md`
+- Skeptical counterweight: `../../agents/marketing-skeptic.md`
+- Domain challenge gate: `../../hooks/category-maturity-check.md`
+- Evidence gate: `../../hooks/evidence-gate.md`
+- Keep these as decision inputs, not automatic authority. The Skill owns the final evidence-bound synthesis.
+
 
 ## Neural connections
 
-- Applied theories: `marketing-myopia`, `positioning-components`, `five-forces`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Challenge with `../../hooks/theory-fit-gate.md` and `../../hooks/causal-mechanism-check.md` when theory choice or causality is load-bearing.
+- Owning Skill: `category-strategy`
+- Decision boundary: `category frame`
+- Neural graph: `../../neural/graph.json`
+- Neural router: `../../scripts/neural_router.py`
+- Theory and specialist selection happens only after Skill ownership; neural nodes never replace Skill routing.
+- Use the local `references/skill-spec.json` evidence policy and invariants to reject neural recommendations that are unsupported by the request evidence.
 
-## Required output
+## Completion gate
 
-Return the decision, supporting evidence, assumptions, selected theory or mechanism, rejected alternative, measurement, confidence, and reversal evidence.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
 
-## Guardrails
-
-- Never fabricate customer insight, market facts, proof, scarcity, urgency, testimonials, or benchmarks.
-- A framework suggests a lens; it does not prove what is true in the user's market.
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

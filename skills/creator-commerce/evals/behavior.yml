@@ -1,0 +1,10 @@
+cases:
+- id: creator-commerce-behavior-1
+  prompt: "Make the creator commerce program from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: creator-commerce-behavior-2
+  prompt: "Challenge this proposed creator commerce program before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: creator-commerce-behavior-3
+  prompt: "Finish the creator commerce program and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

@@ -1,0 +1,37 @@
+cases:
+- id: pricing-strategy-activation-1
+  kind: positive
+  prompt: "Help me make the pricing decision using the evidence we have"
+  should_activate: true
+- id: pricing-strategy-activation-2
+  kind: positive
+  prompt: "Review our pricing decision and tell me what decision to make next"
+  should_activate: true
+- id: pricing-strategy-activation-3
+  kind: positive
+  prompt: "Build a rigorous pricing decision for this marketing problem"
+  should_activate: true
+- id: pricing-strategy-activation-4
+  kind: implicit
+  prompt: "We have conflicting signals and need a decision about pricing decision"
+  should_activate: true
+- id: pricing-strategy-activation-5
+  kind: implicit
+  prompt: "I have data but I am not sure what it means for pricing decision"
+  should_activate: true
+- id: pricing-strategy-activation-6
+  kind: implicit
+  prompt: "Challenge my assumptions before we finalize pricing decision"
+  should_activate: true
+- id: pricing-strategy-activation-7
+  kind: negative
+  prompt: "Write polished copy only; the strategy and decision are already approved"
+  should_activate: false
+- id: pricing-strategy-activation-8
+  kind: negative
+  prompt: "Summarize the supplied material without making a marketing decision"
+  should_activate: false
+- id: pricing-strategy-activation-9
+  kind: collision
+  prompt: "The brief spans several marketing functions and no single function clearly owns the next decision"
+  should_activate: false

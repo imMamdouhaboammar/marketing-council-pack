@@ -1,38 +1,55 @@
 ---
 name: incrementality-design
-description: Use when the user needs to know what marketing caused, choose holdouts or geo tests, reconcile attribution with MMM, estimate incremental CAC or ROAS, or design a credible counterfactual.
+description: Use when the user needs to design counterfactual measurement that estimates causal marketing lift; route here only when this decision boundary is the clear owner.
 ---
 
 # Incrementality Design
 
-**Goal:** Choose the strongest feasible counterfactual method for the business decision and define thresholds before reading the result.
+## Job
 
-## Process
+Design counterfactual measurement that estimates causal marketing lift
 
-1. Name the commercial decision and classify current facts as evidence, inference, assumption, or unknown.
-2. Run the relevant 2026 freshness card before relying on platform behavior.
-3. Activate only the theories that explain the observed constraint.
-4. Compare a timeless marketing counterweight when the recommendation could become platform-biased.
-5. Produce one primary decision with authority boundary, mechanism, measurement, and reversal evidence.
+Own this request only when **incrementality design** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/measurement-strategist.md`
-- `../../agents/effectiveness-strategist.md`
-- `../../agents/marketing-skeptic.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
+
+## Evidence discipline
+
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
+
+## Routing
+
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
+
+## Execution connections
+
+- Primary specialist: `../../agents/measurement-strategist.md`
+- Skeptical counterweight: `../../agents/marketing-skeptic.md`
+- Domain challenge gate: `../../hooks/incrementality-required.md`
+- Evidence gate: `../../hooks/evidence-gate.md`
+- Keep these as decision inputs, not automatic authority. The Skill owns the final evidence-bound synthesis.
+
 
 ## Neural connections
 
-- Applied theories: `incrementality-ladder`, `closed-loop-bias`, `commerce-media-incrementality`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Hooks: `../../hooks/incrementality-required.md`, `../../hooks/causal-mechanism-check.md`, `../../hooks/closed-loop-bias-check.md`
-- Current-state evidence lives under `../../references/2026/`; verify it when platform behavior is load-bearing.
+- Owning Skill: `incrementality-design`
+- Decision boundary: `incrementality design`
+- Neural graph: `../../neural/graph.json`
+- Neural router: `../../scripts/neural_router.py`
+- Theory and specialist selection happens only after Skill ownership; neural nodes never replace Skill routing.
+- Use the local `references/skill-spec.json` evidence policy and invariants to reject neural recommendations that are unsupported by the request evidence.
 
-## Required output
+## Completion gate
 
-Return the decision, current evidence, enduring principle, selected theory, rejected alternative, authority boundary if automation is involved, measurement, confidence, and reversal evidence.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
 
-## Guardrails
-
-- Do not treat a platform recommendation, attribution report, AI-generated answer, or closed-loop sale as causal proof by itself.
-- Do not fabricate current platform availability, customer insight, product facts, performance claims, or policy requirements.
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

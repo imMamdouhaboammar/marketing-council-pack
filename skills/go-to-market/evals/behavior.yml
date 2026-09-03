@@ -1,0 +1,10 @@
+cases:
+- id: go-to-market-behavior-1
+  prompt: "Make the go-to-market sequence from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: go-to-market-behavior-2
+  prompt: "Challenge this proposed go-to-market sequence before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: go-to-market-behavior-3
+  prompt: "Finish the go-to-market sequence and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

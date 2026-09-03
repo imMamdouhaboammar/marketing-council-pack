@@ -1,37 +1,55 @@
 ---
 name: behavioral-marketing
-description: Use when the user needs behavioral diagnosis, choice architecture, friction reduction, prompts, social proof, defaults, framing, onboarding behavior, or conversion psychology grounded in truthful evidence.
+description: Use when the user needs to use behavioral evidence to reduce friction and shape ethical choice architecture; route here only when this decision boundary is the clear owner.
 ---
 
 # Behavioral Marketing
 
-**Goal:** Diagnose the target behavior and change the environment, friction, prompt, or truthful decision cues before adding more persuasion.
+## Job
 
-## Process
+Use behavioral evidence to reduce friction and shape ethical choice architecture
 
-1. Name the decision and the evidence available.
-2. Activate only theories that explain the observed constraint.
-3. Compare at least one credible counterweight when the choice is strategic.
-4. Produce one primary recommendation with mechanism, trade-off, and measurement.
-5. State what evidence would reverse the recommendation.
+Own this request only when **behavioral intervention** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/behavior-strategist.md`
-- `../../agents/lifecycle-strategist.md`
-- `../../agents/measurement-strategist.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
+
+## Evidence discipline
+
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
+
+## Routing
+
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
+
+## Execution connections
+
+- Primary specialist: `../../agents/behavior-strategist.md`
+- Skeptical counterweight: `../../agents/marketing-skeptic.md`
+- Domain challenge gate: `../../hooks/causal-mechanism-check.md`
+- Evidence gate: `../../hooks/evidence-gate.md`
+- Keep these as decision inputs, not automatic authority. The Skill owns the final evidence-bound synthesis.
+
 
 ## Neural connections
 
-- Applied theories: `fogg-behavior-model`, `influence-principles`, `nudge`, `behavioral-framing`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Challenge with `../../hooks/theory-fit-gate.md` and `../../hooks/causal-mechanism-check.md` when theory choice or causality is load-bearing.
+- Owning Skill: `behavioral-marketing`
+- Decision boundary: `behavioral intervention`
+- Neural graph: `../../neural/graph.json`
+- Neural router: `../../scripts/neural_router.py`
+- Theory and specialist selection happens only after Skill ownership; neural nodes never replace Skill routing.
+- Use the local `references/skill-spec.json` evidence policy and invariants to reject neural recommendations that are unsupported by the request evidence.
 
-## Required output
+## Completion gate
 
-Return the decision, supporting evidence, assumptions, selected theory or mechanism, rejected alternative, measurement, confidence, and reversal evidence.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
 
-## Guardrails
-
-- Never fabricate customer insight, market facts, proof, scarcity, urgency, testimonials, or benchmarks.
-- A framework suggests a lens; it does not prove what is true in the user's market.
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

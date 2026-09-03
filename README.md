@@ -32,9 +32,11 @@ Version 1.5.0 turns every Marketing Council Skill into a fully rendered behavior
 - all 29 Agent Skills carry local decision, evidence, failure-mode, output, and behavioral-eval artifacts
 - the 28 focused Skills are mapped through `routing/skill-execution-bindings.json` to a primary specialist, skeptical counterweight, domain challenge gate, and evidence gate
 - `scripts/skill_router.py` owns single-skill selection and conservative Council fallback
-- `scripts/dynamic_router.py` owns bounded dependency DAGs for explicitly dependent cross-functional work
+- `scripts/dynamic_router.py` owns bounded dependency DAGs for explicitly dependent cross-functional work, preserves explicit request order, and requires every transition to resolve through a declared handoff
 - `scripts/neural_router.py` remains a separate post-ownership theory and specialist router
 - Council standalone packaging embeds all 28 focused Skills and rewrites shared agent, hook, routing, neural, and tool dependencies into bundle-local resources
+- self-contained, host, and standalone OpenAI builders reject symlink sources before copying or archiving release content
+- `submission/submission-pack.json` carries five positive and three negative executed review cases; it remains `PARTIAL_MISSING_INPUT` until required portal identity, policy/support URLs, and availability fields are supplied
 - renderer drift, execution-binding resolution, evidence-ledger coverage, structural BinEval, router regressions, host packaging, and OpenAI submission packaging are CI-gated
 - public OpenAI availability still requires submitting or resubmitting the v1.5.0 snapshot and running fresh-chat smoke tests after publication
 

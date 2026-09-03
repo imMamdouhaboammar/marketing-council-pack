@@ -10,9 +10,11 @@ This repository previously had release drift: the latest commit described a newe
 
 ## Standalone full-skill bundles
 
-Every one of the 29 skills must also be buildable as a standalone bundle. A submitted skill cannot depend on repository-relative `../../` paths that only work when the entire GitHub checkout is present.
+Every one of the 29 skills must also be buildable as a standalone bundle. A submitted skill cannot depend on repository-relative paths that only work when the entire GitHub checkout is present.
 
 `scripts/build_openai_submission_pack.py` creates reviewer-ready standalone ZIPs for all 29 skills. For each skill it copies the shared agents, hooks, references, routing data, neural graph, workflows, tools, and deterministic scripts it can reference, then rewrites external repository-relative paths into bundle-local `shared/` paths.
+
+The `marketing-council` standalone bundle additionally contains all 28 focused skill modules. Their resource references are rewritten for their nested location, so loading a focused module from the Council bundle still resolves the shared agents, hooks, references, routers, and scripts packaged with that bundle.
 
 The submission inventory records the archive path, SHA-256 digest, size, and standalone status for each skill. This is the artifact to inspect when ChatGPT renders only part of the pack or when one skill behaves differently from the repository copy.
 
@@ -30,8 +32,10 @@ Before every OpenAI plugin submission:
 4. `routing/skill-routes.json` must cover every focused skill exactly once and use `marketing-council` as fallback.
 5. `scripts/skill_router.py` must route narrow requests to one focused skill and ambiguous or cross-functional requests to the council.
 6. The built OpenAI plugin ZIP must contain all 29 skills, the routing registry, the router scripts, and the OpenAI plugin manifest.
-7. The OpenAI submission pack must contain exactly 29 standalone skill ZIPs and no unresolved `../../` references in their `SKILL.md` files.
-8. A public update must use a different manifest `version` from the currently published plugin version.
+7. The OpenAI submission pack must contain exactly 29 standalone skill ZIPs and no unresolved external repository references in each root `SKILL.md`.
+8. The `marketing-council` standalone ZIP must include all 28 focused modules with bundle-local shared-resource paths.
+9. A rebuild must remove stale generated plugin and skill archives before writing the new submission pack.
+10. A public update must use a different manifest `version` from the currently published plugin version.
 
 ## Preflight
 
@@ -44,23 +48,37 @@ python scripts/build_host_packages.py --output-root dist/release
 python scripts/build_openai_submission_pack.py --output-root dist/openai-submission --json
 ```
 
-Extract the generated OpenAI plugin package and validate it:
+Validate the exact OpenAI plugin archive for the version declared in `.codex-plugin/plugin.json`, using a fresh extraction directory on every run:
 
 ```bash
-mkdir -p /tmp/marketing-council-openai
 python - <<'PY'
-import pathlib, zipfile
-root = pathlib.Path('dist/release')
-archive = next(root.glob('marketing-council-openai-plugin-v*.zip'))
-out = pathlib.Path('/tmp/marketing-council-openai')
-with zipfile.ZipFile(archive) as zf:
-    zf.extractall(out)
-print(archive)
+import json
+import pathlib
+import subprocess
+import sys
+import tempfile
+import zipfile
+
+root = pathlib.Path('.').resolve()
+version = json.loads(
+    (root / '.codex-plugin' / 'plugin.json').read_text(encoding='utf-8')
+)['version']
+archive = root / 'dist' / 'release' / f'marketing-council-openai-plugin-v{version}.zip'
+if not archive.is_file():
+    raise SystemExit(f'missing current release archive: {archive}')
+
+with tempfile.TemporaryDirectory() as td:
+    out = pathlib.Path(td)
+    with zipfile.ZipFile(archive) as zf:
+        zf.extractall(out)
+    subprocess.run(
+        [sys.executable, str(root / 'scripts' / 'validate_openai_plugin.py'), str(out), '--json'],
+        check=True,
+    )
 PY
-python scripts/validate_openai_plugin.py /tmp/marketing-council-openai --json
 ```
 
-Inspect `dist/openai-submission/submission-inventory.json` and verify `skill_count` is 29 and every skill entry reports `standalone: true`.
+Inspect `dist/openai-submission/submission-inventory.json` and verify `skill_count` is 29, every skill entry reports `standalone: true`, and there are exactly 29 skill ZIPs in `dist/openai-submission/skills/`.
 
 Do not submit when any command fails.
 
@@ -71,7 +89,7 @@ Do not submit when any command fails.
 3. Confirm `submission-inventory.json` lists all 29 skills and record the hashes for the submitted artifacts.
 4. Open the OpenAI plugin submission flow and update the existing Marketing Council plugin rather than creating a different plugin identity.
 5. Upload the fresh plugin package and the corresponding standalone skill bundles required by the submission flow.
-6. Confirm the submission preview lists all 29 skills with the expected display names and descriptions.
+6. Confirm the submission preview lists all 29 skills with the expected display names and descriptions. A partial preview is a release blocker.
 7. Confirm starter prompts and listing metadata match `submission/listing.json`.
 8. Submit the new plugin version for review/publication.
 9. After publication, install or refresh the plugin in a new ChatGPT conversation and test explicit plus implicit invocation.
@@ -95,6 +113,22 @@ Build a pricing strategy with willingness to pay, price architecture, and discou
 ```
 
 Expected: `pricing-strategy` owns the request without running the full council.
+
+### Single explicit intent
+
+```text
+Reduce churn
+```
+
+Expected: `retention-strategy` owns the request rather than unnecessarily loading the full council.
+
+### Negative-route boundary
+
+```text
+Write brand copy without competitor research
+```
+
+Expected: the request must not be routed to `competitive-intelligence` merely because it contains the phrase `competitor research`.
 
 ### Cross-functional fallback
 
@@ -122,15 +156,23 @@ Smoke-test at least one of these skills because their OpenAI metadata previously
 
 If GitHub contains a skill but ChatGPT does not show or invoke it, check in this order:
 
-1. Was the public plugin actually resubmitted after the skill was added?
+1. Was the public plugin actually resubmitted after the skill was added or changed?
 2. Did the manifest `version` change?
-3. Does the submitted standalone ZIP contain `SKILL.md`, `agents/openai.yaml`, and every referenced support file?
-4. Does `submission-inventory.json` contain the skill and the expected hash?
-5. Does the skill description distinguish its intent from sibling skills?
-6. Is implicit invocation enabled in `agents/openai.yaml`?
-7. Does explicit `$skill-name` invocation work while implicit routing fails? If yes, treat it as a routing or discovery-metadata problem rather than a packaging problem.
-8. Does the plugin itself fail to resolve in the public directory? If yes, investigate release/listing state before changing skill prompts.
+3. Does `submission-inventory.json` contain exactly 29 current skill archives and no stale artifacts?
+4. Does the submitted standalone ZIP contain its root `SKILL.md`, `agents/openai.yaml`, and every referenced support file?
+5. For `marketing-council`, does the standalone bundle contain all 28 focused modules and their rewritten shared-resource paths?
+6. Does the submission preview list all 29 skills before publication?
+7. Does the skill description distinguish its intent from sibling skills?
+8. Is implicit invocation enabled in `agents/openai.yaml`?
+9. Does explicit `$skill-name` invocation work while implicit routing fails? If yes, treat it as a routing or discovery-metadata problem rather than a packaging problem.
+10. Does the plugin itself fail to resolve in the public directory? If yes, investigate release/listing state before changing skill prompts.
 
 ## Source versus public release
 
 The GitHub marketplace and the universal public plugin directory are separate distribution surfaces. A repository can be internally correct while the public plugin still exposes an older submitted release. Release verification therefore has to validate both the source package and the published ChatGPT behavior.
+
+Use these release states precisely:
+
+`source-valid`, `package-valid`, `submission-ready`, `submitted`, `approved`, `published`
+
+A green repository CI run can establish the first two and support `submission-ready`. It does not prove that the public ChatGPT directory has been updated.

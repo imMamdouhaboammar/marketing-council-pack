@@ -57,6 +57,15 @@ def phrase_score(text: str, phrase: str) -> int:
     return 0
 
 
+def exact_intent_matches(text: str, item: dict) -> list[str]:
+    matches: list[str] = []
+    for phrase in item.get("intents", []):
+        normalized_phrase = normalize(phrase)
+        if normalized_phrase and normalized_phrase in text:
+            matches.append(normalized_phrase)
+    return matches
+
+
 def load_registry() -> dict:
     return json.loads(REGISTRY.read_text(encoding="utf-8"))
 
@@ -114,10 +123,13 @@ def route(text: str) -> dict:
             continue
         score = sum(phrase_score(normalized, phrase) for phrase in item["intents"])
         if score:
+            matches = exact_intent_matches(normalized, item)
             scored.append({
                 "skill": item["skill"],
                 "score": score,
                 "priority": item.get("priority", 0),
+                "matched_intents": matches,
+                "substantive_match": any(len(match.split()) >= 2 for match in matches),
             })
 
     scored.sort(key=lambda item: (item["score"], item["priority"], item["skill"]), reverse=True)
@@ -132,13 +144,23 @@ def route(text: str) -> dict:
             "No focused route had enough explicit evidence.",
         )
 
-    strong = [item for item in scored if item["score"] >= 8]
     top = scored[0]
     second = scored[1] if len(scored) > 1 else None
+    substantive_strong = [
+        item for item in scored
+        if item["score"] >= 8 and item["substantive_match"]
+    ]
 
-    # Two independently strong functions are already cross-functional.
-    cross_functional = len(strong) >= 2 or len(domain_markers) >= 3
-    ambiguous = bool(second and second["score"] >= 8 and top["score"] - second["score"] <= 3)
+    # Two independently substantive functions are cross-functional. A generic
+    # adjacent word such as "friction" or "attribution" does not force council
+    # fallback when a more specific multi-word intent clearly owns the request.
+    cross_functional = len(substantive_strong) >= 2 or len(domain_markers) >= 2
+    ambiguous = bool(
+        second
+        and second["score"] >= 8
+        and second["substantive_match"]
+        and top["score"] - second["score"] <= 3
+    )
     focused = top["score"] >= 8 and not cross_functional and not ambiguous
 
     max_secondary = registry.get("routing_policy", {}).get("max_secondary_skills", 5)

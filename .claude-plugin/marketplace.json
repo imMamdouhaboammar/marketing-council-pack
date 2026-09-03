@@ -3,8 +3,8 @@
   "owner": {
     "name": "Mamdouh Aboammar"
   },
-  "description": "Marketing strategy skills, specialist agents, and a connected theory graph for Claude Code.",
-  "version": "1.3.0",
+  "description": "Marketing strategy skills, deterministic routing, specialist agents, and a connected theory graph for Claude Code.",
+  "version": "1.4.0",
   "plugins": [
     {
       "name": "marketing-council",
@@ -13,8 +13,8 @@
         "repo": "imMamdouhaboammar/marketing-council-pack",
         "ref": "main"
       },
-      "description": "Diagnose marketing problems, activate relevant schools and theories, debate strategic options, challenge assumptions, and turn decisions into measurable tactics.",
-      "version": "1.3.0",
+      "description": "Route marketing briefs to the right specialist skill, diagnose before prescribing, challenge assumptions, and turn decisions into measurable tactics.",
+      "version": "1.4.0",
       "author": {
         "name": "Mamdouh Aboammar"
       },
@@ -33,7 +33,8 @@
         "marketing",
         "strategy",
         "agents",
-        "skills"
+        "skills",
+        "routing"
       ],
       "strict": true
     }

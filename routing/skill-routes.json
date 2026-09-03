@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "fallback_skill": "marketing-council",
+  "routing_policy": {
+    "focused_when": "One marketing function clearly owns the next decision and routing confidence is materially higher than alternatives.",
+    "council_when": "The request is cross-functional, ambiguous, has competing strategic explanations, or multiple focused routes score similarly.",
+    "max_secondary_skills": 5
+  },
+  "routes": [
+    {
+      "skill": "market-diagnosis",
+      "priority": 90,
+      "intents": ["market diagnosis", "market problem", "market demand", "market structure", "growth constraint", "commercial diagnosis"],
+      "examples": ["Diagnose why growth stalled before recommending channels"],
+      "negative_examples": ["Write a campaign brief for an already diagnosed problem"]
+    },
+    {
+      "skill": "customer-research",
+      "priority": 90,
+      "intents": ["customer research", "customer interviews", "voice of customer", "customer language", "jobs to be done", "switching triggers", "buyer interviews"],
+      "examples": ["Design customer interviews to understand switching triggers"],
+      "negative_examples": ["Choose target segments from completed research"]
+    },
+    {
+      "skill": "positioning-strategy",
+      "priority": 92,
+      "intents": ["positioning strategy", "positioning", "competitive alternatives", "reason to choose", "category frame", "value proposition positioning"],
+      "examples": ["Rework positioning against the real competitive alternatives"],
+      "negative_examples": ["Create a full launch plan across pricing media and retention"]
+    },
+    {
+      "skill": "offer-strategy",
+      "priority": 88,
+      "intents": ["offer strategy", "offer architecture", "bundle", "guarantee", "proof", "objection handling", "direct response offer"],
+      "examples": ["Build an offer with proof and risk reversal"],
+      "negative_examples": ["Set the base subscription price using willingness to pay"]
+    },
+    {
+      "skill": "pricing-strategy",
+      "priority": 95,
+      "intents": ["pricing strategy", "price architecture", "willingness to pay", "price sensitivity", "discount guardrails", "pricing tiers", "monetization"],
+      "examples": ["Build pricing tiers and discount guardrails from willingness to pay"],
+      "negative_examples": ["Improve checkout conversion without changing price"]
+    },
+    {
+      "skill": "go-to-market",
+      "priority": 92,
+      "intents": ["go to market", "go-to-market", "gtm", "market entry", "launch sequence", "launch plan", "route to market"],
+      "examples": ["Create a go-to-market sequence for a new B2B product"],
+      "negative_examples": ["Write only the campaign creative brief"]
+    },
+    {
+      "skill": "campaign-strategy",
+      "priority": 92,
+      "intents": ["campaign strategy", "campaign brief", "integrated campaign", "creative territory", "launch campaign", "promotion campaign", "campaign objective"],
+      "examples": ["Turn this objective into an integrated campaign brief"],
+      "negative_examples": ["Diagnose the business before we know whether a campaign is needed"]
+    },
+    {
+      "skill": "media-strategy",
+      "priority": 92,
+      "intents": ["media strategy", "media plan", "channel mix", "media allocation", "reach plan", "paid media", "media channels"],
+      "examples": ["Choose the media mix and define each channel job"],
+      "negative_examples": ["Define brand positioning before media selection"]
+    },
+    {
+      "skill": "content-strategy",
+      "priority": 88,
+      "intents": ["content strategy", "content plan", "editorial strategy", "content pillars", "content system", "content distribution", "content calendar"],
+      "examples": ["Create a content strategy tied to buying situations"],
+      "negative_examples": ["Design paid media budget allocation"]
+    },
+    {
+      "skill": "conversion-strategy",
+      "priority": 95,
+      "intents": ["conversion strategy", "conversion rate", "checkout friction", "form abandonment", "landing page conversion", "cro", "funnel friction", "drop off"],
+      "examples": ["Audit checkout friction and reduce form abandonment"],
+      "negative_examples": ["Choose the target category position"]
+    },
+    {
+      "skill": "retention-strategy",
+      "priority": 92,
+      "intents": ["retention strategy", "retention", "churn", "lifecycle", "repeat purchase", "reactivation", "customer retention", "renewal"],
+      "examples": ["Reduce churn and design lifecycle interventions"],
+      "negative_examples": ["Plan first-time acquisition media"]
+    },
+    {
+      "skill": "marketing-experimentation",
+      "priority": 90,
+      "intents": ["marketing experiment", "experiment design", "ab test", "a/b test", "test hypothesis", "experiment roadmap", "test plan"],
+      "examples": ["Design an experiment to test the new proposition"],
+      "negative_examples": ["Estimate causal lift with geo holdouts"]
+    },
+    {
+      "skill": "competitive-intelligence",
+      "priority": 90,
+      "intents": ["competitive intelligence", "competitor analysis", "competitive landscape", "competitor research", "substitutes", "competitive pressure", "rival analysis"],
+      "examples": ["Map competitors substitutes and defensibility"],
+      "negative_examples": ["Write brand copy without competitor research"]
+    },
+    {
+      "skill": "brand-strategy",
+      "priority": 90,
+      "intents": ["brand strategy", "brand equity", "brand architecture", "brand associations", "brand memory", "distinctive assets", "brand platform"],
+      "examples": ["Define brand associations and distinctive asset priorities"],
+      "negative_examples": ["Choose a performance media bid strategy"]
+    },
+    {
+      "skill": "product-marketing",
+      "priority": 90,
+      "intents": ["product marketing", "product story", "product narrative", "product launch message", "demo story", "feature messaging", "product proposition"],
+      "examples": ["Turn product truth into a launch narrative and demo story"],
+      "negative_examples": ["Set campaign media spend"]
+    },
+    {
+      "skill": "segmentation-strategy",
+      "priority": 90,
+      "intents": ["segmentation strategy", "segmentation", "target segment", "targeting", "segment attractiveness", "audience segments", "market segments"],
+      "examples": ["Choose commercially useful segments and targeting priorities"],
+      "negative_examples": ["Run customer interviews before segments are known"]
+    },
+    {
+      "skill": "category-strategy",
+      "priority": 90,
+      "intents": ["category strategy", "category creation", "category definition", "category frame", "category maturity", "category entry points", "category demand"],
+      "examples": ["Decide whether to compete inside the category or reframe it"],
+      "negative_examples": ["Write a retention email sequence"]
+    },
+    {
+      "skill": "behavioral-marketing",
+      "priority": 92,
+      "intents": ["behavioral marketing", "behavioral science", "choice architecture", "friction", "social proof", "defaults", "decision bias", "behavior change"],
+      "examples": ["Diagnose choice friction and design ethical behavioral interventions"],
+      "negative_examples": ["Estimate market size"]
+    },
+    {
+      "skill": "marketing-measurement",
+      "priority": 92,
+      "intents": ["marketing measurement", "measurement framework", "kpi framework", "attribution", "mmm", "marketing mix modeling", "dashboard metrics", "measurement plan"],
+      "examples": ["Build a measurement framework that separates leading indicators from business outcomes"],
+      "negative_examples": ["Design the experiment treatment and control mechanics"]
+    },
+    {
+      "skill": "ai-discovery-strategy",
+      "priority": 96,
+      "intents": ["ai discovery", "ai search", "answer engine", "answer surfaces", "generative search", "ai citations", "llm discovery", "ai visibility"],
+      "examples": ["Improve brand retrievability in AI answer surfaces"],
+      "negative_examples": ["Traditional SEO keyword plan only"]
+    },
+    {
+      "skill": "conversational-advertising",
+      "priority": 94,
+      "intents": ["conversational advertising", "conversational ads", "chat ads", "ai ad conversation", "interactive ad conversation", "conversation ad"],
+      "examples": ["Design a conversational ad flow without inventing user intent"],
+      "negative_examples": ["Plan standard display media"]
+    },
+    {
+      "skill": "agentic-commerce",
+      "priority": 96,
+      "intents": ["agentic commerce", "agent shopping", "ai shopping agent", "agent checkout", "machine buyer", "agent mediated shopping", "shopping agent"],
+      "examples": ["Prepare product truth for shopping agents and agent checkout"],
+      "negative_examples": ["Plan a human-only ecommerce landing page"]
+    },
+    {
+      "skill": "commerce-feed-intelligence",
+      "priority": 96,
+      "intents": ["commerce feed", "product feed", "merchant feed", "catalog feed", "feed quality", "product data quality", "structured commerce data"],
+      "examples": ["Audit product feed truth and completeness for commerce surfaces"],
+      "negative_examples": ["Choose creator compensation terms"]
+    },
+    {
+      "skill": "autonomous-media-operations",
+      "priority": 96,
+      "intents": ["autonomous media", "ai media buying", "media automation", "automated campaign operations", "agentic media", "automation authority", "media rollback"],
+      "examples": ["Define authority limits and rollback rules for autonomous media operations"],
+      "negative_examples": ["Create a manual media plan"]
+    },
+    {
+      "skill": "marketing-signal-strategy",
+      "priority": 95,
+      "intents": ["marketing signals", "signal strategy", "conversion signals", "value signals", "crm signals", "offline conversion", "signal quality", "optimization signals"],
+      "examples": ["Design higher-quality value signals for media automation"],
+      "negative_examples": ["Choose a brand slogan"]
+    },
+    {
+      "skill": "incrementality-design",
+      "priority": 98,
+      "intents": ["incrementality", "incremental roas", "incremental cac", "geo holdout", "holdout test", "counterfactual", "causal lift", "causal measurement"],
+      "examples": ["Design a geo holdout to estimate incremental ROAS"],
+      "negative_examples": ["Create a descriptive KPI dashboard"]
+    },
+    {
+      "skill": "creator-commerce",
+      "priority": 95,
+      "intents": ["creator commerce", "creator affiliate", "creator sales", "influencer commerce", "creator measurement", "creator discovery", "creator media"],
+      "examples": ["Design a creator program across media search affiliate and commerce"],
+      "negative_examples": ["Build a retail media plan without creators"]
+    },
+    {
+      "skill": "commerce-media-strategy",
+      "priority": 95,
+      "intents": ["commerce media", "retail media", "retailer media", "marketplace ads", "closed loop media", "retail media network", "shopper media"],
+      "examples": ["Plan retail media while correcting for closed-loop measurement bias"],
+      "negative_examples": ["Plan generic social media content"]
+    }
+  ]
+}

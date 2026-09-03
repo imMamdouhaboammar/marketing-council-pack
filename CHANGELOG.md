@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.4.0 - 2026-09-03
+
+- Fixed release-version drift that could leave the public ChatGPT/Codex plugin on an older submitted skill snapshot while GitHub contained newer skills.
+- Added a canonical dynamic skill router covering every focused Marketing Council skill with `marketing-council` as the conservative fallback for ambiguous or cross-functional requests.
+- Separated capability routing (`scripts/skill_router.py`) from the existing neural theory/agent router (`scripts/neural_router.py`).
+- Updated the main Marketing Council skill to route narrow requests directly to one focused skill and use the full council only when arbitration is needed.
+- Added release regression tests for 29-skill discovery metadata, route coverage, version consistency, explicit/implicit invocation contracts, and built OpenAI package completeness.
+- Added GitHub Actions verification for unit tests, distribution validation, deterministic package builds, and OpenAI plugin preflight.
+- Added an OpenAI release runbook explaining public skill snapshots, version bumps, resubmission, and post-publication smoke tests.
+- Updated OpenAI, Claude, root, and submission metadata to version 1.4.0.
+
 ## 1.3.0 - 2026-08-17
 
 - Added six specialist agents for AI discovery, agentic commerce, marketing automation governance, signal architecture, creator commerce, and commerce media.

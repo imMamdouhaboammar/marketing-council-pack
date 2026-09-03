@@ -2,3 +2,5 @@ interface:
   display_name: "Category Strategy"
   short_description: "Define category context and buying frame"
   default_prompt: "Use $category-strategy to define the category frame, buying context, alternatives, and strategic category choice."
+policy:
+  allow_implicit_invocation: true

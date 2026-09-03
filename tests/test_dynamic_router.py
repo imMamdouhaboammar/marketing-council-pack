@@ -70,6 +70,15 @@ class DynamicRouterTests(unittest.TestCase):
         self.assertTrue(result["fallback"])
         self.assertIn("handoff", result["reason"].lower())
 
+    def test_explicit_chain_over_max_nodes_falls_back_instead_of_truncating(self):
+        result = self._route(
+            "First diagnose the market, then choose target segments, position the product, set pricing tiers, build GTM, build the campaign strategy, then define the media strategy"
+        )
+        self.assertEqual(result["mode"], "council")
+        self.assertEqual(result["primary_skill"], "marketing-council")
+        self.assertTrue(result["fallback"])
+        self.assertIn("maximum", result["reason"].lower())
+
     def test_independent_research_can_run_in_parallel_before_positioning(self):
         result = self._route("Research customer switching triggers and competitor alternatives in parallel, then decide our positioning")
         self.assertEqual(result["mode"], "dag")

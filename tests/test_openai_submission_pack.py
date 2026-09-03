@@ -25,7 +25,7 @@ class OpenAISubmissionPackTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             output = Path(td)
             self.build(output)
-            archive = output / "skills" / "marketing-council-v1.4.0.zip"
+            archive = output / "skills" / "marketing-council-v1.5.0.zip"
             self.assertTrue(archive.exists(), archive)
             with zipfile.ZipFile(archive) as zf:
                 names = set(zf.namelist())

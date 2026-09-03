@@ -72,11 +72,11 @@ jobs:
       - name: Skill router regression tests
         run: python -m unittest tests.test_skill_router -v
 
-      - name: Omni full-pack contract tests
-        run: python -m unittest tests.test_omni_skill_packs -v
-
       - name: Dynamic DAG router tests
         run: python -m unittest tests.test_dynamic_router -v
+
+      - name: Omni full-pack contract tests
+        run: python -m unittest tests.test_omni_skill_packs -v
 
       - name: Run full unit test suite
         run: python -m unittest discover -s tests -v

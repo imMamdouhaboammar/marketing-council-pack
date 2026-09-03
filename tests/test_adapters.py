@@ -1,3 +1,4 @@
+import importlib.util
 import json
 import shutil
 import subprocess
@@ -46,6 +47,21 @@ class AdapterTests(unittest.TestCase):
             result = validate_pack(out)
             self.assertTrue(result['valid'], result['errors'])
             self.assertEqual(result['skill_count'], 29)
+
+    def test_build_dist_rejects_symlink_sources(self):
+        path = ROOT / "scripts" / "build_dist.py"
+        spec = importlib.util.spec_from_file_location("build_dist_under_test", path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            outside = root / "outside.txt"
+            outside.write_text("must not be packaged", encoding="utf-8")
+            source = root / "source"
+            source.mkdir()
+            (source / "leak.txt").symlink_to(outside)
+            with self.assertRaises(ValueError):
+                module.copy_tree_clean(source, root / "dest")
 
     def test_install_helpers_are_present(self):
         self.assertTrue((ROOT / 'install.sh').exists())

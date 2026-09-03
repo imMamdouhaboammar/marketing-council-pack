@@ -24,6 +24,11 @@ class SkillRouterTests(unittest.TestCase):
         self.assertEqual(payload["mode"], "focused")
         self.assertEqual(payload["primary_skill"], "pricing-strategy")
 
+    def test_routes_single_explicit_intent_to_focused_skill(self):
+        payload = self.route("Reduce churn")
+        self.assertEqual(payload["mode"], "focused")
+        self.assertEqual(payload["primary_skill"], "retention-strategy")
+
     def test_routes_conversion_friction_to_conversion_skill(self):
         payload = self.route("Audit checkout conversion friction and reduce form abandonment without inventing user research")
         self.assertEqual(payload["mode"], "focused")
@@ -33,6 +38,17 @@ class SkillRouterTests(unittest.TestCase):
         payload = self.route("Design a geo holdout test to estimate incremental ROAS and reconcile it with attribution")
         self.assertEqual(payload["mode"], "focused")
         self.assertEqual(payload["primary_skill"], "incrementality-design")
+
+    def test_negative_example_blocks_excluded_route(self):
+        payload = self.route("Write brand copy without competitor research")
+        self.assertNotEqual(payload["primary_skill"], "competitive-intelligence")
+
+    def test_two_distinct_strong_functions_fall_back_to_council(self):
+        payload = self.route("Build pricing tiers and discount guardrails while designing a creator commerce program")
+        self.assertEqual(payload["mode"], "council")
+        self.assertEqual(payload["primary_skill"], "marketing-council")
+        self.assertIn("pricing-strategy", payload["secondary_skills"])
+        self.assertIn("creator-commerce", payload["secondary_skills"])
 
     def test_cross_functional_request_falls_back_to_council(self):
         payload = self.route("Create the full go to market strategy including positioning, pricing, campaign, media, retention, and measurement")

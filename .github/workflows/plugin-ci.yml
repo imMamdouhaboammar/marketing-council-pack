@@ -9,12 +9,17 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -51,6 +56,15 @@ jobs:
       - name: Discovery CI release coverage
         run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_plugin_ci_runs_for_main_pushes_and_pull_requests -v
 
+      - name: Discovery CI token hardening
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_plugin_ci_uses_read_only_token_without_persisted_credentials -v
+
+      - name: Discovery adapter release consistency
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_adapter_docs_reference_current_release_and_skill_inventory -v
+
+      - name: Discovery release preflight safety
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_release_preflight_validates_exact_current_archive_in_fresh_directory -v
+
       - name: Discovery release snapshot runbook
         run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_release_notes_include_resubmission_requirement_for_snapshot_skills -v
 
@@ -71,11 +85,15 @@ jobs:
 
       - name: Validate OpenAI plugin package
         run: |
+          rm -rf /tmp/marketing-council-openai
           mkdir -p /tmp/marketing-council-openai
           python - <<'PY'
-          import pathlib, zipfile
-          root = pathlib.Path('/tmp/marketing-council-dist')
-          archive = next(root.glob('marketing-council-openai-plugin-v*.zip'))
+          import json, pathlib, zipfile
+          repo = pathlib.Path('.').resolve()
+          version = json.loads((repo / '.codex-plugin' / 'plugin.json').read_text(encoding='utf-8'))['version']
+          archive = pathlib.Path('/tmp/marketing-council-dist') / f'marketing-council-openai-plugin-v{version}.zip'
+          if not archive.is_file():
+              raise SystemExit(f'missing current release archive: {archive}')
           out = pathlib.Path('/tmp/marketing-council-openai')
           with zipfile.ZipFile(archive) as zf:
               zf.extractall(out)

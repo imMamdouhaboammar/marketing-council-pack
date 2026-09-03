@@ -1,11 +1,11 @@
 import json
 import re
+import subprocess
+import sys
 import tempfile
 import unittest
 import zipfile
 from pathlib import Path
-
-from scripts.build_openai_submission_pack import build_submission_pack
 
 ROOT = Path(__file__).resolve().parents[1]
 ROUTES = json.loads((ROOT / "routing" / "skill-routes.json").read_text(encoding="utf-8"))
@@ -163,8 +163,20 @@ class OmniSkillPackTests(unittest.TestCase):
     def test_standalone_openai_bundles_carry_local_contracts_and_evals(self):
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "submission"
-            result = build_submission_pack(out)
-            self.assertEqual(result["skill_bundle_count"], 29)
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "build_openai_submission_pack.py"),
+                    "--output-root",
+                    str(out),
+                    "--json",
+                ],
+                text=True,
+                capture_output=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertEqual(payload["skill_bundle_count"], 29)
             inventory = json.loads((out / "submission-inventory.json").read_text(encoding="utf-8"))
             for item in inventory["skills"]:
                 slug = item["name"]

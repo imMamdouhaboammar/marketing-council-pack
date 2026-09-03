@@ -65,6 +65,13 @@
       "outputs": ["commerce media strategy", "retailer role map", "measurement guardrails"],
       "baseline_failures": ["accepting closed-loop ROAS as incremental", "retailer-by-retailer duplication", "ignoring margin"]
     },
+    "competitive-intelligence": {
+      "purpose": "Map real competitive alternatives, substitutes, rival moves, and defensibility without collapsing into positioning or generic research",
+      "decision": "competitive intelligence assessment",
+      "evidence": ["competitor and substitute evidence", "customer switching alternatives", "market and capability signals"],
+      "outputs": ["competitive landscape map", "threat and opportunity assessment", "decision-relevant competitor watchlist"],
+      "baseline_failures": ["listing competitors without decision implications", "treating competitor claims as verified facts", "copying rival tactics instead of testing strategic relevance"]
+    },
     "content-strategy": {
       "purpose": "Define content jobs, formats, cadence, and distribution tied to audience decisions",
       "decision": "content portfolio",

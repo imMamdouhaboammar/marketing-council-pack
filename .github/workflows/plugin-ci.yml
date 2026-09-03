@@ -3,6 +3,7 @@ name: Plugin CI
 on:
   push:
     branches:
+      - main
       - fix/chatgpt-plugin-discovery-routing
   pull_request:
     branches:
@@ -44,6 +45,12 @@ jobs:
       - name: Discovery discriminative skill descriptions
         run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_skill_descriptions_are_discriminative_enough_for_implicit_routing -v
 
+      - name: Discovery public skill-count consistency
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_public_surfaces_report_29_total_and_28_focused_skills -v
+
+      - name: Discovery CI release coverage
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_plugin_ci_runs_for_main_pushes_and_pull_requests -v
+
       - name: Discovery release snapshot runbook
         run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_release_notes_include_resubmission_requirement_for_snapshot_skills -v
 
@@ -58,6 +65,9 @@ jobs:
 
       - name: Build host packages
         run: python scripts/build_host_packages.py --output-root /tmp/marketing-council-dist
+
+      - name: Build OpenAI submission skill bundles
+        run: python scripts/build_openai_submission_pack.py --output-root /tmp/marketing-council-submission --json
 
       - name: Validate OpenAI plugin package
         run: |

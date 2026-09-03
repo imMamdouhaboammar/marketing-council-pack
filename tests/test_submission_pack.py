@@ -1,9 +1,12 @@
 import json
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PACK = ROOT / "submission" / "submission-pack.json"
+VALIDATOR = ROOT / "scripts" / "validate_submission_pack.py"
 
 
 class SubmissionPackTests(unittest.TestCase):
@@ -56,6 +59,21 @@ class SubmissionPackTests(unittest.TestCase):
         )
         self.assertIn("public ChatGPT/Codex publication", pack["release_boundary"])
         self.assertIn("not performed", pack["release_boundary"])
+
+    def test_repo_validator_accepts_current_submission_draft(self):
+        self.assertTrue(VALIDATOR.is_file(), "scripts/validate_submission_pack.py must exist")
+        result = subprocess.run(
+            [sys.executable, str(VALIDATOR), str(PACK), "--json"],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        payload = json.loads(result.stdout)
+        self.assertTrue(payload["ok"], payload)
+        self.assertEqual(payload["positive_cases"], 5)
+        self.assertEqual(payload["negative_cases"], 3)
+        self.assertEqual(payload["pack_status"], "PARTIAL_MISSING_INPUT")
 
     def test_release_notes_include_late_router_and_symlink_hardening(self):
         pack = self.load()

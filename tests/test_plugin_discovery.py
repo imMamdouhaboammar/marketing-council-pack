@@ -1,6 +1,10 @@
 import json
 import re
+import subprocess
+import sys
+import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,11 +30,13 @@ class PluginDiscoveryTests(unittest.TestCase):
         openai_manifest = read_json(ROOT / ".codex-plugin" / "plugin.json")
         claude_manifest = read_json(ROOT / ".claude-plugin" / "plugin.json")
         claude_marketplace = read_json(ROOT / ".claude-plugin" / "marketplace.json")
+        listing = read_json(ROOT / "submission" / "listing.json")
         self.assertEqual(root_manifest["version"], EXPECTED_VERSION)
         self.assertEqual(openai_manifest["version"], EXPECTED_VERSION)
         self.assertEqual(claude_manifest["version"], EXPECTED_VERSION)
         self.assertEqual(claude_marketplace["version"], EXPECTED_VERSION)
         self.assertEqual(claude_marketplace["plugins"][0]["version"], EXPECTED_VERSION)
+        self.assertEqual(listing["version"], EXPECTED_VERSION)
 
     def test_dynamic_router_exists_and_covers_every_focused_skill(self):
         router_path = ROOT / "routing" / "skill-routes.json"
@@ -48,6 +54,35 @@ class PluginDiscoveryTests(unittest.TestCase):
             self.assertIsInstance(route.get("priority"), int, route)
             self.assertTrue(route.get("examples"), route)
             self.assertTrue(route.get("negative_examples"), route)
+
+    def test_executable_router_selects_narrow_skills_and_falls_back_for_cross_functional(self):
+        script = ROOT / "scripts" / "skill_router.py"
+        self.assertTrue(script.exists(), script)
+        cases = {
+            "Help me set a pricing architecture and discount guardrails": "pricing-strategy",
+            "Design a geo holdout to estimate incremental ROAS": "incrementality-design",
+            "Improve our creator affiliate program and creator measurement": "creator-commerce",
+        }
+        for prompt, expected in cases.items():
+            result = subprocess.run(
+                [sys.executable, str(script), "--text", prompt, "--json"],
+                text=True,
+                capture_output=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertEqual(payload["selected_skill"], expected, payload)
+            self.assertFalse(payload["fallback"], payload)
+
+        result = subprocess.run(
+            [sys.executable, str(script), "--text", "Build the complete marketing strategy across positioning, pricing, media, campaign, retention, and measurement", "--json"],
+            text=True,
+            capture_output=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["selected_skill"], "marketing-council", payload)
+        self.assertTrue(payload["fallback"], payload)
 
     def test_main_skill_declares_dynamic_router_and_safe_fallback(self):
         text = (ROOT / "skills" / "marketing-council" / "SKILL.md").read_text(encoding="utf-8")
@@ -100,6 +135,37 @@ class PluginDiscoveryTests(unittest.TestCase):
             descriptions[definition.parent.name] = description.casefold()
         self.assertEqual(len(set(descriptions.values())), 29)
 
+    def test_submission_builder_outputs_29_self_contained_skill_bundles(self):
+        builder = ROOT / "scripts" / "build_openai_submission_pack.py"
+        self.assertTrue(builder.exists(), builder)
+        with tempfile.TemporaryDirectory() as td:
+            result = subprocess.run(
+                [sys.executable, str(builder), "--output-root", td, "--json"],
+                text=True,
+                capture_output=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertEqual(payload["version"], EXPECTED_VERSION)
+            self.assertEqual(payload["skill_bundle_count"], 29)
+
+            inventory = read_json(Path(td) / "submission-inventory.json")
+            self.assertEqual(len(inventory["skills"]), 29)
+            self.assertEqual({item["name"] for item in inventory["skills"]}, {
+                path.parent.name for path in skill_definitions()
+            })
+
+            archives = sorted((Path(td) / "skills").glob("*.zip"))
+            self.assertEqual(len(archives), 29)
+            for archive in archives:
+                with zipfile.ZipFile(archive) as zf:
+                    names = set(zf.namelist())
+                    skill_md = [name for name in names if name.endswith("/SKILL.md")]
+                    self.assertEqual(len(skill_md), 1, archive)
+                    text = zf.read(skill_md[0]).decode("utf-8")
+                    self.assertNotIn("../../", text, archive)
+                    self.assertIn("/agents/openai.yaml", "\n".join(sorted(names)), archive)
+
     def test_release_notes_include_resubmission_requirement_for_snapshot_skills(self):
         path = ROOT / "docs" / "OPENAI_RELEASE.md"
         self.assertTrue(path.exists(), path)
@@ -108,6 +174,7 @@ class PluginDiscoveryTests(unittest.TestCase):
         self.assertIn("resubmit", text)
         self.assertIn("29", text)
         self.assertIn("plugin submission", text)
+        self.assertIn("standalone", text)
 
 
 if __name__ == "__main__":

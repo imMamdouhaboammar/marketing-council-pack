@@ -35,4 +35,4 @@ claude plugin validate . --strict
 python scripts/build_host_packages.py --output-root dist/release
 ```
 
-The generated `dist/release/marketing-council-claude-marketplace-v1.4.0.zip` is the self-contained v1.4.0 local marketplace. Its marketplace entry points to `./plugins/marketing-council`, so the extracted package does not depend on files outside the release artifact.
+The generated `dist/release/marketing-council-claude-marketplace-v1.5.0.zip` is the self-contained v1.5.0 local marketplace. Its marketplace entry points to `./plugins/marketing-council`, so the extracted package does not depend on files outside the release artifact.

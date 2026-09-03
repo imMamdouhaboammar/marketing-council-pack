@@ -15,7 +15,7 @@ class AdapterTests(unittest.TestCase):
     def test_manifest_declares_core_components(self):
         manifest = json.loads((ROOT / 'manifest.json').read_text(encoding='utf-8'))
         self.assertEqual(manifest['name'], 'marketing-council')
-        self.assertEqual(manifest['version'], '1.4.0')
+        self.assertEqual(manifest['version'], '1.5.0')
         self.assertEqual(manifest['entry_skill'], 'skills/marketing-council/SKILL.md')
         self.assertGreaterEqual(len(manifest['focused_skills']), 10)
         self.assertIn('claude', manifest['adapters'])

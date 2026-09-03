@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "bindings": {
+    "agentic-commerce": {
+      "primary_agent": "agentic-commerce-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "agentic-commerce-readiness",
+      "rationale": "Product truth, policy, authority, and transaction readiness must be challenged before agent-mediated buying is recommended."
+    },
+    "ai-discovery-strategy": {
+      "primary_agent": "ai-discovery-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "ai-surface-check",
+      "rationale": "AI discovery claims depend on current answer-surface behavior and must stay evidence-bound."
+    },
+    "autonomous-media-operations": {
+      "primary_agent": "marketing-automation-governor",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "automation-authority-check",
+      "rationale": "Automated media requires explicit authority, monitoring, rollback, and human escalation boundaries."
+    },
+    "behavioral-marketing": {
+      "primary_agent": "behavior-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "causal-mechanism-check",
+      "rationale": "Behavioral interventions require a plausible mechanism rather than decorative psychology labels."
+    },
+    "brand-strategy": {
+      "primary_agent": "brand-equity-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "horizon-balance-check",
+      "rationale": "Brand choices must reconcile memory effects, commercial outcomes, and short-versus-long horizon trade-offs."
+    },
+    "campaign-strategy": {
+      "primary_agent": "creative-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "anti-generic-marketing",
+      "rationale": "Campaign direction must be distinctive to the diagnosed job instead of collapsing into generic creative advice."
+    },
+    "category-strategy": {
+      "primary_agent": "market-architect",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "category-maturity-check",
+      "rationale": "Category decisions depend on category maturity, competitive frame, and the market structure actually observed."
+    },
+    "commerce-feed-intelligence": {
+      "primary_agent": "agentic-commerce-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "commerce-feed-readiness",
+      "rationale": "Merchant and product feeds must be complete, current, consistent, and policy-safe before downstream automation relies on them."
+    },
+    "commerce-media-strategy": {
+      "primary_agent": "commerce-media-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "closed-loop-bias-check",
+      "rationale": "Closed-loop commerce signals can overstate causality and require explicit bias and incrementality scrutiny."
+    },
+    "competitive-intelligence": {
+      "primary_agent": "competitive-strategy-analyst",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "pre-mortem",
+      "rationale": "Competitive conclusions need substitute analysis and adversarial testing rather than competitor feature copying."
+    },
+    "content-strategy": {
+      "primary_agent": "creative-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "anti-generic-marketing",
+      "rationale": "Content decisions need a specific audience job, role, and distribution logic rather than a generic editorial calendar."
+    },
+    "conversational-advertising": {
+      "primary_agent": "response-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "ai-surface-check",
+      "rationale": "Conversational ad flows must progress real intent without inventing context or overstating AI surface behavior."
+    },
+    "conversion-strategy": {
+      "primary_agent": "response-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "causal-mechanism-check",
+      "rationale": "Conversion changes must connect observed friction to a plausible behavioral mechanism and business outcome."
+    },
+    "creator-commerce": {
+      "primary_agent": "creator-commerce-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "creator-measurement-check",
+      "rationale": "Creator recommendations must separate discovery, media, affiliate, commerce, and incremental value."
+    },
+    "customer-research": {
+      "primary_agent": "audience-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "customer-language-check",
+      "rationale": "Customer research must preserve observed language and buying situations without fabricating psychology or prevalence."
+    },
+    "go-to-market": {
+      "primary_agent": "channel-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "strategy-before-tactics",
+      "rationale": "GTM sequencing must follow a diagnosed market and route-to-market choice before channel execution."
+    },
+    "incrementality-design": {
+      "primary_agent": "measurement-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "incrementality-required",
+      "rationale": "Counterfactual claims require an explicit incremental design rather than attribution-only evidence."
+    },
+    "market-diagnosis": {
+      "primary_agent": "market-architect",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "strategy-before-tactics",
+      "rationale": "Market diagnosis must establish the commercial problem before tactics or channel prescriptions are allowed."
+    },
+    "marketing-experimentation": {
+      "primary_agent": "measurement-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "causal-mechanism-check",
+      "rationale": "Experiments need a falsifiable mechanism, decision rule, and interpretation boundary."
+    },
+    "marketing-measurement": {
+      "primary_agent": "measurement-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "closed-loop-bias-check",
+      "rationale": "Measurement architecture must distinguish platform attribution, business outcomes, and causal evidence."
+    },
+    "marketing-signal-strategy": {
+      "primary_agent": "marketing-signal-architect",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "marketing-signal-quality",
+      "rationale": "Automation signals require quality, freshness, provenance, and value semantics before optimization."
+    },
+    "media-strategy": {
+      "primary_agent": "channel-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "horizon-balance-check",
+      "rationale": "Media allocation must reconcile reach, channel role, commercial constraints, and time horizon."
+    },
+    "offer-strategy": {
+      "primary_agent": "response-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "commercial-reality-check",
+      "rationale": "Offer architecture must connect proof and proposition to margin, capacity, and commercial reality."
+    },
+    "positioning-strategy": {
+      "primary_agent": "positioning-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "category-maturity-check",
+      "rationale": "Positioning choices depend on category frame, alternatives, maturity, and credible differentiation."
+    },
+    "pricing-strategy": {
+      "primary_agent": "commercial-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "commercial-reality-check",
+      "rationale": "Pricing architecture must connect willingness to pay, economics, discount rules, and commercial constraints."
+    },
+    "product-marketing": {
+      "primary_agent": "product-marketing-director",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "customer-language-check",
+      "rationale": "Product story and launch messaging must connect demonstrable product truth to customer language and buying criteria."
+    },
+    "retention-strategy": {
+      "primary_agent": "lifecycle-strategist",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "commercial-reality-check",
+      "rationale": "Retention choices must distinguish lifecycle causes from acquisition quality and respect unit economics."
+    },
+    "segmentation-strategy": {
+      "primary_agent": "market-architect",
+      "counterweight_agent": "marketing-skeptic",
+      "primary_hook": "decision-stage-check",
+      "rationale": "Segmentation must improve an actual decision and avoid substituting demographic labels for buying behavior."
+    }
+  }
+}

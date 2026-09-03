@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.5.0 - 2026-09-04
+
+- Fully rendered all 29 Agent Skills as local behavioral and execution packs with decision, evidence, failure-mode, output, and eval artifacts.
+- Added canonical execution bindings for all 28 focused Skills, mapping each to a primary specialist, skeptical counterweight, domain challenge gate, and evidence gate.
+- Preserved three distinct routing layers: deterministic Skill Router, bounded Dynamic DAG Router, and post-ownership Neural Router.
+- Fixed root routing metadata so `dynamic_router` points to `scripts/dynamic_router.py` instead of the single-Skill router.
+- Hardened Council standalone packaging so all 28 embedded focused modules resolve agent, hook, routing, neural, and tool dependencies through bundle-local shared resources.
+- Added renderer-drift, execution-binding, behavioral-eval, evidence-ledger, release-integrity, and standalone-package regression gates.
+- Public OpenAI availability still requires a v1.5.0 submission or resubmission and fresh-chat verification after publication.
+
 ## 1.4.0 - 2026-09-03
 
 - Fixed release-version drift that could leave the public ChatGPT/Codex plugin on an older submitted skill snapshot while GitHub contained newer skills.

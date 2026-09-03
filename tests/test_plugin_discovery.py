@@ -166,6 +166,31 @@ class PluginDiscoveryTests(unittest.TestCase):
                     self.assertNotIn("../../", text, archive)
                     self.assertIn("/agents/openai.yaml", "\n".join(sorted(names)), archive)
 
+    def test_public_surfaces_report_29_total_and_28_focused_skills(self):
+        manifest = read_json(ROOT / "manifest.json")
+        openai = read_json(ROOT / ".codex-plugin" / "plugin.json")
+        claude = read_json(ROOT / ".claude-plugin" / "plugin.json")
+        listing = read_json(ROOT / "submission" / "listing.json")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+
+        self.assertEqual(len(skill_definitions()), 29)
+        self.assertEqual(len(manifest["focused_skills"]), 28)
+        self.assertNotIn("29 focused skills", manifest["description"].lower())
+        self.assertNotIn("29 focused skills", openai["description"].lower())
+        self.assertNotIn("29 focused skills", claude["description"].lower())
+        self.assertNotIn("29 focused skills", listing["description"].lower())
+        self.assertNotIn("29 focused skills", readme.lower())
+        self.assertIn("29 Agent Skills", readme)
+        self.assertIn("28 focused", readme)
+        self.assertIn("version-1.4.0", readme)
+        self.assertIn("Agent%20Skills-29", readme)
+        self.assertIn("Specialist%20Agents-24", readme)
+
+    def test_plugin_ci_runs_for_main_pushes_and_pull_requests(self):
+        workflow = (ROOT / ".github" / "workflows" / "plugin-ci.yml").read_text(encoding="utf-8")
+        self.assertRegex(workflow, r"(?ms)push:\s*branches:\s*-\s+main")
+        self.assertRegex(workflow, r"(?ms)pull_request:\s*branches:\s*-\s+main")
+
     def test_release_notes_include_resubmission_requirement_for_snapshot_skills(self):
         path = ROOT / "docs" / "OPENAI_RELEASE.md"
         self.assertTrue(path.exists(), path)

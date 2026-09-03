@@ -58,10 +58,50 @@ def copy_clean(src: Path, dst: Path) -> None:
 
 
 def rewrite_skill_paths(text: str) -> str:
+    """Rewrite a standalone skill root to use bundle-local shared resources."""
     rewritten = text
     for directory in SHARED_DIRS:
         rewritten = rewritten.replace(f"../../{directory}/", f"shared/{directory}/")
+    rewritten = rewritten.replace(
+        "load the matching focused skill under `../`",
+        "load the matching focused module under `skills/`",
+    )
+    rewritten = rewritten.replace(
+        "load a focused sibling skill",
+        "load a focused module from `skills/`",
+    )
     return rewritten
+
+
+def rewrite_nested_module_paths(text: str) -> str:
+    """Rewrite a focused module nested at skills/<slug>/ inside the council bundle."""
+    rewritten = text
+    for directory in SHARED_DIRS:
+        rewritten = rewritten.replace(
+            f"../../{directory}/",
+            f"../../shared/{directory}/",
+        )
+    return rewritten
+
+
+def copy_focused_module(src: Path, dst: Path) -> None:
+    """Copy one focused skill into the council bundle with valid nested paths."""
+    dst.mkdir(parents=True, exist_ok=True)
+    for path in sorted(src.rglob("*")):
+        if path.is_dir():
+            continue
+        rel = path.relative_to(src)
+        if any(part in SKIP_PARTS for part in rel.parts):
+            continue
+        if path.suffix in {".pyc", ".pyo"}:
+            continue
+        target = dst / rel
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if rel.as_posix() == "SKILL.md":
+            text = rewrite_nested_module_paths(path.read_text(encoding="utf-8"))
+            target.write_text(text, encoding="utf-8")
+        else:
+            shutil.copy2(path, target)
 
 
 def deterministic_zip(source: Path, archive: Path, prefix: str) -> Path:
@@ -105,6 +145,15 @@ def build_skill_bundle(skill_dir: Path, output_dir: Path, ver: str) -> Path:
         for directory in SHARED_DIRS:
             copy_clean(ROOT / directory, shared / directory)
 
+        if slug == "marketing-council":
+            for focused_dir in sorted((ROOT / "skills").iterdir()):
+                if not focused_dir.is_dir() or focused_dir.name == slug:
+                    continue
+                copy_focused_module(
+                    focused_dir,
+                    bundle / "skills" / focused_dir.name,
+                )
+
         metadata = bundle / "agents" / "openai.yaml"
         if not metadata.is_file():
             raise ValueError(f"missing agents/openai.yaml for {slug}")
@@ -121,8 +170,11 @@ def build_submission_pack(output_root: Path) -> dict:
     output_root.mkdir(parents=True, exist_ok=True)
     skill_output = output_root / "skills"
     plugin_output = output_root / "plugin"
-    skill_output.mkdir(parents=True, exist_ok=True)
-    plugin_output.mkdir(parents=True, exist_ok=True)
+
+    for directory in (skill_output, plugin_output):
+        if directory.exists():
+            shutil.rmtree(directory)
+        directory.mkdir(parents=True, exist_ok=True)
 
     plugin_archive = build_openai(plugin_output, ver)
     skills = []

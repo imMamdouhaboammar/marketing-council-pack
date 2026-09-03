@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import unittest
 from pathlib import Path
 
@@ -26,6 +27,14 @@ class DynamicRouterTests(unittest.TestCase):
         self.assertIn("reason", result)
         self.assertIn("fallback", result)
         return result
+
+    def test_stage_order_registry_covers_every_focused_skill_once(self):
+        routes = json.loads((ROOT / "routing" / "skill-routes.json").read_text(encoding="utf-8"))
+        handoffs = json.loads((ROOT / "routing" / "skill-handoffs.json").read_text(encoding="utf-8"))
+        focused = [route["skill"] for route in routes["routes"]]
+        stage_order = handoffs["stage_order"]
+        self.assertEqual(len(stage_order), len(set(stage_order)))
+        self.assertEqual(set(stage_order), set(focused))
 
     def test_single_dominant_function_stays_focused(self):
         result = self._route("Set pricing tiers and discount guardrails for our subscription")

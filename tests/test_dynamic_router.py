@@ -56,6 +56,20 @@ class DynamicRouterTests(unittest.TestCase):
         self.assertIn(["positioning-strategy", "pricing-strategy"], result["edges"])
         self.assertIn(["pricing-strategy", "go-to-market"], result["edges"])
 
+    def test_explicit_sequence_is_not_silently_reordered(self):
+        result = self._route("Set pricing tiers first, then research customers before finalizing anything")
+        self.assertEqual(result["mode"], "council")
+        self.assertEqual(result["primary_skill"], "marketing-council")
+        self.assertTrue(result["fallback"])
+        self.assertIn("handoff", result["reason"].lower())
+
+    def test_unmodeled_skill_in_explicit_chain_is_not_silently_dropped(self):
+        result = self._route("Define the brand strategy first, then build the campaign strategy")
+        self.assertEqual(result["mode"], "council")
+        self.assertEqual(result["primary_skill"], "marketing-council")
+        self.assertTrue(result["fallback"])
+        self.assertIn("handoff", result["reason"].lower())
+
     def test_independent_research_can_run_in_parallel_before_positioning(self):
         result = self._route("Research customer switching triggers and competitor alternatives in parallel, then decide our positioning")
         self.assertEqual(result["mode"], "dag")

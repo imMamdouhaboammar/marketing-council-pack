@@ -4,42 +4,121 @@
 
 # Marketing Council
 
-### Stop asking AI for marketing ideas. Make it defend a marketing decision.
+### Make the model diagnose, route, challenge, and defend the marketing decision before it writes tactics
 
-**29 Agent Skills. 24 specialist agents. 25 marketing figures. 46 applied theories. One connected decision process.**
+**29 Agent Skills. 28 focused skills + 1 Council router. 24 specialist agents. 25 marketing figures. 46 applied theories.**
 
-Marketing Council makes ChatGPT, Codex, Claude Code, and compatible AI agents diagnose the business problem, compare competing strategic views, check evidence and economics, challenge weak assumptions, and only then recommend tactics.
-
-[![Version](https://img.shields.io/badge/version-1.3.0-173F35)](CHANGELOG.md)
-[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-20-173F35)](skills/)
-[![Specialist Agents](https://img.shields.io/badge/Specialist%20Agents-18-173F35)](agents/)
+[![Version](https://img.shields.io/badge/version-1.4.0-173F35)](CHANGELOG.md)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-29-173F35)](skills/)
+[![Specialist Agents](https://img.shields.io/badge/Specialist%20Agents-24-173F35)](agents/)
 [![License](https://img.shields.io/badge/license-MIT-173F35)](LICENSE)
 
 </div>
 
-## The Neural Marketing Graph
+Marketing Council is a cross-agent marketing strategy plugin for ChatGPT, Codex, Claude Code, and compatible Agent Skills hosts
 
-Marketing Council v1.2 adds an explicit connection graph instead of leaving theory selection hidden inside prompts.
+It does two different routing jobs that should not be confused
+
+1. The **skill router** decides which of the 28 focused marketing skills owns the request, or falls back to `marketing-council` when the brief is ambiguous or cross-functional
+2. The **neural router** works inside the selected marketing problem to rank relevant schools, theories, principles, specialist agents, and counterweights
+
+The goal is not to produce a longer brainstorm. The goal is to make one defensible marketing decision with explicit evidence, assumptions, trade-offs, measurement, and reversal criteria
+
+## What changed in v1.4.0
+
+Version 1.4.0 hardens plugin discovery and public distribution
+
+- 29 total Agent Skills are declared and validated
+- 28 focused skills are covered exactly once by the canonical route registry
+- `marketing-council` is the 29th skill and the safe fallback for cross-functional or ambiguous requests
+- every skill has `agents/openai.yaml` interface metadata
+- every skill explicitly allows implicit invocation
+- the plugin has a deterministic skill router in `scripts/skill_router.py`
+- the existing neural marketing router remains separate in `scripts/neural_router.py`
+- OpenAI submission packaging can produce 29 standalone, self-contained skill ZIPs
+- release metadata is version-locked across public manifests and submission listing
+- CI tests discovery, routing, packaging, standalone skill generation, and OpenAI package validation
+- the OpenAI release runbook explicitly requires resubmission when public skill content changes
+
+See [`docs/OPENAI_RELEASE.md`](docs/OPENAI_RELEASE.md) for the release and post-publication verification process
+
+## Architecture
 
 ```text
-HOOKS -> SIGNALS -> SCHOOLS / THEORIES -> AGENTS -> SKILLS -> CHALLENGE -> DECISION
+USER REQUEST
+     |
+     v
+SKILL ROUTER
+routing/skill-routes.json
+scripts/skill_router.py
+     |
+     +--> one dominant function --> focused skill
+     |
+     +--> ambiguous / cross-functional --> marketing-council
+                                         |
+                                         v
+                                   DIAGNOSIS + EVIDENCE
+                                         |
+                                         v
+                                   NEURAL ROUTER
+                              neural/graph.json
+                              scripts/neural_router.py
+                                         |
+                                         v
+                         SCHOOLS / THEORIES / AGENTS
+                                         |
+                                         v
+                              CHALLENGE + DECISION
 ```
 
-The graph currently connects:
+### Skill router
 
-- **25 marketing figures and practitioners** as source-linked decision cards
-- **19 schools of thought**
-- **44 principles**
-- **46 applied theories**
-- **23 diagnostic signals**
-- **24 specialist agents**
-- **29 focused skills**
-- **14 challenge hooks**
-- **682 explicit connections**
+The skill router answers a product-level question
 
-This means a mature category with weak differentiation can activate positioning and competitive-strategy specialists, while a conversion problem caused by friction can route toward behavioral diagnosis instead of automatically asking for stronger copy.
+> Which skill should own this request?
 
-Try the deterministic router:
+It uses `routing/skill-routes.json`, where every focused skill has
+
+- canonical intent phrases
+- positive examples
+- negative examples
+- priority
+
+The router is conservative. If several functions are strongly active, it does not force the request into one narrow skill. It returns to `marketing-council`
+
+Try it directly
+
+```bash
+python scripts/skill_router.py \
+  --text "Design a geo holdout to estimate incremental ROAS" \
+  --json
+```
+
+Expected primary skill
+
+```text
+incrementality-design
+```
+
+Cross-functional example
+
+```bash
+python scripts/skill_router.py \
+  --text "Build positioning, pricing, media, campaign, retention, and measurement strategy" \
+  --json
+```
+
+Expected primary skill
+
+```text
+marketing-council
+```
+
+### Neural router
+
+The neural router answers a different question
+
+> Which marketing lenses, theories, agents, and counterweights are relevant after we understand the problem?
 
 ```bash
 python scripts/neural_router.py \
@@ -47,312 +126,78 @@ python scripts/neural_router.py \
   --json
 ```
 
-The graph also stores explicit counterweights. A narrow-entry-audience principle can be challenged by penetration-growth logic; short-response accountability can be challenged by longer-horizon effectiveness; positioning focus can be challenged by broad mental-availability requirements.
-
-## Marketing schools in the graph
-
-The figure cards are not personas. They are source pointers into different ways of making marketing decisions.
-
-| School | Figures represented | What it changes |
-|---|---|---|
-| Marketing management | Philip Kotler, Kevin Lane Keller | Market definition, STP, value and mix decisions |
-| Customer-centered market definition | Theodore Levitt, Peter Drucker | What business and customer problem are actually being served |
-| Positioning and category strategy | Al Ries, Jack Trout, April Dunford | Competitive alternatives, category frame, reason to prefer |
-| Direct response and scientific advertising | Claude Hopkins, David Ogilvy, Rosser Reeves | Offer, proof, proposition, testing, response |
-| Awareness and sophistication | Eugene Schwartz | Message depth, mechanism, proof burden, directness |
-| Marketing science and brand growth | Andrew Ehrenberg, Byron Sharp | Penetration, mental availability, physical availability, buying patterns |
-| Brand equity | David Aaker, Kevin Lane Keller | Associations, salience, perceived quality, brand architecture |
-| Behavioral science and choice design | Robert Cialdini, BJ Fogg, Richard Thaler, Rory Sutherland | Friction, prompts, defaults, framing, uncertainty |
-| Creative advertising | Bill Bernbach, David Ogilvy, Rory Sutherland | Translation from strategy into attention and memorable communication |
-| Product narrative and demonstration | Steve Jobs | Focus, demonstration, product truth, launch story |
-| Permission and remarkability | Seth Godin | Entry audience, relevance, voluntary attention |
-| Competitive strategy | Michael Porter | Substitutes, rivalry, bargaining power, defensibility |
-| Marketing effectiveness | Les Binet, Peter Field | Short and longer horizons, business effects, objective balance |
-| Jobs to Be Done | Clayton Christensen | Buying circumstances, progress, switching triggers, alternatives |
-
-A named figure can never settle a debate. The graph carries the principle into the decision, then applies a counterweight when another school has a credible competing explanation.
-
-## 2026 AI-mediated marketing layer
-
-Version 1.3 adds a dated evidence layer for market changes that should not be confused with timeless marketing theory. The neural router can now activate dedicated paths for:
-
-- AI-mediated search, answer surfaces, and conversational advertising
-- Agentic commerce, machine-readable product truth, and commerce-feed readiness
-- Autonomous media decision rights, signal quality, and rollback governance
-- Incrementality, MMM, counterfactual design, and closed-loop bias
-- Creator commerce and creator-role-specific measurement
-- Commerce media across retailers, marketplaces, social commerce, and purchase-data environments
-- Synthetic creative hypothesis families and provenance checks
-
-Current platform claims live under `references/2026/` with dated source IDs. The Council must re-check those facts when they are load-bearing.
-
-
-## The problem
-
-Most AI marketing sessions collapse into the same pattern:
-
-> "Try short-form video. Build awareness. Create valuable content. Test different creatives. Track KPIs."
-
-That is not strategy. It is a list of familiar activities.
-
-Marketing Council changes the sequence.
-
-```text
-UNDERSTAND
-  -> DIAGNOSE
-  -> RESEARCH
-  -> DISPATCH
-  -> DEBATE
-  -> CHALLENGE
-  -> DECIDE
-  -> PLAN
-  -> EXECUTE
-  -> MEASURE
-  -> LEARN
-```
-
-If the evidence says the requested tactic is wrong, the Council should reject it. If the economics do not support the campaign, it should say so. If two marketing schools point in different directions, it should preserve the disagreement until the deciding factors are clear.
-
-## Install in 30 seconds
-
-### Any agent supported by Skills CLI
-
-Install every Marketing Council skill to every supported agent:
-
-```bash
-npx skills add imMamdouhaboammar/marketing-council-pack --all -y
-```
-
-See what the repository contains before installing:
-
-```bash
-npx skills add imMamdouhaboammar/marketing-council-pack --list
-```
-
-Install all skills globally for Codex only:
-
-```bash
-npx skills add imMamdouhaboammar/marketing-council-pack --skill '*' -g -a codex -y
-```
-
-Install all skills globally for Claude Code only:
-
-```bash
-npx skills add imMamdouhaboammar/marketing-council-pack --skill '*' -g -a claude-code -y
-```
-
-Install only the main Council skill:
-
-```bash
-npx skills add imMamdouhaboammar/marketing-council-pack --skill marketing-council -g -y
-```
-
-Run the main skill without installing it:
-
-```bash
-npx skills use imMamdouhaboammar/marketing-council-pack --skill marketing-council --agent codex
-```
-
-Update installed global skills:
-
-```bash
-npx skills update -g -y
-```
-
-> `npx skills` installs Agent Skills. For Claude's 18 native specialist subagents, use the Claude marketplace installation below.
-
-## ChatGPT + Codex plugin
-
-Marketing Council includes a native `.codex-plugin/plugin.json`, OpenAI metadata for all 29 skills, repository marketplace metadata, brand assets, and the 24 specialist role files used by the Council.
-
-Add the repository marketplace:
-
-```bash
-codex plugin marketplace add imMamdouhaboammar/marketing-council-pack
-```
-
-Inspect or refresh it:
-
-```bash
-codex plugin marketplace list
-codex plugin marketplace upgrade marketing-council
-```
-
-In the ChatGPT desktop app, open the Plugins Directory, select the **Marketing Council** marketplace, and install the plugin.
-
-Build a standalone OpenAI plugin ZIP:
-
-```bash
-python scripts/build_host_packages.py
-```
-
-Output:
-
-```text
-dist/release/marketing-council-openai-plugin-v1.3.0.zip
-```
-
-The OpenAI package is skills-only. It does not invent an MCP server or executable lifecycle hook just to make the manifest look more complex.
-
-## Claude Code marketplace
-
-The Claude plugin exposes both sides of Marketing Council:
-
-- all 29 skills under `skills/`
-- all 18 role definitions as native Claude subagents under `agents/`
-
-Inside Claude Code:
-
-```text
-/plugin marketplace add imMamdouhaboammar/marketing-council-pack
-/plugin install marketing-council@marketing-council
-```
-
-Validate a local checkout:
-
-```bash
-claude plugin validate . --strict
-```
-
-Build a standalone local marketplace ZIP:
-
-```bash
-python scripts/build_host_packages.py
-```
-
-Output:
-
-```text
-dist/release/marketing-council-claude-marketplace-v1.3.0.zip
-```
-
-That archive is self-contained. Its marketplace points to a local `./plugins/marketing-council` copy, so the plugin, skills, agents, references, and scripts travel together.
-
-## What happens when you ask a marketing question
-
-Say you ask:
-
-> "Conversion is weak. I want to cut price by 20% and go hard on TikTok. Build the plan."
-
-A generic assistant can start writing TikTok ideas immediately.
-
-Marketing Council should first work out whether the real problem is demand, traffic quality, offer clarity, pricing, checkout friction, product fit, or retention. It can then route the same evidence brief to the relevant roles, for example:
-
-```text
-market-architect
-commercial-strategist
-channel-strategist
-response-strategist
-marketing-skeptic
-```
-
-The Council then has to answer questions such as:
-
-- Is price actually suppressing conversion?
-- What happens to contribution margin and CAC payback after the cut?
-- Is TikTok where this buying situation happens, or merely the requested channel?
-- What evidence supports the audience claim?
-- What would make us abandon the recommendation?
-- What are we explicitly choosing not to do?
-
-The result is a decision with assumptions, risks, thresholds, and next actions, not a longer brainstorm.
-
-## Built from marketing schools, not celebrity role-play
-
-Marketing Council does not assign celebrity identities to the AI model. Philip Kotler, Seth Godin, David Ogilvy, Claude Hopkins, Eugene Schwartz, Al Ries, Jack Trout, Robert Cialdini, Byron Sharp, Les Binet, Peter Field, Steve Jobs, and other named thinkers appear only as sources or reference points for decision principles.
-
-Instead, the repository turns useful ideas associated with established marketing schools into decision cards with four practical fields:
-
-```text
-Principle
-When it applies
-When it should not be over-applied
-What evidence or competing principle should challenge it
-```
-
-Examples live in [`references/canon/`](references/canon/).
-
-The point is not asking for a famous marketer's imagined response. The useful question is:
-
-> Which principle fits this evidence, under these market conditions and commercial constraints, and what would falsify the recommendation?
-
-This is an independent project and is not affiliated with or endorsed by the authors, estates, publishers, or companies referenced in the principle library.
+The graph currently connects marketing schools, principles, applied theories, diagnostic signals, specialist agents, focused skills, challenge hooks, and dated evidence cards
+
+Named marketing figures are source references, not role-play personas. A named figure never settles a debate by authority
+
+## The 29 Agent Skills
+
+`marketing-council` is the router and cross-functional fallback. The other 28 are focused skills
+
+| Skill | Primary job |
+|---|---|
+| `marketing-council` | Route ambiguous or cross-functional work, arbitrate disagreements, and make the final strategic choice |
+| `market-diagnosis` | Diagnose market structure, demand, and growth constraints before choosing tactics |
+| `customer-research` | Design and interpret customer evidence, interviews, JTBD, switching triggers, and customer language |
+| `segmentation-strategy` | Build commercially useful segmentation and targeting choices |
+| `positioning-strategy` | Define competitive alternatives, category frame, differentiation, and reason to choose |
+| `category-strategy` | Decide category definition, maturity, entry points, and whether reframing is justified |
+| `brand-strategy` | Brand associations, memory, architecture, equity, and distinctive assets |
+| `product-marketing` | Product truth, proposition, demonstration, feature story, and launch narrative |
+| `offer-strategy` | Offer architecture, proof, objections, guarantees, risk reversal, and direct-response mechanics |
+| `pricing-strategy` | Price architecture, willingness to pay, tiers, sensitivity, and discount guardrails |
+| `go-to-market` | Market entry, route to market, launch sequence, and GTM coordination |
+| `campaign-strategy` | Campaign objective, proposition, creative territory, audience action, and measurement |
+| `media-strategy` | Channel roles, reach, paid distribution, allocation, and media fit |
+| `content-strategy` | Editorial choices, content jobs, formats, distribution, and buying-situation relevance |
+| `behavioral-marketing` | Friction, choice architecture, defaults, ethical influence, social proof, and behavior change |
+| `conversion-strategy` | Funnel friction, checkout, forms, landing pages, CRO, and drop-off diagnosis |
+| `retention-strategy` | Churn, lifecycle, renewal, repeat purchase, reactivation, and customer retention |
+| `competitive-intelligence` | Competitors, substitutes, rivalry, pressure, and defensibility |
+| `marketing-measurement` | KPI architecture, attribution, MMM, measurement plans, and uncertainty |
+| `marketing-experimentation` | Hypotheses, A/B tests, experiment roadmaps, and learning plans |
+| `ai-discovery-strategy` | AI search, answer surfaces, citations, retrievability, and conversational discovery |
+| `conversational-advertising` | Conversational ad experiences and interactive ad decision flows |
+| `agentic-commerce` | Agent-mediated shopping, product truth, machine buyers, and agent checkout readiness |
+| `commerce-feed-intelligence` | Product, merchant, catalog, and structured commerce feed quality |
+| `autonomous-media-operations` | AI-assisted media authority, guardrails, rollback, and operational control |
+| `marketing-signal-strategy` | CRM, value, offline conversion, optimization, and signal-quality strategy |
+| `incrementality-design` | Holdouts, geo tests, counterfactuals, incremental CAC/ROAS, and causal lift |
+| `creator-commerce` | Creator discovery, media, affiliate, search, commerce, and creator measurement |
+| `commerce-media-strategy` | Retail media, marketplace ads, shopper media, and closed-loop measurement bias |
 
 ## The Council
 
-### Market and customer
+The repository contains 24 specialist role definitions under `agents/`
 
-| Agent | Job |
-|---|---|
-| `market-architect` | Market definition, segmentation, category structure, demand, route to market |
-| `audience-strategist` | Buying situations, jobs, triggers, anxieties, alternatives, customer language |
-| `positioning-strategist` | Category frame, alternatives, differentiation, memory |
-| `product-marketing-director` | Product truth, focus, demonstration, launch narrative |
+Representative roles include
 
-### Persuasion and behavior
+- `market-architect`
+- `audience-strategist`
+- `positioning-strategist`
+- `product-marketing-director`
+- `response-strategist`
+- `behavior-strategist`
+- `brand-growth-strategist`
+- `commercial-strategist`
+- `channel-strategist`
+- `measurement-strategist`
+- `creative-strategist`
+- `competitive-strategy-analyst`
+- `ai-discovery-strategist`
+- `agentic-commerce-strategist`
+- `marketing-automation-governor`
+- `marketing-signal-architect`
+- `creator-commerce-strategist`
+- `commerce-media-strategist`
+- `marketing-skeptic`
+- `council-director`
 
-| Agent | Job |
-|---|---|
-| `response-strategist` | Offer, proof, objections, CTA, measurable response |
-| `awareness-strategist` | Awareness, sophistication, message depth, proof requirements |
-| `behavior-strategist` | Friction, choice architecture, risk, social proof, decision cues |
+The Council should run only roles that can materially change the decision. A narrow task should not automatically load the entire council
 
-### Growth and commercial reality
+## Decision discipline
 
-| Agent | Job |
-|---|---|
-| `brand-growth-strategist` | Reach, penetration, availability, distinctive assets, time horizon |
-| `commercial-strategist` | Price, margin, CAC, LTV, payback, retention, sales capacity |
-| `channel-strategist` | Media, search, creators, partnerships, distribution and channel fit |
-
-### Governance
-
-| Agent | Job |
-|---|---|
-| `marketing-skeptic` | Finds weak evidence, hidden assumptions, channel bias, fake certainty |
-| `council-director` | Selects roles, preserves disagreements, resolves the final decision |
-
-## 14 installable skills
-
-The repository is deliberately modular. A narrow task should not load an entire strategy engagement.
-
-```text
-marketing-council
-market-diagnosis
-customer-research
-positioning-strategy
-offer-strategy
-pricing-strategy
-go-to-market
-campaign-strategy
-media-strategy
-content-strategy
-conversion-strategy
-retention-strategy
-marketing-experimentation
-competitive-intelligence
-```
-
-The main `marketing-council` skill routes broad or conflicted work. The other 13 skills handle focused jobs with less context.
-
-## Eight challenge gates
-
-Before a significant recommendation is accepted, the pack can apply:
-
-1. `strategy-before-tactics`
-2. `evidence-gate`
-3. `freshness-check`
-4. `commercial-reality-check`
-5. `customer-language-check`
-6. `anti-generic-marketing`
-7. `pre-mortem`
-8. `post-strategy-red-team`
-
-These are reasoning gates stored as marketing guidance. They are not hidden shell commands or auto-running lifecycle hooks.
-
-## Evidence has a status
-
-Load-bearing statements can be labeled as:
+Marketing Council separates load-bearing statements into explicit evidence states when uncertainty matters
 
 ```text
 FACT
@@ -363,67 +208,223 @@ HYPOTHESIS
 UNKNOWN
 ```
 
-That small constraint matters. "Customers value authenticity" cannot quietly become customer research when nobody actually observed it.
+A recommendation should be revised if it
 
-## Strategy means choosing
+- invents customer psychology or market facts
+- treats platform attribution as causal proof
+- chooses a channel because it is popular rather than suitable
+- ignores margin, capacity, retention, or payback when they matter
+- produces a long tactic list without a primary strategic choice
+- hides meaningful uncertainty
+- could be sent unchanged to several unrelated businesses
 
-A full Council output can cover:
+## Install
 
-1. Situation
-2. Decision to make
-3. Evidence map
-4. Diagnosis
-5. Audience and buying situation
-6. Positioning and category frame
-7. Value proposition and offer
-8. Primary strategic choice
-9. What we will not do
-10. Channel and distribution strategy
-11. Message architecture
-12. Prioritized tactics
-13. Experiments
-14. Measurement and thresholds
-15. Risks and assumptions
-16. Next decisions
+### Skills CLI
 
-The ninth item is intentional. A strategy that refuses to exclude anything is usually a backlog.
+Install all 29 skills across supported agents
 
-## Tactics need a mechanism
-
-Every recommended tactic is expected to define:
-
-```text
-objective
-customer / audience
-evidence or insight
-mechanism
-message
-channel
-desired action
-expected effect
-cost or effort
-primary risk
-measurement
-success threshold
-failure threshold
-next action if it works
-next action if it does not
+```bash
+npx skills add imMamdouhaboammar/marketing-council-pack --all -y
 ```
 
-If a tactic cannot explain why it should work or how failure will be detected, it is not ready.
+List available skills first
 
-## Deterministic marketing utilities
+```bash
+npx skills add imMamdouhaboammar/marketing-council-pack --list
+```
 
-Some decisions should use arithmetic instead of prose. The pack includes dependency-free Python utilities for:
+Install all skills for Codex
+
+```bash
+npx skills add imMamdouhaboammar/marketing-council-pack --skill '*' -g -a codex -y
+```
+
+Install all skills for Claude Code
+
+```bash
+npx skills add imMamdouhaboammar/marketing-council-pack --skill '*' -g -a claude-code -y
+```
+
+Install only the Council skill
+
+```bash
+npx skills add imMamdouhaboammar/marketing-council-pack --skill marketing-council -g -y
+```
+
+### ChatGPT and Codex plugin marketplace
+
+```bash
+codex plugin marketplace add imMamdouhaboammar/marketing-council-pack
+```
+
+Then inspect or refresh the marketplace
+
+```bash
+codex plugin marketplace list
+codex plugin marketplace upgrade marketing-council
+```
+
+### Claude Code marketplace
+
+```text
+/plugin marketplace add imMamdouhaboammar/marketing-council-pack
+/plugin install marketing-council@marketing-council
+```
+
+## OpenAI plugin package
+
+Build host packages
+
+```bash
+python scripts/build_host_packages.py --output-root dist/release
+```
+
+The OpenAI plugin archive for this release is
+
+```text
+dist/release/marketing-council-openai-plugin-v1.4.0.zip
+```
+
+The repository also builds a Claude marketplace package and a self-contained Agent Skill package for the same version
+
+## OpenAI submission pack
+
+A valid repository ZIP is not enough to prove a public ChatGPT release contains every skill
+
+OpenAI skills are versioned bundles. Marketing Council source skills share agents, hooks, references, routing data, the neural graph, workflows, tools, and deterministic scripts. For public submission, those dependencies must travel with the submitted skill rather than relying on the GitHub checkout existing at runtime
+
+Build the submission pack
+
+```bash
+python scripts/build_openai_submission_pack.py \
+  --output-root dist/openai-submission \
+  --json
+```
+
+Expected output includes
+
+```text
+dist/openai-submission/submission-inventory.json
+dist/openai-submission/skills/market-diagnosis-v1.4.0.zip
+...
+dist/openai-submission/skills/marketing-council-v1.4.0.zip
+```
+
+The inventory must report exactly 29 standalone skill bundles and includes SHA-256 hashes for the artifacts
+
+Generated standalone skills rewrite source references such as
+
+```text
+../../agents/...
+../../hooks/...
+../../references/...
+```
+
+into bundle-local paths under
+
+```text
+shared/agents/...
+shared/hooks/...
+shared/references/...
+```
+
+A generated `SKILL.md` with an unresolved `../../` dependency is a release blocker
+
+## Public ChatGPT release rule
+
+Updating GitHub does not update an already published ChatGPT plugin release by itself
+
+After public skill content changes
+
+1. increment the plugin version
+2. run the complete release gates
+3. build the plugin package and the 29 standalone skill bundles
+4. update the existing Marketing Council submission in the OpenAI plugin submission flow
+5. confirm the submission preview lists all 29 skills
+6. submit the new version
+7. after publication, test explicit invocation, implicit focused routing, cross-functional fallback, and newer skill coverage in fresh chats
+
+See [`docs/OPENAI_RELEASE.md`](docs/OPENAI_RELEASE.md) for exact smoke tests and failure triage
+
+## Validate
+
+Run the full suite
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+Validate source distribution
+
+```bash
+python scripts/validate_distribution.py . --json
+```
+
+Build packages
+
+```bash
+python scripts/build_host_packages.py --output-root dist/release
+```
+
+Build standalone submission skills
+
+```bash
+python scripts/build_openai_submission_pack.py --output-root dist/openai-submission --json
+```
+
+Validate an extracted OpenAI plugin package
+
+```bash
+python scripts/validate_openai_plugin.py /path/to/extracted-plugin --json
+```
+
+CI runs the same release-critical checks for pull requests to `main` and pushes to `main`
+
+## Repository structure
+
+```text
+.codex-plugin/             OpenAI / ChatGPT / Codex plugin manifest
+.claude-plugin/            Claude plugin and marketplace metadata
+.agents/plugins/           repository marketplace metadata
+skills/                    29 Agent Skills
+agents/                    24 specialist role definitions
+routing/                   focused skill route registry
+neural/                    marketing graph and signals
+hooks/                     challenge and decision gates
+references/                canon, figures, theory, and dated evidence cards
+workflows/                 end-to-end workflow guidance
+scripts/                   routers, calculations, builders, and validators
+tools/                     host capability contracts
+evals/                     business and adversarial evaluation cases
+submission/                public listing metadata
+docs/OPENAI_RELEASE.md     OpenAI release and resubmission runbook
+```
+
+## Current evidence and marketing theory
+
+Timeless marketing principles and changing platform facts are intentionally separated
+
+Current-state evidence for AI discovery, agentic commerce, autonomous media, causal measurement, creator commerce, and commerce media lives under `references/2026/`
+
+Those cards are dated evidence, not permanent laws. Re-check platform behavior, availability, eligibility, policy, reporting, pricing, and current product behavior when they are load-bearing
+
+## Deterministic utilities
+
+The repository includes dependency-free Python utilities for calculations and validation, including
 
 - unit economics
-- funnel rates
-- experiment sample-size planning
+- funnel math
+- experiment planning
 - tactic ranking
 - strategy linting
-- pack and distribution validation
+- skill routing
+- neural routing
+- pack validation
+- host package generation
+- OpenAI submission bundle generation
 
-Examples:
+Examples
 
 ```bash
 python scripts/unit_economics.py \
@@ -435,137 +436,31 @@ python scripts/unit_economics.py \
 
 python scripts/funnel_math.py visits=1000 leads=100 customers=20
 python scripts/experiment_math.py plan --baseline-rate 0.10 --mde 0.02
-python scripts/strategy_linter.py path/to/strategy.md
 ```
 
-## Tool contracts, not hard-coded vendors
+## Security and public distribution
 
-Marketing Council describes capabilities such as:
+Marketing Council is skills-only for OpenAI distribution. It does not add an MCP server or executable lifecycle hooks merely to increase apparent complexity
+
+Public packaging validation checks for malformed paths, unsafe archive members, transient files, bytecode, secret-shaped files, invalid assets, and other distribution errors
+
+See [`SECURITY.md`](SECURITY.md) for reporting security issues
+
+## Release status language
+
+Keep these states separate
 
 ```text
-web.search
-web.fetch
-files.search
-files.read
-analytics.query
-ads.query
-crm.query
-search-console.query
-spreadsheet.calculate
+source-valid
+package-valid
+submission-ready
+submitted
+approved
+published
 ```
 
-A host can bind those capabilities to whatever tools it actually has. If a capability is missing, the skill should expose the evidence gap rather than pretend the data was checked.
-
-See [`tools/capabilities.yml`](tools/capabilities.yml).
-
-## Evals are part of the product
-
-The repository includes 8 business cases and 6 adversarial cases.
-
-They test whether the agent:
-
-- diagnoses before prescribing
-- changes its recommendation when the business conditions change
-- separates evidence from assumptions
-- lets economics affect the decision
-- distinguishes strategy from tactics
-- rejects requested-channel bias
-- refuses invented customer insight and fake scarcity
-- does not treat attribution as causation
-- exposes uncertainty
-
-See [`evals/`](evals/).
-
-## Build releases
-
-Build every host package plus the source archive:
-
-```bash
-python scripts/build_host_packages.py
-```
-
-Generated files:
-
-```text
-marketing-council-openai-plugin-v1.3.0.zip
-marketing-council-claude-marketplace-v1.3.0.zip
-marketing-council-skill-v1.3.0.zip
-marketing-council-pack-v1.3.0.zip
-marketing-council-v1.3.0-SHA256SUMS.txt
-```
-
-Build only the single self-contained Agent Skill directory:
-
-```bash
-python scripts/build_dist.py
-```
-
-## Validate
-
-```bash
-python -m unittest discover -s tests -v
-python scripts/validate_pack.py
-python scripts/validate_distribution.py --json
-```
-
-For an extracted OpenAI plugin package:
-
-```bash
-python scripts/validate_openai_plugin.py path/to/extracted/plugin --json
-```
-
-When Claude Code is installed locally:
-
-```bash
-claude plugin validate . --strict
-```
-
-## Repository map
-
-```text
-marketing-council-pack/
-├── .agents/plugins/          # ChatGPT/Codex repo marketplace
-├── .codex-plugin/            # ChatGPT/Codex plugin manifest
-├── .claude-plugin/           # Claude plugin + marketplace manifests
-├── assets/                   # Plugin identity
-├── skills/                   # 29 Agent Skills
-├── agents/                   # 24 specialist role definitions
-├── hooks/                    # Marketing challenge gates, not lifecycle hooks
-├── workflows/                # Full strategy, launch, campaign, audit, debate
-├── references/               # Figures, schools, principles, theories, canon, frameworks
-├── neural/                   # Knowledge graph, signals, routing guide
-├── tools/                    # Host-neutral tool capability contracts
-├── scripts/                  # Math, linting, builders, validators
-├── evals/                    # Core and adversarial scenarios
-├── examples/                 # Example strategy and council debate
-├── adapters/                 # Host-specific usage notes
-└── tests/                    # Structural and behavioral checks
-```
-
-## Good prompts to start with
-
-```text
-Diagnose this marketing problem before recommending tactics: [context]
-```
-
-```text
-Run a council debate on this strategy. Show where the specialists disagree, what decides the disagreement, and what evidence would reverse the final recommendation: [strategy]
-```
-
-```text
-Red-team this marketing plan. Find unsupported assumptions, commercial risks, channel bias, and weak measurement. Then rebuild only the parts that fail: [plan]
-```
-
-```text
-Build a go-to-market strategy for [product] in [market]. Separate facts, evidence, assumptions, hypotheses, and unknowns. Research current facts before making them load-bearing.
-```
-
-## Security and privacy
-
-Marketing Council ships without credentials, tracking code, an MCP server, or executable lifecycle hooks. Host tools and connected data remain subject to the host's own permissions and user authorization.
-
-See [`SECURITY.md`](SECURITY.md).
+A green repository CI run proves source and package gates. It does not prove that the OpenAI public directory has published the same snapshot
 
 ## License
 
-MIT. See [`LICENSE`](LICENSE).
+MIT

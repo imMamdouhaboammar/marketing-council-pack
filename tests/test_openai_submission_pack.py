@@ -40,10 +40,21 @@ class OpenAISubmissionPackTests(unittest.TestCase):
                     if name.startswith("marketing-council/skills/") and name.endswith("/SKILL.md")
                 }
                 self.assertEqual(packaged, focused)
+
                 council_text = zf.read("marketing-council/SKILL.md").decode("utf-8")
                 self.assertNotIn("load a focused sibling skill", council_text)
                 self.assertNotIn("load the matching focused skill under `../`", council_text)
                 self.assertIn("skills/", council_text)
+
+                pricing_text = zf.read(
+                    "marketing-council/skills/pricing-strategy/SKILL.md"
+                ).decode("utf-8")
+                self.assertNotIn("../../agents/", pricing_text)
+                self.assertNotIn("../../hooks/", pricing_text)
+                self.assertIn("../../shared/agents/", pricing_text)
+                self.assertIn("../../shared/hooks/", pricing_text)
+                self.assertIn("marketing-council/shared/agents/", "\n".join(sorted(names)))
+                self.assertIn("marketing-council/shared/hooks/", "\n".join(sorted(names)))
 
     def test_rebuild_removes_stale_generated_archives(self):
         with tempfile.TemporaryDirectory() as td:

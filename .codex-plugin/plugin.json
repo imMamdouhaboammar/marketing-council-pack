@@ -1,7 +1,7 @@
 {
   "name": "marketing-council",
   "version": "1.4.0",
-  "description": "Marketing strategy plugin with 29 focused skills, a conservative dynamic skill router, specialist agents, evidence gates, and deterministic marketing decision workflows.",
+  "description": "Marketing strategy plugin with 29 total skills: 28 focused skills plus the Marketing Council router and fallback, supported by specialist agents, evidence gates, and deterministic decision workflows.",
   "author": {
     "name": "Mamdouh Aboammar",
     "url": "https://github.com/imMamdouhaboammar"
@@ -23,7 +23,7 @@
   "interface": {
     "displayName": "Marketing Council",
     "shortDescription": "Marketing strategy council",
-    "longDescription": "Marketing Council routes marketing briefs across 29 focused skills, then applies specialist agents, evidence checks, commercial constraints, current-state research, and causal measurement discipline. Narrow requests go directly to the owning skill; ambiguous or cross-functional requests fall back to the council for explicit arbitration.",
+    "longDescription": "Marketing Council routes marketing briefs across 28 focused skills, with the Council as the 29th skill and the fallback for ambiguous or cross-functional work. It combines specialist agents, evidence checks, commercial constraints, current-state research, and causal measurement discipline.",
     "developerName": "Mamdouh Aboammar",
     "category": "Business & Operations",
     "capabilities": [

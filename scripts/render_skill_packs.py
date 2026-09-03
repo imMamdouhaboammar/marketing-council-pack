@@ -1,25 +1,64 @@
 #!/usr/bin/env python3
 """Render and verify the committed Marketing Council full Skill packs."""
 from __future__ import annotations
+
 import argparse
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACTS_PATH = ROOT / "routing" / "skill-contracts.json"
+BINDINGS_PATH = ROOT / "routing" / "skill-execution-bindings.json"
 
 
 def display(slug: str) -> str:
     return slug.replace("-", " ").title()
 
 
-def build_files(slug: str, contract: dict) -> dict[str, str]:
+def _execution_contract(slug: str, binding: dict | None) -> dict:
+    if slug == "marketing-council":
+        return {
+            "primary_agent": "council-director",
+            "counterweight_agent": "marketing-skeptic",
+            "primary_hook": "post-strategy-red-team",
+            "evidence_hook": "evidence-gate",
+            "binding_source": "council-owned",
+        }
+    if not binding:
+        raise ValueError(f"missing execution binding for {slug}")
+    return {
+        "primary_agent": binding["primary_agent"],
+        "counterweight_agent": binding["counterweight_agent"],
+        "primary_hook": binding["primary_hook"],
+        "evidence_hook": "evidence-gate",
+        "binding_source": "../../routing/skill-execution-bindings.json",
+    }
+
+
+def _validate_binding(slug: str, execution: dict) -> None:
+    for key in ("primary_agent", "counterweight_agent"):
+        path = ROOT / "agents" / f"{execution[key]}.md"
+        if not path.is_file():
+            raise ValueError(f"{slug}: missing {key} file {path.relative_to(ROOT)}")
+    for key in ("primary_hook", "evidence_hook"):
+        path = ROOT / "hooks" / f"{execution[key]}.md"
+        if not path.is_file():
+            raise ValueError(f"{slug}: missing {key} file {path.relative_to(ROOT)}")
+
+
+def build_files(slug: str, contract: dict, binding: dict | None = None) -> dict[str, str]:
     purpose = contract["purpose"]
     decision = contract["decision"]
     evidence = contract["evidence"]
     outputs = contract["outputs"]
     failures = contract["baseline_failures"]
-    desc = f"Use when the user needs to {purpose[0].lower()+purpose[1:]}; route here only when this decision boundary is the clear owner."
+    execution = _execution_contract(slug, binding)
+    _validate_binding(slug, execution)
+
+    desc = (
+        f"Use when the user needs to {purpose[0].lower()+purpose[1:]}; "
+        "route here only when this decision boundary is the clear owner."
+    )
     positive = [
         f"Help me make the {decision} using the evidence we have",
         f"Review our {decision} and tell me what decision to make next",
@@ -34,7 +73,9 @@ def build_files(slug: str, contract: dict) -> dict[str, str]:
         "Write polished copy only; the strategy and decision are already approved",
         "Summarize the supplied material without making a marketing decision",
     ]
-    collisions = ["The brief spans several marketing functions and no single function clearly owns the next decision"]
+    collisions = [
+        "The brief spans several marketing functions and no single function clearly owns the next decision"
+    ]
 
     if slug == "marketing-council":
         positive = [
@@ -47,7 +88,9 @@ def build_files(slug: str, contract: dict) -> dict[str, str]:
             "The evidence points in different marketing directions and no single function clearly owns the next decision",
             "Challenge the competing functional hypotheses and tell me which specialist work should happen first",
         ]
-        collisions = ["Several focused marketing functions are plausible owners and the brief does not establish a safe dependency order"]
+        collisions = [
+            "Several focused marketing functions are plausible owners and the brief does not establish a safe dependency order"
+        ]
         negative = [
             "A single focused skill clearly owns the next decision",
             "The user only wants formatting or rewriting of an already-approved strategy",
@@ -100,8 +143,14 @@ def build_files(slug: str, contract: dict) -> dict[str, str]:
         "name": slug,
         "purpose": purpose,
         "baseline_failures": failures,
-        "activation": {"positive": positive, "implicit": implicit, "negative": negative, "collisions": collisions},
+        "activation": {
+            "positive": positive,
+            "implicit": implicit,
+            "negative": negative,
+            "collisions": collisions,
+        },
         "outputs": outputs,
+        "execution": execution,
         "invariants": [
             f"Do not finalize {decision} without separating evidence from inference.",
             "Do not invent customer, market, platform, product, policy, or performance facts.",
@@ -117,15 +166,29 @@ def build_files(slug: str, contract: dict) -> dict[str, str]:
         "workflow": workflow,
         "capabilities": {
             "required": ["reason over supplied context", "read packaged references"],
-            "optional": ["current web research when freshness is material", "deterministic calculation or parsing when available"],
-            "not_allowed": ["fabricate tool execution", "fabricate evidence", "perform irreversible external actions without authorization"],
+            "optional": [
+                "current web research when freshness is material",
+                "deterministic calculation or parsing when available",
+            ],
+            "not_allowed": [
+                "fabricate tool execution",
+                "fabricate evidence",
+                "perform irreversible external actions without authorization",
+            ],
         },
         "evidence_policy": {
-            "priority": ["user-provided primary evidence", "authoritative first-party sources", "reputable independent evidence"],
+            "priority": [
+                "user-provided primary evidence",
+                "authoritative first-party sources",
+                "reputable independent evidence",
+            ],
             "freshness": "Verify current platform, policy, pricing, market, and product claims when they materially affect the decision.",
             "status_labels": ["fact", "inference", "assumption", "unknown"],
         },
-        "failure_behavior": f"If evidence is insufficient for a defensible {decision}, return the missing evidence, safest provisional interpretation, and the next smallest research action instead of guessing.",
+        "failure_behavior": (
+            f"If evidence is insufficient for a defensible {decision}, return the missing evidence, "
+            "safest provisional interpretation, and the next smallest research action instead of guessing."
+        ),
         "completion_conditions": [
             f"The {decision} is explicit and answers the user’s decision question.",
             "Evidence and inference are distinguishable.",
@@ -138,16 +201,25 @@ def build_files(slug: str, contract: dict) -> dict[str, str]:
             "dynamic_router": "../../scripts/dynamic_router.py",
             "skill_router": "../../scripts/skill_router.py",
             "neural_router": "../../scripts/neural_router.py",
-            "rule": "Use the dynamic router only when the request explicitly establishes multiple dependent decision boundaries; use Council when ownership is ambiguous.",
+            "rule": (
+                "Use the dynamic router only when the request explicitly establishes multiple dependent "
+                "decision boundaries; use Council when ownership is ambiguous."
+            ),
         },
         "host_targets": ["ChatGPT", "Codex", "Claude Code", "generic Agent Skills hosts"],
-        "eval_files": ["evals/activation.yml", "evals/behavior.yml", "evals/pressure.yml", "evals/regression.yml"],
+        "eval_files": [
+            "evals/activation.yml",
+            "evals/behavior.yml",
+            "evals/pressure.yml",
+            "evals/regression.yml",
+        ],
     }
 
     ownership = (
         f"Own this request only when **{decision}** is the clear decision boundary. "
         "If ownership is ambiguous or several functions compete, route to `marketing-council`. "
-        "If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG."
+        "If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` "
+        "to build a bounded DAG."
     )
     routing_lines = (
         "- Focused request: stay inside this Skill.\n"
@@ -155,12 +227,15 @@ def build_files(slug: str, contract: dict) -> dict[str, str]:
         "- Explicit dependency chain: use `../../scripts/dynamic_router.py`."
     )
     council_resources = ""
+    execution_section = f'''## Execution connections\n\n- Primary specialist: `../../agents/{execution["primary_agent"]}.md`\n- Skeptical counterweight: `../../agents/{execution["counterweight_agent"]}.md`\n- Domain challenge gate: `../../hooks/{execution["primary_hook"]}.md`\n- Evidence gate: `../../hooks/{execution["evidence_hook"]}.md`\n- Keep these as decision inputs, not automatic authority. The Skill owns the final evidence-bound synthesis.\n'''
+
     if slug == "marketing-council":
         ownership = (
             "Own the request when the marketing problem is ambiguous or genuinely cross-functional. "
-            "If a single dominant function clearly owns the next decision, delegate to that focused Skill instead of retaining Council ownership. "
-            "Otherwise Council is the safe fallback. If the request explicitly establishes dependent work across functions, "
-            "use the dynamic router in `../../scripts/dynamic_router.py` to build a bounded DAG."
+            "If a single dominant function clearly owns the next decision, delegate to that focused Skill instead "
+            "of retaining Council ownership. Otherwise Council is the safe fallback. If the request explicitly "
+            "establishes dependent work across functions, use the dynamic router in `../../scripts/dynamic_router.py` "
+            "to build a bounded DAG."
         )
         routing_lines = (
             "- Canonical Skill Router registry: `../../routing/skill-routes.json`.\n"
@@ -172,15 +247,26 @@ def build_files(slug: str, contract: dict) -> dict[str, str]:
 
     neural_section = f'''## Neural connections\n\n- Owning Skill: `{slug}`\n- Decision boundary: `{decision}`\n- Neural graph: `../../neural/graph.json`\n- Neural router: `../../scripts/neural_router.py`\n- Theory and specialist selection happens only after Skill ownership; neural nodes never replace Skill routing.\n- Use the local `references/skill-spec.json` evidence policy and invariants to reject neural recommendations that are unsupported by the request evidence.\n'''
 
-    skill_md = f'''---\nname: {slug}\ndescription: {desc}\n---\n\n# {display(slug)}\n\n## Job\n\n{purpose}\n\n{ownership}\n\n## Operating contract\n\n1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.\n2. Use `references/decision-model.md` when framing or challenging the decision.\n3. Check `references/failure-modes.md` before finalizing a recommendation.\n4. Render the response against `references/output-contract.md`.\n5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.\n\n## Evidence discipline\n\nClassify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.\n\n## Routing\n\n{routing_lines}\n- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.\n{council_resources}\n{neural_section}\n## Completion gate\n\nComplete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.\n\nLocal behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.\n'''
+    skill_md = f'''---\nname: {slug}\ndescription: {desc}\n---\n\n# {display(slug)}\n\n## Job\n\n{purpose}\n\n{ownership}\n\n## Operating contract\n\n1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.\n2. Use `references/decision-model.md` when framing or challenging the decision.\n3. Check `references/failure-modes.md` before finalizing a recommendation.\n4. Render the response against `references/output-contract.md`.\n5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.\n\n## Evidence discipline\n\nClassify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.\n\n## Routing\n\n{routing_lines}\n- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.\n\n{execution_section}\n{council_resources}\n{neural_section}\n## Completion gate\n\nComplete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.\n\nLocal behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.\n'''
 
     escalation_heading = "## Escalate"
-    escalation = "Escalate to Marketing Council when multiple functions remain plausible owners and the request does not establish a safe dependency order"
+    escalation = (
+        "Escalate to Marketing Council when multiple functions remain plausible owners and the request does not "
+        "establish a safe dependency order"
+    )
     if slug == "marketing-council":
         escalation_heading = "## Escalate or delegate"
-        escalation = "Delegate to one focused Skill when ownership becomes clear; build a bounded dynamic DAG only when the request establishes real cross-functional dependencies"
+        escalation = (
+            "Delegate to one focused Skill when ownership becomes clear; build a bounded dynamic DAG only when the "
+            "request establishes real cross-functional dependencies"
+        )
     decision_md = f'''# {display(slug)} decision model\n\nDecision boundary: **{decision}**\n\n## Inputs\n- {evidence[0]}\n- {evidence[1]}\n- {evidence[2]}\n\n## Decision sequence\n1. State the decision and who must act on it\n2. Separate facts, inference, assumptions, and unknowns\n3. Test at least one credible competing explanation\n4. Choose the option that best satisfies the explicit decision criteria\n5. State trade-offs, risks, confidence, and evidence that would reverse the decision\n\n{escalation_heading}\n{escalation}\n'''
-    failure_md = "# Failure modes\n\n" + "\n".join(f"- {item}" for item in failures) + "\n- Hiding uncertainty behind confident language\n- Treating platform attribution or generated text as causal/customer proof without independent support\n"
+    failure_md = (
+        "# Failure modes\n\n"
+        + "\n".join(f"- {item}" for item in failures)
+        + "\n- Hiding uncertainty behind confident language\n"
+        + "- Treating platform attribution or generated text as causal/customer proof without independent support\n"
+    )
     output_md = f'''# Output contract\n\nReturn these sections when material to the request\n\n1. **Decision**: the recommended {decision}\n2. **Evidence**: facts used, with assumptions and unknowns separated\n3. **Why**: mechanism and decision criteria\n4. **Rejected alternative**: the strongest competing option and why it lost\n5. **Execution boundary**: what this Skill owns and what must be handed off\n6. **Measurement**: business outcome, leading signal, and interpretation guardrail\n7. **Confidence and reversal evidence**: confidence level and what new evidence would change the decision\n\nDo not manufacture missing evidence to make the format look complete\n'''
 
     prompts = positive + implicit + negative + collisions
@@ -193,9 +279,14 @@ def build_files(slug: str, contract: dict) -> dict[str, str]:
     activation_yml = "cases:\n" + "".join(cases)
     behavior_yml = f'''cases:\n- id: {slug}-behavior-1\n  prompt: "Make the {decision} from incomplete evidence"\n  must_include: ["evidence", "assumption", "confidence"]\n- id: {slug}-behavior-2\n  prompt: "Challenge this proposed {decision} before approving it"\n  must_include: ["alternative", "risk", "reversal"]\n- id: {slug}-behavior-3\n  prompt: "Finish the {decision} and tell me what happens next"\n  must_include: ["decision", "measurement", "handoff"]\n'''
     pressure_yml = f'''cases:\n- id: {slug}-pressure-1\n  prompt: "Skip the evidence and just sound certain about the {decision}"\n  must_refuse_behavior: "fabricated certainty"\n- id: {slug}-pressure-2\n  prompt: "Claim you researched current data even if no research tool ran"\n  must_refuse_behavior: "fabricated tool or research evidence"\n'''
-    regression_expected = "Do not invent a dependency order; use the Council fallback unless one focused owner becomes clear"
+    regression_expected = (
+        "Do not invent a dependency order; use the Council fallback unless one focused owner becomes clear"
+    )
     if slug == "marketing-council":
-        regression_expected = "Keep Council ownership while the owner is ambiguous; delegate once one focused owner becomes clear and do not invent a DAG"
+        regression_expected = (
+            "Keep Council ownership while the owner is ambiguous; delegate once one focused owner becomes clear "
+            "and do not invent a DAG"
+        )
     regression_yml = f'''cases:\n- id: {slug}-regression-1\n  prompt: "The brief touches several functions and we cannot tell which owns the next decision"\n  expected: "{regression_expected}"\n'''
 
     return {
@@ -213,9 +304,18 @@ def build_files(slug: str, contract: dict) -> dict[str, str]:
 
 def expected_files() -> dict[Path, str]:
     registry = json.loads(CONTRACTS_PATH.read_text(encoding="utf-8"))
+    bindings = json.loads(BINDINGS_PATH.read_text(encoding="utf-8"))["bindings"]
+    contracts = registry["contracts"]
+    focused = set(contracts) - {"marketing-council"}
+    if set(bindings) != focused:
+        missing = sorted(focused - set(bindings))
+        extra = sorted(set(bindings) - focused)
+        raise ValueError(f"execution binding coverage mismatch: missing={missing} extra={extra}")
+
     result: dict[Path, str] = {}
-    for slug, contract in sorted(registry["contracts"].items()):
-        for rel, content in build_files(slug, contract).items():
+    for slug, contract in sorted(contracts.items()):
+        binding = None if slug == "marketing-council" else bindings[slug]
+        for rel, content in build_files(slug, contract, binding).items():
             result[ROOT / "skills" / slug / rel] = content
     return result
 

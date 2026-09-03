@@ -151,24 +151,53 @@ def route_dynamic(text: str) -> dict:
     ]
 
     # Parallel execution is allowed only when the declared configuration marks
-    # the pair safe and both branches have a declared handoff to the same
-    # downstream decision.
+    # the pair safe and both branches converge through declared handoffs. Any
+    # sequential tail after the fan-in must also consume every explicitly
+    # requested Skill through declared handoffs; nothing may be dropped.
     if has_parallel:
         for pair in parallel_safe:
             if not all(slug in requested for slug in pair):
                 continue
+
+            pair_start = min(positions.get(slug, -1) for slug in pair)
             cutoff = max(positions.get(slug, -1) for slug in pair)
-            downstream = [
+            common_targets = [
                 slug
                 for slug in requested
                 if slug not in pair
                 and positions.get(slug, -1) > cutoff
                 and all((upstream, slug) in declared_handoffs for upstream in pair)
             ]
-            if not downstream:
+            if not common_targets:
                 continue
-            target = downstream[0]
-            nodes = list(pair) + [target]
+
+            target = common_targets[0]
+            target_position = positions.get(target, 10**9)
+            tail = [
+                slug
+                for slug in requested
+                if slug not in pair
+                and slug != target
+                and positions.get(slug, -1) > target_position
+            ]
+            consumed = set(pair) | {target} | set(tail)
+            unconsumed = [slug for slug in requested if slug not in consumed]
+            if unconsumed or any(
+                slug not in pair and positions.get(slug, 10**9) < pair_start
+                for slug in requested
+            ):
+                return _result(
+                    "council",
+                    fallback,
+                    [fallback],
+                    [],
+                    [],
+                    "The parallel request contains additional Skills that cannot be placed without reordering or dropping an explicit dependency.",
+                    0.4,
+                    True,
+                )
+
+            nodes = list(pair) + [target] + tail
             if len(nodes) > max_nodes:
                 return _result(
                     "council",
@@ -180,15 +209,40 @@ def route_dynamic(text: str) -> dict:
                     0.4,
                     True,
                 )
+
+            sequential = [target] + tail
+            invalid_tail = [
+                (sequential[index], sequential[index + 1])
+                for index in range(len(sequential) - 1)
+                if (sequential[index], sequential[index + 1]) not in declared_handoffs
+            ]
+            if invalid_tail:
+                source, destination = invalid_tail[0]
+                return _result(
+                    "council",
+                    fallback,
+                    [fallback],
+                    [],
+                    [],
+                    f"No declared handoff supports {source} -> {destination} after the parallel fan-in; refusing to drop or reorder the requested tail.",
+                    0.4,
+                    True,
+                )
+
             edges = [[upstream, target] for upstream in pair]
+            edges.extend(
+                [sequential[index], sequential[index + 1]]
+                for index in range(len(sequential) - 1)
+            )
+            primary = sequential[-1]
             return _result(
                 "dag",
-                target,
+                primary,
                 nodes,
                 edges,
                 [list(pair)],
-                "The request explicitly declares parallel work and the configured handoff graph marks both branches safe before the same downstream decision.",
-                0.88,
+                "The request explicitly declares parallel work, both branches converge through declared handoffs, and every sequential tail transition is declared.",
+                0.9,
                 False,
             )
 

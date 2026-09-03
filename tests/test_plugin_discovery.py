@@ -158,13 +158,14 @@ class PluginDiscoveryTests(unittest.TestCase):
             archives = sorted((Path(td) / "skills").glob("*.zip"))
             self.assertEqual(len(archives), 29)
             for archive in archives:
+                slug = archive.name.rsplit("-v", 1)[0]
                 with zipfile.ZipFile(archive) as zf:
                     names = set(zf.namelist())
-                    skill_md = [name for name in names if name.endswith("/SKILL.md")]
-                    self.assertEqual(len(skill_md), 1, archive)
-                    text = zf.read(skill_md[0]).decode("utf-8")
+                    root_skill = f"{slug}/SKILL.md"
+                    self.assertIn(root_skill, names, archive)
+                    text = zf.read(root_skill).decode("utf-8")
                     self.assertNotIn("../../", text, archive)
-                    self.assertIn("/agents/openai.yaml", "\n".join(sorted(names)), archive)
+                    self.assertIn(f"{slug}/agents/openai.yaml", names, archive)
 
     def test_public_surfaces_report_29_total_and_28_focused_skills(self):
         manifest = read_json(ROOT / "manifest.json")
@@ -190,6 +191,33 @@ class PluginDiscoveryTests(unittest.TestCase):
         workflow = (ROOT / ".github" / "workflows" / "plugin-ci.yml").read_text(encoding="utf-8")
         self.assertRegex(workflow, r"(?ms)push:\s*branches:\s*-\s+main")
         self.assertRegex(workflow, r"(?ms)pull_request:\s*branches:\s*-\s+main")
+
+    def test_plugin_ci_uses_read_only_token_without_persisted_credentials(self):
+        workflow = (ROOT / ".github" / "workflows" / "plugin-ci.yml").read_text(encoding="utf-8")
+        self.assertRegex(workflow, r"(?ms)^permissions:\s*contents:\s*read")
+        self.assertRegex(
+            workflow,
+            r"(?ms)uses:\s*actions/checkout@v4\s*with:\s*persist-credentials:\s*false",
+        )
+
+    def test_adapter_docs_reference_current_release_and_skill_inventory(self):
+        openai = (ROOT / "adapters" / "openai" / "README.md").read_text(encoding="utf-8")
+        claude = (ROOT / "adapters" / "claude" / "README.md").read_text(encoding="utf-8")
+        self.assertIn("marketing-council-openai-plugin-v1.4.0.zip", openai)
+        self.assertNotIn("v1.3.0.zip", openai)
+        self.assertIn("29 Agent Skills", openai)
+        self.assertIn("28 focused", openai)
+        self.assertIn("marketing-council-claude-marketplace-v1.4.0.zip", claude)
+        self.assertNotIn("v1.3.0.zip", claude)
+        self.assertIn("29 Agent Skills", claude)
+
+    def test_release_preflight_validates_exact_current_archive_in_fresh_directory(self):
+        text = (ROOT / "docs" / "OPENAI_RELEASE.md").read_text(encoding="utf-8")
+        self.assertIn("TemporaryDirectory", text)
+        self.assertIn(".codex-plugin/plugin.json", text)
+        self.assertIn("marketing-council-openai-plugin-v{version}.zip", text)
+        self.assertNotIn('next(root.glob("marketing-council-openai-plugin-v*.zip"))', text)
+        self.assertNotIn("/tmp/marketing-council-openai", text)
 
     def test_release_notes_include_resubmission_requirement_for_snapshot_skills(self):
         path = ROOT / "docs" / "OPENAI_RELEASE.md"

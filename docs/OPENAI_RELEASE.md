@@ -4,9 +4,17 @@ Marketing Council is a skills-only plugin. Its public ChatGPT/Codex release must
 
 ## Why this exists
 
-The public plugin submission flow captures the submitted skill bundle as release content. Updating GitHub does not, by itself, guarantee that an already published ChatGPT plugin receives the new skill files. A changed public package must therefore use a new plugin manifest version and be resubmitted through the plugin submission flow.
+The public plugin submission flow captures submitted skill content as release content. Updating GitHub does not, by itself, guarantee that an already published ChatGPT plugin receives newer skill files. A changed public package must therefore use a new plugin manifest version and be resubmitted through the plugin submission flow.
 
 This repository previously had release drift: the latest commit described a newer release while public manifests and packaging still declared `1.3.0`. That makes it possible to have newer source files in GitHub while the public plugin continues to expose an older snapshot.
+
+## Standalone full-skill bundles
+
+Every one of the 29 skills must also be buildable as a standalone bundle. A submitted skill cannot depend on repository-relative `../../` paths that only work when the entire GitHub checkout is present.
+
+`scripts/build_openai_submission_pack.py` creates reviewer-ready standalone ZIPs for all 29 skills. For each skill it copies the shared agents, hooks, references, routing data, neural graph, workflows, tools, and deterministic scripts it can reference, then rewrites external repository-relative paths into bundle-local `shared/` paths.
+
+The submission inventory records the archive path, SHA-256 digest, size, and standalone status for each skill. This is the artifact to inspect when ChatGPT renders only part of the pack or when one skill behaves differently from the repository copy.
 
 ## Release invariants
 
@@ -21,8 +29,9 @@ Before every OpenAI plugin submission:
    - `policy.allow_implicit_invocation: true`
 4. `routing/skill-routes.json` must cover every focused skill exactly once and use `marketing-council` as fallback.
 5. `scripts/skill_router.py` must route narrow requests to one focused skill and ambiguous or cross-functional requests to the council.
-6. The built OpenAI ZIP must contain all 29 skills and the OpenAI plugin manifest.
-7. A public update must use a different manifest `version` from the currently published plugin version.
+6. The built OpenAI plugin ZIP must contain all 29 skills, the routing registry, the router scripts, and the OpenAI plugin manifest.
+7. The OpenAI submission pack must contain exactly 29 standalone skill ZIPs and no unresolved `../../` references in their `SKILL.md` files.
+8. A public update must use a different manifest `version` from the currently published plugin version.
 
 ## Preflight
 
@@ -32,9 +41,10 @@ Run:
 python -m unittest discover -s tests -v
 python scripts/validate_distribution.py . --json
 python scripts/build_host_packages.py --output-root dist/release
+python scripts/build_openai_submission_pack.py --output-root dist/openai-submission --json
 ```
 
-Extract the generated OpenAI package and validate it:
+Extract the generated OpenAI plugin package and validate it:
 
 ```bash
 mkdir -p /tmp/marketing-council-openai
@@ -50,18 +60,21 @@ PY
 python scripts/validate_openai_plugin.py /tmp/marketing-council-openai --json
 ```
 
+Inspect `dist/openai-submission/submission-inventory.json` and verify `skill_count` is 29 and every skill entry reports `standalone: true`.
+
 Do not submit when any command fails.
 
 ## Submission checklist
 
-1. Build a fresh skills-only ZIP from the exact commit being released.
-2. Confirm the ZIP manifest version is newer than the currently published version.
-3. Open the OpenAI plugin submission flow and update the existing Marketing Council plugin rather than creating a different plugin identity.
-4. Upload the fresh ZIP.
-5. Confirm the submission preview lists all 29 skills.
-6. Confirm starter prompts and listing metadata match `submission/listing.json`.
-7. Submit the new plugin version for review/publication.
-8. After publication, install or refresh the plugin in a new ChatGPT conversation and test explicit plus implicit invocation.
+1. Build the plugin ZIP and all standalone skill ZIPs from the exact commit being released.
+2. Confirm the plugin manifest version is newer than the currently published version.
+3. Confirm `submission-inventory.json` lists all 29 skills and record the hashes for the submitted artifacts.
+4. Open the OpenAI plugin submission flow and update the existing Marketing Council plugin rather than creating a different plugin identity.
+5. Upload the fresh plugin package and the corresponding standalone skill bundles required by the submission flow.
+6. Confirm the submission preview lists all 29 skills with the expected display names and descriptions.
+7. Confirm starter prompts and listing metadata match `submission/listing.json`.
+8. Submit the new plugin version for review/publication.
+9. After publication, install or refresh the plugin in a new ChatGPT conversation and test explicit plus implicit invocation.
 
 ## Post-publication smoke tests
 
@@ -81,7 +94,7 @@ Expected: the plugin is available and the pricing skill is selected directly.
 Build a pricing strategy with willingness to pay, price architecture, and discount guardrails
 ```
 
-Expected: pricing-strategy owns the request without running the full council.
+Expected: `pricing-strategy` owns the request without running the full council.
 
 ### Cross-functional fallback
 
@@ -89,17 +102,21 @@ Expected: pricing-strategy owns the request without running the full council.
 Create the full go-to-market strategy including positioning, pricing, campaign, media, retention, and measurement
 ```
 
-Expected: Marketing Council remains the primary skill and dispatches multiple focused skills.
+Expected: `marketing-council` remains the primary skill and dispatches multiple focused skills.
 
 ### Newer skill coverage
-
-Test at least one skill added in the latest capability layer, for example:
 
 ```text
 Design a geo holdout test to estimate incremental ROAS and reconcile it with attribution
 ```
 
-Expected: incrementality-design is discoverable and callable.
+Expected: `incrementality-design` is discoverable and callable.
+
+### Previously inconsistent metadata coverage
+
+Smoke-test at least one of these skills because their OpenAI metadata previously omitted implicit invocation policy:
+
+`brand-strategy`, `product-marketing`, `segmentation-strategy`, `category-strategy`, `behavioral-marketing`, `marketing-measurement`
 
 ## Failure triage
 
@@ -107,11 +124,12 @@ If GitHub contains a skill but ChatGPT does not show or invoke it, check in this
 
 1. Was the public plugin actually resubmitted after the skill was added?
 2. Did the manifest `version` change?
-3. Does the uploaded ZIP contain the skill folder and `agents/openai.yaml`?
-4. Does the skill description distinguish its intent from sibling skills?
-5. Is implicit invocation enabled in `agents/openai.yaml`?
-6. Does explicit `$skill-name` invocation work while implicit routing fails? If yes, treat it as a routing/discovery-metadata problem rather than a packaging problem.
-7. Does the plugin itself fail to resolve in the public directory? If yes, investigate release/listing state before changing skill prompts.
+3. Does the submitted standalone ZIP contain `SKILL.md`, `agents/openai.yaml`, and every referenced support file?
+4. Does `submission-inventory.json` contain the skill and the expected hash?
+5. Does the skill description distinguish its intent from sibling skills?
+6. Is implicit invocation enabled in `agents/openai.yaml`?
+7. Does explicit `$skill-name` invocation work while implicit routing fails? If yes, treat it as a routing or discovery-metadata problem rather than a packaging problem.
+8. Does the plugin itself fail to resolve in the public directory? If yes, investigate release/listing state before changing skill prompts.
 
 ## Source versus public release
 

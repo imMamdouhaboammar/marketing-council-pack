@@ -1,3 +1,4 @@
+import importlib.util
 import json
 import subprocess
 import sys
@@ -11,6 +12,17 @@ BUILDER = ROOT / "scripts" / "build_openai_submission_pack.py"
 
 
 class OpenAISubmissionPackTests(unittest.TestCase):
+    def module(self):
+        scripts = str(ROOT / "scripts")
+        sys.path.insert(0, scripts)
+        try:
+            spec = importlib.util.spec_from_file_location("openai_submission_builder_under_test", BUILDER)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return module
+        finally:
+            sys.path.remove(scripts)
+
     def build(self, output: Path) -> dict:
         result = subprocess.run(
             [sys.executable, str(BUILDER), "--output-root", str(output), "--json"],
@@ -71,6 +83,55 @@ class OpenAISubmissionPackTests(unittest.TestCase):
             self.assertFalse(stale_plugin.exists())
             self.assertEqual(payload["skill_bundle_count"], 29)
             self.assertEqual(len(list((output / "skills").glob("*.zip"))), 29)
+
+
+    def test_builder_rejects_root_level_symlink_source(self):
+        module = self.module()
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            skill = root / "sample-skill"
+            (skill / "agents").mkdir(parents=True)
+            (skill / "SKILL.md").write_text("---\nname: sample-skill\ndescription: Sample skill\n---\nBody\n", encoding="utf-8")
+            (skill / "agents" / "openai.yaml").write_text("interface:\n  display_name: Sample\n", encoding="utf-8")
+            outside = root / "outside.txt"
+            outside.write_text("must not be packaged", encoding="utf-8")
+            (skill / "leak.txt").symlink_to(outside)
+
+            with self.assertRaises(ValueError):
+                module.build_skill_bundle(skill, root / "out", "1.5.0")
+
+    def test_copy_helpers_reject_nested_symlink_sources(self):
+        module = self.module()
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            outside = root / "outside.txt"
+            outside.write_text("must not be packaged", encoding="utf-8")
+
+            clean_src = root / "clean-src"
+            clean_src.mkdir()
+            (clean_src / "nested-link.txt").symlink_to(outside)
+            with self.assertRaises(ValueError):
+                module.copy_clean(clean_src, root / "clean-dst")
+
+            focused_src = root / "focused-src"
+            focused_src.mkdir()
+            (focused_src / "SKILL.md").write_text("---\nname: focused\ndescription: Focused\n---\nBody\n", encoding="utf-8")
+            (focused_src / "nested-link.txt").symlink_to(outside)
+            with self.assertRaises(ValueError):
+                module.copy_focused_module(focused_src, root / "focused-dst")
+
+    def test_deterministic_zip_rejects_symlink_members(self):
+        module = self.module()
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "source"
+            source.mkdir()
+            outside = root / "outside.txt"
+            outside.write_text("must not be packaged", encoding="utf-8")
+            (source / "leak.txt").symlink_to(outside)
+            with self.assertRaises(ValueError):
+                module.deterministic_zip(source, root / "archive.zip", "sample")
+
 
 
 if __name__ == "__main__":

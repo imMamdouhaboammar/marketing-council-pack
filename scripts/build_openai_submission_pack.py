@@ -84,6 +84,32 @@ def rewrite_skill_paths(text: str) -> str:
     return rewritten
 
 
+def rewrite_skill_spec_paths(source: Path, target: Path, shared_prefix: str) -> None:
+    """Rewrite structured SkillSpec path fields to the bundle-local shared tree."""
+    payload = json.loads(source.read_text(encoding="utf-8"))
+
+    def rewrite(value):
+        if isinstance(value, dict):
+            return {key: rewrite(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [rewrite(item) for item in value]
+        if isinstance(value, str):
+            for directory in SHARED_DIRS:
+                source_prefix = f"../../{directory}/"
+                if value.startswith(source_prefix):
+                    return f"{shared_prefix}{directory}/{value[len(source_prefix):]}"
+        return value
+
+    rewritten = rewrite(payload)
+    serialized = json.dumps(rewritten, indent=2, ensure_ascii=False) + "\n"
+    for directory in SHARED_DIRS:
+        unresolved = f"../../{directory}/"
+        if unresolved in serialized:
+            raise ValueError(f"unresolved external SkillSpec path remains in {source}: {unresolved}")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(serialized, encoding="utf-8")
+
+
 def rewrite_nested_module_paths(text: str) -> str:
     """Rewrite a focused module nested at skills/<slug>/ inside the council bundle."""
     rewritten = text
@@ -113,6 +139,8 @@ def copy_focused_module(src: Path, dst: Path) -> None:
         if rel.as_posix() == "SKILL.md":
             text = rewrite_nested_module_paths(path.read_text(encoding="utf-8"))
             target.write_text(text, encoding="utf-8")
+        elif rel.as_posix() == "references/skill-spec.json":
+            rewrite_skill_spec_paths(path, target, "../../../shared/")
         else:
             shutil.copy2(path, target)
 
@@ -160,6 +188,15 @@ def build_skill_bundle(skill_dir: Path, output_dir: Path, ver: str) -> Path:
             elif child.is_file():
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(child, target)
+
+        source_spec = skill_dir / "references" / "skill-spec.json"
+        if source_spec.is_file():
+            reject_symlink(source_spec, skill_dir)
+            rewrite_skill_spec_paths(
+                source_spec,
+                bundle / "references" / "skill-spec.json",
+                "../shared/",
+            )
 
         shared = bundle / "shared"
         for directory in SHARED_DIRS:

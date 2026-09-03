@@ -1,6 +1,6 @@
 {
   "name": "marketing-council",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A cross-agent marketing strategy pack with 29 total skills: 28 focused skills plus the Marketing Council router and fallback, with specialist agents, evidence gates, and measurable decision workflows.",
   "entry_skill": "skills/marketing-council/SKILL.md",
   "focused_skills": [
@@ -47,7 +47,9 @@
   "routing": {
     "fallback_skill": "marketing-council",
     "skill_routes": "routing/skill-routes.json",
-    "dynamic_router": "scripts/skill_router.py",
+    "execution_bindings": "routing/skill-execution-bindings.json",
+    "skill_router": "scripts/skill_router.py",
+    "dynamic_router": "scripts/dynamic_router.py",
     "neural_router": "scripts/neural_router.py"
   },
   "repository": "https://github.com/imMamdouhaboammar/marketing-council-pack",

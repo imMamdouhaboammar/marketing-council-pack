@@ -8,7 +8,7 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_VERSION = "1.4.0"
+EXPECTED_VERSION = "1.5.0"
 
 
 def read_json(path: Path):
@@ -183,7 +183,7 @@ class PluginDiscoveryTests(unittest.TestCase):
         self.assertNotIn("29 focused skills", readme.lower())
         self.assertIn("29 Agent Skills", readme)
         self.assertIn("28 focused", readme)
-        self.assertIn("version-1.4.0", readme)
+        self.assertIn("version-1.5.0", readme)
         self.assertIn("Agent%20Skills-29", readme)
         self.assertIn("Specialist%20Agents-24", readme)
 
@@ -203,11 +203,11 @@ class PluginDiscoveryTests(unittest.TestCase):
     def test_adapter_docs_reference_current_release_and_skill_inventory(self):
         openai = (ROOT / "adapters" / "openai" / "README.md").read_text(encoding="utf-8")
         claude = (ROOT / "adapters" / "claude" / "README.md").read_text(encoding="utf-8")
-        self.assertIn("marketing-council-openai-plugin-v1.4.0.zip", openai)
+        self.assertIn("marketing-council-openai-plugin-v1.5.0.zip", openai)
         self.assertNotIn("v1.3.0.zip", openai)
         self.assertIn("29 Agent Skills", openai)
         self.assertIn("28 focused", openai)
-        self.assertIn("marketing-council-claude-marketplace-v1.4.0.zip", claude)
+        self.assertIn("marketing-council-claude-marketplace-v1.5.0.zip", claude)
         self.assertNotIn("v1.3.0.zip", claude)
         self.assertIn("29 Agent Skills", claude)
 

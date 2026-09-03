@@ -1,7 +1,7 @@
 {
   "name": "marketing-council",
   "displayName": "Marketing Council",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Marketing strategy council with 29 total skills: 28 focused skills plus the Council router and fallback, deterministic routing, 24 specialist subagents, and a connected marketing evidence graph.",
   "author": {
     "name": "Mamdouh Aboammar",

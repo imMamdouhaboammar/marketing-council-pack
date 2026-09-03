@@ -74,7 +74,7 @@ fix: bump OpenAI plugin release and discovery metadata
 *Commit message example*
 
 ```text
-chore: align Claude plugin metadata with v1.4.0
+chore: align Claude plugin metadata with v1.5.0
 ```
 
 *Commit message example*

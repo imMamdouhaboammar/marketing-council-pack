@@ -75,7 +75,7 @@ class AIMediatedMarketingTests(unittest.TestCase):
 
     def test_release_and_component_targets(self):
         manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
-        self.assertEqual(manifest["version"], "1.4.0")
+        self.assertEqual(manifest["version"], "1.5.0")
         self.assertEqual(len(list((ROOT / "agents").glob("*.md"))), 24)
         self.assertEqual(len([p for p in (ROOT / "skills").iterdir() if p.is_dir()]), 29)
         self.assertEqual(len(list((ROOT / "hooks").glob("*.md"))), 24)

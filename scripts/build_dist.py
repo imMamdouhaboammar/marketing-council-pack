@@ -38,6 +38,7 @@ def build_dist(output: Path) -> Path:
         '../../references/': 'references/',
         '../../tools/': 'tools/',
         '../../neural/': 'neural/',
+        '../../routing/': 'routing/',
         'load the matching focused skill under `../`': 'load the matching focused module under `skills/`',
         'load a focused sibling skill': 'load a focused module from `skills/`',
     }
@@ -52,6 +53,7 @@ def build_dist(output: Path) -> Path:
     copy_tree_clean(ROOT / 'tools', output / 'tools')
     copy_tree_clean(ROOT / 'scripts', output / 'scripts')
     copy_tree_clean(ROOT / 'neural', output / 'neural')
+    copy_tree_clean(ROOT / 'routing', output / 'routing')
 
     for skill_dir in (ROOT / 'skills').iterdir():
         if not skill_dir.is_dir() or skill_dir.name == 'marketing-council':

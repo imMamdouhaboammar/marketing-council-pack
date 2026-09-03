@@ -20,8 +20,23 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Plugin discovery regression tests
-        run: python -m unittest tests.test_plugin_discovery -v
+      - name: Discovery version consistency
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_release_version_is_consistent_across_public_manifests -v
+
+      - name: Discovery route registry coverage
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_dynamic_router_exists_and_covers_every_focused_skill -v
+
+      - name: Discovery main router contract
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_main_skill_declares_dynamic_router_and_safe_fallback -v
+
+      - name: Discovery OpenAI skill metadata
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_all_skills_have_explicit_openai_discovery_metadata -v
+
+      - name: Discovery discriminative skill descriptions
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_skill_descriptions_are_discriminative_enough_for_implicit_routing -v
+
+      - name: Discovery release snapshot runbook
+        run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_release_notes_include_resubmission_requirement_for_snapshot_skills -v
 
       - name: Dynamic router regression tests
         run: python -m unittest tests.test_skill_router -v

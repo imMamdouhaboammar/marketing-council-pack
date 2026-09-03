@@ -1,0 +1,6 @@
+interface:
+  display_name: "Marketing Council Pack"
+  short_description: "Repo-specific patterns and workflows for marketing-council-pack"
+  default_prompt: "Use the marketing-council-pack repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true

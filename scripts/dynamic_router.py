@@ -69,22 +69,31 @@ def _load() -> tuple[dict, dict]:
     )
 
 
-def _scores(raw_text: str, routes: dict) -> dict[str, int]:
+def _route_matches(raw_text: str, routes: dict) -> tuple[dict[str, int], dict[str, int]]:
     text = _normalise(raw_text)
     scores: dict[str, int] = {}
+    positions: dict[str, int] = {}
     for route in routes["routes"]:
         slug = route["skill"]
         score = 0
+        first_position: int | None = None
         negatives = route.get("negative_examples", [])
         if any(_phrase(text, item) for item in negatives):
             continue
         phrases = list(route.get("intents", [])) + list(route.get("examples", [])) + EXTRA_HINTS.get(slug, [])
         for item in phrases:
-            if _phrase(text, item):
-                score += max(2, len(_normalise(item).split()) * 2)
+            candidate = _normalise(item).strip()
+            if not candidate:
+                continue
+            position = text.find(f" {candidate} ")
+            if position < 0:
+                continue
+            score += max(2, len(candidate.split()) * 2)
+            first_position = position if first_position is None else min(first_position, position)
         if score:
             scores[slug] = score
-    return scores
+            positions[slug] = first_position if first_position is not None else len(text)
+    return scores, positions
 
 
 def _result(mode: str, primary: str, nodes: list[str], edges: list[list[str]], parallel: list[list[str]], reason: str, confidence: float, fallback: bool) -> dict:
@@ -103,7 +112,7 @@ def _result(mode: str, primary: str, nodes: list[str], edges: list[list[str]], p
 def route_dynamic(text: str) -> dict:
     routes, handoffs = _load()
     fallback = routes["fallback_skill"]
-    scores = _scores(text, routes)
+    scores, positions = _route_matches(text, routes)
     ranked = sorted(scores, key=lambda slug: (-scores[slug], slug))
     normalized = _normalise(text)
 
@@ -126,27 +135,128 @@ def route_dynamic(text: str) -> dict:
     if not explicit_sequence and not has_parallel:
         return _result("council", fallback, [fallback], [], [], "Several focused skills are plausible but the request does not establish a safe dependency order.", 0.42, True)
 
-    stage = {slug: index for index, slug in enumerate(handoffs["stage_order"])}
-    candidates = [slug for slug in ranked if slug in stage]
+    max_nodes = int(handoffs.get("max_nodes", 6))
+    requested = sorted(
+        dict.fromkeys(ranked),
+        key=lambda slug: (positions.get(slug, 10**9), -scores[slug], slug),
+    )
+    declared_handoffs = {
+        (item["from"], item["to"])
+        for item in handoffs.get("handoffs", [])
+    }
+    parallel_safe = [
+        tuple(group)
+        for group in handoffs.get("parallel_safe", [])
+        if len(group) == 2
+    ]
 
-    # Parallel research is an explicit dependency shape, not an invitation to parallelize everything.
-    parallel_groups: list[list[str]] = []
-    edges: list[list[str]] = []
-    if has_parallel and "positioning-strategy" in candidates:
-        upstream = [slug for slug in ("customer-research", "competitive-intelligence") if slug in candidates]
-        if len(upstream) == 2:
-            nodes = upstream + ["positioning-strategy"]
-            parallel_groups = [upstream]
-            edges = [[slug, "positioning-strategy"] for slug in upstream]
-            return _result("dag", "positioning-strategy", nodes, edges, parallel_groups, "Independent customer and competitor evidence can be collected in parallel before the positioning decision.", 0.88, False)
+    # Parallel execution is allowed only when the declared configuration marks
+    # the pair safe and both branches have a declared handoff to the same
+    # downstream decision.
+    if has_parallel:
+        for pair in parallel_safe:
+            if not all(slug in requested for slug in pair):
+                continue
+            cutoff = max(positions.get(slug, -1) for slug in pair)
+            downstream = [
+                slug
+                for slug in requested
+                if slug not in pair
+                and positions.get(slug, -1) > cutoff
+                and all((upstream, slug) in declared_handoffs for upstream in pair)
+            ]
+            if not downstream:
+                continue
+            target = downstream[0]
+            nodes = list(pair) + [target]
+            if len(nodes) > max_nodes:
+                return _result(
+                    "council",
+                    fallback,
+                    [fallback],
+                    [],
+                    [],
+                    f"The requested dependency graph exceeds the configured maximum of {max_nodes} focused Skills.",
+                    0.4,
+                    True,
+                )
+            edges = [[upstream, target] for upstream in pair]
+            return _result(
+                "dag",
+                target,
+                nodes,
+                edges,
+                [list(pair)],
+                "The request explicitly declares parallel work and the configured handoff graph marks both branches safe before the same downstream decision.",
+                0.88,
+                False,
+            )
 
-    ordered = sorted(dict.fromkeys(candidates), key=lambda slug: stage[slug])[: int(handoffs.get("max_nodes", 6))]
-    if len(ordered) < 2:
-        skill = ordered[0] if ordered else ranked[0]
-        return _result("focused", skill, [skill], [], [], "Sequence language was present, but only one focused decision boundary was supported.", 0.69, False)
+        return _result(
+            "council",
+            fallback,
+            [fallback],
+            [],
+            [],
+            "The request asks for parallel work, but no declared parallel-safe handoff graph supports that dependency shape.",
+            0.4,
+            True,
+        )
 
-    edges = [[ordered[index], ordered[index + 1]] for index in range(len(ordered) - 1)]
-    return _result("dag", ordered[-1], ordered, edges, parallel_groups, "The request explicitly asks for dependent marketing decisions, so a bounded execution DAG is justified.", 0.82, False)
+    if len(requested) > max_nodes:
+        return _result(
+            "council",
+            fallback,
+            [fallback],
+            [],
+            [],
+            f"The requested dependency graph exceeds the configured maximum of {max_nodes} focused Skills; refusing to truncate it silently.",
+            0.4,
+            True,
+        )
+
+    if len(requested) < 2:
+        skill = requested[0] if requested else ranked[0]
+        return _result(
+            "focused",
+            skill,
+            [skill],
+            [],
+            [],
+            "Sequence language was present, but only one focused decision boundary was supported.",
+            0.69,
+            False,
+        )
+
+    invalid_pairs = [
+        (requested[index], requested[index + 1])
+        for index in range(len(requested) - 1)
+        if (requested[index], requested[index + 1]) not in declared_handoffs
+    ]
+    if invalid_pairs:
+        source, target = invalid_pairs[0]
+        return _result(
+            "council",
+            fallback,
+            [fallback],
+            [],
+            [],
+            f"No declared handoff supports {source} -> {target}; refusing to reorder or drop explicitly requested Skills.",
+            0.4,
+            True,
+        )
+
+    edges = [[requested[index], requested[index + 1]] for index in range(len(requested) - 1)]
+    return _result(
+        "dag",
+        requested[-1],
+        requested,
+        edges,
+        [],
+        "The request explicitly asks for dependent marketing decisions and every transition is supported by a declared handoff.",
+        0.84,
+        False,
+    )
 
 
 def main() -> None:

@@ -1,0 +1,10 @@
+cases:
+- id: autonomous-media-operations-behavior-1
+  prompt: "Make the automation authority from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: autonomous-media-operations-behavior-2
+  prompt: "Challenge this proposed automation authority before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: autonomous-media-operations-behavior-3
+  prompt: "Finish the automation authority and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

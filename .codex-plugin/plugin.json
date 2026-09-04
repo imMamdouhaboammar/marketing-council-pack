@@ -1,6 +1,6 @@
 {
   "name": "marketing-council",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Marketing strategy plugin with 29 total skills: 28 focused skills plus the Marketing Council router and fallback, supported by specialist agents, evidence gates, and deterministic decision workflows.",
   "author": {
     "name": "Mamdouh Aboammar",

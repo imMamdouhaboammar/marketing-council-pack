@@ -1,0 +1,10 @@
+cases:
+- id: market-diagnosis-behavior-1
+  prompt: "Make the market constraint from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: market-diagnosis-behavior-2
+  prompt: "Challenge this proposed market constraint before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: market-diagnosis-behavior-3
+  prompt: "Finish the market constraint and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

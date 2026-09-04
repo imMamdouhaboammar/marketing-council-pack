@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - fix/chatgpt-plugin-discovery-routing
+      - feat/omni-marketing-skill-packs
   pull_request:
     branches:
       - main
@@ -68,8 +69,20 @@ jobs:
       - name: Discovery release snapshot runbook
         run: python -m unittest tests.test_plugin_discovery.PluginDiscoveryTests.test_release_notes_include_resubmission_requirement_for_snapshot_skills -v
 
-      - name: Dynamic router regression tests
+      - name: Skill router regression tests
         run: python -m unittest tests.test_skill_router -v
+
+      - name: Dynamic DAG router tests
+        run: python -m unittest tests.test_dynamic_router -v
+
+      - name: Omni full-pack contract tests
+        run: python -m unittest tests.test_omni_skill_packs -v
+
+      - name: Validate submission draft
+        run: python scripts/validate_submission_pack.py submission/submission-pack.json --json
+
+      - name: Validate documentation lifecycle
+        run: python scripts/validate_documentation.py --json
 
       - name: Run full unit test suite
         run: python -m unittest discover -s tests -v

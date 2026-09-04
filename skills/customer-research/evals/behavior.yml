@@ -1,0 +1,10 @@
+cases:
+- id: customer-research-behavior-1
+  prompt: "Make the customer evidence from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: customer-research-behavior-2
+  prompt: "Challenge this proposed customer evidence before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: customer-research-behavior-3
+  prompt: "Finish the customer evidence and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

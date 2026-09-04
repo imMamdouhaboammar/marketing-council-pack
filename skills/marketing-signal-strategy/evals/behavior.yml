@@ -1,0 +1,10 @@
+cases:
+- id: marketing-signal-strategy-behavior-1
+  prompt: "Make the signal architecture from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: marketing-signal-strategy-behavior-2
+  prompt: "Challenge this proposed signal architecture before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: marketing-signal-strategy-behavior-3
+  prompt: "Finish the signal architecture and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

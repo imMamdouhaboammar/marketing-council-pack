@@ -1,0 +1,10 @@
+cases:
+- id: media-strategy-behavior-1
+  prompt: "Make the media allocation from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: media-strategy-behavior-2
+  prompt: "Challenge this proposed media allocation before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: media-strategy-behavior-3
+  prompt: "Finish the media allocation and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

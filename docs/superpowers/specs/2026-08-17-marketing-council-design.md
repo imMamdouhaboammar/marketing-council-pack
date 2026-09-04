@@ -1,3 +1,28 @@
+<!--
+doc_status: HISTORICAL_SUPERSEDED
+created: 2026-08-17
+last_reviewed: 2026-09-04
+source_of_truth: false
+-->
+
+![Status: HISTORICAL_SUPERSEDED](https://img.shields.io/badge/status-historical__superseded-yellow)
+
+> [!WARNING]
+> **Superseded historical document**
+>
+> Status: `HISTORICAL_SUPERSEDED`
+>
+> This initial design records the v1.0-era architecture. The current product has expanded to 29 full Skill packs, three routing layers, execution bindings, and hardened release packaging
+>
+> **Current source of truth:**
+> - [Repository README](../../../README.md)
+> - [Documentation map](../../README.md)
+> - [OpenAI release runbook](../../OPENAI_RELEASE.md)
+>
+> **Superseded assumptions:** the original role/Skill inventory, pre-neural routing architecture, and pre-v1.5 packaging model
+>
+> **Do not execute this document directly.** Reconcile any historical instruction against the current repository, tests, and architecture first
+
 # Marketing Council Skill Pack Design
 
 ## Goal

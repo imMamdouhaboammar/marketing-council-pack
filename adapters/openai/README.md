@@ -37,7 +37,7 @@ This path installs the skills rather than the complete plugin wrapper.
 python scripts/build_host_packages.py --output-root dist/release
 ```
 
-Use `dist/release/marketing-council-openai-plugin-v1.4.0.zip` for the v1.4.0 standalone plugin package.
+Use `dist/release/marketing-council-openai-plugin-v1.5.0.zip` for the v1.5.0 standalone plugin package.
 
 For public OpenAI submission, also build the per-skill submission artifacts:
 

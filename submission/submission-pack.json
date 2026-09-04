@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "artifact_use": "SUBMISSION_DRAFT",
+  "pack_status": "PARTIAL_MISSING_INPUT",
+  "rule_snapshot_date": "2026-09-04",
+  "submission_type": "skills-only",
+  "plugin": {
+    "name": "Marketing Council",
+    "package_name": "marketing-council",
+    "version": "1.5.0",
+    "architecture": "skills-only",
+    "skill_count": 29,
+    "focused_skill_count": 28,
+    "fallback_skill": "marketing-council",
+    "specialist_agent_count": 24
+  },
+  "listing": {
+    "name": "Marketing Council",
+    "subtitle": "Marketing strategy council",
+    "description": "Route the brief before choosing tactics. Marketing Council packages 29 total skills: 28 focused skills plus the Council fallback, with specialist agents, evidence gates, commercial checks, and measurable decision workflows.",
+    "category": "Business & Operations"
+  },
+  "starter_prompts": [
+    "Diagnose this marketing problem and route it to the right specialist skill.",
+    "Run a council debate on this strategy and make one defensible commercial decision.",
+    "Red-team this marketing plan, then rebuild the parts that would fail commercially."
+  ],
+  "evidence_ledger": [
+    {
+      "claim": "The package contains 29 total Skills with 28 focused Skills and Marketing Council as the fallback.",
+      "status": "CONFIRMED_PRODUCT_FACT",
+      "evidence_reference": "manifest.json + routing/skill-contracts.json"
+    },
+    {
+      "claim": "Focused routing, bounded dynamic DAG routing, fail-closed handoffs, full-pack contracts, source distribution, host packages, 29 standalone OpenAI bundles, and extracted plugin validation are exercised by repository tests and CI.",
+      "status": "PASSED_TEST_EVIDENCE",
+      "evidence_reference": "Plugin CI v1.5.0 test suite and package gates"
+    },
+    {
+      "claim": "Public ChatGPT/Codex publication behavior has been verified after v1.5.0 publication.",
+      "status": "PROPOSED_OR_UNVERIFIED",
+      "evidence_reference": null
+    }
+  ],
+  "review_cases": [
+    {
+      "id": "positive-pricing-focused",
+      "kind": "positive",
+      "prompt": "Build a pricing strategy with willingness to pay, price architecture, and discount guardrails",
+      "fixture": "None",
+      "expected_behavior": "Route the request to the focused pricing-strategy Skill.",
+      "expected_result_shape": "A focused routing result whose primary_skill is pricing-strategy.",
+      "actual_result_summary": "The executed router test returned mode focused with primary_skill pricing-strategy.",
+      "evidence_kind": "PASSED_TEST_EVIDENCE",
+      "evidence_reference": "tests/test_skill_router.py::test_routes_narrow_pricing_request_to_pricing_skill"
+    },
+    {
+      "id": "positive-retention-focused",
+      "kind": "positive",
+      "prompt": "Reduce churn",
+      "fixture": "None",
+      "expected_behavior": "Route the explicit retention intent to retention-strategy.",
+      "expected_result_shape": "A focused routing result whose primary_skill is retention-strategy.",
+      "actual_result_summary": "The executed router test returned mode focused with primary_skill retention-strategy.",
+      "evidence_kind": "PASSED_TEST_EVIDENCE",
+      "evidence_reference": "tests/test_skill_router.py::test_routes_single_explicit_intent_to_focused_skill"
+    },
+    {
+      "id": "positive-conversion-focused",
+      "kind": "positive",
+      "prompt": "Audit checkout conversion friction and reduce form abandonment without inventing user research",
+      "fixture": "None",
+      "expected_behavior": "Route the request to conversion-strategy without inventing evidence.",
+      "expected_result_shape": "A focused routing result whose primary_skill is conversion-strategy.",
+      "actual_result_summary": "The executed router test returned mode focused with primary_skill conversion-strategy.",
+      "evidence_kind": "PASSED_TEST_EVIDENCE",
+      "evidence_reference": "tests/test_skill_router.py::test_routes_conversion_friction_to_conversion_skill"
+    },
+    {
+      "id": "positive-incrementality-focused",
+      "kind": "positive",
+      "prompt": "Design a geo holdout test to estimate incremental ROAS and reconcile it with attribution",
+      "fixture": "None",
+      "expected_behavior": "Route causal measurement work to incrementality-design.",
+      "expected_result_shape": "A focused routing result whose primary_skill is incrementality-design.",
+      "actual_result_summary": "The executed router test returned mode focused with primary_skill incrementality-design.",
+      "evidence_kind": "PASSED_TEST_EVIDENCE",
+      "evidence_reference": "tests/test_skill_router.py::test_routes_causal_measurement_to_incrementality"
+    },
+    {
+      "id": "positive-dependent-dag",
+      "kind": "positive",
+      "prompt": "First diagnose the market, then choose target segments, position the product, set pricing tiers, and build the go-to-market launch sequence",
+      "fixture": "None",
+      "expected_behavior": "Build a bounded dependency DAG in the explicit requested order using only declared handoffs.",
+      "expected_result_shape": "A dag result ordered market-diagnosis, segmentation-strategy, positioning-strategy, pricing-strategy, go-to-market with adjacent handoff edges.",
+      "actual_result_summary": "The executed dynamic-router test returned the five requested nodes in order with all four expected handoff edges.",
+      "evidence_kind": "PASSED_TEST_EVIDENCE",
+      "evidence_reference": "tests/test_dynamic_router.py::test_explicit_dependency_chain_builds_ordered_dag"
+    },
+    {
+      "id": "negative-ambiguous-ownership",
+      "kind": "negative",
+      "prompt": "Growth is weak and we do not know whether the issue is positioning pricing media or retention. Diagnose what matters first",
+      "fixture": "None",
+      "expected_behavior": "Do not invent a focused owner or DAG; use Marketing Council as the safe fallback.",
+      "expected_result_shape": "A council result with primary_skill marketing-council and fallback true.",
+      "actual_result_summary": "The executed dynamic-router test returned Council fallback rather than an invented focused owner.",
+      "evidence_kind": "PASSED_TEST_EVIDENCE",
+      "evidence_reference": "tests/test_dynamic_router.py::test_ambiguous_cross_functional_problem_falls_back_to_council"
+    },
+    {
+      "id": "negative-unsafe-reversed-handoff",
+      "kind": "negative",
+      "prompt": "Set pricing tiers first, then research customers before finalizing anything",
+      "fixture": "None",
+      "expected_behavior": "Do not silently reorder the explicit sequence; fall back to Marketing Council because the requested transition lacks a declared handoff.",
+      "expected_result_shape": "A council result with primary_skill marketing-council, fallback true, and a handoff reason.",
+      "actual_result_summary": "The executed regression test returned Council fallback and identified the unsupported handoff instead of creating a reordered DAG.",
+      "evidence_kind": "PASSED_TEST_EVIDENCE",
+      "evidence_reference": "tests/test_dynamic_router.py::test_explicit_sequence_is_not_silently_reordered"
+    },
+    {
+      "id": "negative-overlong-dag",
+      "kind": "negative",
+      "prompt": "First diagnose the market, then choose target segments, position the product, set pricing tiers, build GTM, build the campaign strategy, then define the media strategy",
+      "fixture": "None",
+      "expected_behavior": "Do not silently truncate an explicit dependency chain that exceeds the configured maximum; fall back to Marketing Council.",
+      "expected_result_shape": "A council result with primary_skill marketing-council, fallback true, and a maximum-node reason.",
+      "actual_result_summary": "The executed regression test returned Council fallback rather than truncating the seven-node request.",
+      "evidence_kind": "PASSED_TEST_EVIDENCE",
+      "evidence_reference": "tests/test_dynamic_router.py::test_explicit_chain_over_max_nodes_falls_back_instead_of_truncating"
+    }
+  ],
+  "release_notes": "Marketing Council v1.5.0 fully renders all 29 Skills with local behavioral and execution contracts, adds canonical execution bindings for all 28 focused Skills, keeps Skill Router, Dynamic DAG Router, and Neural Router separate, validates explicit DAG transitions against declared handoff edges without silent reordering or truncation, and hardens self-contained, host, and standalone OpenAI package builders to reject symlink sources before copying or archiving.",
+  "missing_required_inputs": [
+    "verified_developer_identity",
+    "privacy_policy_url",
+    "terms_of_service_url",
+    "support_url",
+    "country_or_region_availability"
+  ],
+  "portal_state": {
+    "submitted": false,
+    "reviewed": false,
+    "approved": false,
+    "published": false
+  },
+  "release_boundary": "OpenAI portal scan, policy attestation, review, submission, approval, publication, and public ChatGPT/Codex publication verification were not performed. Source and package verification must remain separate from public-release status."
+}

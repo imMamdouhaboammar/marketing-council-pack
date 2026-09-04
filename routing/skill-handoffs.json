@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "max_nodes": 6,
+  "stage_order": [
+    "market-diagnosis",
+    "customer-research",
+    "competitive-intelligence",
+    "segmentation-strategy",
+    "category-strategy",
+    "positioning-strategy",
+    "brand-strategy",
+    "product-marketing",
+    "offer-strategy",
+    "pricing-strategy",
+    "go-to-market",
+    "campaign-strategy",
+    "media-strategy",
+    "content-strategy",
+    "behavioral-marketing",
+    "conversion-strategy",
+    "retention-strategy",
+    "marketing-signal-strategy",
+    "marketing-measurement",
+    "marketing-experimentation",
+    "incrementality-design",
+    "ai-discovery-strategy",
+    "conversational-advertising",
+    "commerce-feed-intelligence",
+    "agentic-commerce",
+    "autonomous-media-operations",
+    "creator-commerce",
+    "commerce-media-strategy"
+  ],
+  "parallel_safe": [
+    [
+      "customer-research",
+      "competitive-intelligence"
+    ],
+    [
+      "media-strategy",
+      "content-strategy"
+    ],
+    [
+      "marketing-measurement",
+      "marketing-experimentation"
+    ]
+  ],
+  "handoffs": [
+    {
+      "from": "market-diagnosis",
+      "to": "segmentation-strategy",
+      "reason": "market structure and demand boundaries constrain useful segments"
+    },
+    {
+      "from": "customer-research",
+      "to": "segmentation-strategy",
+      "reason": "observed buying situations and needs inform segment usefulness"
+    },
+    {
+      "from": "customer-research",
+      "to": "positioning-strategy",
+      "reason": "buyer language and switching triggers constrain differentiated value"
+    },
+    {
+      "from": "competitive-intelligence",
+      "to": "positioning-strategy",
+      "reason": "competitive alternatives define the reference frame"
+    },
+    {
+      "from": "segmentation-strategy",
+      "to": "positioning-strategy",
+      "reason": "positioning requires an explicit target context"
+    },
+    {
+      "from": "positioning-strategy",
+      "to": "offer-strategy",
+      "reason": "offer proof and value should express the chosen position"
+    },
+    {
+      "from": "positioning-strategy",
+      "to": "pricing-strategy",
+      "reason": "price architecture must preserve the intended value frame"
+    },
+    {
+      "from": "pricing-strategy",
+      "to": "go-to-market",
+      "reason": "route-to-market planning depends on commercial packaging and price"
+    },
+    {
+      "from": "positioning-strategy",
+      "to": "go-to-market",
+      "reason": "launch sequencing depends on target and competitive frame"
+    },
+    {
+      "from": "go-to-market",
+      "to": "campaign-strategy",
+      "reason": "campaign job follows the launch objective and adoption stage"
+    },
+    {
+      "from": "campaign-strategy",
+      "to": "media-strategy",
+      "reason": "media roles follow the campaign job and desired behavior"
+    },
+    {
+      "from": "campaign-strategy",
+      "to": "content-strategy",
+      "reason": "editorial choices should support the campaign job rather than replace it"
+    },
+    {
+      "from": "media-strategy",
+      "to": "incrementality-design",
+      "reason": "causal measurement should match the media decision and feasible counterfactual"
+    },
+    {
+      "from": "conversion-strategy",
+      "to": "marketing-experimentation",
+      "reason": "conversion hypotheses require predeclared tests and thresholds"
+    },
+    {
+      "from": "retention-strategy",
+      "to": "marketing-experimentation",
+      "reason": "retention interventions require holdouts or credible learning designs"
+    }
+  ]
+}

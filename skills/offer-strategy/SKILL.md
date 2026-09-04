@@ -1,40 +1,55 @@
 ---
 name: offer-strategy
-description: Use when the user needs to create, diagnose, compare, or improve an offer, promotion, package, guarantee, proof structure, CTA, response mechanism, or objection-handling approach.
+description: Use when the user needs to design an offer whose value, proof, risk, and terms fit the buying decision; route here only when this decision boundary is the clear owner.
 ---
 
 # Offer Strategy
 
-**Goal:** Make the value exchange concrete, credible, and measurable.
+## Job
 
-## Process
+Design an offer whose value, proof, risk, and terms fit the buying decision
 
-1. Clarify who the offer is for and the buying situation.
-2. Define what the buyer gets, pays, risks, and must do next.
-3. Identify the dominant objection and the proof best suited to reduce it.
-4. Check whether urgency or scarcity is factual before using it.
-5. Check contribution economics and operational capacity.
-6. Define the response event and business outcome that will judge the offer.
+Own this request only when **offer architecture** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/response-strategist.md`
-- `../../agents/behavior-strategist.md`
-- `../../agents/commercial-strategist.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
+
+## Evidence discipline
+
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
+
+## Routing
+
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
+
+## Execution connections
+
+- Primary specialist: `../../agents/response-strategist.md`
+- Skeptical counterweight: `../../agents/marketing-skeptic.md`
+- Domain challenge gate: `../../hooks/commercial-reality-check.md`
+- Evidence gate: `../../hooks/evidence-gate.md`
+- Keep these as decision inputs, not automatic authority. The Skill owns the final evidence-bound synthesis.
+
 
 ## Neural connections
 
-- Principles: `proof-before-polish`, `performance-accountability`, `commercial-reality`
-- Applied theories: `unique-selling-proposition`, `scientific-advertising`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Use `../../hooks/theory-fit-gate.md` when more than one theory could plausibly explain the problem.
+- Owning Skill: `offer-strategy`
+- Decision boundary: `offer architecture`
+- Neural graph: `../../neural/graph.json`
+- Neural router: `../../scripts/neural_router.py`
+- Theory and specialist selection happens only after Skill ownership; neural nodes never replace Skill routing.
+- Use the local `references/skill-spec.json` evidence policy and invariants to reject neural recommendations that are unsupported by the request evidence.
 
-## Required output
+## Completion gate
 
-Return the decision, supporting evidence, assumptions, recommendation, rejected alternative, measurement, and evidence that would reverse the recommendation.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
 
-## Guardrails
-
-- Never fabricate customer insight, research, proof, scarcity, urgency, or benchmarks.
-- Research time-sensitive facts when current tools are available.
-- If the requested tactic is not supported by the diagnosis, say so and propose the better decision.
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

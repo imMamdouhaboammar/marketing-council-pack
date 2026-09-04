@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import shutil
 import tempfile
 import zipfile
@@ -31,6 +32,10 @@ SHARED_DIRS = (
     "routing",
 )
 SKIP_PARTS = {"__pycache__", ".pytest_cache", ".DS_Store", "dist", ".git"}
+TEXT_RESOURCE_SUFFIXES = {".md", ".json", ".yml", ".yaml", ".txt"}
+SHARED_PATH_RE = re.compile(
+    r"(?<![A-Za-z0-9_./-])(" + "|".join(re.escape(item) for item in SHARED_DIRS) + r")/"
+)
 
 
 def sha256(path: Path) -> str:
@@ -41,10 +46,26 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def copy_clean(src: Path, dst: Path) -> None:
+def reject_symlink(path: Path, source_root: Path) -> None:
+    if path.is_symlink():
+        try:
+            rel = path.relative_to(source_root)
+        except ValueError:
+            rel = path
+        raise ValueError(f"symlink source not allowed: {rel}")
+
+
+def rewrite_shared_resource_paths(text: str) -> str:
+    """Rewrite repository-root shared paths for resources copied under bundle/shared."""
+    return SHARED_PATH_RE.sub(lambda match: f"shared/{match.group(1)}/", text)
+
+
+def copy_clean(src: Path, dst: Path, *, rewrite_shared_paths: bool = False) -> None:
     if not src.exists():
         return
+    reject_symlink(src, src)
     for path in sorted(src.rglob("*")):
+        reject_symlink(path, src)
         if path.is_dir():
             continue
         rel = path.relative_to(src)
@@ -54,7 +75,11 @@ def copy_clean(src: Path, dst: Path) -> None:
             continue
         target = dst / rel
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(path, target)
+        if rewrite_shared_paths and path.suffix.casefold() in TEXT_RESOURCE_SUFFIXES:
+            text = path.read_text(encoding="utf-8")
+            target.write_text(rewrite_shared_resource_paths(text), encoding="utf-8")
+        else:
+            shutil.copy2(path, target)
 
 
 def rewrite_skill_paths(text: str) -> str:
@@ -73,6 +98,32 @@ def rewrite_skill_paths(text: str) -> str:
     return rewritten
 
 
+def rewrite_skill_spec_paths(source: Path, target: Path, shared_prefix: str) -> None:
+    """Rewrite structured SkillSpec path fields to the bundle-local shared tree."""
+    payload = json.loads(source.read_text(encoding="utf-8"))
+
+    def rewrite(value):
+        if isinstance(value, dict):
+            return {key: rewrite(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [rewrite(item) for item in value]
+        if isinstance(value, str):
+            for directory in SHARED_DIRS:
+                source_prefix = f"../../{directory}/"
+                if value.startswith(source_prefix):
+                    return f"{shared_prefix}{directory}/{value[len(source_prefix):]}"
+        return value
+
+    rewritten = rewrite(payload)
+    serialized = json.dumps(rewritten, indent=2, ensure_ascii=False) + "\n"
+    for directory in SHARED_DIRS:
+        unresolved = f"../../{directory}/"
+        if unresolved in serialized:
+            raise ValueError(f"unresolved external SkillSpec path remains in {source}: {unresolved}")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(serialized, encoding="utf-8")
+
+
 def rewrite_nested_module_paths(text: str) -> str:
     """Rewrite a focused module nested at skills/<slug>/ inside the council bundle."""
     rewritten = text
@@ -87,7 +138,9 @@ def rewrite_nested_module_paths(text: str) -> str:
 def copy_focused_module(src: Path, dst: Path) -> None:
     """Copy one focused skill into the council bundle with valid nested paths."""
     dst.mkdir(parents=True, exist_ok=True)
+    reject_symlink(src, src)
     for path in sorted(src.rglob("*")):
+        reject_symlink(path, src)
         if path.is_dir():
             continue
         rel = path.relative_to(src)
@@ -100,6 +153,8 @@ def copy_focused_module(src: Path, dst: Path) -> None:
         if rel.as_posix() == "SKILL.md":
             text = rewrite_nested_module_paths(path.read_text(encoding="utf-8"))
             target.write_text(text, encoding="utf-8")
+        elif rel.as_posix() == "references/skill-spec.json":
+            rewrite_skill_spec_paths(path, target, "../../../shared/")
         else:
             shutil.copy2(path, target)
 
@@ -108,8 +163,12 @@ def deterministic_zip(source: Path, archive: Path, prefix: str) -> Path:
     archive.parent.mkdir(parents=True, exist_ok=True)
     if archive.exists():
         archive.unlink()
+    reject_symlink(source, source)
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
-        for path in sorted(p for p in source.rglob("*") if p.is_file()):
+        for path in sorted(source.rglob("*")):
+            reject_symlink(path, source)
+            if not path.is_file():
+                continue
             rel = path.relative_to(source).as_posix()
             info = zipfile.ZipInfo(f"{prefix}/{rel}", FIXED_ZIP_TIME)
             info.compress_type = zipfile.ZIP_DEFLATED
@@ -120,18 +179,21 @@ def deterministic_zip(source: Path, archive: Path, prefix: str) -> Path:
 
 
 def build_skill_bundle(skill_dir: Path, output_dir: Path, ver: str) -> Path:
+    reject_symlink(skill_dir, skill_dir)
     slug = skill_dir.name
     with tempfile.TemporaryDirectory() as td:
         bundle = Path(td) / slug
         bundle.mkdir(parents=True)
 
         source_skill = skill_dir / "SKILL.md"
+        reject_symlink(source_skill, skill_dir)
         text = rewrite_skill_paths(source_skill.read_text(encoding="utf-8"))
         if "../../" in text:
             raise ValueError(f"unresolved external path remains in {source_skill}")
         (bundle / "SKILL.md").write_text(text, encoding="utf-8")
 
         for child in sorted(skill_dir.iterdir()):
+            reject_symlink(child, skill_dir)
             if child.name == "SKILL.md":
                 continue
             target = bundle / child.name
@@ -141,9 +203,22 @@ def build_skill_bundle(skill_dir: Path, output_dir: Path, ver: str) -> Path:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(child, target)
 
+        source_spec = skill_dir / "references" / "skill-spec.json"
+        if source_spec.is_file():
+            reject_symlink(source_spec, skill_dir)
+            rewrite_skill_spec_paths(
+                source_spec,
+                bundle / "references" / "skill-spec.json",
+                "../shared/",
+            )
+
         shared = bundle / "shared"
         for directory in SHARED_DIRS:
-            copy_clean(ROOT / directory, shared / directory)
+            copy_clean(
+                ROOT / directory,
+                shared / directory,
+                rewrite_shared_paths=True,
+            )
 
         if slug == "marketing-council":
             for focused_dir in sorted((ROOT / "skills").iterdir()):

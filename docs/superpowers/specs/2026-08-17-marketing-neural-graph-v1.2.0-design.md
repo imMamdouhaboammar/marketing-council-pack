@@ -1,3 +1,28 @@
+<!--
+doc_status: HISTORICAL_SUPERSEDED
+created: 2026-08-17
+last_reviewed: 2026-09-04
+source_of_truth: false
+-->
+
+![Status: HISTORICAL_SUPERSEDED](https://img.shields.io/badge/status-historical__superseded-yellow)
+
+> [!WARNING]
+> **Superseded historical document**
+>
+> Status: `HISTORICAL_SUPERSEDED`
+>
+> This document records the v1.2 neural-graph design. The neural graph remains part of the product, but v1.5 separates Skill ownership, Dynamic DAG routing, and Neural routing into three explicit layers
+>
+> **Current source of truth:**
+> - [Repository README](../../../README.md)
+> - [Documentation map](../../README.md)
+> - [OpenAI release runbook](../../OPENAI_RELEASE.md)
+>
+> **Superseded assumptions:** v1.2 component counts and the earlier routing model that predated the distinct Skill Router and Dynamic DAG Router
+>
+> **Do not execute this document directly.** Reconcile any historical instruction against the current repository, tests, and architecture first
+
 # Marketing Council v1.2.0 Neural Knowledge Graph Design
 
 ## Goal

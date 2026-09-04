@@ -1,0 +1,10 @@
+cases:
+- id: agentic-commerce-behavior-1
+  prompt: "Make the agentic commerce readiness from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: agentic-commerce-behavior-2
+  prompt: "Challenge this proposed agentic commerce readiness before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: agentic-commerce-behavior-3
+  prompt: "Finish the agentic commerce readiness and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

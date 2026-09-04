@@ -1,38 +1,55 @@
 ---
 name: commerce-media-strategy
-description: Use when retailer media, marketplaces, retail networks, social commerce, delivery apps, closed-loop purchase data, or shopper marketing affect channel allocation or measurement.
+description: Use when the user needs to plan retail and commerce media with shopper roles, economics, and closed-loop measurement safeguards; route here only when this decision boundary is the clear owner.
 ---
 
 # Commerce Media Strategy
 
-**Goal:** Evaluate commerce media on access, inventory, data, customer experience, economics, and incremental business impact.
+## Job
 
-## Process
+Plan retail and commerce media with shopper roles, economics, and closed-loop measurement safeguards
 
-1. Name the commercial decision and classify current facts as evidence, inference, assumption, or unknown.
-2. Run the relevant 2026 freshness card before relying on platform behavior.
-3. Activate only the theories that explain the observed constraint.
-4. Compare a timeless marketing counterweight when the recommendation could become platform-biased.
-5. Produce one primary decision with authority boundary, mechanism, measurement, and reversal evidence.
+Own this request only when **commerce media plan** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/commerce-media-strategist.md`
-- `../../agents/channel-strategist.md`
-- `../../agents/measurement-strategist.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
+
+## Evidence discipline
+
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
+
+## Routing
+
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
+
+## Execution connections
+
+- Primary specialist: `../../agents/commerce-media-strategist.md`
+- Skeptical counterweight: `../../agents/marketing-skeptic.md`
+- Domain challenge gate: `../../hooks/closed-loop-bias-check.md`
+- Evidence gate: `../../hooks/evidence-gate.md`
+- Keep these as decision inputs, not automatic authority. The Skill owns the final evidence-bound synthesis.
+
 
 ## Neural connections
 
-- Applied theories: `commerce-media-incrementality`, `closed-loop-bias`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Hooks: `../../hooks/closed-loop-bias-check.md`, `../../hooks/incrementality-required.md`, `../../hooks/commercial-reality-check.md`
-- Current-state evidence lives under `../../references/2026/`; verify it when platform behavior is load-bearing.
+- Owning Skill: `commerce-media-strategy`
+- Decision boundary: `commerce media plan`
+- Neural graph: `../../neural/graph.json`
+- Neural router: `../../scripts/neural_router.py`
+- Theory and specialist selection happens only after Skill ownership; neural nodes never replace Skill routing.
+- Use the local `references/skill-spec.json` evidence policy and invariants to reject neural recommendations that are unsupported by the request evidence.
 
-## Required output
+## Completion gate
 
-Return the decision, current evidence, enduring principle, selected theory, rejected alternative, authority boundary if automation is involved, measurement, confidence, and reversal evidence.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
 
-## Guardrails
-
-- Do not treat a platform recommendation, attribution report, AI-generated answer, or closed-loop sale as causal proof by itself.
-- Do not fabricate current platform availability, customer insight, product facts, performance claims, or policy requirements.
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

@@ -1,3 +1,4 @@
+import importlib.util
 import json
 import re
 import shutil
@@ -25,9 +26,21 @@ def simple_frontmatter(path: Path) -> dict:
 
 
 class DistributionTests(unittest.TestCase):
-    def test_release_version_is_1_4_0(self):
+    def host_builder_module(self):
+        scripts = str(ROOT / "scripts")
+        sys.path.insert(0, scripts)
+        try:
+            path = ROOT / "scripts" / "build_host_packages.py"
+            spec = importlib.util.spec_from_file_location("host_package_builder_under_test", path)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return module
+        finally:
+            sys.path.remove(scripts)
+
+    def test_release_version_is_1_5_0(self):
         manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
-        self.assertEqual(manifest["version"], "1.4.0")
+        self.assertEqual(manifest["version"], "1.5.0")
 
     def test_skill_frontmatter_uses_only_openai_supported_fields(self):
         for skill in sorted((ROOT / "skills").glob("*/SKILL.md")):
@@ -39,7 +52,7 @@ class DistributionTests(unittest.TestCase):
         self.assertTrue(path.exists(), path)
         data = json.loads(path.read_text(encoding="utf-8"))
         self.assertEqual(data["name"], "marketing-council")
-        self.assertEqual(data["version"], "1.4.0")
+        self.assertEqual(data["version"], "1.5.0")
         self.assertEqual(data["skills"], "./skills/")
         self.assertEqual(data["repository"], "https://github.com/imMamdouhaboammar/marketing-council-pack")
         self.assertLessEqual(len(data["interface"]["displayName"]), 30)
@@ -94,7 +107,7 @@ class DistributionTests(unittest.TestCase):
         pdata = json.loads(plugin.read_text(encoding="utf-8"))
         mdata = json.loads(market.read_text(encoding="utf-8"))
         self.assertEqual(pdata["name"], "marketing-council")
-        self.assertEqual(pdata["version"], "1.4.0")
+        self.assertEqual(pdata["version"], "1.5.0")
         self.assertEqual(pdata["skills"], "./skills/")
         self.assertEqual(pdata["agents"], "./agents/")
         self.assertEqual(mdata["name"], "marketing-council")
@@ -123,6 +136,21 @@ class DistributionTests(unittest.TestCase):
         for item in required:
             self.assertIn(item, text)
 
+    def test_host_package_primitives_reject_symlink_sources(self):
+        module = self.host_builder_module()
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            outside = root / "outside.txt"
+            outside.write_text("must not be packaged", encoding="utf-8")
+
+            source = root / "source"
+            source.mkdir()
+            (source / "leak.txt").symlink_to(outside)
+            with self.assertRaises(ValueError):
+                module.copy_tree_clean(source, root / "copy")
+            with self.assertRaises(ValueError):
+                module.deterministic_zip(source, root / "archive.zip")
+
     def test_host_package_builder_outputs_expected_archives(self):
         script = ROOT / "scripts" / "build_host_packages.py"
         self.assertTrue(script.exists(), script)
@@ -130,9 +158,9 @@ class DistributionTests(unittest.TestCase):
             subprocess.run([sys.executable, str(script), "--output-root", td], check=True)
             out = Path(td)
             expected = {
-                "marketing-council-openai-plugin-v1.4.0.zip",
-                "marketing-council-claude-marketplace-v1.4.0.zip",
-                "marketing-council-skill-v1.4.0.zip",
+                "marketing-council-openai-plugin-v1.5.0.zip",
+                "marketing-council-claude-marketplace-v1.5.0.zip",
+                "marketing-council-skill-v1.5.0.zip",
             }
             self.assertTrue(expected.issubset({p.name for p in out.glob("*.zip")}))
 
@@ -147,9 +175,9 @@ class DistributionTests(unittest.TestCase):
             subprocess.run([sys.executable, str(script), "--output-root", b], check=True)
 
             names = [
-                "marketing-council-openai-plugin-v1.4.0.zip",
-                "marketing-council-claude-marketplace-v1.4.0.zip",
-                "marketing-council-skill-v1.4.0.zip",
+                "marketing-council-openai-plugin-v1.5.0.zip",
+                "marketing-council-claude-marketplace-v1.5.0.zip",
+                "marketing-council-skill-v1.5.0.zip",
             ]
             for name in names:
                 one = Path(a) / name
@@ -195,7 +223,7 @@ class DistributionTests(unittest.TestCase):
         self.assertTrue(validator.exists(), validator)
         with tempfile.TemporaryDirectory() as td:
             subprocess.run([sys.executable, str(builder), "--output-root", td], check=True, stdout=subprocess.DEVNULL)
-            archive = Path(td) / "marketing-council-openai-plugin-v1.4.0.zip"
+            archive = Path(td) / "marketing-council-openai-plugin-v1.5.0.zip"
             extracted = Path(td) / "plugin"
             with zipfile.ZipFile(archive) as zf:
                 zf.extractall(extracted)

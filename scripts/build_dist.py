@@ -8,10 +8,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def reject_symlink(path: Path, source_root: Path) -> None:
+    if path.is_symlink():
+        try:
+            rel = path.relative_to(source_root)
+        except ValueError:
+            rel = path
+        raise ValueError(f"symlink source not allowed: {rel}")
+
+
 def copy_tree_clean(src: Path, dst: Path) -> None:
     if not src.exists():
         return
+    reject_symlink(src, src)
     for path in src.rglob('*'):
+        reject_symlink(path, src)
         if path.is_dir():
             continue
         if '__pycache__' in path.parts or path.suffix in {'.pyc', '.pyo'}:
@@ -29,6 +40,7 @@ def build_dist(output: Path) -> Path:
     output.mkdir(parents=True)
 
     source_main = ROOT / 'skills' / 'marketing-council' / 'SKILL.md'
+    reject_symlink(source_main, ROOT)
     text = source_main.read_text(encoding='utf-8')
     replacements = {
         '../../agents/': 'agents/',
@@ -56,12 +68,17 @@ def build_dist(output: Path) -> Path:
     copy_tree_clean(ROOT / 'routing', output / 'routing')
 
     for skill_dir in (ROOT / 'skills').iterdir():
+        reject_symlink(skill_dir, ROOT / 'skills')
         if not skill_dir.is_dir() or skill_dir.name == 'marketing-council':
             continue
         copy_tree_clean(skill_dir, output / 'skills' / skill_dir.name)
 
-    shutil.copy2(ROOT / 'LICENSE', output / 'LICENSE')
-    shutil.copy2(ROOT / 'manifest.json', output / 'manifest.json')
+    for source, target in (
+        (ROOT / 'LICENSE', output / 'LICENSE'),
+        (ROOT / 'manifest.json', output / 'manifest.json'),
+    ):
+        reject_symlink(source, ROOT)
+        shutil.copy2(source, target)
     return output
 
 

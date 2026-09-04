@@ -1,0 +1,10 @@
+cases:
+- id: product-marketing-behavior-1
+  prompt: "Make the product narrative from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: product-marketing-behavior-2
+  prompt: "Challenge this proposed product narrative before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: product-marketing-behavior-3
+  prompt: "Finish the product narrative and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

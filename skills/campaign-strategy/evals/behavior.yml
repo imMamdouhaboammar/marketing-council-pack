@@ -1,0 +1,10 @@
+cases:
+- id: campaign-strategy-behavior-1
+  prompt: "Make the campaign decision from incomplete evidence"
+  must_include: ["evidence", "assumption", "confidence"]
+- id: campaign-strategy-behavior-2
+  prompt: "Challenge this proposed campaign decision before approving it"
+  must_include: ["alternative", "risk", "reversal"]
+- id: campaign-strategy-behavior-3
+  prompt: "Finish the campaign decision and tell me what happens next"
+  must_include: ["decision", "measurement", "handoff"]

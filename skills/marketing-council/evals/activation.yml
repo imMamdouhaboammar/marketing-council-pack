@@ -1,0 +1,37 @@
+cases:
+- id: marketing-council-activation-1
+  kind: positive
+  prompt: "Diagnose this cross-functional marketing problem before choosing which specialists should own it"
+  should_activate: true
+- id: marketing-council-activation-2
+  kind: positive
+  prompt: "Several marketing functions may be causing the result; decide what matters first and coordinate the minimum specialists"
+  should_activate: true
+- id: marketing-council-activation-3
+  kind: positive
+  prompt: "Build an integrated marketing decision where positioning, pricing, media, and retention constraints may interact"
+  should_activate: true
+- id: marketing-council-activation-4
+  kind: implicit
+  prompt: "Growth is weak and we do not know whether the issue is market, offer, pricing, media, conversion, or retention"
+  should_activate: true
+- id: marketing-council-activation-5
+  kind: implicit
+  prompt: "The evidence points in different marketing directions and no single function clearly owns the next decision"
+  should_activate: true
+- id: marketing-council-activation-6
+  kind: implicit
+  prompt: "Challenge the competing functional hypotheses and tell me which specialist work should happen first"
+  should_activate: true
+- id: marketing-council-activation-7
+  kind: negative
+  prompt: "A single focused skill clearly owns the next decision"
+  should_activate: false
+- id: marketing-council-activation-8
+  kind: negative
+  prompt: "The user only wants formatting or rewriting of an already-approved strategy"
+  should_activate: false
+- id: marketing-council-activation-9
+  kind: collision
+  prompt: "Several focused marketing functions are plausible owners and the brief does not establish a safe dependency order"
+  should_activate: true

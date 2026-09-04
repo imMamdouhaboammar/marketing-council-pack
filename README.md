@@ -8,7 +8,7 @@
 
 **29 Agent Skills. 28 focused skills + 1 Council router. 24 specialist agents. 25 marketing figures. 46 applied theories.**
 
-[![Version](https://img.shields.io/badge/version-1.4.0-173F35)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.5.0-173F35)](CHANGELOG.md)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-29-173F35)](skills/)
 [![Specialist Agents](https://img.shields.io/badge/Specialist%20Agents-24-173F35)](agents/)
 [![License](https://img.shields.io/badge/license-MIT-173F35)](LICENSE)
@@ -17,30 +17,32 @@
 
 Marketing Council is a cross-agent marketing strategy plugin for ChatGPT, Codex, Claude Code, and compatible Agent Skills hosts
 
-It does two different routing jobs that should not be confused
+It uses three routing layers that should not be confused
 
 1. The **skill router** decides which of the 28 focused marketing skills owns the request, or falls back to `marketing-council` when the brief is ambiguous or cross-functional
-2. The **neural router** works inside the selected marketing problem to rank relevant schools, theories, principles, specialist agents, and counterweights
+2. The **dynamic DAG router** builds a bounded dependency graph only when the request explicitly requires dependent work across multiple focused skills
+3. The **neural router** works after skill ownership is known to rank relevant schools, theories, principles, specialist agents, and counterweights
 
 The goal is not to produce a longer brainstorm. The goal is to make one defensible marketing decision with explicit evidence, assumptions, trade-offs, measurement, and reversal criteria
 
-## What changed in v1.4.0
+## What changed in v1.5.0
 
-Version 1.4.0 hardens plugin discovery and public distribution
+Version 1.5.0 turns every Marketing Council Skill into a fully rendered behavioral and execution pack
 
-- 29 total Agent Skills are declared and validated
-- 28 focused skills are covered exactly once by the canonical route registry
-- `marketing-council` is the 29th skill and the safe fallback for cross-functional or ambiguous requests
-- every skill has `agents/openai.yaml` interface metadata
-- every skill explicitly allows implicit invocation
-- the plugin has a deterministic skill router in `scripts/skill_router.py`
-- the existing neural marketing router remains separate in `scripts/neural_router.py`
-- OpenAI submission packaging can produce 29 standalone, self-contained skill ZIPs
-- release metadata is version-locked across public manifests and submission listing
-- CI tests discovery, routing, packaging, standalone skill generation, and OpenAI package validation
-- the OpenAI release runbook explicitly requires resubmission when public skill content changes
+- all 29 Agent Skills carry local decision, evidence, failure-mode, output, and behavioral-eval artifacts
+- the 28 focused Skills are mapped through `routing/skill-execution-bindings.json` to a primary specialist, skeptical counterweight, domain challenge gate, and evidence gate
+- `scripts/skill_router.py` owns single-skill selection and conservative Council fallback
+- `scripts/dynamic_router.py` owns bounded dependency DAGs for explicitly dependent cross-functional work, preserves explicit request order, and requires every transition to resolve through a declared handoff
+- `scripts/neural_router.py` remains a separate post-ownership theory and specialist router
+- Council standalone packaging embeds all 28 focused Skills and rewrites shared agent, hook, routing, neural, and tool dependencies into bundle-local resources
+- self-contained, host, and standalone OpenAI builders reject symlink sources before copying or archiving release content
+- `submission/submission-pack.json` carries five positive and three negative executed review cases; it remains `PARTIAL_MISSING_INPUT` until required portal identity, policy/support URLs, and availability fields are supplied
+- renderer drift, execution-binding resolution, evidence-ledger coverage, structural BinEval, router regressions, host packaging, and OpenAI submission packaging are CI-gated
+- public OpenAI availability still requires submitting or resubmitting the v1.5.0 snapshot and running fresh-chat smoke tests after publication
 
-See [`docs/OPENAI_RELEASE.md`](docs/OPENAI_RELEASE.md) for the release and post-publication verification process
+## Documentation status
+
+Use [`docs/README.md`](docs/README.md) as the canonical documentation map. It separates ACTIVE and ONGOING operational docs from historical specs and implementation plans so old planning assumptions are not treated as current requirements
 
 ## Architecture
 
@@ -52,23 +54,39 @@ SKILL ROUTER
 routing/skill-routes.json
 scripts/skill_router.py
      |
-     +--> one dominant function --> focused skill
+     +--> one dominant function --> focused Skill
      |
-     +--> ambiguous / cross-functional --> marketing-council
-                                         |
-                                         v
-                                   DIAGNOSIS + EVIDENCE
-                                         |
-                                         v
-                                   NEURAL ROUTER
-                              neural/graph.json
-                              scripts/neural_router.py
-                                         |
-                                         v
-                         SCHOOLS / THEORIES / AGENTS
-                                         |
-                                         v
-                              CHALLENGE + DECISION
+     +--> ambiguous ownership --> marketing-council
+     |
+     +--> explicit dependent cross-functional work
+                    |
+                    v
+              DYNAMIC DAG ROUTER
+              scripts/dynamic_router.py
+                    |
+                    v
+              bounded focused-Skill DAG
+                    |
+                    v
+              DECISION + EVIDENCE
+                    |
+                    v
+              NEURAL ROUTER
+              neural/graph.json
+              scripts/neural_router.py
+                    |
+                    v
+              theories / agents / counterweights
+                    |
+                    v
+              CHALLENGE + DECISION
+
+Focused Skill execution wiring:
+routing/skill-execution-bindings.json
+     -> primary specialist
+     -> skeptical counterweight
+     -> domain challenge gate
+     -> evidence gate
 ```
 
 ### Skill router
@@ -113,6 +131,20 @@ Expected primary skill
 ```text
 marketing-council
 ```
+
+### Dynamic DAG router
+
+The dynamic router answers a dependency question
+
+> Which focused Skills must run, and in what dependency order, when the user has explicitly established a cross-functional chain?
+
+```bash
+python scripts/dynamic_router.py --help
+```
+
+It is deliberately bounded. It does not create a DAG merely because several marketing functions are mentioned. Ambiguous ownership stays with `marketing-council`, while genuinely dependent work is limited to the minimum focused Skills required by the decision
+
+Execution ownership inside each focused Skill is declared separately in `routing/skill-execution-bindings.json`
 
 ### Neural router
 
@@ -283,7 +315,7 @@ python scripts/build_host_packages.py --output-root dist/release
 The OpenAI plugin archive for this release is
 
 ```text
-dist/release/marketing-council-openai-plugin-v1.4.0.zip
+dist/release/marketing-council-openai-plugin-v1.5.0.zip
 ```
 
 The repository also builds a Claude marketplace package and a self-contained Agent Skill package for the same version
@@ -306,9 +338,9 @@ Expected output includes
 
 ```text
 dist/openai-submission/submission-inventory.json
-dist/openai-submission/skills/market-diagnosis-v1.4.0.zip
+dist/openai-submission/skills/market-diagnosis-v1.5.0.zip
 ...
-dist/openai-submission/skills/marketing-council-v1.4.0.zip
+dist/openai-submission/skills/marketing-council-v1.5.0.zip
 ```
 
 The inventory must report exactly 29 standalone skill bundles and includes SHA-256 hashes for the artifacts

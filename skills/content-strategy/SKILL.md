@@ -1,40 +1,55 @@
 ---
 name: content-strategy
-description: Use when the user needs content pillars, editorial strategy, organic content direction, thought leadership, search content, creator content, lifecycle content, or a content plan connected to customer decisions.
+description: Use when the user needs to define content jobs, formats, cadence, and distribution tied to audience decisions; route here only when this decision boundary is the clear owner.
 ---
 
 # Content Strategy
 
-**Goal:** Define what content must change in the audience and where that content fits the buying process.
+## Job
 
-## Process
+Define content jobs, formats, cadence, and distribution tied to audience decisions
 
-1. Define the audience state and decision the content should affect.
-2. Map recurring customer questions, anxieties, comparisons, triggers, and proof needs.
-3. Choose content jobs such as discovery, reframing, education, evaluation, proof, activation, or retention.
-4. Choose formats and channels from consumption behavior, not habit.
-5. Define a repeatable editorial point of view and evidence standard.
-6. Measure downstream behavior, not output volume alone.
+Own this request only when **content portfolio** is the clear decision boundary. If ownership is ambiguous or several functions compete, route to `marketing-council`. If the user explicitly asks for dependent work across functions, use `../../scripts/dynamic_router.py` to build a bounded DAG.
 
-## Council roles
+## Operating contract
 
-- `../../agents/audience-strategist.md`
-- `../../agents/awareness-strategist.md`
-- `../../agents/channel-strategist.md`
+1. Read `references/skill-spec.json` first for activation, invariants, workflow freedom, evidence rules, handoffs, and completion conditions.
+2. Use `references/decision-model.md` when framing or challenging the decision.
+3. Check `references/failure-modes.md` before finalizing a recommendation.
+4. Render the response against `references/output-contract.md`.
+5. Use packaged shared references or current external research only when they are load-bearing. Never present inference as evidence.
+
+## Evidence discipline
+
+Classify material claims as fact, inference, assumption, or unknown. Prefer supplied primary evidence. Verify current platform, policy, product, pricing, or market claims when freshness affects the recommendation. Do not fabricate research, tool calls, metrics, customer language, or causal proof.
+
+## Routing
+
+- Focused request: stay inside this Skill.
+- Ambiguous or cross-functional ownership: hand to `marketing-council`.
+- Explicit dependency chain: use `../../scripts/dynamic_router.py`.
+- After Skill ownership is known, theory/agent selection may use `../../scripts/neural_router.py`; neural nodes never replace Skill routing.
+
+## Execution connections
+
+- Primary specialist: `../../agents/creative-strategist.md`
+- Skeptical counterweight: `../../agents/marketing-skeptic.md`
+- Domain challenge gate: `../../hooks/anti-generic-marketing.md`
+- Evidence gate: `../../hooks/evidence-gate.md`
+- Keep these as decision inputs, not automatic authority. The Skill owns the final evidence-bound synthesis.
+
 
 ## Neural connections
 
-- Principles: `permission-relevance`, `awareness-message-fit`, `creative-human-translation`
-- Applied theories: `permission-marketing`, `awareness-levels`
-- Router: `../../neural/graph.json` and `../../scripts/neural_router.py`
-- Use `../../hooks/theory-fit-gate.md` when more than one theory could plausibly explain the problem.
+- Owning Skill: `content-strategy`
+- Decision boundary: `content portfolio`
+- Neural graph: `../../neural/graph.json`
+- Neural router: `../../scripts/neural_router.py`
+- Theory and specialist selection happens only after Skill ownership; neural nodes never replace Skill routing.
+- Use the local `references/skill-spec.json` evidence policy and invariants to reject neural recommendations that are unsupported by the request evidence.
 
-## Required output
+## Completion gate
 
-Return the decision, supporting evidence, assumptions, recommendation, rejected alternative, measurement, and evidence that would reverse the recommendation.
+Complete only when the decision is explicit, evidence and inference are separated, a credible alternative was considered, outputs are rendered, material uncertainty is stated, and measurement plus reversal evidence are defined.
 
-## Guardrails
-
-- Never fabricate customer insight, research, proof, scarcity, urgency, or benchmarks.
-- Research time-sensitive facts when current tools are available.
-- If the requested tactic is not supported by the diagnosis, say so and propose the better decision.
+Local behavioral evaluations live in `evals/activation.yml`, `evals/behavior.yml`, `evals/pressure.yml`, and `evals/regression.yml`.

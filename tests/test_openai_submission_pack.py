@@ -117,6 +117,24 @@ class OpenAISubmissionPackTests(unittest.TestCase):
             self.assertEqual(nested["handoffs"]["skill_router"], "../../../shared/scripts/skill_router.py")
             self.assertEqual(nested["handoffs"]["neural_router"], "../../../shared/scripts/neural_router.py")
 
+    def test_shared_markdown_paths_are_rewritten_to_bundle_local_resources(self):
+        with tempfile.TemporaryDirectory() as td:
+            output = Path(td) / "submission"
+            self.build(output)
+            archive = output / "skills" / "agentic-commerce-v1.5.0.zip"
+            with zipfile.ZipFile(archive) as zf:
+                theory = zf.read(
+                    "agentic-commerce/shared/references/theories/agentic-commerce-readiness.md"
+                ).decode("utf-8")
+                hook = zf.read(
+                    "agentic-commerce/shared/hooks/agentic-commerce-readiness.md"
+                ).decode("utf-8")
+            self.assertIn("shared/neural/graph.json", theory)
+            self.assertIn("shared/references/2026/agentic-commerce-2026.md", theory)
+            self.assertNotIn("`neural/graph.json`", theory)
+            self.assertNotIn("`references/2026/agentic-commerce-2026.md`", theory)
+            self.assertIn("shared/references/2026/", hook)
+
     def test_builder_rejects_root_level_symlink_source(self):
         module = self.module()
         with tempfile.TemporaryDirectory() as td:

@@ -65,6 +65,15 @@ class DynamicRouterTests(unittest.TestCase):
         self.assertIn(["positioning-strategy", "pricing-strategy"], result["edges"])
         self.assertIn(["pricing-strategy", "go-to-market"], result["edges"])
 
+    def test_negative_example_in_downstream_clause_does_not_drop_explicit_upstream_skill(self):
+        result = self._route(
+            "First set pricing tiers, then improve checkout conversion without changing price"
+        )
+        self.assertEqual(result["mode"], "council")
+        self.assertEqual(result["primary_skill"], "marketing-council")
+        self.assertTrue(result["fallback"])
+        self.assertIn("handoff", result["reason"].lower())
+
     def test_explicit_sequence_is_not_silently_reordered(self):
         result = self._route("Set pricing tiers first, then research customers before finalizing anything")
         self.assertEqual(result["mode"], "council")

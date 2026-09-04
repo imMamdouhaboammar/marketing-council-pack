@@ -1,3 +1,4 @@
+import importlib.util
 import json
 import re
 import subprocess
@@ -19,6 +20,12 @@ ALLOWED = {
 
 
 class DocumentationLifecycleTests(unittest.TestCase):
+    def validator_module(self):
+        spec = importlib.util.spec_from_file_location("documentation_validator_under_test", VALIDATOR)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+
     def registry(self):
         self.assertTrue(REGISTRY.is_file(), "docs/document-registry.json must exist")
         return json.loads(REGISTRY.read_text(encoding="utf-8"))
@@ -136,6 +143,27 @@ class DocumentationLifecycleTests(unittest.TestCase):
         workflow = (ROOT / ".github" / "workflows" / "plugin-ci.yml").read_text(encoding="utf-8")
         self.assertIn("Validate documentation lifecycle", workflow)
         self.assertIn("python scripts/validate_documentation.py --json", workflow)
+
+    def test_review_dates_are_iso_formatted_and_match_document_metadata_without_fixed_day(self):
+        module = self.validator_module()
+        self.assertTrue(module.valid_review_date("2027-01-15"))
+        self.assertFalse(module.valid_review_date("2027/01/15"))
+        metadata = module.parse_document_metadata(
+            "<!--\ndoc_status: ACTIVE\nlast_reviewed: 2027-01-15\nsource_of_truth: true\n-->"
+        )
+        self.assertEqual(metadata["last_reviewed"], "2027-01-15")
+        self.assertEqual(
+            module.review_date_errors(
+                {"path": "docs/example.md", "last_reviewed": "2027-01-15"},
+                metadata,
+            ),
+            [],
+        )
+        errors = module.review_date_errors(
+            {"path": "docs/example.md", "last_reviewed": "2027-01-16"},
+            metadata,
+        )
+        self.assertTrue(any("does not match document metadata" in error for error in errors))
 
     def test_repo_validator_accepts_documentation_lifecycle(self):
         self.assertTrue(VALIDATOR.is_file(), "scripts/validate_documentation.py must exist")

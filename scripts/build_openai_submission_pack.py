@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import shutil
 import tempfile
 import zipfile
@@ -31,6 +32,10 @@ SHARED_DIRS = (
     "routing",
 )
 SKIP_PARTS = {"__pycache__", ".pytest_cache", ".DS_Store", "dist", ".git"}
+TEXT_RESOURCE_SUFFIXES = {".md", ".json", ".yml", ".yaml", ".txt"}
+SHARED_PATH_RE = re.compile(
+    r"(?<![A-Za-z0-9_./-])(" + "|".join(re.escape(item) for item in SHARED_DIRS) + r")/"
+)
 
 
 def sha256(path: Path) -> str:
@@ -50,7 +55,12 @@ def reject_symlink(path: Path, source_root: Path) -> None:
         raise ValueError(f"symlink source not allowed: {rel}")
 
 
-def copy_clean(src: Path, dst: Path) -> None:
+def rewrite_shared_resource_paths(text: str) -> str:
+    """Rewrite repository-root shared paths for resources copied under bundle/shared."""
+    return SHARED_PATH_RE.sub(lambda match: f"shared/{match.group(1)}/", text)
+
+
+def copy_clean(src: Path, dst: Path, *, rewrite_shared_paths: bool = False) -> None:
     if not src.exists():
         return
     reject_symlink(src, src)
@@ -65,7 +75,11 @@ def copy_clean(src: Path, dst: Path) -> None:
             continue
         target = dst / rel
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(path, target)
+        if rewrite_shared_paths and path.suffix.casefold() in TEXT_RESOURCE_SUFFIXES:
+            text = path.read_text(encoding="utf-8")
+            target.write_text(rewrite_shared_resource_paths(text), encoding="utf-8")
+        else:
+            shutil.copy2(path, target)
 
 
 def rewrite_skill_paths(text: str) -> str:
@@ -200,7 +214,11 @@ def build_skill_bundle(skill_dir: Path, output_dir: Path, ver: str) -> Path:
 
         shared = bundle / "shared"
         for directory in SHARED_DIRS:
-            copy_clean(ROOT / directory, shared / directory)
+            copy_clean(
+                ROOT / directory,
+                shared / directory,
+                rewrite_shared_paths=True,
+            )
 
         if slug == "marketing-council":
             for focused_dir in sorted((ROOT / "skills").iterdir()):

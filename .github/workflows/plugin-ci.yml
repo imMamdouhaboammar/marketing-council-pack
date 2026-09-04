@@ -81,6 +81,9 @@ jobs:
       - name: Validate submission draft
         run: python scripts/validate_submission_pack.py submission/submission-pack.json --json
 
+      - name: Validate documentation lifecycle
+        run: python scripts/validate_documentation.py --json
+
       - name: Run full unit test suite
         run: python -m unittest discover -s tests -v
 

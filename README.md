@@ -40,6 +40,10 @@ Version 1.5.0 turns every Marketing Council Skill into a fully rendered behavior
 - renderer drift, execution-binding resolution, evidence-ledger coverage, structural BinEval, router regressions, host packaging, and OpenAI submission packaging are CI-gated
 - public OpenAI availability still requires submitting or resubmitting the v1.5.0 snapshot and running fresh-chat smoke tests after publication
 
+## Documentation status
+
+Use [`docs/README.md`](docs/README.md) as the canonical documentation map. It separates ACTIVE and ONGOING operational docs from historical specs and implementation plans so old planning assumptions are not treated as current requirements
+
 ## Architecture
 
 ```text

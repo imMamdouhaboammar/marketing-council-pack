@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "last_reviewed": "2026-09-04",
+  "documents": [
+    {
+      "path": "docs/README.md",
+      "status": "ACTIVE",
+      "source_of_truth": false,
+      "last_reviewed": "2026-09-04"
+    },
+    {
+      "path": "docs/OPENAI_RELEASE.md",
+      "status": "ACTIVE",
+      "source_of_truth": true,
+      "last_reviewed": "2026-09-04"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-08-17-marketing-council-design.md",
+      "status": "HISTORICAL_SUPERSEDED",
+      "source_of_truth": false,
+      "last_reviewed": "2026-09-04",
+      "superseded_by": [
+        "README.md",
+        "docs/OPENAI_RELEASE.md"
+      ]
+    },
+    {
+      "path": "docs/superpowers/specs/2026-08-17-marketing-neural-graph-v1.2.0-design.md",
+      "status": "HISTORICAL_SUPERSEDED",
+      "source_of_truth": false,
+      "last_reviewed": "2026-09-04",
+      "superseded_by": [
+        "README.md",
+        "docs/OPENAI_RELEASE.md"
+      ]
+    },
+    {
+      "path": "docs/superpowers/specs/2026-09-03-omni-marketing-skill-packs-design.md",
+      "status": "HISTORICAL_COMPLETED",
+      "source_of_truth": false,
+      "last_reviewed": "2026-09-04",
+      "completed_by_release": "v1.5.0"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-08-17-marketing-council-implementation.md",
+      "status": "HISTORICAL_COMPLETED",
+      "source_of_truth": false,
+      "last_reviewed": "2026-09-04",
+      "completed_by_release": "v1.0.0"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-08-17-marketing-council-distribution-v1.1.md",
+      "status": "HISTORICAL_COMPLETED",
+      "source_of_truth": false,
+      "last_reviewed": "2026-09-04",
+      "completed_by_release": "v1.1.0"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-08-17-marketing-neural-graph-v1.2.0.md",
+      "status": "HISTORICAL_COMPLETED",
+      "source_of_truth": false,
+      "last_reviewed": "2026-09-04",
+      "completed_by_release": "v1.2.0"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-08-17-marketing-council-v1.3-ai-mediated-marketing.md",
+      "status": "HISTORICAL_COMPLETED",
+      "source_of_truth": false,
+      "last_reviewed": "2026-09-04",
+      "completed_by_release": "v1.3.0"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-09-03-omni-marketing-skill-packs.md",
+      "status": "ONGOING",
+      "source_of_truth": false,
+      "last_reviewed": "2026-09-04"
+    }
+  ]
+}

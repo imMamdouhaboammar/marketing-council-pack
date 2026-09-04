@@ -1,3 +1,18 @@
+<!--
+doc_status: ACTIVE
+last_reviewed: 2026-09-04
+release: 1.5.0
+source_of_truth: true
+-->
+
+![Status: ACTIVE](https://img.shields.io/badge/status-ACTIVE-173F35)
+![Release: v1.5.0](https://img.shields.io/badge/release-v1.5.0-173F35)
+
+> [!IMPORTANT]
+> **Current source of truth for OpenAI release operations**
+>
+> This runbook describes the active v1.5.0 packaging, submission, publication, and verification contract. Historical plans under `docs/superpowers/` do not override it
+
 # OpenAI / ChatGPT Plugin Release Runbook
 
 Marketing Council is a skills-only plugin. Its public ChatGPT/Codex release must be treated as a versioned package, not as a live mirror of the GitHub repository.

@@ -1,29 +1,31 @@
 <!--
-doc_status: ONGOING
+doc_status: HISTORICAL_COMPLETED
 created: 2026-09-03
+archived: 2026-09-04
 last_reviewed: 2026-09-04
+completed_by_release: v1.5.0
 source_of_truth: false
 -->
 
-![Status: ONGOING](https://img.shields.io/badge/status-ongoing-2563eb)
+![Status: HISTORICAL_COMPLETED](https://img.shields.io/badge/status-historical__completed-6b7280)
+![Release: v1.5.0](https://img.shields.io/badge/release-v1.5.0-173F35)
 
-> [!IMPORTANT]
-> **Current implementation closeout record**
+> [!NOTE]
+> **Historical implementation plan**
 >
-> Status: `ONGOING`
+> Status: `HISTORICAL_COMPLETED`
 >
-> This plan remains open only for PR #3 closeout. The implementation is already at v1.5.0; merge is intentionally outside this agent task
-
-## Operational status
-
-- **Status:** `ONGOING`
-- **Current state:** 29 full Skill packs, execution bindings, Skill Router, Dynamic DAG Router, Neural Router, standalone OpenAI packaging, submission-draft validation, and release hardening are implemented on PR #3
-- **Completed work:** full-pack rendering, deterministic validators/evals, three routing layers, fail-closed handoffs, symlink-safe builders, bundle-local SkillSpec rewriting, and v1.5.0 release metadata
-- **Remaining work:** final PR verification on the exact head and closure of verified review threads before the merge step
-- **Blockers:** no product blocker is assumed closed until final CI and review-thread evidence are green
-- **Next verification step:** run the complete Plugin CI/package ladder on the final head, then verify PR mergeability and unresolved threads
-- **Source-of-truth references:** [Repository README](../../../README.md), [Documentation map](../../README.md), [OpenAI release runbook](../../OPENAI_RELEASE.md), current tests, manifests, and routing registries
-- **Last reviewed date:** 2026-09-04
+> Completed by release: `v1.5.0`
+>
+> This plan's implementation scope ended at a merge-ready PR. PR merge, OpenAI submission, approval, publication, and post-publication smoke tests are separate actions and are not represented as completed here
+>
+> **Current source of truth:**
+> - [Repository README](../../../README.md)
+> - [Documentation map](../../README.md)
+> - [OpenAI release runbook](../../OPENAI_RELEASE.md)
+> - current tests, manifests, routing registries, and package validators
+>
+> Do not execute this plan as a current task list. Its unchecked boxes are preserved as historical planning state
 
 # Omni Marketing Skill Packs Implementation Plan
 

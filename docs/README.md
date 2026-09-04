@@ -29,7 +29,6 @@ Current implementation facts include 29 total Skills, 28 focused Skills, `market
 
 ## Ongoing work
 
-- **[ONGOING]** [Omni Marketing Skill Packs implementation closeout](superpowers/plans/2026-09-03-omni-marketing-skill-packs.md) - PR #3 final verification and review-thread closeout
 - **[ONGOING]** [Submission and release pack](../submission/README.md) - required external portal identity, policy/support URLs, availability, submission, approval, publication, and fresh-host smoke tests
 
 ## Architecture and contracts
@@ -69,7 +68,7 @@ Historical specs preserve the decisions and assumptions that existed when they w
 - **[HISTORICAL_COMPLETED]** [v1.1 distribution plan](superpowers/plans/2026-08-17-marketing-council-distribution-v1.1.md)
 - **[HISTORICAL_COMPLETED]** [v1.2 neural graph plan](superpowers/plans/2026-08-17-marketing-neural-graph-v1.2.0.md)
 - **[HISTORICAL_COMPLETED]** [v1.3 AI-mediated marketing plan](superpowers/plans/2026-08-17-marketing-council-v1.3-ai-mediated-marketing.md)
-- **[ONGOING]** [v1.5 Omni full-pack closeout plan](superpowers/plans/2026-09-03-omni-marketing-skill-packs.md)
+- **[HISTORICAL_COMPLETED]** [v1.5 Omni full-pack implementation plan](superpowers/plans/2026-09-03-omni-marketing-skill-packs.md)
 
 Unchecked boxes inside a historical plan describe that old planning artifact. They are not current TODOs unless an ACTIVE or ONGOING document explicitly says so
 

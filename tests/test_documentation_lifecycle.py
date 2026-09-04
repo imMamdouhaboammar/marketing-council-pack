@@ -46,7 +46,7 @@ class DocumentationLifecycleTests(unittest.TestCase):
         for item in payload["documents"]:
             self.assertIn(item["status"], ALLOWED, item["path"])
             self.assertIsInstance(item["source_of_truth"], bool, item["path"])
-            self.assertRegex(item["last_reviewed"], r"^2026-09-04$")
+            self.assertRegex(item["last_reviewed"], r"^\d{4}-\d{2}-\d{2}$")
             path = ROOT / item["path"]
             self.assertTrue(path.is_file(), item["path"])
             text = path.read_text(encoding="utf-8")

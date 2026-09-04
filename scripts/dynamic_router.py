@@ -69,6 +69,22 @@ def _load() -> tuple[dict, dict]:
     )
 
 
+def _phrase_spans(text: str, phrase: str) -> list[tuple[int, int]]:
+    candidate = _normalise(phrase).strip()
+    if not candidate:
+        return []
+    needle = f" {candidate} "
+    spans: list[tuple[int, int]] = []
+    start = 0
+    while True:
+        position = text.find(needle, start)
+        if position < 0:
+            break
+        spans.append((position, position + len(needle)))
+        start = position + 1
+    return spans
+
+
 def _route_matches(raw_text: str, routes: dict) -> tuple[dict[str, int], dict[str, int]]:
     text = _normalise(raw_text)
     scores: dict[str, int] = {}
@@ -77,17 +93,24 @@ def _route_matches(raw_text: str, routes: dict) -> tuple[dict[str, int], dict[st
         slug = route["skill"]
         score = 0
         first_position: int | None = None
-        negatives = route.get("negative_examples", [])
-        if any(_phrase(text, item) for item in negatives):
-            continue
+        negative_spans = [
+            span
+            for item in route.get("negative_examples", [])
+            for span in _phrase_spans(text, item)
+        ]
         phrases = list(route.get("intents", [])) + list(route.get("examples", [])) + EXTRA_HINTS.get(slug, [])
         for item in phrases:
             candidate = _normalise(item).strip()
             if not candidate:
                 continue
-            position = text.find(f" {candidate} ")
-            if position < 0:
+            valid_positions = [
+                start
+                for start, end in _phrase_spans(text, item)
+                if not any(start < neg_end and end > neg_start for neg_start, neg_end in negative_spans)
+            ]
+            if not valid_positions:
                 continue
+            position = min(valid_positions)
             score += max(2, len(candidate.split()) * 2)
             first_position = position if first_position is None else min(first_position, position)
         if score:

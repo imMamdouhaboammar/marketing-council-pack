@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,11 +29,52 @@ ONGOING_FIELDS = (
     "Last reviewed date",
 )
 LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+METADATA_RE = re.compile(r"<!--\s*(.*?)\s*-->", re.DOTALL)
 
 
 def add(errors: list[str], condition: bool, message: str) -> None:
     if not condition:
         errors.append(message)
+
+
+def valid_review_date(value: object) -> bool:
+    if not isinstance(value, str):
+        return False
+    try:
+        parsed = date.fromisoformat(value)
+    except ValueError:
+        return False
+    return parsed.isoformat() == value
+
+
+def parse_document_metadata(text: str) -> dict[str, str]:
+    match = METADATA_RE.search(text)
+    if not match:
+        return {}
+    metadata: dict[str, str] = {}
+    for raw_line in match.group(1).splitlines():
+        line = raw_line.strip()
+        if not line or ":" not in line or line.startswith("-"):
+            continue
+        key, value = line.split(":", 1)
+        metadata[key.strip()] = value.strip()
+    return metadata
+
+
+def review_date_errors(item: dict, metadata: dict[str, str]) -> list[str]:
+    rel = item.get("path")
+    registry_date = item.get("last_reviewed")
+    document_date = metadata.get("last_reviewed")
+    errors: list[str] = []
+    if not valid_review_date(registry_date):
+        errors.append(f"{rel}: registry last_reviewed must be a valid ISO date")
+    if not valid_review_date(document_date):
+        errors.append(f"{rel}: document last_reviewed must be a valid ISO date")
+    if valid_review_date(registry_date) and valid_review_date(document_date) and registry_date != document_date:
+        errors.append(
+            f"{rel}: registry last_reviewed {registry_date} does not match document metadata {document_date}"
+        )
+    return errors
 
 
 def validate() -> dict:
@@ -46,6 +88,7 @@ def validate() -> dict:
         return {"ok": False, "document_count": 0, "errors": [f"registry unreadable: {exc}"]}
 
     add(errors, payload.get("version") == 1, "registry version must be 1")
+    add(errors, valid_review_date(payload.get("last_reviewed")), "registry last_reviewed must be a valid ISO date")
     documents = payload.get("documents", [])
     paths = [item.get("path") for item in documents]
     add(errors, len(paths) == len(set(paths)), "registry contains duplicate document paths")
@@ -62,7 +105,6 @@ def validate() -> dict:
         source = item.get("source_of_truth")
         add(errors, status in ALLOWED, f"{rel}: invalid status {status!r}")
         add(errors, isinstance(source, bool), f"{rel}: source_of_truth must be boolean")
-        add(errors, item.get("last_reviewed") == "2026-09-04", f"{rel}: last_reviewed must be 2026-09-04")
         if not isinstance(rel, str):
             continue
         path = ROOT / rel
@@ -70,6 +112,8 @@ def validate() -> dict:
         if not path.is_file():
             continue
         text = path.read_text(encoding="utf-8")
+        metadata = parse_document_metadata(text)
+        errors.extend(review_date_errors(item, metadata))
         add(errors, f"doc_status: {status}" in text, f"{rel}: doc_status metadata mismatch")
         add(errors, f"source_of_truth: {str(source).lower()}" in text, f"{rel}: source_of_truth metadata mismatch")
 
@@ -120,10 +164,28 @@ def validate() -> dict:
     submission = ROOT / "submission" / "README.md"
     if submission.is_file():
         submission_text = submission.read_text(encoding="utf-8")
+        submission_metadata = parse_document_metadata(submission_text)
         add(errors, "doc_status: ONGOING" in submission_text, "submission/README.md must be ONGOING")
         add(errors, "source_of_truth: false" in submission_text, "submission/README.md cannot be source of truth")
+        add(
+            errors,
+            valid_review_date(submission_metadata.get("last_reviewed")),
+            "submission/README.md last_reviewed must be a valid ISO date",
+        )
         for field in ONGOING_FIELDS:
             add(errors, field in submission_text, f"submission/README.md missing {field}")
+
+    valid_item_dates = [
+        item.get("last_reviewed")
+        for item in documents
+        if valid_review_date(item.get("last_reviewed"))
+    ]
+    if valid_item_dates and valid_review_date(payload.get("last_reviewed")):
+        add(
+            errors,
+            payload.get("last_reviewed") == max(valid_item_dates),
+            "registry top-level last_reviewed must match the latest managed document review date",
+        )
 
     return {
         "ok": not errors,

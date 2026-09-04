@@ -115,6 +115,28 @@ class DocumentationLifecycleTests(unittest.TestCase):
                     f"{item['path']}: broken relative link {raw}",
                 )
 
+    def test_submission_readme_is_ongoing_and_operational(self):
+        path = ROOT / "submission" / "README.md"
+        text = path.read_text(encoding="utf-8")
+        self.assertIn("doc_status: ONGOING", text)
+        self.assertIn("source_of_truth: false", text)
+        for field in [
+            "Status",
+            "Current state",
+            "Completed work",
+            "Remaining work",
+            "Blockers",
+            "Next verification step",
+            "Source-of-truth references",
+            "Last reviewed date",
+        ]:
+            self.assertIn(field, text)
+
+    def test_plugin_ci_has_named_documentation_lifecycle_gate(self):
+        workflow = (ROOT / ".github" / "workflows" / "plugin-ci.yml").read_text(encoding="utf-8")
+        self.assertIn("Validate documentation lifecycle", workflow)
+        self.assertIn("python scripts/validate_documentation.py --json", workflow)
+
     def test_repo_validator_accepts_documentation_lifecycle(self):
         self.assertTrue(VALIDATOR.is_file(), "scripts/validate_documentation.py must exist")
         result = subprocess.run(

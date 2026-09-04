@@ -1,3 +1,30 @@
+<!--
+doc_status: ONGOING
+created: 2026-09-03
+last_reviewed: 2026-09-04
+source_of_truth: false
+-->
+
+![Status: ONGOING](https://img.shields.io/badge/status-ongoing-2563eb)
+
+> [!IMPORTANT]
+> **Current implementation closeout record**
+>
+> Status: `ONGOING`
+>
+> This plan remains open only for PR #3 closeout. The implementation is already at v1.5.0; merge is intentionally outside this agent task
+
+## Operational status
+
+- **Status:** `ONGOING`
+- **Current state:** 29 full Skill packs, execution bindings, Skill Router, Dynamic DAG Router, Neural Router, standalone OpenAI packaging, submission-draft validation, and release hardening are implemented on PR #3
+- **Completed work:** full-pack rendering, deterministic validators/evals, three routing layers, fail-closed handoffs, symlink-safe builders, bundle-local SkillSpec rewriting, and v1.5.0 release metadata
+- **Remaining work:** final PR verification on the exact head and closure of verified review threads before the merge step
+- **Blockers:** no product blocker is assumed closed until final CI and review-thread evidence are green
+- **Next verification step:** run the complete Plugin CI/package ladder on the final head, then verify PR mergeability and unresolved threads
+- **Source-of-truth references:** [Repository README](../../../README.md), [Documentation map](../../README.md), [OpenAI release runbook](../../OPENAI_RELEASE.md), current tests, manifests, and routing registries
+- **Last reviewed date:** 2026-09-04
+
 # Omni Marketing Skill Packs Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

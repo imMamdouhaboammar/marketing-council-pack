@@ -1,3 +1,29 @@
+<!--
+doc_status: HISTORICAL_COMPLETED
+created: 2026-08-17
+last_reviewed: 2026-09-04
+completed_by_release: v1.0.0
+source_of_truth: false
+-->
+
+![Status: HISTORICAL_COMPLETED](https://img.shields.io/badge/status-historical__completed-6b7280)
+
+> [!NOTE]
+> **Historical implementation plan**
+>
+> Status: `HISTORICAL_COMPLETED`
+>
+> Completed by release: `v1.0.0`
+>
+> This file preserves the implementation sequence used for the initial Marketing Council release. It is not the current product contract or backlog
+>
+> **Current source of truth:**
+> - [Repository README](../../../README.md)
+> - [Documentation map](../../README.md)
+> - [OpenAI release runbook](../../OPENAI_RELEASE.md)
+>
+> Do not execute this plan as a current task list
+
 # Marketing Council Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.

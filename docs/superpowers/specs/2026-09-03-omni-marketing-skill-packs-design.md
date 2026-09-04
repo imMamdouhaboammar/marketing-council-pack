@@ -1,3 +1,29 @@
+<!--
+doc_status: HISTORICAL_COMPLETED
+created: 2026-09-03
+last_reviewed: 2026-09-04
+completed_by_release: v1.5.0
+source_of_truth: false
+-->
+
+![Status: HISTORICAL_COMPLETED](https://img.shields.io/badge/status-historical__completed-6b7280)
+
+> [!NOTE]
+> **Historical completed design**
+>
+> Status: `HISTORICAL_COMPLETED`
+>
+> Completed by release: `v1.5.0`
+>
+> This design drove the Omni full-pack implementation and is preserved as engineering history. Post-design hardening added stricter declared-handoff validation, complete parallel DAG tails, symlink rejection in release builders, bundle-local SkillSpec path rewriting, and an evidence-bound submission draft
+>
+> **Current source of truth:**
+> - [Repository README](../../../README.md)
+> - [Documentation map](../../README.md)
+> - [OpenAI release runbook](../../OPENAI_RELEASE.md)
+>
+> Treat the implementation and current tests as authoritative when they differ from this design
+
 # Omni Marketing Skill Packs Design
 
 ## Goal
